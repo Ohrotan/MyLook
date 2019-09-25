@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1085530642671",
+    "firebase_url": "https://ssu-mylook.firebaseio.com",
+    "project_id": "ssu-mylook",
+    "storage_bucket": "ssu-mylook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085530642671:android:9c5e694f0db78a0b56e31a",
+        "android_client_info": {
+          "package_name": "com.ssu.mylook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085530642671-38q0fh3sgdqkunum266smchpdss9ovb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQnNORfk-YtfPn8opWHoOFeisfHfqnEN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085530642671-38q0fh3sgdqkunum266smchpdss9ovb4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
