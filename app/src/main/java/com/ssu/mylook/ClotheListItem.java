@@ -5,15 +5,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ClotheListItem  {
-    private int clothe_img;
+
     private String clothe_name;
+    private int clothe_img;
     private String clothe_id;
 
     public ClotheListItem() {
         super();
     }
 
-    public ClotheListItem(int clothe_img, String clothe_name, String clothe_id) {
+    public ClotheListItem( String clothe_name,int clothe_img, String clothe_id) {
         this.clothe_img = clothe_img;
         this.clothe_name = clothe_name;
         this.clothe_id = clothe_id;

@@ -15,7 +15,14 @@ public class ClotheListAdapter extends BaseAdapter {
     Context context;
     ArrayList<ClotheListItem> list;
     ViewHolder viewholder;
-
+    public ClotheListAdapter(Context context){
+        this.context = context;
+        list = new ArrayList<>();
+        list.add(new ClotheListItem("원피스",R.drawable.clothe1,"clothe-1"));
+        list.add(new ClotheListItem("테니스 스커트",R.drawable.clothe2,"clothe-1"));
+        list.add(new ClotheListItem("블라우스",R.drawable.clothe3,"clothe-1"));
+        list.add(new ClotheListItem("검정 구두",R.drawable.shoes1,"clothe-4"));
+    }
     public ClotheListAdapter(Context context, ArrayList<ClotheListItem> list) {
         this.context = context;
         this.list = list;
@@ -52,11 +59,10 @@ public class ClotheListAdapter extends BaseAdapter {
 
 
         viewholder.clothe_name.setText(list.get(position).getClothe_name());
-        viewholder.clothe_img.setImageDrawable(context.getDrawable(list.get(position).getClothe_img()));
-        //viewholder.coordi_clothe_checkBox.setId(list.get(position).getClothe_id());
+        viewholder.clothe_img.setImageResource(list.get(position).getClothe_img());
 
-
-    return convertView;}
+    return convertView;
+    }
 
     class ViewHolder{
 

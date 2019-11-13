@@ -1,15 +1,18 @@
 package com.ssu.mylook;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,9 +31,7 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
     //옷 추가 레이아웃
     AlertDialog dialog;
     GridView listView;
-    ClotheListAdapter myListAdapter;
-    ArrayList<ClotheListItem> list_itemArrayList;
-
+    ClotheListAdapter clotheListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,11 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
         btn6 = findViewById(R.id.button6);
 
         //옷 추가 레이아웃
-        list_itemArrayList = new ArrayList<ClotheListItem>();
-        listView = (GridView)findViewById(R.id.coordi_clothe_result_view);
+        clotheListAdapter = new ClotheListAdapter(this);
+
+        Log.v("lana","adapter");
+
+
 
     }
 
@@ -55,6 +59,8 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent;
         if(v == btn1){ //코디할 옷 추가 레이아웃
            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+           Log.v("lana","popup");
+
 
             final LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
             View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add_search,null);
@@ -64,6 +70,15 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
                 public void onClick(DialogInterface dialo, int which) {
                     View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add,null);
                     builder.setView(clotheAddPopup);
+                    listView = clotheAddPopup.findViewById(R.id.coordi_clothe_result_view);
+                    if(listView==null)
+                        Log.v("lana","listview null");
+                    if(clotheListAdapter!=null){
+                        Log.v("lana","adapter not null");
+                        if(listView!=null){
+                            Log.v("lana","listview not null");
+                            listView.setAdapter(clotheListAdapter);
+                        }}
                     builder.setPositiveButton("다음",new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
