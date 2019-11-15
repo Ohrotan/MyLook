@@ -8,7 +8,7 @@
         android:color="#e0e0e0"/>
     <size
         android:width="120dp"
-        android:height="150dp"
+        android:height="200dp"
         />
     <corners
         android:radius="10dp"/>
