@@ -19,9 +19,13 @@ public class ClotheListAdapter extends BaseAdapter {
         this.context = context;
         list = new ArrayList<>();
         list.add(new ClotheListItem("원피스",R.drawable.clothe1,"clothe-1"));
-        list.add(new ClotheListItem("테니스 스커트",R.drawable.clothe2,"clothe-1"));
-        list.add(new ClotheListItem("블라우스",R.drawable.clothe3,"clothe-1"));
+        list.add(new ClotheListItem("테니스 스커트",R.drawable.clothe2,"clothe-2"));
+        list.add(new ClotheListItem("블라우스",R.drawable.clothe3,"clothe-3"));
         list.add(new ClotheListItem("검정 구두",R.drawable.shoes1,"clothe-4"));
+        list.add(new ClotheListItem("원피스",R.drawable.clothe1,"clothe-5"));
+        list.add(new ClotheListItem("테니스 스커트",R.drawable.clothe2,"clothe-6"));
+        list.add(new ClotheListItem("블라우스",R.drawable.clothe3,"clothe-7"));
+        list.add(new ClotheListItem("검정 구두",R.drawable.shoes1,"clothe-8"));
     }
     public ClotheListAdapter(Context context, ArrayList<ClotheListItem> list) {
         this.context = context;
