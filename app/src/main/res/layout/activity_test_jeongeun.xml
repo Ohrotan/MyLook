@@ -1,9 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestJeongeun">
+    android:orientation="vertical"
+    tools:context=".TestRanActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/jbtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코디 메인"
+                android:onClick="onClick"/>
+
+            <Button
+                android:id="@+id/jbtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코디 상세조회"
+                android:onClick="onClick"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <Button
+                android:id="@+id/jbtn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나의성향분석"
+                android:onClick="onClick"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/jbtn4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="더보기-입지않는옷"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/jbtn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="더보기-많이활용된옷"
+                android:onClick="onClick"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/jbtn6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="더보기-자주쓰는태그"
+                android:onClick="onClick"/>
+
+            <Button
+                android:id="@+id/jbtn7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="더보기-자주입는색깔"
+                android:onClick="onClick"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+</RelativeLayout>

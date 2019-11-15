@@ -9,14 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CoordiInfoEditActivity"></activity>
+        <activity android:name=".CoordiViewActivity"></activity>
+        <activity android:name=".CoordiMainActivity" />
+        <activity android:name=".TestJeongeun" />
+        <activity android:name=".FavoriteColorActivity" />
+        <activity android:name=".FavoriteTagActivity" />
+        <activity android:name=".FavoriteClotheActivity" />
+        <activity android:name=".UnfavoriteClotheActivity" />
+        <activity android:name=".CoordiInfoEditActivity" />
         <activity android:name=".CoordiEditActivity" />
         <activity android:name=".CoordiInfoRegisterActivity" />
         <activity android:name=".CoordiRegisterActivity" />
         <activity android:name=".StyleAnalysisActivity" />
-        <activity android:name=".ClosetActivity"/>
-        <activity android:name=".TestRanActivity"/>
-        <activity android:name=".MainActivity" >
+        <activity android:name=".ClosetActivity" />
+        <activity android:name=".TestRanActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

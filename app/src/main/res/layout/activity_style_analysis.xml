@@ -1,9 +1,390 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StyleAnalysisActivity">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--  첫번째 가로   -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+        <!--   첫번째 가로-1 : 한번도 입지않은 옷의 비율 텍스트뷰 & 더보기 버튼 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:id="@+id/line1_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/shape_img1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape" />
+                <Button
+                    android:id="@+id/btn_ratio_more"
+                    android:layout_width="35dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@id/shape_img1_1"
+                    android:layout_alignRight="@id/shape_img1_1"
+                    android:background="#00ff0000"
+                    android:textSize="10sp"
+                    android:text="더보기"/>
+                <TextView
+                    android:id="@+id/line1_1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_img1_1"
+                    android:layout_alignRight="@id/shape_img1_1"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="12dp"
+                    android:text="등록된 옷 중\n입지 않는\n옷의 비율"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/line1_1_ratio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_img1_1"
+                    android:layout_alignRight="@id/shape_img1_1"
+                    android:layout_alignBottom="@id/line1_1_text"
+                    android:layout_marginBottom="-45dp"
+                    android:gravity="center"
+                    android:text="30%"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- 첫 번째 가로-2  :입지않은 옷 중 랜덤 1 띄워서 추천해주는 이미지뷰    -->
+        <LinearLayout
+            android:id="@+id/line1_2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal|center_vertical">
+                <TextView
+                    android:id="@+id/line1_2_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오늘은 이 옷에\n도전해보면 어떨까요?"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+                <TextView
+                    android:id="@+id/line1_2_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="(한 번도 입지않은 옷 중 랜덤 선택)"
+                    android:textSize="10sp" />
+                <!--  여기는 보여줄 한번도 안입은 옷 이미지뷰  -->
+                <ImageView
+                    android:id="@+id/zero_clothes_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/clothe1">
+                </ImageView>
+                <TextView
+                    android:id="@+id/zero_clothes_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/zero_clothes_img"
+                    android:layout_alignLeft="@id/shape_img2_2"
+                    android:layout_alignRight="@id/shape_img2_2"
+                    android:gravity="center"
+                    android:text="옷이름"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+<!--두번째 가로 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight ="1"
+        android:orientation="horizontal">
+
+        <!--    두번째 가로 - 1: 자주쓰는 태그 텍스트 뷰 & 더보기 버튼   -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/line2_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/shape_img2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape" />
+                <TextView
+                    android:id="@+id/line2_1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_img2_1"
+                    android:layout_alignRight="@id/shape_img2_1"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:text="자주 쓰는 태그"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/shape_mini_img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:layout_alignLeft="@id/shape_img2_1"
+                    android:layout_alignRight="@id/shape_img2_1"
+                    android:src="@drawable/shape_mini"/>
+                <Button
+                    android:id="@+id/btn_tag_more"
+                    android:layout_width="35dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@id/shape_img2_1"
+                    android:layout_alignRight="@id/shape_img2_1"
+                    android:background="#00ff0000"
+                    android:textSize="10sp"
+                    android:text="더보기"/>
+
+                <TextView
+                    android:id="@+id/favor_tag1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_mini_img1"
+                    android:layout_alignRight="@id/shape_mini_img1"
+                    android:layout_alignTop="@id/shape_mini_img1"
+                    android:layout_marginTop="7dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8dp"
+                    android:text="#베이직" />
+                <TextView
+                    android:id="@+id/favor_tag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_mini_img1"
+                    android:layout_alignRight="@id/shape_mini_img1"
+                    android:layout_below="@id/favor_tag1"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8dp"
+                    android:text="#심플" />
+                <TextView
+                    android:id="@+id/favor_tag3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_mini_img1"
+                    android:layout_alignRight="@id/shape_mini_img1"
+                    android:layout_below="@id/favor_tag2"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8dp"
+                    android:text="#캐주얼" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    <!--     두번째 가로 - 2 : 자주 입는 색깔 텍스트뷰 & 더보기   -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:id="@+id/line2_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/shape_img2_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape" />
+                <TextView
+                    android:id="@+id/line2_2_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_img2_2"
+                    android:layout_alignRight="@id/shape_img2_2"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:text="자주 입는 색깔"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/shape_mini_img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:layout_alignLeft="@id/shape_img2_2"
+                    android:layout_alignRight="@id/shape_img2_2"
+                    android:src="@drawable/shape_mini"/>
+                <Button
+                    android:id="@+id/btn_color_more"
+                    android:layout_width="35dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@id/shape_img2_2"
+                    android:layout_alignRight="@id/shape_img2_2"
+                    android:background="#00ff0000"
+                    android:textSize="10sp"
+                    android:text="더보기"/>
+                <TextView
+                    android:id="@+id/favor_color1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_mini_img2"
+                    android:layout_alignRight="@id/shape_mini_img2"
+                    android:layout_alignTop="@id/shape_mini_img2"
+                    android:layout_marginTop="7dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8dp"
+                    android:text="#검정색" />
+                <TextView
+                    android:id="@+id/favor_color2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_mini_img2"
+                    android:layout_alignRight="@id/shape_mini_img2"
+                    android:layout_below="@id/favor_color1"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8dp"
+                    android:text="#파랑색" />
+                <TextView
+                    android:id="@+id/favor_color3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_mini_img2"
+                    android:layout_alignRight="@id/shape_mini_img2"
+                    android:layout_below="@id/favor_color2"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8dp"
+                    android:text="#흰색" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+<!--세번째 가로 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight ="1"
+        android:orientation="horizontal">
+
+        <!--    세번째 가로 -1 : 코디에 가장 많이 활용된 옷 띄워주는 이미지뷰 & 더보기 버튼-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/line3_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/shape_img3_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape_big" />
+                <TextView
+                    android:id="@+id/line3_1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/shape_img3_1"
+                    android:layout_alignRight="@id/shape_img3_1"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2"
+                    android:text="코디에 가장\n많이 활용된 옷"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/favor_clothes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_alignLeft="@id/shape_img3_1"
+                    android:layout_alignRight="@id/shape_img3_1"
+                    android:layout_below="@id/line3_1_text"
+                    android:src="@drawable/clothe2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/favor_clothes"
+                    android:layout_alignLeft="@id/shape_img3_1"
+                    android:layout_alignRight="@id/shape_img3_1"
+                    android:gravity="center"
+                    android:text="옷이름"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btn_favor_clothes_more"
+                    android:layout_width="35dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@id/shape_img3_1"
+                    android:layout_alignRight="@id/shape_img3_1"
+                    android:background="#00ff0000"
+                    android:textSize="10sp"
+                    android:text="더보기"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--    세번째 가로 - 2. 사용자의 성향 총평 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <!-- 말풍선 -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:clickable="true" >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dip"
+                    android:background="#5d0082">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="당신은 검정색 옷을\n가장 선호하고,\n베이직한 스타일을\n좋아하시는군요!"
+                        android:textColor="#FFFFFF"
+                        android:lineSpacingExtra="8dp"/>
+                </FrameLayout>
+                <ImageView android:src="@drawable/down_arrow_nor"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_gravity="center_horizontal" />
+                <!--   말풍선 밑 아이콘         -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:src="@drawable/user_icon" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
