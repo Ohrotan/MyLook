@@ -1,6 +1,7 @@
 package com.ssu.mylook;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 public class FavoriteClotheActivity extends AppCompatActivity {
