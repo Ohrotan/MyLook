@@ -10,23 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ClotheRegister">
+        <activity android:name=".ClotheRegister"/>
         <activity android:name=".ClotheSearchLayout" />
-        <activity android:name=".CoordiInfoEditActivity">
+        <activity android:name=".CoordiInfoEditActivity"/>
         <activity android:name=".CoordiEditActivity" />
         <activity android:name=".CoordiInfoRegisterActivity" />
         <activity android:name=".CoordiRegisterActivity" />
         <activity android:name=".StyleAnalysisActivity" />
         <activity android:name=".ClosetActivity"/>
         <activity android:name=".TestRanActivity"/>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
           
           <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter></activity>
-            
+
      
 
 
