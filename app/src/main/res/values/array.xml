@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="favorite_clothe_ranking">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+
+    </string-array>
+
+    <integer-array name="res_Id">
+        <item>@drawable/clothe1</item>
+        <item>@drawable/clothe2</item>
+        <item>@drawable/clothe3</item>
+
+    </integer-array>
+
+    <string-array name="favorite_clothe_title">
+        <item>옷1</item>
+        <item>옷2</item>
+        <item>옷3</item>
+
+    </string-array>
+
+    <string-array name="favorite_clothe_number">
+        <item>3회</item>
+        <item>4회</item>
+        <item>5회</item>
+    </string-array>
+
+</resources>
