@@ -15,7 +15,11 @@
         <activity android:name=".TestJeongeun" />
         <activity android:name=".FavoriteColorActivity" />
         <activity android:name=".FavoriteTagActivity" />
-        <activity android:name=".FavoriteClotheActivity" />
+        <activity android:name=".FavoriteClotheActivity">
+        <intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+
         <activity android:name=".UnfavoriteClotheActivity" />
         <activity android:name=".CoordiInfoEditActivity" />
         <activity android:name=".ClotheRegister"/>
