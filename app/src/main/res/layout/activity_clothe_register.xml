@@ -1,9 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClotheRegister">
+    tools:context=".ClotheRegisterActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/add_photo"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_photo" />
+
+    <ImageView
+        android:id="@+id/background_grey"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_height="800dp"
+        android:layout_below="@+id/add_photo"
+        android:layout_marginTop="21dp"
+        android:adjustViewBounds="false"
+        android:src="@drawable/background_grey" />
+
+    <TextView
+        android:id="@+id/clothe_name"
+        android:textStyle="bold"
+        android:text="옷 이름"
+        android:textSize="20dp"
+        android:layout_marginLeft="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/background_grey"
+        android:layout_alignRight="@+id/background_grey"
+        android:layout_alignTop="@+id/background_grey"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/clothe_name_textbox"
+        android:paddingLeft="20dp"
+        android:enabled="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clothe_name"
+        android:layout_alignLeft="@+id/clothe_name"
+        android:hint="이름을 입력하세요."
+        android:inputType="text"
+        android:background="@android:color/transparent"
+        android:textColorHint="#E0E0E0"/>
+
+    <TextView
+        android:id="@+id/clothe_sort"
+        android:layout_alignLeft="@+id/clothe_name_textbox"
+        android:paddingLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="구분"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/clothe_name_textbox"
+        android:paddingTop="30dp"/>
+
+    <Button
+        android:id="@+id/button_top_clothe"
+        android:layout_marginLeft="15dp"
+        android:layout_alignLeft="@+id/clothe_sort"
+        android:text="상의"
+        android:layout_below="@+id/clothe_sort"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_bottom_clothe"
+        android:text="하의"
+        android:layout_toRightOf="@id/button_top_clothe"
+        android:layout_below="@+id/clothe_sort"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/button_hat"
+        android:text="모자"
+        android:layout_toRightOf="@id/button_bottom_clothe"
+        android:layout_below="@+id/clothe_sort"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/button_shoes"
+        android:text="신발"
+        android:layout_toRightOf="@+id/button_hat"
+        android:layout_below="@+id/clothe_sort"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/button_etc"
+        android:text="기타"
+        android:layout_toRightOf="@+id/button_shoes"
+        android:layout_below="@+id/clothe_sort"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/season"
+        android:layout_alignLeft="@+id/clothe_name_textbox"
+        android:paddingLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="계절"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/button_etc"
+        android:paddingTop="30dp"/>
+
+    <Button
+        android:id="@+id/button_spring"
+        android:text="봄"
+        android:layout_below="@+id/season"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_alignLeft="@+id/season"
+        />
+    <Button
+        android:id="@+id/button_summer"
+        android:text="여름"
+        android:layout_toRightOf="@+id/button_spring"
+        android:layout_below="@+id/season"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/button_fall"
+        android:text="가을"
+        android:layout_toRightOf="@+id/button_summer"
+        android:layout_below="@+id/season"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_winter"
+        android:text="겨울"
+        android:layout_toRightOf="@+id/button_fall"
+        android:layout_below="@+id/season"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/memo"
+        android:layout_alignLeft="@+id/clothe_name_textbox"
+        android:paddingLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메모"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/button_spring"
+        android:paddingTop="30dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_alignRight="@+id/button_etc"
+        android:layout_alignLeft="@+id/button_spring"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/memo"
+        android:hint="메모할 내용을 입력하세요."
+        android:gravity="top"
+        android:paddingTop="20dp"
+        android:background="@drawable/memo_background"/>
+</RelativeLayout>

@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this,TestRanActivity.class);
             startActivity(intent);
         }else if(v== btn3){//허승민
-
+            Intent intent = new Intent(this,TestSeungminActivity.class);
+            startActivity(intent);
         }
     }
 }
