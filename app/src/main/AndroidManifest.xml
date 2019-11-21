@@ -14,7 +14,11 @@
         <activity android:name=".CoordiViewActivity" />
         <activity android:name=".CoordiMainActivity" />
         <activity android:name=".TestJeongeun" />
-        <activity android:name=".FavoriteColorActivity" />
+        <activity android:name=".FavoriteColorActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".FavoriteTagActivity" />
         <activity android:name=".FavoriteClotheActivity">
             <intent-filter>

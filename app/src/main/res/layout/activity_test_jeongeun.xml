@@ -53,7 +53,7 @@
                 android:id="@+id/jbtn5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="더보기-많이활용된옷"
+                android:text="더보기-자주쓰는태그"
                 android:onClick="onClick"/>
         </TableRow>
 
@@ -65,14 +65,14 @@
                 android:id="@+id/jbtn6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="더보기-자주쓰는태그"
+                android:text="더보기-자주입는색깔"
                 android:onClick="onClick"/>
 
             <Button
                 android:id="@+id/jbtn7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="더보기-자주입는색깔"
+                android:text="더보기-자주입는옷"
                 android:onClick="onClick"/>
         </TableRow>
 

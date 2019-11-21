@@ -1,5 +1,6 @@
 package com.ssu.mylook;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ssu.mylook.CustomDTO;
-import com.ssu.mylook.R;
 
 import java.util.ArrayList;
+
 
 public class JungeunCustomAdapter extends BaseAdapter {
 
@@ -22,7 +22,7 @@ public class JungeunCustomAdapter extends BaseAdapter {
         return listCustom.size();
     }
 
-    // 하나의 Item(ImageView 1, TextView 2)
+    // 하나의 Item(ImageView 1, TextView 3)
     @Override
     public Object getItem(int position) {
         return listCustom.get(position);
@@ -47,14 +47,16 @@ public class JungeunCustomAdapter extends BaseAdapter {
             holder.textTitle = (TextView) convertView.findViewById(R.id.item_title);
             holder.textContent = (TextView) convertView.findViewById(R.id.item_number);
 
+
             convertView.setTag(holder);
+
         } else {
             holder = (CustomViewHolder) convertView.getTag();
         }
 
         CustomDTO dto = listCustom.get(position);
 
-        holder.textRank.setText(dto.getContent());
+        holder.textRank.setText(dto.getRank());
         holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getTitle());
         holder.textContent.setText(dto.getContent());
@@ -69,7 +71,7 @@ public class JungeunCustomAdapter extends BaseAdapter {
         TextView textRank;
     }
 
-    // MainActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
+    // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
     public void addItem(CustomDTO dto) {
         listCustom.add(dto);
     }
