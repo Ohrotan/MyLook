@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_favorite_clothe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.ssu.mylook.FavoriteClotheActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="옷이 코디에 활용된 횟수:"
+        android:textSize="13sp"
+        android:textColor="#000000"/>
+
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</RelativeLayout>
+</LinearLayout>

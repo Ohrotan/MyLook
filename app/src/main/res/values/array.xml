@@ -4,7 +4,6 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
-
     </string-array>
 
     <integer-array name="res_Id">
@@ -18,7 +17,6 @@
         <item>옷1</item>
         <item>옷2</item>
         <item>옷3</item>
-
     </string-array>
 
     <string-array name="favorite_clothe_number">
