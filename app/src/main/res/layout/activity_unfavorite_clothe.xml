@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_unfavorite_clothe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.ssu.mylook.UnfavoriteClotheActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="현재 옷장에 등록한 옷 : 32벌">
-    </TextView>
+        android:text="현재 옷장에 등록한 옷 : 32벌"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="한 번도 입지 않은 옷 : 3벌">
-    </TextView>
+        android:text="한 번도 입지 않은 옷 : 3벌"/>
 
     <!--    tools:context="관련된액티비티"-->
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/shape_list_background">
-
-    </ImageView>
-
-
-
+    <ListView
+        android:id="@+id/ZeroClotheListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#e0e0e0"/>
 </LinearLayout>

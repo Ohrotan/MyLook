@@ -4,4 +4,6 @@
     <color name="colorPrimaryLight">#fafafa</color>
     <color name="colorPrimaryDark">#5f5f5f</color>
     <color name="colorAccent">#5d0082</color>
+    <drawable name="colorButtonClicked">#1A5d0082</drawable>
+    <drawable name="colorButtonNotClick">#fafafa</drawable>
 </resources>
