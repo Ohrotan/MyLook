@@ -65,4 +65,16 @@
         <item>@drawable/clothe2</item>
         <item>@drawable/clothe3</item>
     </string-array>
+
+    <string-array name="tags">
+        <item>심플베이직</item>
+        <item>캠퍼스룩</item>
+        <item>캐주얼</item>
+        <item>유니크</item>
+        <item>스포티</item>
+        <item>러블리</item>
+        <item>오피스룩</item>
+        <item>섹시글램</item>
+        <item>화려한</item>
+    </string-array>
 </resources>
