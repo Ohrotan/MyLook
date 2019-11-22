@@ -1,15 +1,15 @@
 package com.ssu.mylook;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class FavoriteClotheActivity extends AppCompatActivity {
 
-    private JungeunCustomAdapter adapter;
+    private FavoriteClotheAdapter adapter;
     private ListView MyListView;
 
     @Override
@@ -21,7 +21,7 @@ public class FavoriteClotheActivity extends AppCompatActivity {
         ab.setTitle("나의 성향 분석");
 
 
-        adapter = new JungeunCustomAdapter();
+        adapter = new FavoriteClotheAdapter();
         MyListView =(ListView)findViewById(R.id.ListView);
 
         setData();
@@ -32,7 +32,7 @@ public class FavoriteClotheActivity extends AppCompatActivity {
     // ranks, arrResId, titles, contents를 서버에서 가져온 데이터라고 가정.(일단레이아웃부터)
     private void setData() {
         String[] ranks = getResources().getStringArray(R.array.favorite_clothe_ranking);
-        TypedArray arrResId = getResources().obtainTypedArray(R.array.res_Id);
+        TypedArray arrResId = getResources().obtainTypedArray(R.array.favorite_clothe_Id);
         String[] titles = getResources().getStringArray(R.array.favorite_clothe_title);
         String[] contents = getResources().getStringArray(R.array.favorite_clothe_number);
 

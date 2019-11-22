@@ -6,7 +6,7 @@
         <item>3</item>
     </string-array>
 
-    <integer-array name="res_Id">
+    <integer-array name="favorite_clothe_Id">
         <item>@drawable/clothe1</item>
         <item>@drawable/clothe2</item>
         <item>@drawable/clothe3</item>
@@ -25,4 +25,44 @@
         <item>5회</item>
     </string-array>
 
+    <string-array name="favorite_color_rank">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="favorite_color_title">
+        <item>빨간색</item>
+        <item>주황색</item>
+        <item>노란색</item>
+        <item>초록색</item>
+        <item>파란색</item>
+        <item>남색</item>
+        <item>보라색</item>
+    </string-array>
+    <string-array name="favorite_color_number">
+        <item>11회</item>
+        <item>10회</item>
+        <item>8회</item>
+        <item>7회</item>
+        <item>5회</item>
+        <item>3회</item>
+        <item>1회</item>
+    </string-array>
+
+    <string-array name="unfavorite_clothe_title">
+        <item>asdf옷1</item>
+        <item>1asd옷2f</item>
+        <item>asdfff옷3</item>
+    </string-array>
+
+    <string-array name="unfavorite_clothe_Id">
+        <item>@drawable/clothe1</item>
+        <item>@drawable/clothe2</item>
+        <item>@drawable/clothe3</item>
+    </string-array>
 </resources>
