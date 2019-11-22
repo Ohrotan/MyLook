@@ -2,7 +2,7 @@ package com.ssu.mylook;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.widget.ListView;
+import android.widget.GridView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class UnfavoriteClotheActivity extends AppCompatActivity {
 
     private UnfavoriteClotheAdapter adapter;
-    private ListView MyListView;
+    private GridView MyListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
         ab.setTitle("나의 성향 분석");
 
         adapter = new UnfavoriteClotheAdapter();
-        MyListView =(ListView)findViewById(R.id.ZeroClotheListView);
+        MyListView =(GridView)findViewById(R.id.ZeroClotheGridView);
 
         setData();
 
@@ -28,8 +28,8 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        TypedArray arrResId = getResources().obtainTypedArray(R.array.unfavorite_clothe_Id);
-        String[] titles = getResources().getStringArray(R.array.unfavorite_clothe_title);
+        TypedArray arrResId = getResources().obtainTypedArray(R.array.zero_clothe_Id);
+        String[] titles = getResources().getStringArray(R.array.zero_clothe_title);
 
         for (int i = 0; i < arrResId.length(); i++) {
             CustomDTO dto = new CustomDTO();

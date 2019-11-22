@@ -54,13 +54,13 @@
         <item>1회</item>
     </string-array>
 
-    <string-array name="unfavorite_clothe_title">
+    <string-array name="zero_clothe_title">
         <item>asdf옷1</item>
         <item>1asd옷2f</item>
         <item>asdfff옷3</item>
     </string-array>
 
-    <string-array name="unfavorite_clothe_Id">
+    <string-array name="zero_clothe_Id">
         <item>@drawable/clothe1</item>
         <item>@drawable/clothe2</item>
         <item>@drawable/clothe3</item>
