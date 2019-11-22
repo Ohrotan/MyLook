@@ -9,43 +9,34 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
         <!--   첫번째 가로-1 : 한번도 입지않은 옷의 비율 텍스트뷰 & 더보기 버튼 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/line1_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape"
+                android:orientation="vertical"
+                android:layout_gravity="center">
 
-                <ImageView
-                    android:id="@+id/shape_img1_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/shape" />
-                <Button
-                    android:id="@+id/btn_ratio_more"
-                    android:layout_width="35dp"
-                    android:layout_height="20dp"
-                    android:layout_alignBottom="@id/shape_img1_1"
-                    android:layout_alignRight="@id/shape_img1_1"
-                    android:background="#00ff0000"
-                    android:textSize="10sp"
-                    android:text="더보기"/>
                 <TextView
                     android:id="@+id/line1_1_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_img1_1"
-                    android:layout_alignRight="@id/shape_img1_1"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="12dp"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
                     android:text="등록된 옷 중\n입지 않는\n옷의 비율"
                     android:textSize="15sp" />
 
@@ -53,15 +44,21 @@
                     android:id="@+id/line1_1_ratio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_img1_1"
-                    android:layout_alignRight="@id/shape_img1_1"
-                    android:layout_alignBottom="@id/line1_1_text"
-                    android:layout_marginBottom="-45dp"
-                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
                     android:text="30%"
                     android:textSize="25sp"
                     android:textStyle="bold" />
-            </RelativeLayout>
+
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/btn_ratio_more"
+                    android:layout_gravity="right"
+                    android:background="#00ff0000"
+                    android:text="더보기"
+                    android:textSize="10sp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <!-- 첫 번째 가로-2  :입지않은 옷 중 랜덤 1 띄워서 추천해주는 이미지뷰    -->
@@ -96,7 +93,7 @@
                 <!--  여기는 보여줄 한번도 안입은 옷 이미지뷰  -->
                 <ImageView
                     android:id="@+id/zero_clothes_img"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/clothe1">
                 </ImageView>
@@ -105,14 +102,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/zero_clothes_img"
-                    android:layout_alignLeft="@id/shape_img2_2"
-                    android:layout_alignRight="@id/shape_img2_2"
                     android:gravity="center"
                     android:text="옷이름"
                     android:textSize="10sp"/>
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 <!--두번째 가로 -->
     <LinearLayout
@@ -126,157 +120,152 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:orientation="vertical">
-            <RelativeLayout
+
+            <LinearLayout
                 android:id="@+id/line2_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/shape_img2_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/shape" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
                 <TextView
                     android:id="@+id/line2_1_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_img2_1"
-                    android:layout_alignRight="@id/shape_img2_1"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
                     android:maxLines="1"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="12dp"
+                    android:padding="20dp"
                     android:text="자주 쓰는 태그"
                     android:textSize="17sp"
                     android:textStyle="bold"/>
-                <ImageView
-                    android:id="@+id/shape_mini_img1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:layout_alignLeft="@id/shape_img2_1"
-                    android:layout_alignRight="@id/shape_img2_1"
-                    android:src="@drawable/shape_mini"/>
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_mini"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp">
+
+                    <TextView
+                        android:id="@+id/favor_tag1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="8dp"
+                        android:text="#베이직" />
+                    <TextView
+                        android:id="@+id/favor_tag2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/favor_tag1"
+                        android:gravity="center"
+                        android:lineSpacingExtra="8dp"
+                        android:text="#심플" />
+                    <TextView
+                        android:id="@+id/favor_tag3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/favor_tag2"
+                        android:gravity="center"
+                        android:lineSpacingExtra="8dp"
+                        android:text="#캐주얼" />
+
+                </LinearLayout>
+
                 <Button
                     android:id="@+id/btn_tag_more"
                     android:layout_width="35dp"
                     android:layout_height="20dp"
-                    android:layout_alignBottom="@id/shape_img2_1"
-                    android:layout_alignRight="@id/shape_img2_1"
                     android:background="#00ff0000"
+                    android:layout_gravity="right"
                     android:textSize="10sp"
                     android:text="더보기"/>
 
-                <TextView
-                    android:id="@+id/favor_tag1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_mini_img1"
-                    android:layout_alignRight="@id/shape_mini_img1"
-                    android:layout_alignTop="@id/shape_mini_img1"
-                    android:layout_marginTop="7dp"
-                    android:gravity="center"
-                    android:lineSpacingExtra="8dp"
-                    android:text="#베이직" />
-                <TextView
-                    android:id="@+id/favor_tag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_mini_img1"
-                    android:layout_alignRight="@id/shape_mini_img1"
-                    android:layout_below="@id/favor_tag1"
-                    android:gravity="center"
-                    android:lineSpacingExtra="8dp"
-                    android:text="#심플" />
-                <TextView
-                    android:id="@+id/favor_tag3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_mini_img1"
-                    android:layout_alignRight="@id/shape_mini_img1"
-                    android:layout_below="@id/favor_tag2"
-                    android:gravity="center"
-                    android:lineSpacingExtra="8dp"
-                    android:text="#캐주얼" />
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
     <!--     두번째 가로 - 2 : 자주 입는 색깔 텍스트뷰 & 더보기   -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
-            <RelativeLayout
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:id="@+id/line2_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/shape_img2_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/shape" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
                 <TextView
                     android:id="@+id/line2_2_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_img2_2"
-                    android:layout_alignRight="@id/shape_img2_2"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
                     android:maxLines="1"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="12dp"
+                    android:padding="20dp"
                     android:text="자주 입는 색깔"
                     android:textSize="17sp"
                     android:textStyle="bold"/>
-                <ImageView
+                <LinearLayout
                     android:id="@+id/shape_mini_img2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:layout_alignLeft="@id/shape_img2_2"
-                    android:layout_alignRight="@id/shape_img2_2"
-                    android:src="@drawable/shape_mini"/>
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:background="@drawable/shape_mini">
+
+                    <TextView
+                        android:id="@+id/favor_color1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="8dp"
+                        android:text="#검정색" />
+                    <TextView
+                        android:id="@+id/favor_color2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:lineSpacingExtra="8dp"
+                        android:text="#파랑색" />
+                    <TextView
+                        android:id="@+id/favor_color3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:lineSpacingExtra="8dp"
+                        android:text="#흰색" />
+
+
+                </LinearLayout>
                 <Button
                     android:id="@+id/btn_color_more"
                     android:layout_width="35dp"
                     android:layout_height="20dp"
-                    android:layout_alignBottom="@id/shape_img2_2"
-                    android:layout_alignRight="@id/shape_img2_2"
                     android:background="#00ff0000"
+                    android:layout_gravity="right"
                     android:textSize="10sp"
                     android:text="더보기"/>
-                <TextView
-                    android:id="@+id/favor_color1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_mini_img2"
-                    android:layout_alignRight="@id/shape_mini_img2"
-                    android:layout_alignTop="@id/shape_mini_img2"
-                    android:layout_marginTop="7dp"
-                    android:gravity="center"
-                    android:lineSpacingExtra="8dp"
-                    android:text="#검정색" />
-                <TextView
-                    android:id="@+id/favor_color2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_mini_img2"
-                    android:layout_alignRight="@id/shape_mini_img2"
-                    android:layout_below="@id/favor_color1"
-                    android:gravity="center"
-                    android:lineSpacingExtra="8dp"
-                    android:text="#파랑색" />
-                <TextView
-                    android:id="@+id/favor_color3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_mini_img2"
-                    android:layout_alignRight="@id/shape_mini_img2"
-                    android:layout_below="@id/favor_color2"
-                    android:gravity="center"
-                    android:lineSpacingExtra="8dp"
-                    android:text="#흰색" />
-            </RelativeLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
 
@@ -294,45 +283,39 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
-            <RelativeLayout
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <LinearLayout
                 android:id="@+id/line3_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/shape_img3_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/shape_big" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/shape">
                 <TextView
                     android:id="@+id/line3_1_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/shape_img3_1"
-                    android:layout_alignRight="@id/shape_img3_1"
-                    android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     android:maxLines="2"
                     android:text="코디에 가장\n많이 활용된 옷"
+                    android:padding="20dp"
                     android:textSize="17sp"
                     android:textStyle="bold"/>
+
                 <ImageView
                     android:id="@+id/favor_clothes"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_alignLeft="@id/shape_img3_1"
-                    android:layout_alignRight="@id/shape_img3_1"
                     android:layout_below="@id/line3_1_text"
-                    android:src="@drawable/clothe2"/>
+                    android:src="@drawable/clothe2"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/favor_clothes"
-                    android:layout_alignLeft="@id/shape_img3_1"
-                    android:layout_alignRight="@id/shape_img3_1"
-                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:text="옷이름"
                     android:textSize="10sp" />
 
@@ -340,12 +323,11 @@
                     android:id="@+id/btn_favor_clothes_more"
                     android:layout_width="35dp"
                     android:layout_height="20dp"
-                    android:layout_alignBottom="@id/shape_img3_1"
-                    android:layout_alignRight="@id/shape_img3_1"
                     android:background="#00ff0000"
                     android:textSize="10sp"
-                    android:text="더보기"/>
-            </RelativeLayout>
+                    android:text="더보기"
+                    android:layout_gravity="right"/>
+            </LinearLayout>
         </LinearLayout>
 
         <!--    세번째 가로 - 2. 사용자의 성향 총평 -->
@@ -364,7 +346,9 @@
                 android:clickable="true" >
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dip"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:background="#5d0082">
                     <TextView
                         android:layout_width="match_parent"

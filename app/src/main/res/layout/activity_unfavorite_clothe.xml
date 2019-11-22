@@ -10,20 +10,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="현재 옷장에 등록한 옷 : 32벌"/>
+        android:text="현재 옷장에 등록한 옷 : 32벌"
+        android:textColor="#000000"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="한 번도 입지 않은 옷 : 3벌"/>
+        android:text="한 번도 입지 않은 옷 : 3벌"
+        android:textColor="#000000"/>
 
     <!--    tools:context="관련된액티비티"-->
-    <ListView
-        android:id="@+id/ZeroClotheListView"
+    <GridView
+        android:id="@+id/ZeroClotheGridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#e0e0e0"/>
+        android:background="#e0e0e0"
+        android:numColumns="2"/>
 </LinearLayout>

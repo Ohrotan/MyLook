@@ -5,20 +5,6 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="현재 옷장에 등록된 옷: 32벌"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="한 번도 입지 않은 옷 : 3벌"/>
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:columnCount="2">
 
         <ImageView
             android:id="@+id/zero_item_img"
@@ -35,5 +21,4 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-    </GridLayout>
 </LinearLayout>
