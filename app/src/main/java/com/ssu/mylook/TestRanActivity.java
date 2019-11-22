@@ -1,21 +1,14 @@
 package com.ssu.mylook;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,44 +41,47 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
         //옷 추가 레이아웃
         clotheListAdapter = new ClotheListAdapter(this);
 
-        Log.v("lana","adapter");
-
+        Log.v("lana", "adapter");
 
 
     }
 
+
+
     @Override
     public void onClick(View v) {
         Intent intent;
-        if(v == btn1){ //코디할 옷 추가 레이아웃
-           final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-           Log.v("lana","popup");
+        if (v == btn1) { //코디할 옷 추가 레이아웃
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            Log.v("lana", "popup");
 
 
-            final LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-            View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add_search,null);
+            final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add_search, null);
+
             builder.setView(clotheAddPopup);
-            builder.setPositiveButton("다음",new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("다음", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialo, int which) {
-                    View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add,null);
+                    View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add, null);
                     builder.setView(clotheAddPopup);
                     listView = clotheAddPopup.findViewById(R.id.coordi_clothe_result_view);
-                    if(listView==null)
-                        Log.v("lana","listview null");
-                    if(clotheListAdapter!=null){
-                        Log.v("lana","adapter not null");
-                        if(listView!=null){
-                            Log.v("lana","listview not null");
+                    if (listView == null)
+                        Log.v("lana", "listview null");
+                    if (clotheListAdapter != null) {
+                        Log.v("lana", "adapter not null");
+                        if (listView != null) {
+                            Log.v("lana", "listview not null");
                             listView.setAdapter(clotheListAdapter);
-                        }}
-                    builder.setPositiveButton("다음",new DialogInterface.OnClickListener() {
+                        }
+                    }
+                    builder.setPositiveButton("다음", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                         }
                     });
-                    builder.setNegativeButton("취소",null);
+                    builder.setNegativeButton("취소", null);
 
 
                     dialog = builder.create();
@@ -94,27 +90,27 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
                 }
             });
 
-            builder.setNegativeButton("취소",null);
+            builder.setNegativeButton("취소", null);
 
 
             dialog = builder.create();
             dialog.show();
             return;
-        }else if(v == btn2){
-             intent = new Intent(this,CoordiRegisterActivity.class);
+        } else if (v == btn2) {
+            intent = new Intent(this, CoordiRegisterActivity.class);
             startActivity(intent);
 
-        }else if(v == btn3){
-             intent = new Intent(this,CoordiInfoRegisterActivity.class);
+        } else if (v == btn3) {
+            intent = new Intent(this, CoordiInfoRegisterActivity.class);
             startActivity(intent);
 
-        }else if(v == btn4){
-            intent = new Intent(this,CoordiEditActivity.class);
+        } else if (v == btn4) {
+            intent = new Intent(this, CoordiEditActivity.class);
             startActivity(intent);
-        }else if(v == btn5){
-            intent = new Intent(this,CoordiInfoEditActivity.class);
+        } else if (v == btn5) {
+            intent = new Intent(this, CoordiInfoEditActivity.class);
             startActivity(intent);
-        }else if(v == btn6){
+        } else if (v == btn6) {
             //디비 테스트
 
         }
