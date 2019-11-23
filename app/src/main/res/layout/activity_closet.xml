@@ -23,20 +23,22 @@
                 android:layout_weight="1">
 
                 <LinearLayout
-                    android:id="@+id/content1"
+                    android:id="@+id/tab_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#F9F9F9"
                         android:layout_gravity="center"
                         android:padding="8dp"
-                        android:src="@drawable/closet_tab"/>
+                        android:src="@drawable/closet_tab"
+                        />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/content2"
+                    android:id="@+id/tab_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -49,7 +51,7 @@
                         android:src="@drawable/codi_tab"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/content3"
+                    android:id="@+id/tab_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
