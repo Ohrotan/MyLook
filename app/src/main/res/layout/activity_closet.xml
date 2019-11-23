@@ -27,48 +27,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-                        android:text=""
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#F9F9F9"
-                        android:layout_gravity="center"
-                        android:padding="8dp"
-                        android:src="@drawable/closet_tab"
-                        />
+
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/tab_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#F9F9F9"
-                        android:layout_gravity="center"
-                        android:padding="8dp"
-                        android:src="@drawable/codi_tab"/>
+
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/tab_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#F9F9F9"
-                        android:layout_gravity="center"
-                        android:padding="8dp"
-                        android:src="@drawable/settings_tab"/>
+
                 </LinearLayout>
 
             </FrameLayout>
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="50dp"
+                android:background="#F9F9F9"
+                android:padding="10dp"/>
         </LinearLayout>
     </TabHost>
 </RelativeLayout>

@@ -3,12 +3,13 @@ package com.ssu.mylook;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TabHost;
 
-public class ClosetActivity extends AppCompatActivity {
+public class ClosetActivity extends ActivityGroup {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +17,7 @@ public class ClosetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_closet);
 
         TabHost host=(TabHost)findViewById(R.id.menu_season);
-        host.setup();
+        host.setup(this.getLocalActivityManager());
 
         ImageView tabwidget01 = new ImageView(this);
         tabwidget01.setImageResource(R.drawable.tab_01_selector);
