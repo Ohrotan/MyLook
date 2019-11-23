@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="봄"
-            android:textSize="23dp"
+            android:textSize="25dp"
             android:layout_weight="25"
             android:background="#1A5d0082"
             android:gravity="center"/>
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="여름"
-            android:textSize="23dp"
+            android:textSize="25dp"
             android:layout_weight="25"
             android:background="#1A5d0082"
             android:gravity="center"/>
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="가을"
-            android:textSize="23dp"
+            android:textSize="25dp"
             android:layout_weight="25"
             android:background="#1A5d0082"
             android:gravity="center"/>
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="겨울"
-            android:textSize="23dp"
+            android:textSize="25dp"
             android:layout_weight="25"
             android:background="#1A5d0082"
             android:gravity="center"/>
@@ -65,11 +65,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="상의"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:layout_weight="20"
             android:background="#1A5d0082"
             android:layout_marginLeft="0dp"
-            android:padding="5dp"
             android:gravity="center"/>
 
 
@@ -77,10 +76,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="하의"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:layout_weight="20"
             android:background="#1A5d0082"
-            android:padding="5dp"
             android:gravity="center"/>
 
 
@@ -88,10 +86,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="모자"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:layout_weight="20"
             android:background="#1A5d0082"
-            android:padding="5dp"
             android:gravity="center"/>
 
 
@@ -99,20 +96,19 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="신발"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:layout_weight="20"
             android:background="#1A5d0082"
-            android:padding="5dp"
             android:gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="기타"
-            android:textSize="20dp"
-            android:layout_weight="18"
+            android:textSize="25dp"
+            android:layout_weight="20"
             android:background="#1A5d0082"
-            android:padding="5dp"
+            android:layout_marginLeft="0dp"
             android:gravity="center"
            />
     </LinearLayout>
