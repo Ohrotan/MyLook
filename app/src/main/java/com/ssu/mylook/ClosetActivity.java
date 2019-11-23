@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+/*package com.ssu.mylook;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -46,3 +46,4 @@ public class ClosetActivity extends ActivityGroup {
 
     }
 }
+*/

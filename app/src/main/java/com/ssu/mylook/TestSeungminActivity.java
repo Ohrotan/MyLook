@@ -33,8 +33,8 @@ public class TestSeungminActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         Intent intent;
         if(v == btn1){
-            intent = new Intent(this,ClosetActivity.class);
-            startActivity(intent);
+          /*  intent = new Intent(this,ClosetActivity.class);
+            startActivity(intent);*/
         }
         else if(v==btn2){
         }
@@ -43,5 +43,8 @@ public class TestSeungminActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);}
         else if(v==btn4){}
         else if(v==btn5){}
-        else if(v==btn6){}
+        else if(v==btn6){
+            intent = new Intent(this,UpperBarActivity.class);
+            startActivity(intent);
+        }
 }}
