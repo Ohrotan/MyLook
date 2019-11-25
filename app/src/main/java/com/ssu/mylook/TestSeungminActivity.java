@@ -37,6 +37,8 @@ public class TestSeungminActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);*/
         }
         else if(v==btn2){
+            intent=new Intent(this,ClotheViewActivity.class);
+            startActivity(intent);
         }
         else if(v==btn3){
             intent = new Intent(this,ClotheRegister.class);
