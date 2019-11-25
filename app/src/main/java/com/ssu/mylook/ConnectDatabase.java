@@ -1,5 +1,18 @@
 package com.ssu.mylook;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+
+
+import android.net.Uri;
+import android.util.Log;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -10,7 +23,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,34 +83,71 @@ public class ConnectDatabase {
                 });
     }
 //https://firebase.google.com/docs/storage/android/create-reference?authuser=0
-    public void addPhoto() {
-// Create a child reference
-// imagesRef now points to "images"
-        StorageReference imagesRef = storageRef.child("images");
+    public void addImage(ImageView imageView, String name) {
 
-// Child references can also take paths
-// spaceRef now points to "images/space.jpg
-// imagesRef still points to "images"
-        StorageReference spaceRef = storageRef.child("images/space.jpg");
+// Create a reference to "mountains.jpg"
+        StorageReference imgRef = storageRef.child(name+".jpg");
 
-        // Points to the root reference
-        storageRef = storage.getReference();
+// Create a reference to 'images/mountains.jpg'
+        final StorageReference imgRef2 = storageRef.child("images/"+name+".jpg");
 
-// Points to "images"
-        imagesRef = storageRef.child("images");
+// While the file names are the same, the references point to different files
+        imgRef.getName().equals(imgRef2.getName());    // true
+        imgRef.getPath().equals(imgRef2.getPath());    // false
 
-// Points to "images/space.jpg"
-// Note that you can use variables to create child values
-        String fileName = "space.jpg";
-        spaceRef = imagesRef.child(fileName);
 
-// File path is "images/space.jpg"
-        String path = spaceRef.getPath();
+        // Get the data from an ImageView as bytes
+        imageView.setDrawingCacheEnabled(true);
+        imageView.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
 
-// File name is "space.jpg"
-        String name = spaceRef.getName();
+        UploadTask uploadTask = imgRef.putBytes(data);
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
 
-// Points to "images"
-        imagesRef = spaceRef.getParent();
+                // Continue with the task to get the download URL
+                Log.v("img", "suc/"+imgRef2.getDownloadUrl().toString());
+                return imgRef2.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    Log.v("img", "suc/"+downloadUri.toString());
+                } else {
+                    // Handle failures
+                    // ...
+                }
+            }
+        });
+
+    }
+//https://firebase.google.com/docs/storage/android/download-files?authuser=0
+    public void readImage(Context context, ImageView imageView){
+// Create a reference with an initial file path and name
+        StorageReference pathReference = storageRef.child("images/stars.jpg");
+
+// Create a reference to a file from a Google Cloud Storage URI
+        StorageReference gsReference = storage.getReferenceFromUrl("gs://bucket/images/stars.jpg");
+
+// Create a reference from an HTTPS URL
+// Note that in the URL, characters are URL escaped!
+        StorageReference httpsReference = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg");
+// Reference to an image file in Cloud Storage
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
+// Download directly from StorageReference using Glide
+// (See MyAppGlideModule for Loader registration)
+        Glide.with(context)
+                .load(storageReference)
+                .into(imageView);
     }
 }

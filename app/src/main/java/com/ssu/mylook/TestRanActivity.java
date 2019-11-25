@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -112,6 +113,11 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
         } else if (v == btn6) {
             //디비 테스트
+            ConnectDatabase db = new ConnectDatabase();
+            ImageView img = new ImageView(this);
+            img.setImageResource(R.drawable.clothe2);
+                    //getDrawable(R.drawable.clothe1);
+            db.addImage(img,"test");
 
         }
 
