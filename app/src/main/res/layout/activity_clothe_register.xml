@@ -1,180 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ClotheRegisterActivity">
 
-    <ImageView
-        android:id="@+id/add_photo"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add_photo" />
-
-    <ImageView
-        android:id="@+id/background_grey"
-        android:layout_centerHorizontal="true"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_height="800dp"
-        android:layout_below="@+id/add_photo"
-        android:layout_marginTop="21dp"
-        android:adjustViewBounds="false"
-        android:src="@drawable/background_grey" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/clothe_name"
-        android:textStyle="bold"
-        android:text="옷 이름"
-        android:textSize="20dp"
-        android:layout_marginLeft="45dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/background_grey"
-        android:layout_alignRight="@+id/background_grey"
-        android:layout_alignTop="@+id/background_grey"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/clothe_name_textbox"
-        android:paddingLeft="20dp"
-        android:enabled="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/clothe_name"
-        android:layout_alignLeft="@+id/clothe_name"
-        android:hint="이름을 입력하세요."
-        android:inputType="text"
-        android:background="@android:color/transparent"
-        android:textColorHint="#E0E0E0"/>
+            <ImageView
+                android:id="@+id/add_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/add_photo" />
 
-    <TextView
-        android:id="@+id/clothe_sort"
-        android:layout_alignLeft="@+id/clothe_name_textbox"
-        android:paddingLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="구분"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_below="@+id/clothe_name_textbox"
-        android:paddingTop="30dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_top_clothe"
-        android:layout_marginLeft="15dp"
-        android:layout_alignLeft="@+id/clothe_sort"
-        android:text="상의"
-        android:layout_below="@+id/clothe_sort"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round_shape"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="10dp">
 
-    <Button
-        android:id="@+id/button_bottom_clothe"
-        android:text="하의"
-        android:layout_toRightOf="@id/button_top_clothe"
-        android:layout_below="@+id/clothe_sort"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        />
+                    <TextView
+                        android:id="@+id/clothe_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="옷 이름"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_hat"
-        android:text="모자"
-        android:layout_toRightOf="@id/button_bottom_clothe"
-        android:layout_below="@+id/clothe_sort"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        />
+                    <EditText
+                        android:id="@+id/clothe_name_textbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:ems="10"
+                        android:hint="옷 이름"
+                        android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/button_shoes"
-        android:text="신발"
-        android:layout_toRightOf="@+id/button_hat"
-        android:layout_below="@+id/clothe_sort"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        />
+                    <TextView
+                        android:id="@+id/sort"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="구분"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_etc"
-        android:text="기타"
-        android:layout_toRightOf="@+id/button_shoes"
-        android:layout_below="@+id/clothe_sort"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:id="@+id/season"
-        android:layout_alignLeft="@+id/clothe_name_textbox"
-        android:paddingLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="계절"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_below="@+id/button_etc"
-        android:paddingTop="30dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button_spring"
-        android:text="봄"
-        android:layout_below="@+id/season"
-        android:layout_width="73dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_alignLeft="@+id/season"
-        />
-    <Button
-        android:id="@+id/button_summer"
-        android:text="여름"
-        android:layout_toRightOf="@+id/button_spring"
-        android:layout_below="@+id/season"
-        android:layout_width="73dp"
-        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/button_top_clothe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickSeason"
+                        android:text="상의" />
+
+                    <Button
+                        android:id="@+id/button_bottom_clothe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickSeason"
+                        android:text="하의" />
+
+                    <Button
+                        android:id="@+id/button_hat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickSeason"
+                        android:text="모자" />
+
+                    <Button
+                        android:id="@+id/button_shoes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickSeason"
+                        android:text="신발"/>
+
+                    <Button
+                        android:id="@+id/button_etc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickSeason"
+                        android:text="기타"/>
+                </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/season"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="계절"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingRight="40dp"
+                        android:text="#다중 선택 가능"
+                        android:textAlignment="viewEnd"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/spr_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="봄" />
+
+                        <Button
+                            android:id="@+id/sum_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="여름" />
+
+                        <Button
+                            android:id="@+id/fal_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="가을" />
+
+                        <Button
+                            android:id="@+id/win_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="겨울" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="태그"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        app:columnCount="4">
+
+                        <Button
+                            android:id="@+id/tag1_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="심플베이직" />
+
+                        <Button
+                            android:id="@+id/tag2_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="캠퍼스룩" />
+
+                        <Button
+                            android:id="@+id/tag3_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="캐주얼" />
+
+                        <Button
+                            android:id="@+id/tag4_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="유니크" />
+
+                        <Button
+                            android:id="@+id/tag5_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="스포티" />
+
+                        <Button
+                            android:id="@+id/tag6_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="러블리" />
+
+                        <Button
+                            android:id="@+id/tag7_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="오피스룩" />
+
+                        <Button
+                            android:id="@+id/tag8_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="섹시글램" />
+
+                        <Button
+                            android:id="@+id/tag9_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="화려한"
+                            app:layout_gravity="center" />
+
+                    </androidx.gridlayout.widget.GridLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/canel_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/gray_button"
+                            android:onClick="onClick"
+                            android:text="취소하기"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/save_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/purple_button"
+                            android:onClick="onClick"
+                            android:text="저장하기"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
 
 
-    <Button
-        android:id="@+id/button_fall"
-        android:text="가을"
-        android:layout_toRightOf="@+id/button_summer"
-        android:layout_below="@+id/season"
-        android:layout_width="73dp"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/button_winter"
-        android:text="겨울"
-        android:layout_toRightOf="@+id/button_fall"
-        android:layout_below="@+id/season"
-        android:layout_width="73dp"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/memo"
-        android:layout_alignLeft="@+id/clothe_name_textbox"
-        android:paddingLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="메모"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_below="@+id/button_spring"
-        android:paddingTop="30dp"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="500dp"
-        android:layout_alignRight="@+id/button_etc"
-        android:layout_alignLeft="@+id/button_spring"
-        android:paddingLeft="20dp"
-        android:layout_below="@+id/memo"
-        android:hint="메모할 내용을 입력하세요."
-        android:gravity="top"
-        android:paddingTop="20dp"
-        android:background="@drawable/memo_background"/>
-</RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
