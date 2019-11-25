@@ -278,6 +278,25 @@
 
                     </androidx.gridlayout.widget.GridLayout>
 
+                    <TextView
+                        android:id="@+id/memo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="메모"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="500dp"
+                        android:paddingLeft="20dp"
+                        android:layout_below="@+id/memo"
+                        android:hint="메모할 내용을 입력하세요."
+                        android:gravity="top"
+                        android:paddingTop="20dp"
+                        android:background="@drawable/memo_background"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -285,7 +304,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/canel_btn"
+                            android:id="@+id/cancel_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="15dp"

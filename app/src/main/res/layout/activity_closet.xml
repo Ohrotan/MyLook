@@ -1,46 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="봄"
+                android:textSize="25dp"
+                android:layout_weight="25"
+                android:background="#1A5d0082"
+                android:gravity="center"/>
 
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="여름"
+                android:textSize="25dp"
+                android:layout_weight="25"
+                android:background="#1A5d0082"
+                android:gravity="center"/>
 
-                <LinearLayout
-                    android:id="@+id/tab_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/tab_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="가을"
+                android:textSize="25dp"
+                android:layout_weight="25"
+                android:background="#1A5d0082"
+                android:gravity="center"/>
 
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/tab_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                </LinearLayout>
-
-            </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="겨울"
+                android:textSize="25dp"
+                android:layout_weight="25"
+                android:background="#1A5d0082"
+                android:gravity="center"/>
 
         </LinearLayout>
-</RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="상의"
+                android:textSize="25dp"
+                android:layout_weight="20"
+                android:background="#1A5d0082"
+                android:layout_marginLeft="0dp"
+                android:gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="하의"
+                android:textSize="25dp"
+                android:layout_weight="20"
+                android:background="#1A5d0082"
+                android:gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="모자"
+                android:textSize="25dp"
+                android:layout_weight="20"
+                android:background="#1A5d0082"
+                android:gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="신발"
+                android:textSize="25dp"
+                android:layout_weight="20"
+                android:background="#1A5d0082"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="기타"
+                android:textSize="25dp"
+                android:layout_weight="20"
+                android:background="#1A5d0082"
+                android:layout_marginLeft="0dp"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="100">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+           <TableRow>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/default_gap"
+                android:layout_marginLeft="@dimen/default_gap"
+                android:layout_marginRight="@dimen/default_gap">
+                <ImageView
+
+                    android:src="@drawable/clothe1"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="shalashala"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
+            android:layout_marginRight="@dimen/default_gap">
+            <ImageView
+
+                android:src="@drawable/clothe2"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="shalashala"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
+            android:layout_marginRight="@dimen/default_gap">
+
+            <ImageView
+                android:src="@drawable/clothe3"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="shalashala"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+    </TableRow>
+        <TableRow>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
+            android:layout_marginRight="@dimen/default_gap">
+
+            <ImageView
+                android:src="@drawable/clothe_example"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="shalashala"
+                android:layout_gravity="center_horizontal"/>
+
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="tab_1"
+            android:textSize="25dp"
+            android:layout_weight="33.3333"
+            android:background="#F9F9F9"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="tab_2"
+            android:textSize="25dp"
+            android:layout_weight="33.3333"
+            android:background="#F9F9F9"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="tab_3"
+            android:textSize="25dp"
+            android:layout_weight="33.3333"
+            android:background="#F9F9F9"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
