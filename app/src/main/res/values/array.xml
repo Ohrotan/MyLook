@@ -54,6 +54,41 @@
         <item>1회</item>
     </string-array>
 
+    <string-array name="favorite_tag_rank">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+    <string-array name="favorite_tag_title">
+        <item>심플베이직</item>
+        <item>캠퍼스룩</item>
+        <item>캐주얼</item>
+        <item>유니크</item>
+        <item>스포티</item>
+        <item>러블리</item>
+        <item>오피스룩</item>
+        <item>섹시글램</item>
+        <item>화려한</item>
+    </string-array>
+    <string-array name="favorite_tag_number">
+        <item>11회</item>
+        <item>10회</item>
+        <item>8회</item>
+        <item>7회</item>
+        <item>5회</item>
+        <item>4회</item>
+        <item>3회</item>
+        <item>2회</item>
+        <item>1회</item>
+    </string-array>
+
     <string-array name="zero_clothe_title">
         <item>asdf옷1</item>
         <item>1asd옷2f</item>
@@ -76,5 +111,29 @@
         <item>오피스룩</item>
         <item>섹시글램</item>
         <item>화려한</item>
+    </string-array>
+
+    <string-array name="coordi_Id">
+        <item>@drawable/clothe1</item>
+        <item>@drawable/clothe2</item>
+        <item>@drawable/clothe3</item>
+    </string-array>
+
+    <string-array name="coordi_title">
+        <item>코디1</item>
+        <item>코디2</item>
+        <item>코디3</item>
+    </string-array>
+
+    <string-array name="coordi_rank">
+        <item>★★★★★</item>
+        <item>★★★★☆</item>
+        <item>★★★☆☆</item>
+    </string-array>
+
+    <string-array name="coordi_number">
+        <item>입은 횟수 5회</item>
+        <item>입은 횟수 3회</item>
+        <item>입은 횟수 2회</item>
     </string-array>
 </resources>

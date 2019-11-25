@@ -4,13 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class FavoriteTagAdapter extends BaseAdapter {
-
-
+public class CoordiMainAdapter extends BaseAdapter {
     private ArrayList<CustomDTO> listCustom = new ArrayList<>();
 
     // ListView에 보여질 Item 수
@@ -31,28 +30,28 @@ public class FavoriteTagAdapter extends BaseAdapter {
         return position;
     }
 
-    // 실제로 Item이 보여지는 부분
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         CustomViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_tag_item,null,false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.coordi_main_item,null,false);
 
-            holder = new CustomViewHolder();
-            holder.textRank= (TextView)convertView.findViewById(R.id.tag_rank);
-            holder.textTitle = (TextView) convertView.findViewById(R.id.tag_title);
-            holder.textContent = (TextView) convertView.findViewById(R.id.tag_number);
-
+            holder = new CoordiMainAdapter.CustomViewHolder();
+            holder.imageView = (ImageView) convertView.findViewById(R.id.coordi_item_img);
+            holder.textTitle = (TextView) convertView.findViewById(R.id.coordi_item_title);
+            holder.textContent = (TextView) convertView.findViewById(R.id.coordi_item_assessment);
+            holder.textRank = (TextView) convertView.findViewById(R.id.coordi_item_number);
 
             convertView.setTag(holder);
 
         } else {
-            holder = (CustomViewHolder) convertView.getTag();
+            holder = (CoordiMainAdapter.CustomViewHolder) convertView.getTag();
         }
 
         CustomDTO dto = listCustom.get(position);
 
         holder.textRank.setText(dto.getRank());
+        holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getTitle());
         holder.textContent.setText(dto.getContent());
 
@@ -60,14 +59,16 @@ public class FavoriteTagAdapter extends BaseAdapter {
     }
 
     class CustomViewHolder {
-        TextView textContent;
+        ImageView imageView;
         TextView textTitle;
         TextView textRank;
+        TextView textContent;
     }
 
-    // FavoriteTagActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
+    // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
     public void addItem(CustomDTO dto) {
         listCustom.add(dto);
     }
 }
+
 
