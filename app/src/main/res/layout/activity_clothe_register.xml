@@ -64,57 +64,62 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button_top_clothe"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/gray_button"
-                        android:onClick="clickSeason"
-                        android:text="상의" />
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/button_bottom_clothe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/gray_button"
-                        android:onClick="clickSeason"
-                        android:text="하의" />
+                        <Button
+                            android:id="@+id/button_top_clothe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="상의" />
 
-                    <Button
-                        android:id="@+id/button_hat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/gray_button"
-                        android:onClick="clickSeason"
-                        android:text="모자" />
+                        <Button
+                            android:id="@+id/button_bottom_clothe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="하의" />
 
-                    <Button
-                        android:id="@+id/button_shoes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/gray_button"
-                        android:onClick="clickSeason"
-                        android:text="신발"/>
+                        <Button
+                            android:id="@+id/button_hat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="모자" />
 
-                    <Button
-                        android:id="@+id/button_etc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/gray_button"
-                        android:onClick="clickSeason"
-                        android:text="기타"/>
-                </LinearLayout>
+                        <Button
+                            android:id="@+id/button_shoes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="신발" />
+
+                        <Button
+                            android:id="@+id/button_etc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickSeason"
+                            android:text="기타" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/season"
@@ -146,6 +151,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickSeason"
                             android:text="봄" />
@@ -155,6 +161,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickSeason"
                             android:text="여름" />
@@ -164,6 +171,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickSeason"
                             android:text="가을" />
@@ -173,6 +181,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickSeason"
                             android:text="겨울" />
@@ -187,18 +196,18 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <androidx.gridlayout.widget.GridLayout
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0"
-                        app:columnCount="4">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <Button
                             android:id="@+id/tag1_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="심플베이직" />
@@ -208,6 +217,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="캠퍼스룩" />
@@ -217,6 +227,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="캐주얼" />
@@ -226,15 +237,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="유니크" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <Button
                             android:id="@+id/tag5_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="스포티" />
@@ -244,6 +264,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="러블리" />
@@ -253,6 +274,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="오피스룩" />
@@ -262,21 +284,54 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="섹시글램" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
 
                         <Button
                             android:id="@+id/tag9_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/gray_button"
                             android:onClick="clickTag"
                             android:text="화려한"
                             app:layout_gravity="center" />
 
-                    </androidx.gridlayout.widget.GridLayout>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:text="space"
+                            android:visibility="invisible" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:text="space"
+                            android:visibility="invisible" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:text="space"
+                            android:visibility="invisible" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/memo"
@@ -290,12 +345,12 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="500dp"
-                        android:paddingLeft="20dp"
                         android:layout_below="@+id/memo"
-                        android:hint="메모할 내용을 입력하세요."
+                        android:background="@drawable/memo_background"
                         android:gravity="top"
-                        android:paddingTop="20dp"
-                        android:background="@drawable/memo_background"/>
+                        android:hint="메모할 내용을 입력하세요."
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
