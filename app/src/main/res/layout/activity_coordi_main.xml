@@ -39,6 +39,20 @@
         </Button>
     </LinearLayout>
 
+    <Spinner
+        android:id="@+id/arrange_spin"
+        android:entries="@array/arrange"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/arrange_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="최신등록순"/>-->
+
+
     <GridView
         android:id="@+id/CoordiMainGridView"
         android:layout_width="match_parent"

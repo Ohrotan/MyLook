@@ -136,4 +136,14 @@
         <item>입은 횟수 3회</item>
         <item>입은 횟수 2회</item>
     </string-array>
+
+
+    <string-array name="arrange">
+        <item>최신등록순</item>
+        <item>별점높은순</item>
+        <item>별점낮은순</item>
+        <item>착용횟수 높은순</item>
+        <item>착용횟수 낮은순</item>
+
+    </string-array>
 </resources>

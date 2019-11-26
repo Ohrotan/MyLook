@@ -2,7 +2,10 @@ package com.ssu.mylook;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +14,6 @@ public class CoordiMainActivity extends AppCompatActivity {
 
     private CoordiMainAdapter adapter;
     private GridView MyGridView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,17 @@ public class CoordiMainActivity extends AppCompatActivity {
         adapter = new CoordiMainAdapter();
         MyGridView =(GridView)findViewById(R.id.CoordiMainGridView);
 
+        //final TextView tv = (TextView)findViewById(R.id.arrange_text);
+        Spinner s = (Spinner)findViewById(R.id.arrange_spin);
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               // tv.setText("position : " + position + parent.getItemAtPosition(position));
+               // tv.setText(""+parent.getItemAtPosition(position));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
         setData();
 
         MyGridView.setAdapter(adapter);
@@ -45,4 +58,7 @@ public class CoordiMainActivity extends AppCompatActivity {
 
         }
     }
+
+
+
 }
