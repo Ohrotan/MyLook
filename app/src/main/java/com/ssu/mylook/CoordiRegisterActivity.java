@@ -1,23 +1,24 @@
 package com.ssu.mylook;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CoordiRegisterActivity extends AppCompatActivity implements View.OnClickListener {
+    final String DEBUG_TAG = "img drag";
     FrameLayout coordi_v;
 
     Button clothe_add_btn;
@@ -29,6 +30,7 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
     AlertDialog dialog;
     GridView listView;
     ClotheListAdapter clotheListAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
 
         //옷 추가 레이아웃
         clotheListAdapter = new ClotheListAdapter(this);
+
 
     }
 
@@ -64,7 +67,8 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         if (v == cancel_btn) {
             onBackPressed();
         } else if (v == next_btn) {
-
+            ConnectDatabase db = new ConnectDatabase();
+            db.uploadImage(getBitmapFromView(coordi_v),"coordi1");
         } else if (v == clothe_add_btn) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -86,47 +90,11 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ImageView img = new ImageView(CoordiRegisterActivity.this);
-                            img.setImageResource(R.drawable.clothe1);
-                            img.setMaxHeight(100);
-                            img.setOnDragListener(new View.OnDragListener() {
-                                @Override
-                                public boolean onDrag(View v, DragEvent event) {
-                                    Log.v("drag","");
-                                    switch (event.getAction()) {
-                                        case DragEvent.ACTION_DRAG_STARTED:
-                                            Log.v("drag","ACTION_DRAG_STARTED");
-                                            return true;
-                                        case DragEvent.ACTION_DRAG_ENTERED:
-                                            Log.v("drag","ACTION_DRAG_ENTERED");
-                                            return true;
-                                        case DragEvent.ACTION_DRAG_EXITED:
-                                            Log.v("drag","ACTION_DRAG_EXITED");
-                                            return true;
-                                        case DragEvent.ACTION_DROP:
-                                            Log.v("drag","ACTION_DROP");
-                                            //드래그를 떼었다 놓을 때
-                                            View view = (View) event.getLocalState();//startDrag에서 3번째 항목을 가져옴
-                                            ViewGroup parent = (ViewGroup) view.getParent();//원래 부모를 구함.(리니어레이아웃)
-                                            parent.removeView(view);//뷰를 제거함
+                            img.setImageResource(R.drawable.clothe3);
+                            img.setOnTouchListener(new MyDragListener());
 
-                                            LinearLayout newparent = (LinearLayout) v;//새로운 부모를 만들고(리니어레이아웃)
-                                            newparent.addView(view);//드롭을 받은 부모에게 뷰를 추가함.
-                                            view.setVisibility(View.VISIBLE);//보이게 함.
-                                            return true;
-
-
-                                        case DragEvent.ACTION_DRAG_ENDED:
-                                            Log.v("drag","ACTION_ENDED");
-                                            if (event.getResult() == false) {//드래그 종료시 처음 숨겼던 뷰를 다시 보이도록 한다.
-                                                ((View) (event.getLocalState())).setVisibility(View.VISIBLE);
-                                            }
-                                            return true;
-                                    }
-                                    return true;
-
-                                }
-                            });
                             coordi_v.addView(img);
+
                         }
                     });
                     builder.setNegativeButton("취소", null);
@@ -145,4 +113,45 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             dialog.show();
         }
     }
+    public static Bitmap getBitmapFromView(View view) {
+        //Define a bitmap with the same size as the view
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        //Bind a canvas to it
+        Canvas canvas = new Canvas(returnedBitmap);
+        //Get the view's background
+        Drawable bgDrawable =view.getBackground();
+        if (bgDrawable!=null)
+            //has background drawable, then draw it on the canvas
+            bgDrawable.draw(canvas);
+        else
+            //does not have background drawable, then draw white background on the canvas
+            canvas.drawColor(Color.WHITE);
+        // draw the view on the canvas
+        view.draw(canvas);
+        //return the bitmap
+        return returnedBitmap;
+    }
+
 }
+
+class MyDragListener implements View.OnTouchListener {
+
+    private float xCoOrdinate, yCoOrdinate;
+
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        switch (event.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                xCoOrdinate = view.getX() - event.getRawX();
+                yCoOrdinate = view.getY() - event.getRawY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                view.animate().x(event.getRawX() + xCoOrdinate).y(event.getRawY() + yCoOrdinate).setDuration(0).start();
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+}
+

@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -117,8 +119,10 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
             ImageView img = new ImageView(this);
             img.setImageResource(R.drawable.clothe2);
                     //getDrawable(R.drawable.clothe1);
-            db.addImage(img,"test");
-
+ //           db.uploadImage(img,"test");
+                db.readImage(this,img,"coordi1");
+                FrameLayout a  = findViewById(R.id.test);
+                a.addView(img);
         }
 
     }
