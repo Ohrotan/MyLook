@@ -2,16 +2,17 @@ package com.ssu.mylook;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.ssu.mylook.util.DBUtil;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +49,6 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
-
 
 
     @Override
@@ -115,15 +115,15 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
         } else if (v == btn6) {
             //디비 테스트
-            ConnectDatabase db = new ConnectDatabase();
+            FrameLayout a = findViewById(R.id.test);
             ImageView img = new ImageView(this);
-            img.setImageResource(R.drawable.clothe2);
-                    //getDrawable(R.drawable.clothe1);
- //           db.uploadImage(img,"test");
-                db.readImage(this,img,"coordi1");
-                FrameLayout a  = findViewById(R.id.test);
-                a.addView(img);
+            img.setImageResource(R.drawable.pre_img);
+            DBUtil.setImageViewFromDB(this, img, "coordi1");
+
+            a.addView(img);
         }
 
     }
+
+
 }

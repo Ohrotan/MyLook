@@ -7,33 +7,28 @@
     android:orientation="vertical"
     tools:context=".CoordiRegisterActivity">
 
-    <Button
-        android:id="@+id/delete_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/red_button"
-        android:text="드래그하여 삭제"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="삭제하고 싶은  옷은 빨간 버튼 위에 올려주세요."
-        android:textAlignment="center" />
-
     <FrameLayout
         android:id="@+id/coordi_view"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:layout_gravity="center"
         android:layout_margin="8dp"
-        android:background="#417C7C7C" />
+        android:background="#417C7C7C">
+
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/pink_button"
+            android:tag="delete btn"
+            android:text="휴지통"
+            android:textSize="20sp" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView11"
