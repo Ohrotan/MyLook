@@ -1,21 +1,13 @@
-package com.ssu.mylook;
+package com.ssu.mylook.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-
-
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Registry;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,20 +22,16 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
 
-public class ConnectDatabase {
+public class DBUtil {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
     // Create a storage reference from our app
-    StorageReference storageRef = storage.getReference();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
     public void addData() {
 
@@ -87,15 +75,13 @@ public class ConnectDatabase {
                     }
                 });
     }
+
     public void uploadImage(Bitmap bitmap, String name) {
 
-// Create a reference to "mountains.jpg"
-        StorageReference imgRef = storageRef.child(name+".jpg");
+        StorageReference imgRef = storageRef.child(name + ".jpg");
 
-// Create a reference to 'images/mountains.jpg'
-        final StorageReference imgRef2 = storageRef.child("images/"+name+".jpg");
+        final StorageReference imgRef2 = storageRef.child("images/" + name + ".jpg");
 
-// While the file names are the same, the references point to different files
         imgRef.getName().equals(imgRef2.getName());    // true
         imgRef.getPath().equals(imgRef2.getPath());    // false
 
@@ -114,7 +100,7 @@ public class ConnectDatabase {
                 }
 
                 // Continue with the task to get the download URL
-                Log.v("img", "suc/"+imgRef2.getDownloadUrl().toString());
+                Log.v("img", "suc/" + imgRef2.getDownloadUrl().toString());
                 return imgRef2.getDownloadUrl();
             }
         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -122,7 +108,7 @@ public class ConnectDatabase {
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
-                    Log.v("img", "suc/"+downloadUri.toString());
+                    Log.v("img", "suc/" + downloadUri.toString());
                 } else {
                     // Handle failures
                     // ...
@@ -130,32 +116,33 @@ public class ConnectDatabase {
             }
         });
     }
-//https://firebase.google.com/docs/storage/android/create-reference?authuser=0
+
+    //https://firebase.google.com/docs/storage/android/create-reference?authuser=0
     public void uploadImage(ImageView imageView, String name) {
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        uploadImage(bitmap,name);
+        uploadImage(bitmap, name);
     }
 
-//https://firebase.google.com/docs/storage/android/download-files?authuser=0
-    public void readImage(Context context, ImageView imageView, String name){
-// Create a reference with an initial file path and name
-        StorageReference pathReference = storageRef.child("images/stars.jpg");
+    //https://firebase.google.com/docs/storage/android/download-files?authuser=0
+    //인자인 imageView가 imageResource가 세팅이 되어있어야만 이미지 삽입가능
+    // ex)        ImageView img = new ImageView(this);
+    //            img.setImageResource(R.drawable.pre_img);
+    //            DBUtil.setImageViewFromDB(this, img, "coordi1");
+    public static void setImageViewFromDB(final Context con, final ImageView imageView, String name) {
+        StorageReference httpsReference = FirebaseStorage.getInstance()
+                .getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/" +
+                        "ssu-mylook.appspot.com/o/" + name + ".jpg");
 
-// Create a reference to a file from a Google Cloud Storage URI
-        StorageReference gsReference = storage.getReferenceFromUrl("gs://ssu-mylook.appspot.com/"+name+".jpg");
+        httpsReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(con)
+                        .load(uri)
+                        .into(imageView);
+            }
+        });
 
-// Create a reference from an HTTPS URL
-// Note that in the URL, characters are URL escaped!
-        StorageReference httpsReference = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/ssu-mylook.appspot.com/o/"+name+".jpg");
-// Reference to an image file in Cloud Storage
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-
-// Download directly from StorageReference using Glide
-// (See MyAppGlideModule for Loader registration)
-        Glide.with(context)
-                .load(httpsReference)
-                .into(imageView);
     }
 }
