@@ -16,6 +16,7 @@ public class TestSeungminActivity extends AppCompatActivity implements View.OnCl
     Button btn5;
     Button btn6;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class TestSeungminActivity extends AppCompatActivity implements View.OnCl
         btn4 = findViewById(R.id.button4);
         btn5 = findViewById(R.id.button5);
         btn6 = findViewById(R.id.button6);
+
     }
 
     @Override
@@ -41,10 +43,18 @@ public class TestSeungminActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);
         }
         else if(v==btn3){
-            intent = new Intent(this,ClotheRegister.class);
-            startActivity(intent);}
-        else if(v==btn4){}
-        else if(v==btn5){}
+            intent = new Intent(this, ClotheRegisterActivity.class);
+            startActivity(intent);
+        }
+        else if(v==btn4){
+            intent = new Intent(this, ClotheEditActivity.class);
+            startActivity(intent);
+        }
+        else if(v==btn5){
+            intent = new Intent(this,ClotheSearchLayout.class);
+            startActivity(intent);
+        }
+
         else if(v==btn6){
             intent = new Intent(this,UpperBarActivity.class);
             startActivity(intent);

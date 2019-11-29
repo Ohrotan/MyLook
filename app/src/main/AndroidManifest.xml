@@ -32,7 +32,7 @@
         </activity>
         <activity android:name=".UnfavoriteClotheActivity" />
         <activity android:name=".CoordiInfoEditActivity" />
-        <activity android:name=".ClotheRegister" />
+        <activity android:name=".ClotheRegisterActivity" />
         <activity android:name=".ClotheSearchLayout" />
         <activity android:name=".CoordiEditActivity" />
         <activity android:name=".CoordiInfoRegisterActivity" />
