@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 <!--  첫번째 가로   -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -373,5 +371,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    </ScrollView>
+
 </LinearLayout>

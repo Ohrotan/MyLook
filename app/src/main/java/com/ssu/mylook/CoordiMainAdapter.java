@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CoordiMainAdapter extends BaseAdapter {
+
     private ArrayList<CustomDTO> listCustom = new ArrayList<>();
 
     public ArrayList<CustomDTO> getListCustom() {
