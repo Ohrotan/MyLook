@@ -12,6 +12,7 @@
         android:gravity="center"
         android:text="1"
         android:textSize="50sp"
+        android:textColor="#000000"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -29,12 +30,14 @@
             android:maxLines="2"
             android:minLines="2"
             android:textStyle="bold"
+            android:textColor="#000000"
             android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tag_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:text="3회"/>
     </LinearLayout>
 
