@@ -46,6 +46,7 @@ public class CoordiMainAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.coordi_main_item,null,false);
 
             holder = new CoordiMainAdapter.CustomViewHolder();
+            holder.textCount=(TextView)convertView.findViewById(R.id.coordi_item_count);
             holder.imageView = (ImageView) convertView.findViewById(R.id.coordi_item_img);
             holder.textTitle = (TextView) convertView.findViewById(R.id.coordi_item_title);
             holder.textContent = (TextView) convertView.findViewById(R.id.coordi_item_assessment);
@@ -60,7 +61,7 @@ public class CoordiMainAdapter extends BaseAdapter {
         CustomDTO dto = listCustom.get(position);
 
         holder.textRank.setText(dto.getRank());
-        holder.imageView.setImageResource(dto.getResId());
+       // holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getTitle());
         holder.textContent.setText(dto.getContent());
 
@@ -68,6 +69,7 @@ public class CoordiMainAdapter extends BaseAdapter {
     }
 
     class CustomViewHolder {
+        TextView textCount;
         ImageView imageView;
         TextView textTitle;
         TextView textRank;

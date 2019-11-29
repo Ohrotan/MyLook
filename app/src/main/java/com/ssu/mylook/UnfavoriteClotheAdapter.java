@@ -50,7 +50,7 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
 
         CustomDTO dto = listCustom.get(position);
 
-        holder.imageView.setImageResource(dto.getResId());
+        //holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getTitle());
 
         return convertView;
