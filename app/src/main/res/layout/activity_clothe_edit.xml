@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClotheRegisterActivity">
+    tools:context=".ClotheEditActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/add_photo"
+                android:id="@+id/origin_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/add_photo" />
+                app:srcCompat="@drawable/clothe_example" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
