@@ -1,4 +1,4 @@
-package com.ssu.mylook.util;
+package com.ssu.readingd.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -21,7 +22,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.ssu.mylook.CustomDTO;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -31,63 +31,123 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 
 public class DBUtil {
+    final static String TAG = "Database";
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     // Create a storage reference from our app
     static FirebaseStorage storage = FirebaseStorage.getInstance();
     static StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-    public void addData() {
-
+    public static void addData() {
 
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
         final String id = "kkdsfk@ssu.ac.kr";
         user.put("password", "비밀번호~~");
 
-
 // Add a new document with a generated ID
-        db.collection("user")
+        db.collection("users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        //Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Log.w(TAG, "Error adding document", e);
+                        Log.w(TAG, "Error adding document", e);
                     }
                 });
     }
 
-    public static ArrayList<CustomDTO> getData(String criteria, boolean order) {
-        final ArrayList<CustomDTO> a = new ArrayList<>();
-        if(order) {
-            db.collection("Coordi").orderBy(criteria,Query.Direction.DESCENDING)
+    public static void deleteData(final String collection, final String id) {
+        db.collection(collection).document(id).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.v(TAG, collection + "에서 " + id + " 삭제 성공");
+                } else {
+                    Log.v(TAG, collection + "에서 " + id + " 삭제 실패");
+                }
+            }
+        });
+    }
+
+    public static void updateData(String collection, String id, Map<String, Object> data) {
+        Map<String, Object> data1 = new HashMap<>();
+        data1.put("name", "San Francisco");
+        // data1.put("state", "CA");
+        // data1.put("country", "USA");
+        // data1.put("capital", false);
+        // data1.put("population", 860000);
+        // data1.put("regions", Arrays.asList("west_coast", "norcal"));
+
+
+        //db.collection("컬렉션명").document("바꾸고 싶은 데이터 고유 아이디").update(data1);
+        //db.collection("clothes").document("53ii8P0Bax7znoZeQ3yM").update(data1);//예시
+        db.collection(collection).document(id).update(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+
+    public static void getData(String collection, String id) {
+        db.collection(collection).document(id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.v(TAG, "DocumentSnapshot data: " + document.getData());
+                            } else {
+                                Log.v(TAG, "No such document");
+                            }
+                        } else {
+                            Log.v(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public static ArrayList<String> getDatas(String collection, String criteria, boolean order) {
+        final ArrayList<String> a = new ArrayList<>();
+        if (order) {
+            db.collection(collection).orderBy(criteria, Query.Direction.DESCENDING)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    a.add(CustomDTO.mapToDTO(document.getData()));
+                                    // a.add(CustomDTO.mapToDTO(document.getData()));
                                 }
                             } else {
                                 //Log.w(TAG, "Error getting documents.", task.getException());
                             }
                         }
                     });
-        }else{
-            db.collection("Coordi").orderBy(criteria, Query.Direction.ASCENDING)
+        } else {
+            db.collection(collection).orderBy(criteria, Query.Direction.ASCENDING)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    a.add(CustomDTO.mapToDTO(document.getData()));
+                                    //a.add(CustomDTO.mapToDTO(document.getData()));
                                 }
                             } else {
                                 //Log.w(TAG, "Error getting documents.", task.getException());
@@ -98,7 +158,7 @@ public class DBUtil {
         return a;
     }
 
-    public void uploadImage(Bitmap bitmap, String name) {
+    public static void uploadImage(Bitmap bitmap, String name) {
 
         StorageReference imgRef = storageRef.child(name + ".jpg");
 
@@ -140,7 +200,7 @@ public class DBUtil {
     }
 
     //https://firebase.google.com/docs/storage/android/create-reference?authuser=0
-    public void uploadImage(ImageView imageView, String name) {
+    public static void uploadImage(ImageView imageView, String name) {
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
