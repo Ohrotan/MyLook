@@ -12,6 +12,14 @@ import java.util.ArrayList;
 public class CoordiMainAdapter extends BaseAdapter {
     private ArrayList<CustomDTO> listCustom = new ArrayList<>();
 
+    public ArrayList<CustomDTO> getListCustom() {
+        return listCustom;
+    }
+
+    public void setListCustom(ArrayList<CustomDTO> listCustom) {
+        this.listCustom = listCustom;
+    }
+
     // ListView에 보여질 Item 수
     @Override
     public int getCount() {

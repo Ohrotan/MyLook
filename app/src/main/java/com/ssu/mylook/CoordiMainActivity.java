@@ -9,6 +9,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ssu.mylook.util.DBUtil;
+
+import java.util.ArrayList;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,6 +63,11 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setData() {
+        //수정필요
+        ArrayList<CustomDTO> a = DBUtil.getData("rating",false);
+
+        adapter.setListCustom(a);
+/*
         TypedArray arrResId = getResources().obtainTypedArray(R.array.coordi_Id);
         String[] titles = getResources().getStringArray(R.array.coordi_title);
         String[] ranks = getResources().getStringArray(R.array.coordi_rank);
@@ -73,7 +82,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
             adapter.addItem(dto);
 
-        }
+        }*/
     }
     private void showToast(String message){
         Toast toast=Toast.makeText(this, message, Toast.LENGTH_SHORT);

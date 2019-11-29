@@ -15,23 +15,26 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.ssu.mylook.CustomDTO;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
 
 public class DBUtil {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    static FirebaseFirestore db = FirebaseFirestore.getInstance();
     // Create a storage reference from our app
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+    static FirebaseStorage storage = FirebaseStorage.getInstance();
+    static StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
     public void addData() {
 
@@ -59,21 +62,40 @@ public class DBUtil {
                 });
     }
 
-    public void getData() {
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                // Log.d(TAG, document.getId() + " => " + document.getData());
+    public static ArrayList<CustomDTO> getData(String criteria, boolean order) {
+        final ArrayList<CustomDTO> a = new ArrayList<>();
+        if(order) {
+            db.collection("Coordi").orderBy(criteria,Query.Direction.DESCENDING)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    a.add(CustomDTO.mapToDTO(document.getData()));
+                                }
+                            } else {
+                                //Log.w(TAG, "Error getting documents.", task.getException());
                             }
-                        } else {
-                            //Log.w(TAG, "Error getting documents.", task.getException());
                         }
-                    }
-                });
+                    });
+        }else{
+            db.collection("Coordi").orderBy(criteria, Query.Direction.ASCENDING)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    a.add(CustomDTO.mapToDTO(document.getData()));
+                                }
+                            } else {
+                                //Log.w(TAG, "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
+        }
+        return a;
     }
 
     public void uploadImage(Bitmap bitmap, String name) {
