@@ -5,40 +5,92 @@
     android:layout_height="match_parent"
     tools:context="com.ssu.mylook.CoordiMainActivity"
     android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+<!--        <Button-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="봄"-->
+<!--            android:background="@drawable/button_selector">-->
+<!--        </Button>-->
+<!--        <Button-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="여름"-->
+<!--            android:background="@drawable/button_selector">-->
+<!--        </Button>-->
+<!--        <Button-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="가을"-->
+<!--            android:background="@drawable/button_selector">-->
+<!--        </Button>-->
+<!--        <Button-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="겨울"-->
+<!--            android:background="@drawable/button_selector">-->
+<!--        </Button>-->
+<!--    </LinearLayout>-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="봄"
-            android:background="@drawable/button_selector">
-        </Button>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="여름"
-            android:background="@drawable/button_selector">
-        </Button>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="가을"
-            android:background="@drawable/button_selector">
-        </Button>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="겨울"
-            android:background="@drawable/button_selector">
-        </Button>
-    </LinearLayout>
+        android:id="@+id/upper_bar_coordi"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
 
+        <TextView
+            android:id="@+id/spring_coordi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="봄"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:background="@drawable/colorButtonNotClick"
+            android:textColor="#000000"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/summer_coordi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="여름"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:background="@drawable/colorButtonNotClick"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/fall_coordi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="가을"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:background="@drawable/colorButtonNotClick"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/winter_coordi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="겨울"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:background="@drawable/colorButtonNotClick"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+    </LinearLayout>
     <Spinner
         android:id="@+id/arrange_spin"
         android:entries="@array/arrange"
@@ -46,12 +98,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/arrange_text"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="최신등록순"/>-->
+    <TextView
+        android:id="@+id/arrange_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최신등록순"/>
 
+<!--textview 바뀌는것처럼 gridview 적용하기-->
 
     <GridView
         android:id="@+id/CoordiMainGridView"
