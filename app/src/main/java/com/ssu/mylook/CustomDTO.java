@@ -2,6 +2,8 @@ package com.ssu.mylook;
 
 /*계층간 데이터 교환을 위한 클래스 dto(data transfer object)*/
 
+import java.util.Map;
+
 public class CustomDTO {
     private String rank;
     private int resId;
@@ -38,5 +40,12 @@ public class CustomDTO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public static CustomDTO mapToDTO(Map<String,Object> data){
+        //수정필요
+        CustomDTO  a = new CustomDTO();
+        a.setTitle((String)data.get("title"));
+        return a;
     }
 }
