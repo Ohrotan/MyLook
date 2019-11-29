@@ -1,6 +1,5 @@
 package com.ssu.mylook;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,12 +8,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ssu.mylook.util.DBUtil;
-
-import java.util.ArrayList;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class CoordiMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,20 +50,35 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                 tv.setText("position : " + position + parent.getItemAtPosition(position));
                 tv.setText(""+parent.getItemAtPosition(position));
                 MyGridView.setAdapter(adapter);
+                setData(position);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-        setData();
+        //setData();
 
         MyGridView.setAdapter(adapter);
     }
 
-    private void setData() {
-        //수정필요
-        ArrayList<CustomDTO> a = DBUtil.getData("rating",false);
-
-        adapter.setListCustom(a);
+    private void setData(int position) {
+        if(position==0){
+            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "reg_date", false);
+            adapter.setListCustom(CoordiList);
+            System.out.println("CoordiList 등록날짜순 출력중");
+        } else if(position==1){
+            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "rating", false);
+            adapter.setListCustom(CoordiList);
+            System.out.println("CoordiList 별점 내림차순 출력중");
+        } else if(position==2){
+            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "rating", true);
+            adapter.setListCustom(CoordiList);
+        } else if(position==3) {
+            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "count", false);
+            adapter.setListCustom(CoordiList);
+        } else if(position==4){
+            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "count", true);
+            adapter.setListCustom(CoordiList);
+        }
 /*
         TypedArray arrResId = getResources().obtainTypedArray(R.array.coordi_Id);
         String[] titles = getResources().getStringArray(R.array.coordi_title);

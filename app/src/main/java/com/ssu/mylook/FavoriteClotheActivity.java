@@ -39,7 +39,7 @@ public class FavoriteClotheActivity extends AppCompatActivity {
         for (int i = 0; i < arrResId.length(); i++) {
             CustomDTO dto = new CustomDTO();
             dto.setRank(ranks[i]);
-            dto.setResId(arrResId.getResourceId(i, 0));
+            //dto.setResId(arrResId.getResourceId(i, 0));
             dto.setTitle(titles[i]);
             dto.setContent(contents[i]);
 

@@ -33,7 +33,7 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
 
         for (int i = 0; i < arrResId.length(); i++) {
             CustomDTO dto = new CustomDTO();
-            dto.setResId(arrResId.getResourceId(i, 0));
+            //dto.setResId(arrResId.getResourceId(i, 0));
             dto.setTitle(titles[i]);
 
             adapter.addItem(dto);

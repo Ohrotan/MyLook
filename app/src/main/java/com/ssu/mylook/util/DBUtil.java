@@ -1,4 +1,6 @@
-package com.ssu.readingd.util;
+//package com.ssu.readingd.util;
+package com.ssu.mylook.util;
+
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,6 +8,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
@@ -22,13 +26,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.ssu.mylook.CustomDTO;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
 
 public class DBUtil {
     final static String TAG = "Database";
@@ -122,8 +125,8 @@ public class DBUtil {
                 });
     }
 
-    public static ArrayList<String> getDatas(String collection, String criteria, boolean order) {
-        final ArrayList<String> a = new ArrayList<>();
+    public static ArrayList<CustomDTO> getDatas(String collection, String criteria, boolean order) {
+        final ArrayList<CustomDTO> coordiView = new ArrayList<>();
         if (order) {
             db.collection(collection).orderBy(criteria, Query.Direction.DESCENDING)
                     .get()
@@ -132,10 +135,11 @@ public class DBUtil {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    // a.add(CustomDTO.mapToDTO(document.getData()));
+                                    coordiView.add(CustomDTO.mapToDTO(document.getData()));
+
                                 }
                             } else {
-                                //Log.w(TAG, "Error getting documents.", task.getException());
+                                Log.w(TAG, "Error getting documents.", task.getException());
                             }
                         }
                     });
@@ -155,7 +159,7 @@ public class DBUtil {
                         }
                     });
         }
-        return a;
+        return coordiView;
     }
 
     public static void uploadImage(Bitmap bitmap, String name) {

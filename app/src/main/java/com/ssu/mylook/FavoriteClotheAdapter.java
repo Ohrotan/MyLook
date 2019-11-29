@@ -57,7 +57,7 @@ public class FavoriteClotheAdapter extends BaseAdapter {
         CustomDTO dto = listCustom.get(position);
 
         holder.textRank.setText(dto.getRank());
-        holder.imageView.setImageResource(dto.getResId());
+        //holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getTitle());
         holder.textContent.setText(dto.getContent());
 
