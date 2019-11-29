@@ -1,49 +1,29 @@
-/*package com.ssu.mylook;
+package com.ssu.mylook;
+
+import android.os.Bundle;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
-import android.app.ActivityGroup;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TabHost;
+import java.util.ArrayList;
 
-public class ClosetActivity extends ActivityGroup {
+public class ClosetActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_closet);
+        setContentView(R.layout.closet_list);
 
-        TabHost host=(TabHost)findViewById(R.id.menu_season);
-        host.setup(this.getLocalActivityManager());
+        ListView listView=(ListView)findViewById(R.id.closet_listview);
 
-        ImageView tabwidget01 = new ImageView(this);
-        tabwidget01.setImageResource(R.drawable.tab_01_selector);
+        ArrayList<Closet_ListViewItem> data =new ArrayList<>();
+        Closet_ListViewItem clothe1=new Closet_ListViewItem(R.drawable.clothe1,"옷 1");
+        Closet_ListViewItem clothe2=new Closet_ListViewItem(R.drawable.clothe1,"옷 2");
 
+        data.add(clothe1);
+        data.add(clothe2);
 
-        ImageView tabwidget02 = new ImageView(this);
-        tabwidget02.setImageResource(R.drawable.tab_02_selector);
-
-        ImageView tabwidget03 = new ImageView(this);
-        tabwidget03.setImageResource(R.drawable.tab_03_selector);
-
-        TabHost.TabSpec spec= host.newTabSpec("Tab1");
-        spec.setIndicator(tabwidget01)
-                .setContent(new Intent(this,ActivityTab1.class));
-        host.addTab(spec);
-
-        spec= host.newTabSpec("Tab2");
-        spec.setIndicator(tabwidget02)
-                .setContent(new Intent(this,ActivityTab2.class));
-        host.addTab(spec);
-
-        spec= host.newTabSpec("Tab3");
-        spec.setIndicator(tabwidget03)
-                .setContent(new Intent(this,ActivityTab3.class));
-        host.addTab(spec);
-
+        Closet_ListViewAdapter adapter=new Closet_ListViewAdapter(this,R.layout.closet_item,data);
+        listView.setAdapter(adapter);
     }
 }
-*/
