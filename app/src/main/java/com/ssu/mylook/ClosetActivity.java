@@ -2,7 +2,11 @@ package com.ssu.mylook;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
+import android.app.Activity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,20 +99,15 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        /*ListView listView=(ListView)findViewById(R.id.closet_listview);
+        GridView gridView=(GridView)findViewById(R.id.gridview);
+        gridView.setAdapter(new Closet_ListViewAdapter(this));
 
-        ArrayList<Closet_ListViewItem> data =new ArrayList<>();
-        Closet_ListViewItem clothe1=new Closet_ListViewItem(R.drawable.clothe1,"옷 1");
-        Closet_ListViewItem clothe2=new Closet_ListViewItem(R.drawable.clothe1,"옷 2");
-
-        data.add(clothe1);
-        data.add(clothe2);
-
-        Closet_ListViewAdapter adapter=new Closet_ListViewAdapter(this,R.layout.closet_item,data);
-        listView.setAdapter(adapter);
-
-*/
-
+        gridView.setOnItemClickListener(new OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ClosetActivity.this,""+position,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
