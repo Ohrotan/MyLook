@@ -16,11 +16,16 @@ import java.util.ArrayList;
 
 public class ClosetActivity extends AppCompatActivity implements View.OnClickListener{
 
-
+    private ArrayList _data=null;
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closet);
+
+        _data=new ArrayList();
+
+        Closet_ListViewAdapter adapter=new Closet_ListViewAdapter(getApplicationContext(),
+                R.layout.closet_list,_data);
 
         TextView text1=(TextView)findViewById(R.id.upper_spring);
         TextView text2=(TextView)findViewById(R.id.upper_summer);
@@ -100,7 +105,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
         });
 
         GridView gridView=(GridView)findViewById(R.id.gridview);
-        gridView.setAdapter(new Closet_ListViewAdapter(this));
+        gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new OnItemClickListener(){
             @Override

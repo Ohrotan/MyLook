@@ -61,7 +61,7 @@
                 android:background="#1A5d0082"
                 android:gravity="center"/>
 
-        </LinearLayout>
+        </LinearLayout> //계절버튼
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -124,8 +124,8 @@
                 android:layout_marginLeft="0dp"
                 android:gravity="center"
                 />
-        </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>//구분 버튼
+    </LinearLayout> //버튼 레이아웃 끝
 
 
 
@@ -134,95 +134,16 @@
         android:layout_height="fill_parent"
         android:layout_weight="100">
 
-          <GridView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/default_gap"
-                android:layout_marginLeft="@dimen/default_gap"
-                android:layout_marginRight="@dimen/default_gap">
-                <ImageView
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="100dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:numColumns="auto_fit" >
+        </GridView>
 
-                    android:src="@drawable/clothe1"
-                    android:layout_width="120dp"
-                    android:layout_height="180dp"
-                />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="shalashala"
-                    android:layout_gravity="center_horizontal"/>
-
-            </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/default_gap"
-            android:layout_marginLeft="@dimen/default_gap"
-            android:layout_marginRight="@dimen/default_gap">
-            <ImageView
-
-                android:src="@drawable/clothe2"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="shalashala"
-                android:layout_gravity="center_horizontal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/default_gap"
-            android:layout_marginLeft="@dimen/default_gap"
-            android:layout_marginRight="@dimen/default_gap">
-
-            <ImageView
-                android:src="@drawable/clothe3"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="shalashala"
-                android:layout_gravity="center_horizontal"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/default_gap"
-            android:layout_marginLeft="@dimen/default_gap"
-            android:layout_marginRight="@dimen/default_gap">
-
-            <ImageView
-                android:src="@drawable/clothe_example"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="shalashala"
-                android:layout_gravity="center_horizontal"/>
-
-                </LinearLayout>
-          </GridView>
     </LinearLayout>
 
     <LinearLayout
