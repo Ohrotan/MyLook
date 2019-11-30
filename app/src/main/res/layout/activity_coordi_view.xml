@@ -107,15 +107,22 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/icon_star"/>
-                        <TextView
-                            android:id="@+id/coordi_view_assessment"
-                            android:layout_width="match_parent"
+                        <RatingBar
+                            android:id="@+id/coordi_view_rating"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="15dp"
-                            android:text="★★★☆☆"
-                            android:textColor="#000000"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:rating="2.5"
+                            android:layout_gravity="center"
+                            android:clickable="false"/>
+<!--                        <TextView-->
+<!--                            android:id="@+id/coordi_view_assessment"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="15dp"-->
+<!--                            android:text="★★★☆☆"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textStyle="bold" />-->
                     </LinearLayout>
 
                     <LinearLayout
@@ -137,12 +144,16 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-                        <Button
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="-"
-                            android:background="@color/colorPrimary"
-                            android:textColor="#FFFFFF"/>
+<!--                        <com.ssu.mylook.MyPlusMinusView-->
+<!--                            android:id="@+id/plus_minus_View"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"/>-->
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/plus_btn"
+                            android:layout_gravity="center"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -151,12 +162,31 @@
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-                        <Button
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="+"
-                            android:background="@color/colorPrimary"
-                            android:textColor="#FFFFFF"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/minus_btn"
+                            android:layout_gravity="center"/>
+<!--                        <Button-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:text="-"-->
+<!--                            android:background="@color/colorPrimary"-->
+<!--                            android:textColor="#FFFFFF"/>-->
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="15dp"-->
+<!--                            android:text="3"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textStyle="bold" />-->
+<!--                        <Button-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:text="+"-->
+<!--                            android:background="@color/colorPrimary"-->
+<!--                            android:textColor="#FFFFFF"/>-->
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -192,7 +222,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="40dp"
                                 android:layout_toRightOf="@id/icon_edit"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="5dp"
                                 android:gravity="center"
                                 android:text="수정하기"
                                 android:textColor="#000000"/>
@@ -217,7 +248,8 @@
                                 android:id="@+id/text_remove"
                                 android:layout_width="wrap_content"
                                 android:layout_height="40dp"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="5dp"
                                 android:layout_toRightOf="@id/icon_remove"
                                 android:gravity="center"
                                 android:text="삭제하기"

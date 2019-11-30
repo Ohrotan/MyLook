@@ -1,6 +1,8 @@
 package com.ssu.mylook;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -8,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +24,23 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     TextView Summertv;
     TextView Falltv;
     TextView Wintertv;
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+       int id = item.getItemId();
+       if(id==R.id.action_add){
+           Toast.makeText(this, "코디추가버튼 클릭",Toast.LENGTH_SHORT).show();
+           return true;
+       }
+       return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
