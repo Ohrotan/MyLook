@@ -14,7 +14,7 @@ public class Closet_ListViewAdapter extends BaseAdapter {
     private ArrayList<Closet_ListViewItem> data;
     private int layout;
 
-    public Closet_ListViewAdapter(Context context, int layout,ArrayList<Closet_ListViewItem> data){
+    public Closet_ListViewAdapter(Context context){
         this.inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.data=data;
         this.layout=layout;
@@ -32,9 +32,8 @@ public class Closet_ListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView==null){
-            convertView=inflater.inflate(layout,parent,false);
-        }
-
+            convertView=inflater.inflate(R.layout.closet_item,null);
+        }else{ }
         Closet_ListViewItem closet_listViewItem=data.get(position);
 
         ImageView image=(ImageView)convertView.findViewById(R.id.closet_imageview);
