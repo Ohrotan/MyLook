@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CoordiViewActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,5 +15,8 @@ public class CoordiViewActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("코디 상세");
+
+//        MyPlusMinusView plusMinusView = findViewById(R.id.plus_minus_View);
+//        plusMinusView.setOnMyChangeListener((OnMyChangeListener) this);
     }
 }

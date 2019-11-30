@@ -1,0 +1,12 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CoordiMainActivity">
+
+    <item android:id="@+id/action_add"
+        android:title="Add"
+        android:icon="@drawable/plus"
+        app:showAsAction="always"/>
+
+</menu>
