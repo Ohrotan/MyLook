@@ -111,18 +111,12 @@
                             android:id="@+id/coordi_view_rating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_margin="15dp"
                             android:rating="2.5"
                             android:layout_gravity="center"
-                            android:clickable="false"/>
-<!--                        <TextView-->
-<!--                            android:id="@+id/coordi_view_assessment"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_margin="15dp"-->
-<!--                            android:text="★★★☆☆"-->
-<!--                            android:textColor="#000000"-->
-<!--                            android:textSize="18sp"-->
-<!--                            android:textStyle="bold" />-->
+                            android:isIndicator="true"/>
+                            <!-- isIndicator="true" : 이 RatingBar는 보여주기 용으로 사용한다는 뜻임 -->
                     </LinearLayout>
 
                     <LinearLayout
@@ -150,22 +144,25 @@
 <!--                            android:layout_height="wrap_content"/>-->
 
                         <ImageView
+                            android:id="@+id/minusCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/plus_btn"
+                            android:src="@drawable/minus_btn"
                             android:layout_gravity="center"/>
                         <TextView
+                            android:id="@+id/coordi_item_count"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="15dp"
-                            android:text="3"
+                            android:text="0"
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:textStyle="bold" />
                         <ImageView
+                            android:id="@+id/plusCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/minus_btn"
+                            android:src="@drawable/plus_btn"
                             android:layout_gravity="center"/>
 <!--                        <Button-->
 <!--                            android:layout_width="30dp"-->
