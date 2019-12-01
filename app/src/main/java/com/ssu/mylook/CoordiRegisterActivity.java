@@ -1,11 +1,14 @@
 package com.ssu.mylook;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,7 +19,10 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.ssu.mylook.adapter.ClotheListAdapter;
 import com.ssu.mylook.util.DBUtil;
+
+import java.util.UUID;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +62,7 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         ImageView img = new ImageView(CoordiRegisterActivity.this);
         img.setImageResource(R.drawable.clothe3);
         img.setOnTouchListener(new MyDragListener(getResources().getDrawable(R.drawable.red_button),
-                coordi_v, delete_btn));
+                delete_btn));
         coordi_v.addView(img);
 //test용
 
@@ -101,7 +107,13 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             onBackPressed();
         } else if (v == next_btn) {
             DBUtil db = new DBUtil();
-            db.uploadImage(getBitmapFromView(coordi_v), "coordi1");
+            String uniqueID = UUID.randomUUID().toString();
+            db.uploadImage(getBitmapFromView(coordi_v), uniqueID);
+            Intent intent = new Intent(this, CoordiInfoRegisterActivity.class);
+            intent.putExtra("imgId", uniqueID);
+
+            startActivity(intent);
+
         } else if (v == clothe_add_btn) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -124,8 +136,9 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
                         public void onClick(DialogInterface dialog, int which) {
                             ImageView img = new ImageView(CoordiRegisterActivity.this);
                             img.setImageResource(R.drawable.clothe3);
-                            // img.setOnTouchListener(new MyDragListener(delete_btn));
-
+                            img.setOnTouchListener(
+                                    new MyDragListener(getResources().getDrawable(R.drawable.red_button),
+                                            delete_btn));
                             coordi_v.addView(img);
 
                         }
@@ -147,8 +160,9 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         }
     }
 
-    public static Bitmap getBitmapFromView(View view) {
+    public Bitmap getBitmapFromView(View view) {
         //Define a bitmap with the same size as the view
+        delete_btn.setVisibility(View.GONE);
         Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         //Bind a canvas to it
         Canvas canvas = new Canvas(returnedBitmap);
@@ -162,7 +176,9 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             canvas.drawColor(Color.WHITE);
         // draw the view on the canvas
         view.draw(canvas);
+        delete_btn.setVisibility(View.VISIBLE);
         //return the bitmap
+
         return returnedBitmap;
     }
 
@@ -172,14 +188,14 @@ class MyDragListener implements View.OnTouchListener {
 
     private float xCoOrdinate, yCoOrdinate;
     private Button delete_btn;
-    FrameLayout ly;
+    // FrameLayout ly;
     Drawable dr;
     Drawable org_dr;
     int[] del = {0, 0, 0, 0}; //x-start,x-end,y-start,y-end
 
-    MyDragListener(Drawable dr, FrameLayout ly, Button delete_btn) {
+    MyDragListener(Drawable dr, Button delete_btn) {
         super();
-        this.ly = ly;
+        //  this.ly = ly;
         this.dr = dr;
         org_dr = delete_btn.getBackground();
         this.delete_btn = delete_btn;
@@ -203,19 +219,19 @@ class MyDragListener implements View.OnTouchListener {
                 if (event.getRawX() < del[1] && event.getRawX() > del[0]
                         && event.getRawY() < del[3] && event.getRawY() > del[2]) {
                     delete_btn.setBackground(dr);
-                }else{
+                } else {
                     delete_btn.setBackground(org_dr);
                 }
                 break;
             case MotionEvent.ACTION_UP:
 
-                Log.v("trash","buton y"+del[1]+"");
+                Log.v("trash", "buton y" + del[1] + "");
                 Log.v("trash", event.getRawX() + "/" + event.getRawY() + "/" + view.getHeight());
                 Log.v("trash", "Button:" + del[0] + "~" + (del[0] + delete_btn.getWidth()) + "/"
                         + del[1] + "~" + (del[1] + delete_btn.getHeight()));
                 if (event.getRawX() < del[1] && event.getRawX() > del[0]
                         && event.getRawY() < del[3] && event.getRawY() > del[2]) {
-                    ((ViewGroup)view.getParent()).removeView(view);
+                    ((ViewGroup) view.getParent()).removeView(view);
                     delete_btn.setBackground(org_dr);
                 }
                 //delete_btn.setBackground(dr);

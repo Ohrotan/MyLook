@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+package com.ssu.mylook.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.R;
 
 import java.util.ArrayList;
 

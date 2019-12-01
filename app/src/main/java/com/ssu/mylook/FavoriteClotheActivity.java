@@ -4,6 +4,9 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.ssu.mylook.adapter.FavoriteClotheAdapter;
+import com.ssu.mylook.dto.CustomDTO;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 

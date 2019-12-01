@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+package com.ssu.mylook.dto;
 
 public class Closet_ListViewItem {
     private int clothe_image;

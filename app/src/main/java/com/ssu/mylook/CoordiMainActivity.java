@@ -7,9 +7,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ssu.mylook.adapter.CoordiMainAdapter;
+import com.ssu.mylook.dto.CustomDTO;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -136,5 +140,32 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         } else if(v==Wintertv){
             showToast("winter category");
         }
+    }
+
+
+    public void clickTab(View v) {
+        ImageView[] img = new ImageView[3];
+        img[0] = findViewById(R.id.tab_closet);
+        img[1] = findViewById(R.id.tab_coordi);
+        img[2] = findViewById(R.id.tab_analysis);
+
+        if (v == img[0]) {
+            Intent intent = new Intent(this, ClosetActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        } else if (v == img[1]) {
+            Intent intent = new Intent(this, CoordiMainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        } else if (v == img[2]) {
+            Intent intent = new Intent(this, StyleAnalysisActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        }
+
+
     }
 }

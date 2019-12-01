@@ -1,10 +1,12 @@
-package com.ssu.mylook;
+package com.ssu.mylook.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ssu.mylook.R;
 
 import androidx.recyclerview.widget.RecyclerView;
 

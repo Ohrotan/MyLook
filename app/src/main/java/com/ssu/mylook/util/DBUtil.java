@@ -9,8 +9,6 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,12 +24,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.ssu.mylook.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
+import com.ssu.mylook.dto.CustomDTO;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 public class DBUtil {
     final static String TAG = "Database";
@@ -39,6 +40,18 @@ public class DBUtil {
     // Create a storage reference from our app
     static FirebaseStorage storage = FirebaseStorage.getInstance();
     static StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+    public static void addCoordi(CoordiDTO dto) {
+        db.collection("coordi")
+                .add(dto)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.v(TAG, "coordi success: " + documentReference.getId());
+                    }
+                });
+
+    }
 
     public static void addData() {
 
@@ -186,19 +199,13 @@ public class DBUtil {
                 }
 
                 // Continue with the task to get the download URL
-                Log.v("img", "suc/" + imgRef2.getDownloadUrl().toString());
+                //  Log.v("img", "suc/" + imgRef2.getDownloadUrl().toString());
                 return imgRef2.getDownloadUrl();
             }
-        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+        }).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()) {
-                    Uri downloadUri = task.getResult();
-                    Log.v("img", "suc/" + downloadUri.toString());
-                } else {
-                    // Handle failures
-                    // ...
-                }
+            public void onSuccess(Uri uri) {
+                Log.v("img", "success/" + uri.toString());
             }
         });
     }
@@ -231,4 +238,6 @@ public class DBUtil {
         });
 
     }
+
+
 }

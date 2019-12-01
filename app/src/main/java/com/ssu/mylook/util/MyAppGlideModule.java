@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+package com.ssu.mylook.util;
 
 import android.content.Context;
 
