@@ -26,17 +26,27 @@
         <activity android:name=".CoordiMainActivity" />
         <activity android:name=".TestJeongeun" />
         <activity android:name=".FavoriteColorActivity">
+            android:label="FavoriteColorActivity"
+            android:exported="false"
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FavoriteTagActivity" />
+        <activity android:name=".FavoriteTagActivity">
+            android:label="FavoriteTagActivity"
+            android:exported="false"
+        </activity>
         <activity android:name=".FavoriteClotheActivity">
+            android:label="FavoriteClotheActivity"
+            android:exported="false"
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UnfavoriteClotheActivity" />
+        <activity android:name=".UnfavoriteClotheActivity">
+            android:label="UnfavoriteClotheActivity"
+            android:exported="false"
+        </activity>
         <activity android:name=".CoordiInfoEditActivity" />
         <activity android:name=".ClotheRegisterActivity" />
         <activity android:name=".ClotheSearchLayout" />
