@@ -1,16 +1,31 @@
 package com.ssu.mylook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ClotheRegisterActivity extends AppCompatActivity implements View.OnClickListener{
+
 
     ImageView add_photo;
     Button btn_top;
@@ -30,6 +45,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothe_register);
 
+
         add_photo= findViewById(R.id.add_photo);
         btn_top= findViewById(R.id.button_top_clothe);
         btn_bottom= findViewById(R.id.button_bottom_clothe);
@@ -42,6 +58,19 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         btn_winter= findViewById(R.id.win_btn);
         btn_back= findViewById(R.id.cancel_btn);
         btn_save= findViewById(R.id.save_btn);
+
+        add_photo.setOnClickListener(this);
+        btn_top.setOnClickListener(this);
+        btn_bottom.setOnClickListener(this);
+        btn_hat.setOnClickListener(this);
+        btn_shoes.setOnClickListener(this);
+        btn_etc.setOnClickListener(this);
+        btn_spring.setOnClickListener(this);
+        btn_summer.setOnClickListener(this);
+        btn_fall.setOnClickListener(this);
+        btn_winter.setOnClickListener(this);
+        btn_back.setOnClickListener(this);
+        btn_save.setOnClickListener(this);
     }
 
     @Override
@@ -49,7 +78,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         Intent intent;
         if(v == add_photo){
             intent = new Intent(this,CameraActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,672);
         }
         else if(v==btn_top){
             //색깔 바뀌도록
@@ -146,4 +175,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         }
 
     }
-}
+
+    }
+
