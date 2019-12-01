@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ssu.mylook.adapter.CoordiMainAdapter;
 import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.util.DBUtil;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -90,21 +91,21 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
     private void setData(int position) {
         if(position==0){
-            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "reg_date", false);
+            ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "reg_date", false);
             adapter.setListCustom(CoordiList);
             System.out.println("CoordiList 등록날짜순 출력중");
         } else if(position==1){
-            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "rating", false);
+            ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", false);
             adapter.setListCustom(CoordiList);
             System.out.println("CoordiList 별점 내림차순 출력중");
         } else if(position==2){
-            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "rating", true);
+            ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", true);
             adapter.setListCustom(CoordiList);
         } else if(position==3) {
-            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "count", false);
+            ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "count", false);
             adapter.setListCustom(CoordiList);
         } else if(position==4){
-            ArrayList<CustomDTO> CoordiList = com.ssu.mylook.util.DBUtil.getDatas("Coordi", "count", true);
+            ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "count", true);
             adapter.setListCustom(CoordiList);
         }
 /*

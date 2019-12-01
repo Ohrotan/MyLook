@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,12 +72,11 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
         super.onResume();
         String imgId = getIntent().getStringExtra("imgId");
         if (imgId != null) {
-            Log.v("img id", imgId);
-            SystemClock.sleep(1000);
+            SystemClock.sleep(1500);
             result.setImg(imgId);
-            DBUtil.setImageViewFromDB(this, coordi_img, imgId);
+            new DBUtil().setImageViewFromDB(this, coordi_img, imgId);
         } else {
-            DBUtil.setImageViewFromDB(this, coordi_img, "236b2b35-d300-442b-8dfe-3cd826576ef5");
+            new DBUtil().setImageViewFromDB(this, coordi_img, "236b2b35-d300-442b-8dfe-3cd826576ef5");
         }
     }
 
@@ -167,6 +165,7 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
             }
             result.setSeasons(seletedSeasons);
             Calendar c = new GregorianCalendar();
+            c.add(Calendar.HOUR_OF_DAY, 9);
             int y = c.get(Calendar.YEAR);
             int m = c.get(Calendar.MONTH) + 1;
             int d = c.get(Calendar.DAY_OF_MONTH);
@@ -175,13 +174,13 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
             result.setRegDate(y + "-" + m + "-" + d + " " + h + ":" + min);
             result.setUserId("admin");//나중에 shared preference 이용하기
-            DBUtil.addCoordi(result);
+            new DBUtil().addCoordi(result);
 
-            Intent intent = new Intent(this,CoordiMainActivity.class);
+            Intent intent = new Intent(this, CoordiMainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
             overridePendingTransition(0, 0);
-
+            finish();
 
         } else if (v == cancel_btn) {
             onBackPressed();
