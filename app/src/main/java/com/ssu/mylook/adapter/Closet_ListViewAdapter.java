@@ -1,12 +1,14 @@
-package com.ssu.mylook;
+package com.ssu.mylook.adapter;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import com.ssu.mylook.dto.Closet_ListViewItem;
+import com.ssu.mylook.R;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class Closet_ListViewAdapter extends BaseAdapter {
             this.data=list;
 
             data = new ArrayList<>();
-            data.add(new Closet_ListViewItem("원피스",R.drawable.clothe1,"clothe-1"));
+            data.add(new Closet_ListViewItem("원피스", R.drawable.clothe1,"clothe-1"));
             data.add(new Closet_ListViewItem("테니스 스커트",R.drawable.clothe2,"clothe-2"));
             data.add(new Closet_ListViewItem("블라우스",R.drawable.clothe3,"clothe-3"));data.add(new Closet_ListViewItem("검정 구두",R.drawable.shoes1,"clothe-4"));
             data.add(new Closet_ListViewItem("원피스",R.drawable.clothe1,"clothe-5"));

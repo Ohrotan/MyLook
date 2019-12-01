@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+package com.ssu.mylook.dto;
 
 /*계층간 데이터 교환을 위한 클래스 dto(data transfer object)*/
 

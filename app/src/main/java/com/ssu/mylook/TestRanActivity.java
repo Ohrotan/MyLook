@@ -3,7 +3,6 @@ package com.ssu.mylook;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.ssu.mylook.adapter.ClotheListAdapter;
 import com.ssu.mylook.util.DBUtil;
 
 import androidx.appcompat.app.AlertDialog;

@@ -16,11 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ClotheViewActivity"></activity>
-        <activity android:name=".BelowBarActivity" />
         <activity android:name=".UpperBarActivity" />
-        <activity android:name=".ActivityTab3" />
-        <activity android:name=".ActivityTab2" />
-        <activity android:name=".ActivityTab1" />
         <activity android:name=".TestSeungminActivity" />
         <activity android:name=".CoordiViewActivity" />
         <activity android:name=".CoordiMainActivity" />

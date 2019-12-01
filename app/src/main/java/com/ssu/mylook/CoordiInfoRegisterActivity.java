@@ -3,12 +3,21 @@ package com.ssu.mylook;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import com.ssu.mylook.dto.CoordiDTO;
+import com.ssu.mylook.util.DBUtil;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +26,7 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
     ImageView coordi_img;
     EditText coordi_name_etv;
 
-    Button[] season_btn =new Button[4];
+    Button[] season_btn = new Button[4];
 
     Button[] tag_btn = new Button[9];
 
@@ -26,7 +35,7 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
     Button cancel_btn;
     Button save_btn;
 
-
+    CoordiDTO result = new CoordiDTO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,21 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String imgId = getIntent().getStringExtra("imgId");
+        if (imgId != null) {
+            Log.v("img id", imgId);
+            SystemClock.sleep(1000);
+            result.setImg(imgId);
+            DBUtil.setImageViewFromDB(this, coordi_img, imgId);
+        } else {
+            DBUtil.setImageViewFromDB(this, coordi_img, "236b2b35-d300-442b-8dfe-3cd826576ef5");
+        }
+    }
+
     public void clicked(Button btn) {
         btn.setBackground(getResources().getDrawable(R.drawable.purple_button, null));
         btn.setTextColor(Color.WHITE);
@@ -88,10 +112,11 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
         }
 
     }
-    public boolean checkValue(){
 
-        if(coordi_name_etv.getText().toString().trim().equals("")) {
-            Toast.makeText(this,"코디 이름을 입력해주세요.",Toast.LENGTH_LONG).show();
+    public boolean checkValue() {
+
+        if (coordi_name_etv.getText().toString().trim().equals("")) {
+            Toast.makeText(this, "코디 이름을 입력해주세요.", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -101,37 +126,62 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
     @Override
     public void onClick(View v) {
         if (v == save_btn) {
-            if(!checkValue()) return;
+            if (!checkValue()) return;
 
-            String str = "코디이름: "+ coordi_name_etv.getText()
-                    +"/계절:";
+            String str = "코디이름: " + coordi_name_etv.getText()
+                    + "/계절:";
 
-            for(int i = 0; i<4; i++)
-            {
-                if(season_btn[i].getCurrentTextColor()==Color.WHITE) {
+            for (int i = 0; i < 4; i++) {
+                if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
                     str += season_btn[i].getText();
                 }
             }
             str += "/태그:";
 
-            for(int i = 0; i<9; i++)
-            {
-                if(tag_btn[i].getCurrentTextColor()==Color.WHITE) {
+            for (int i = 0; i < 9; i++) {
+                if (tag_btn[i].getCurrentTextColor() == Color.WHITE) {
                     str += tag_btn[i].getText();
                     break;
                 }
             }
 
-            str += "/평점:"+rating.getRating();
+            str += "/평점:" + rating.getRating();
 
-            Toast.makeText(this,str+"점 ",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, str + "점 ", Toast.LENGTH_LONG).show();
 
             //데이터베이스에 저장
+            result.setCount(0);
+            result.setName(coordi_name_etv.getText().toString());
+            result.setRating(rating.getRating());
+            for (int i = 0; i < 9; i++) {
+                if (tag_btn[i].getCurrentTextColor() == Color.WHITE) {
+                    result.setTag(tag_btn[i].getText().toString());
+                    break;
+                }
+            }
+            ArrayList<String> seletedSeasons = new ArrayList<>();
+            for (int i = 0; i < 4; i++) {
+                if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
+                    seletedSeasons.add(season_btn[i].getText().toString());
+                }
+            }
+            result.setSeasons(seletedSeasons);
+            Calendar c = new GregorianCalendar();
+            int y = c.get(Calendar.YEAR);
+            int m = c.get(Calendar.MONTH) + 1;
+            int d = c.get(Calendar.DAY_OF_MONTH);
+            int h = c.get(Calendar.HOUR_OF_DAY);
+            int min = c.get(Calendar.MINUTE);
 
-          /*
-            Intent intent = new Intent(this,CoordiViewActivity.class);
+            result.setRegDate(y + "-" + m + "-" + d + " " + h + ":" + min);
+            result.setUserId("admin");//나중에 shared preference 이용하기
+            DBUtil.addCoordi(result);
+
+            Intent intent = new Intent(this,CoordiMainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
-          */
+            overridePendingTransition(0, 0);
+
 
         } else if (v == cancel_btn) {
             onBackPressed();

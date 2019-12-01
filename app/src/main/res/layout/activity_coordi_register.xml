@@ -13,7 +13,7 @@
         android:layout_height="500dp"
         android:layout_gravity="center"
         android:layout_margin="8dp"
-        android:background="#417C7C7C">
+        android:background="#FFFFFF">
 
         <Button
             android:id="@+id/delete_btn"

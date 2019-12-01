@@ -1,15 +1,17 @@
-package com.ssu.mylook;
+package com.ssu.mylook.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.R;
 
 import java.util.ArrayList;
 
-public class UnfavoriteClotheAdapter extends BaseAdapter {
+public class FavoriteColorAdapter extends BaseAdapter {
     private ArrayList<CustomDTO> listCustom = new ArrayList<>();
 
     // ListView에 보여질 Item 수
@@ -33,35 +35,38 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
     // 실제로 Item이 보여지는 부분
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        UnfavoriteClotheAdapter.CustomViewHolder holder;
+        FavoriteColorAdapter.CustomViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.unfavorite_clothe_item,null,false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_color_item,null,false);
 
             holder = new CustomViewHolder();
-            holder.imageView = (ImageView) convertView.findViewById(R.id.zero_item_img);
-            holder.textTitle = (TextView) convertView.findViewById(R.id.zero_item_title);
+            holder.textRank= (TextView)convertView.findViewById(R.id.color_rank);
+            holder.textTitle = (TextView) convertView.findViewById(R.id.color_title);
+            holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
 
 
             convertView.setTag(holder);
 
         } else {
-            holder = (UnfavoriteClotheAdapter.CustomViewHolder) convertView.getTag();
+            holder = (FavoriteColorAdapter.CustomViewHolder) convertView.getTag();
         }
 
         CustomDTO dto = listCustom.get(position);
 
-        //holder.imageView.setImageResource(dto.getResId());
+        holder.textRank.setText(dto.getRank());
         holder.textTitle.setText(dto.getTitle());
+        holder.textContent.setText(dto.getContent());
 
         return convertView;
     }
 
     class CustomViewHolder {
-        ImageView imageView;
+        TextView textContent;
         TextView textTitle;
+        TextView textRank;
     }
 
-    // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
+    // FavoriteTagActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
     public void addItem(CustomDTO dto) {
         listCustom.add(dto);
     }

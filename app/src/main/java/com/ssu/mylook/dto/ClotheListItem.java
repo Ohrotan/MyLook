@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+package com.ssu.mylook.dto;
 
 import android.widget.CheckBox;
 import android.widget.ImageView;

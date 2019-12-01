@@ -3,6 +3,9 @@ package com.ssu.mylook;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.ssu.mylook.adapter.FavoriteTagAdapter;
+import com.ssu.mylook.dto.CustomDTO;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 

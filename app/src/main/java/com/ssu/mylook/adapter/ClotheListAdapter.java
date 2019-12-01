@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+package com.ssu.mylook.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ssu.mylook.dto.ClotheListItem;
+import com.ssu.mylook.R;
+
 import java.util.ArrayList;
 
 public class ClotheListAdapter extends BaseAdapter {
@@ -18,7 +21,7 @@ public class ClotheListAdapter extends BaseAdapter {
     public ClotheListAdapter(Context context){
         this.context = context;
         list = new ArrayList<>();
-        list.add(new ClotheListItem("원피스",R.drawable.clothe1,"clothe-1"));
+        list.add(new ClotheListItem("원피스", R.drawable.clothe1,"clothe-1"));
         list.add(new ClotheListItem("테니스 스커트",R.drawable.clothe2,"clothe-2"));
         list.add(new ClotheListItem("블라우스",R.drawable.clothe3,"clothe-3"));
         list.add(new ClotheListItem("검정 구두",R.drawable.shoes1,"clothe-4"));

@@ -2,13 +2,13 @@ package com.ssu.mylook;
 
 import android.os.Bundle;
 import android.view.View;
-import android.app.Activity;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ssu.mylook.adapter.Closet_ListViewAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
