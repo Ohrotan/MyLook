@@ -1,13 +1,12 @@
 package com.ssu.mylook.dto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class CoordiDTO {
     String id;
     String img;
     String name;
-    String[] seasons;
+    List<String> seasons;
     String tag;
     float rating;
     String regDate;
@@ -18,7 +17,7 @@ public class CoordiDTO {
         super();
     }
 
-    public CoordiDTO(String id, String img, String name, String[] seasons, String tag,
+    public CoordiDTO(String id, String img, String name, List<String> seasons, String tag,
                      float rating, String regDate, int count, String userId) {
         this.id = id;
         this.img = img;
@@ -55,19 +54,14 @@ public class CoordiDTO {
         this.name = name;
     }
 
-    public String[] getSeasons() {
+    public List<String> getSeasons() {
         return seasons;
     }
 
-    public void setSeasons(String[] seasons) {
+    public void setSeasons(List<String> seasons) {
         this.seasons = seasons;
     }
 
-    public void setSeasons(ArrayList<String> seasons) {
-        String[] result = new String[seasons.size()];
-        seasons.toArray(result);
-        this.seasons = result;
-    }
 
     public String getTag() {
         return tag;
@@ -115,7 +109,7 @@ public class CoordiDTO {
                 "id='" + id + '\'' +
                 ", img='" + img + '\'' +
                 ", name='" + name + '\'' +
-                ", seasons=" + Arrays.toString(seasons) +
+                ", seasons=" + seasons.toString() +
                 ", tag='" + tag + '\'' +
                 ", rating=" + rating +
                 ", regDate='" + regDate + '\'' +

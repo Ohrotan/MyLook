@@ -2,13 +2,11 @@ package com.ssu.mylook;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -106,13 +104,13 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         if (v == cancel_btn) {
             onBackPressed();
         } else if (v == next_btn) {
-            DBUtil db = new DBUtil();
             String uniqueID = UUID.randomUUID().toString();
-            db.uploadImage(getBitmapFromView(coordi_v), uniqueID);
+            new DBUtil().uploadImage(getBitmapFromView(coordi_v), uniqueID);
             Intent intent = new Intent(this, CoordiInfoRegisterActivity.class);
             intent.putExtra("imgId", uniqueID);
 
             startActivity(intent);
+            finish();
 
         } else if (v == clothe_add_btn) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);

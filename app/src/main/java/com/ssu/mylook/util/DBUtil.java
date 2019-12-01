@@ -36,12 +36,38 @@ import androidx.annotation.NonNull;
 
 public class DBUtil {
     final static String TAG = "Database";
-    static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     // Create a storage reference from our app
-    static FirebaseStorage storage = FirebaseStorage.getInstance();
-    static StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-    public static void addCoordi(CoordiDTO dto) {
+    CoordiDTO coordiDTO;
+
+    public CoordiDTO getCoordiDTO() {
+        return coordiDTO;
+    }
+    public void getCoordi(String id) {
+        db.collection("coordi").document(id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                coordiDTO = document.toObject(CoordiDTO.class);
+                                Log.v(TAG, "DocumentSnapshot data: " + coordiDTO.toString());
+                            } else {
+                                Log.v(TAG, "No such document");
+                            }
+                        } else {
+                            Log.v(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public void addCoordi(CoordiDTO dto) {
         db.collection("coordi")
                 .add(dto)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -49,11 +75,34 @@ public class DBUtil {
                     public void onSuccess(DocumentReference documentReference) {
                         Log.v(TAG, "coordi success: " + documentReference.getId());
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Log.w(TAG, "Error adding document", e);
+            }
+        });
 
     }
 
-    public static void addData() {
+    public void updateCoordi(String id, CoordiDTO dto) {
+        db.collection("coordi").document(id).set(dto)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+
+    public void addData() {
 
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
@@ -77,7 +126,7 @@ public class DBUtil {
                 });
     }
 
-    public static void deleteData(final String collection, final String id) {
+    public void deleteData(final String collection, final String id) {
         db.collection(collection).document(id).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -90,14 +139,9 @@ public class DBUtil {
         });
     }
 
-    public static void updateData(String collection, String id, Map<String, Object> data) {
+    public void updateData(String collection, String id, Map<String, Object> data) {
         Map<String, Object> data1 = new HashMap<>();
         data1.put("name", "San Francisco");
-        // data1.put("state", "CA");
-        // data1.put("country", "USA");
-        // data1.put("capital", false);
-        // data1.put("population", 860000);
-        // data1.put("regions", Arrays.asList("west_coast", "norcal"));
 
 
         //db.collection("컬렉션명").document("바꾸고 싶은 데이터 고유 아이디").update(data1);
@@ -118,7 +162,8 @@ public class DBUtil {
     }
 
 
-    public static void getData(String collection, String id) {
+
+    public void getData(String collection, String id) {
         db.collection(collection).document(id)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -127,7 +172,8 @@ public class DBUtil {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                Log.v(TAG, "DocumentSnapshot data: " + document.getData());
+                                coordiDTO = document.toObject(CoordiDTO.class);
+                                Log.v(TAG, "DocumentSnapshot data: " + coordiDTO.toString());
                             } else {
                                 Log.v(TAG, "No such document");
                             }
@@ -138,7 +184,7 @@ public class DBUtil {
                 });
     }
 
-    public static ArrayList<CustomDTO> getDatas(String collection, String criteria, boolean order) {
+    public ArrayList<CustomDTO> getDatas(String collection, String criteria, boolean order) {
         final ArrayList<CustomDTO> coordiView = new ArrayList<>();
         if (order) {
             db.collection(collection).orderBy(criteria, Query.Direction.DESCENDING)
@@ -175,7 +221,7 @@ public class DBUtil {
         return coordiView;
     }
 
-    public static void uploadImage(Bitmap bitmap, String name) {
+    public void uploadImage(Bitmap bitmap, String name) {
 
         StorageReference imgRef = storageRef.child(name + ".jpg");
 
@@ -205,13 +251,18 @@ public class DBUtil {
         }).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Log.v("img", "success/" + uri.toString());
+                Log.v(TAG, "img upload success/" + uri.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.v(TAG, "Image upload Fail", e);
             }
         });
     }
 
     //https://firebase.google.com/docs/storage/android/create-reference?authuser=0
-    public static void uploadImage(ImageView imageView, String name) {
+    public void uploadImage(ImageView imageView, String name) {
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
@@ -223,7 +274,7 @@ public class DBUtil {
     // ex)        ImageView img = new ImageView(this);
     //            img.setImageResource(R.drawable.pre_img);
     //            DBUtil.setImageViewFromDB(this, img, "coordi1");
-    public static void setImageViewFromDB(final Context con, final ImageView imageView, String name) {
+    public void setImageViewFromDB(final Context con, final ImageView imageView, String name) {
         StorageReference httpsReference = FirebaseStorage.getInstance()
                 .getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/" +
                         "ssu-mylook.appspot.com/o/" + name + ".jpg");

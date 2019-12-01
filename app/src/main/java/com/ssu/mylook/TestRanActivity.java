@@ -118,7 +118,7 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
             FrameLayout a = findViewById(R.id.test);
             ImageView img = new ImageView(this);
             img.setImageResource(R.drawable.pre_img);
-            DBUtil.setImageViewFromDB(this, img, "coordi1");
+            new DBUtil().setImageViewFromDB(this, img, "coordi1");
 
             a.addView(img);
         }
