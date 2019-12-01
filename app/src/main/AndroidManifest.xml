@@ -52,7 +52,10 @@
         <activity android:name=".ClotheSearchLayout" />
         <activity android:name=".CoordiEditActivity" />
         <activity android:name=".CoordiInfoRegisterActivity" />
-        <activity android:name=".CoordiRegisterActivity" />
+        <activity android:name=".CoordiRegisterActivity" >
+            android:label="CoordiRegisterActivity"
+            android:exported="false"
+        </activity>
         <activity android:name=".StyleAnalysisActivity" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -1,5 +1,6 @@
 package com.ssu.mylook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 
 public class CoordiMainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //이 화면에서 특정 코디 클릭 시 그 코디의 상세보기 화면으로 넘어가는 함수, 변수 구현필요
+
     private CoordiMainAdapter adapter;
     private GridView MyGridView;
     TextView Springtv;
@@ -35,8 +38,9 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
        int id = item.getItemId();
        if(id==R.id.action_add){
-           Toast.makeText(this, "코디추가버튼 클릭",Toast.LENGTH_SHORT).show();
-           return true;
+//           Toast.makeText(this, "코디추가버튼 클릭",Toast.LENGTH_SHORT).show();
+//           return true;
+           startActivity(new Intent(this,CoordiRegisterActivity.class));
        }
        return super.onOptionsItemSelected(item);
     }
