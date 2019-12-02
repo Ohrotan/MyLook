@@ -6,9 +6,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ClotheSearchLayout extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,12 +22,15 @@ public class ClotheSearchLayout extends AppCompatActivity implements View.OnClic
     TextView text2;
     TextView text3;
     TextView text4;
+    GridView gridView;
+    ClosetViewAdapter closetViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothe_search_layout);
 
+        gridView=(GridView)findViewById(R.id.gridView);
         text1 = (TextView) findViewById(R.id.upper_spring);
         text2 = (TextView) findViewById(R.id.upper_summer);
         text3 = (TextView) findViewById(R.id.upper_fall);
@@ -31,6 +40,52 @@ public class ClotheSearchLayout extends AppCompatActivity implements View.OnClic
         text2.setOnClickListener(this);
         text3.setOnClickListener(this);
         text4.setOnClickListener(this);
+
+        closetViewAdapter =new ClosetViewAdapter();
+        closetViewAdapter.addItem(new ClotheItem("옷 1",R.drawable.clothe1));
+        closetViewAdapter.addItem(new ClotheItem("옷 2",R.drawable.clothe2));
+        closetViewAdapter.addItem(new ClotheItem("옷 3",R.drawable.clothe3));
+
+        gridView.setAdapter(closetViewAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                Toast.makeText(getApplicationContext(),"title:"+closetViewAdapter.getItem(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    class ClosetViewAdapter extends BaseAdapter {
+        ArrayList<ClotheItem> items=new ArrayList<ClotheItem>();
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+
+        public void addItem(ClotheItem clotheItem) {
+            items.add(clotheItem);
+        }
+
+
+        @Override
+        public ClotheItem getItem(int i) {
+            return items.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View convertView, ViewGroup viewGroup) {
+            ItemViewerActivity itemViewer = new ItemViewerActivity(getApplicationContext());
+            itemViewer.setItem(items.get(i));
+            return itemViewer;
+        }
+
 
     }
 
