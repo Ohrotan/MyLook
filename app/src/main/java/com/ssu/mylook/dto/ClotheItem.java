@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+package com.ssu.mylook.dto;
 
 public class ClotheItem {
     private String title;

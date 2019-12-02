@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ssu.mylook.dto.ClotheItem;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;

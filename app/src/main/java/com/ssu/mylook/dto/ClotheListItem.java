@@ -1,46 +1,42 @@
 package com.ssu.mylook.dto;
 
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
+public class ClotheListItem {
 
-public class ClotheListItem  {
-
-    private String clothe_name;
-    private int clothe_img;
-    private String clothe_id;
+    private String name;
+    private String image;
+    private String id;
 
     public ClotheListItem() {
         super();
     }
 
-    public ClotheListItem( String clothe_name,int clothe_img, String clothe_id) {
-        this.clothe_img = clothe_img;
-        this.clothe_name = clothe_name;
-        this.clothe_id = clothe_id;
+    public ClotheListItem(String name, String image, String id) {
+        this.name = name;
+        this.image = image;
+        this.id = id;
     }
 
-    public int getClothe_img() {
-        return clothe_img;
+    public String getName() {
+        return name;
     }
 
-    public void setClothe_img(int clothe_img) {
-        this.clothe_img = clothe_img;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getClothe_name() {
-        return clothe_name;
+    public String getImage() {
+        return image;
     }
 
-    public void setClothe_name(String clothe_name) {
-        this.clothe_name = clothe_name;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getClothe_id() {
-        return clothe_id;
+    public String getId() {
+        return id;
     }
 
-    public void setClothe_id(String clothe_id) {
-        this.clothe_id = clothe_id;
+    public void setId(String id) {
+        this.id = id;
     }
 }

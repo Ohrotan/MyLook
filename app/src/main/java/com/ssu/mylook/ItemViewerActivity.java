@@ -6,8 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ssu.mylook.ClotheItem;
-import com.ssu.mylook.R;
+import com.ssu.mylook.dto.ClotheItem;
 
 public class ItemViewerActivity extends LinearLayout {
     TextView textView;

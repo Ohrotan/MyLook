@@ -14,7 +14,8 @@
         android:id="@+id/coordi_clothe_checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/clothe_img" />
+        android:layout_alignRight="@id/clothe_img"
+        />
 
     <TextView
         android:id="@+id/clothe_name"

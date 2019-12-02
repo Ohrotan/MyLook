@@ -4,7 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.ssu.mylook.ClotheItem;
+import com.ssu.mylook.dto.ClotheItem;
 import com.ssu.mylook.ItemViewerActivity;
 
 import java.util.ArrayList;

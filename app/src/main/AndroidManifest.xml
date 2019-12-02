@@ -46,7 +46,6 @@
         </activity>
         <activity android:name=".CoordiInfoEditActivity" />
         <activity android:name=".ClotheSearchLayout" />
-        <activity android:name=".CoordiEditActivity" />
         <activity android:name=".CoordiInfoRegisterActivity" />
         <activity android:name=".CoordiRegisterActivity" >
             android:label="CoordiRegisterActivity"
