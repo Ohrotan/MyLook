@@ -45,8 +45,6 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
         //옷 추가 레이아웃
         clotheListAdapter = new ClotheListAdapter(this);
 
-        Log.v("lana", "adapter");
-
 
     }
 
@@ -69,15 +67,8 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
                     View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add, null);
                     builder.setView(clotheAddPopup);
                     listView = clotheAddPopup.findViewById(R.id.coordi_clothe_result_view);
-                    if (listView == null)
-                        Log.v("lana", "listview null");
-                    if (clotheListAdapter != null) {
-                        Log.v("lana", "adapter not null");
-                        if (listView != null) {
-                            Log.v("lana", "listview not null");
-                            listView.setAdapter(clotheListAdapter);
-                        }
-                    }
+                    listView.setAdapter(clotheListAdapter);
+
                     builder.setPositiveButton("다음", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -108,8 +99,7 @@ public class TestRanActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
 
         } else if (v == btn4) {
-            intent = new Intent(this, CoordiEditActivity.class);
-            startActivity(intent);
+
         } else if (v == btn5) {
             intent = new Intent(this, CoordiInfoEditActivity.class);
             startActivity(intent);

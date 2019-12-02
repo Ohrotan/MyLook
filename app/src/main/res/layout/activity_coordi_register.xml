@@ -1,86 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CoordiRegisterActivity">
 
-    <FrameLayout
-        android:id="@+id/coordi_view"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:background="#FFFFFF">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/delete_btn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/pink_button"
-            android:tag="delete btn"
-            android:text="휴지통"
-            android:textSize="20sp" />
+            android:orientation="vertical">
 
-    </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="옷을 추가하여 드래그해서 원하는 곳에 배치해주세요!"
-        android:textAlignment="center" />
+            <FrameLayout
+                android:id="@+id/coordi_view"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:background="#FFFFFF">
 
-    <Button
-        android:id="@+id/clothe_add_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/purple_button"
-        android:onClick="onClick"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="옷 추가하기"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+                <Button
+                    android:id="@+id/delete_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/pink_button"
+                    android:tag="delete btn"
+                    android:text="휴지통"
+                    android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+            </FrameLayout>
 
-        <Button
-            android:id="@+id/cancel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/gray_button"
-            android:onClick="onClick"
-            android:text="취소하기"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="옷을 추가하여 드래그해서 원하는 곳에 배치해주세요!"
+                android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/next_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/purple_button"
-            android:onClick="onClick"
-            android:text="다음단계"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/clothe_add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/purple_button"
+                android:onClick="onClick"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="옷 추가하기"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cancel_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/gray_button"
+                    android:onClick="onClick"
+                    android:text="취소하기"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/next_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/purple_button"
+                    android:onClick="onClick"
+                    android:text="다음단계"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

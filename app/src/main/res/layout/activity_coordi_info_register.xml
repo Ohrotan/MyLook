@@ -19,7 +19,7 @@
                 android:id="@+id/coordi_img"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                app:srcCompat="@drawable/clothe1" />
+                app:srcCompat="@drawable/pre_img" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

@@ -2,15 +2,19 @@ package com.ssu.mylook.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.ssu.mylook.dto.ClotheListItem;
 import com.ssu.mylook.R;
+import com.ssu.mylook.dto.ClotheListItem;
+import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
 
@@ -18,20 +22,28 @@ public class ClotheListAdapter extends BaseAdapter {
     Context context;
     ArrayList<ClotheListItem> list;
     ViewHolder viewholder;
-    public ClotheListAdapter(Context context){
+
+    ArrayList<String> clicked = new ArrayList<>();
+
+    public ClotheListAdapter(Context context) {
         this.context = context;
         list = new ArrayList<>();
-        list.add(new ClotheListItem("원피스", R.drawable.clothe1,"clothe-1"));
-        list.add(new ClotheListItem("테니스 스커트",R.drawable.clothe2,"clothe-2"));
-        list.add(new ClotheListItem("블라우스",R.drawable.clothe3,"clothe-3"));
-        list.add(new ClotheListItem("검정 구두",R.drawable.shoes1,"clothe-4"));
-        list.add(new ClotheListItem("원피스",R.drawable.clothe1,"clothe-5"));
-        list.add(new ClotheListItem("테니스 스커트",R.drawable.clothe2,"clothe-6"));
-        list.add(new ClotheListItem("블라우스",R.drawable.clothe3,"clothe-7"));
-        list.add(new ClotheListItem("검정 구두",R.drawable.shoes1,"clothe-8"));
+       /*
+        list.add(new ClotheListItem("원피스", R.drawable.clothe1, "clothe-1"));
+        list.add(new ClotheListItem("테니스 스커트", R.drawable.clothe2, "clothe-2"));
+        list.add(new ClotheListItem("블라우스", R.drawable.clothe3, "clothe-3"));
+        list.add(new ClotheListItem("검정 구두", R.drawable.shoes1, "clothe-4"));
+        list.add(new ClotheListItem("원피스", R.drawable.clothe1, "clothe-5"));
+        list.add(new ClotheListItem("테니스 스커트", R.drawable.clothe2, "clothe-6"));
+        list.add(new ClotheListItem("블라우스", R.drawable.clothe3, "clothe-7"));
+        list.add(new ClotheListItem("검정 구두", R.drawable.shoes1, "clothe-8"));
+
+        */
     }
+
     public ClotheListAdapter(Context context, ArrayList<ClotheListItem> list) {
         this.context = context;
+        list.addAll(list);
         this.list = list;
     }
 
@@ -50,28 +62,66 @@ public class ClotheListAdapter extends BaseAdapter {
         return position;
     }
 
+    public String getItemImg(int position) {
+        return list.get(position).getImage();
+    }
+
+    public ArrayList<String> getClicked() {
+        return clicked;
+    }
+
+    public void setClicked(ArrayList<String> clicked) {
+        this.clicked = clicked;
+    }
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.layout_clothe,null);
+    public View getView(final int position, View convertView, final ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_clothe, null);
             viewholder = new ViewHolder();
-            viewholder.clothe_img = (ImageView)convertView.findViewById(R.id.clothe_img);
-            viewholder.clothe_name = (TextView)convertView.findViewById(R.id.clothe_name);
+            viewholder.clothe_img = (ImageView) convertView.findViewById(R.id.clothe_img);
+            viewholder.clothe_name = (TextView) convertView.findViewById(R.id.clothe_name);
             viewholder.coordi_clothe_checkBox = (CheckBox) convertView.findViewById(R.id.coordi_clothe_checkBox);
 
             convertView.setTag(viewholder);
-        }else{
-            viewholder = (ViewHolder)convertView.getTag();
+        } else {
+            viewholder = (ViewHolder) convertView.getTag();
         }
 
+        viewholder.coordi_clothe_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(context,""+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
 
-        viewholder.clothe_name.setText(list.get(position).getClothe_name());
-        viewholder.clothe_img.setImageResource(list.get(position).getClothe_img());
+                clicked.add(list.get(position).getImage());
+            }
+        });
 
-    return convertView;
+        viewholder.clothe_name.setText(list.get(position).getName());
+        new DBUtil().setImageViewFromDB(context, viewholder.clothe_img, list.get(position).getImage());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             //   Toast.makeText(context,""+position,Toast.LENGTH_SHORT).show();
+
+                if (viewholder.coordi_clothe_checkBox.isChecked()) {
+                    viewholder.coordi_clothe_checkBox.setChecked(false);
+                    clicked.remove(list.get(position).getImage());
+                } else {
+             //       Toast.makeText(context,""+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
+                    viewholder.coordi_clothe_checkBox.setChecked(true);
+
+
+
+                }
+
+            }
+        });
+        return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
 
         ImageView clothe_img;
         TextView clothe_name;

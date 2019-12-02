@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ssu.mylook.dto.ClotheItem;
+
 import java.util.ArrayList;
 
 public class ClotheSearchLayout extends AppCompatActivity implements View.OnClickListener {

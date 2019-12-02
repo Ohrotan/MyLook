@@ -13,13 +13,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.ClotheListAdapter;
+import com.ssu.mylook.dto.ClotheListItem;
 import com.ssu.mylook.util.DBUtil;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import androidx.appcompat.app.AlertDialog;
@@ -40,6 +48,9 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
     AlertDialog dialog;
     GridView listView;
     ClotheListAdapter clotheListAdapter;
+
+    ArrayList<String> selectedCates = new ArrayList<>();
+    ArrayList<String> selectedSeasons = new ArrayList<>();
 
 
     @Override
@@ -88,14 +99,33 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
 
     }
 
-    public void clickFilters(View v) {
+    public void clickCategory(View v) {
         Button btn = (Button) v;
         if (btn.getCurrentTextColor() != Color.WHITE) {
             btn.setBackground(getResources().getDrawable(R.drawable.purple_button, null));
             btn.setTextColor(Color.WHITE);
+            String btnName = btn.getText().toString();
+            selectedCates.add(btnName);
         } else {
             btn.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
             btn.setTextColor(Color.DKGRAY);
+            String btnName = btn.getText().toString();
+            selectedCates.remove(btnName);
+        }
+    }
+
+    public void clickSeasons(View v) {
+        Button btn = (Button) v;
+        if (btn.getCurrentTextColor() != Color.WHITE) {
+            btn.setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+            btn.setTextColor(Color.WHITE);
+            String btnName = btn.getText().toString();
+            selectedSeasons.add(btnName);
+        } else {
+            btn.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+            btn.setTextColor(Color.DKGRAY);
+            String btnName = btn.getText().toString();
+            selectedSeasons.remove(btnName);
         }
     }
 
@@ -116,29 +146,71 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add_search, null);
+            final View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add_search, null);
 
             builder.setView(clotheAddPopup);
             builder.setPositiveButton("다음", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialo, int which) {
-                    View clotheAddPopup = inflater.inflate(R.layout.layout_clothe_add, null);
-                    builder.setView(clotheAddPopup);
 
-                    listView = clotheAddPopup.findViewById(R.id.coordi_clothe_result_view);
-                    listView.setAdapter(clotheListAdapter);
+
+                    EditText etv = clotheAddPopup.findViewById(R.id.search_etv);
+                    String keyword = etv.getText().toString();
+
+                    Toast.makeText(CoordiRegisterActivity.this, selectedCates.toString() + "/" +
+                            selectedSeasons.toString() + "/" + keyword, Toast.LENGTH_LONG).show();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    db.collection("clothes")
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    ArrayList<ClotheListItem> list = new ArrayList<>();
+                                    for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                        ClotheListItem item = doc.toObject(ClotheListItem.class);
+                                        item.setId(doc.getId());
+                                        list.add(item);
+                                    }
+                                    clotheListAdapter = new ClotheListAdapter(CoordiRegisterActivity.this, list);
+
+                                    listView.setAdapter(clotheListAdapter);
+                                    //listView.se
+
+                                }
+                            });
+
+                    View clotheListPopup = inflater.inflate(R.layout.layout_clothe_add, null);
+
+
+                    builder.setView(clotheListPopup);
+
+
+                    listView = clotheListPopup.findViewById(R.id.coordi_clothe_result_view);
 
 
                     builder.setPositiveButton("다음", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ImageView img = new ImageView(CoordiRegisterActivity.this);
-                            img.setImageResource(R.drawable.clothe3);
+                            for (int i = 0; i < clotheListAdapter.getClicked().size(); i++) {
+                                ImageView img = new ImageView(CoordiRegisterActivity.this);
+                                img.setImageResource(R.drawable.plus);
+                                new DBUtil().setImageViewFromDB(CoordiRegisterActivity.this,
+                                        img, clotheListAdapter.getClicked().get(i));
+                                img.setOnTouchListener(
+                                        new MyDragListener(getResources().getDrawable(R.drawable.red_button),
+                                                delete_btn));
+                              //  img.offsetTopAndBottom(10 * i);
+                                coordi_v.addView(img);
+                            }
+                            /*ImageView img = new ImageView(CoordiRegisterActivity.this);
+                            img.setImageResource(R.drawable.plus);
+                            new DBUtil().setImageViewFromDB(CoordiRegisterActivity.this,
+                                    img, clotheListAdapter.getItemImg(which));
                             img.setOnTouchListener(
                                     new MyDragListener(getResources().getDrawable(R.drawable.red_button),
                                             delete_btn));
                             coordi_v.addView(img);
-
+*/
                         }
                     });
                     builder.setNegativeButton("취소", null);
