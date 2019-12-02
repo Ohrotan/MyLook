@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class ClosetActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ArrayList _data=null;
     TextView text1;
     TextView text2;
     TextView text3;
