@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ssu.mylook">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -46,6 +45,7 @@
         </activity>
         <activity android:name=".CoordiInfoEditActivity" />
         <activity android:name=".ClotheSearchLayout" />
+        <activity android:name=".CoordiEditActivity" />
         <activity android:name=".CoordiInfoRegisterActivity" />
         <activity android:name=".CoordiRegisterActivity" >
             android:label="CoordiRegisterActivity"
@@ -61,30 +61,24 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".CameraActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ClotheRegisterActivity"></activity>
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.ssu.mylook"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
-
 </manifest>
