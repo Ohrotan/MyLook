@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ClotheViewActivity"></activity>
         <activity android:name=".UpperBarActivity" />
+        <activity android:name=".ClotheEditActivity" />
         <activity android:name=".TestSeungminActivity" />
         <activity android:name=".CoordiViewActivity" />
         <activity android:name=".CoordiMainActivity" />
