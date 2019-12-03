@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,8 +33,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
 
 public class DBUtil {
     final static String TAG = "Database";
@@ -186,23 +186,23 @@ public class DBUtil {
 
     public ArrayList<CustomDTO> getDatas(String collection, String criteria, boolean order) {
         final ArrayList<CustomDTO> coordiView = new ArrayList<>();
-        if (order) {
+        if (order) { //내림차순 정렬
             db.collection(collection).orderBy(criteria, Query.Direction.DESCENDING)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
+                                //DocumentSnapshot document = task.getResult();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     coordiView.add(CustomDTO.mapToDTO(document.getData()));
-
                                 }
                             } else {
                                 Log.w(TAG, "Error getting documents.", task.getException());
                             }
                         }
-                    });
-        } else {
+                    })
+        } else { //오름차순 정렬
             db.collection(collection).orderBy(criteria, Query.Direction.ASCENDING)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

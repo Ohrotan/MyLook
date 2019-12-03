@@ -1,14 +1,20 @@
 package com.ssu.mylook;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class CoordiViewActivity extends AppCompatActivity{
 
@@ -56,7 +62,9 @@ public class CoordiViewActivity extends AppCompatActivity{
                          * 삭제하기 : 삭제하시겠습니까? 출력 후 , '네' 누르면
                          * 코디 클릭시 나오는 코디ID 값을 이용해 삭제함
                          *  */
+                        deleteDoc();
                         showToast("삭제하기 버튼 클릭");
+
                         break;
 
                     case R.id.minusCount :
@@ -88,5 +96,23 @@ public class CoordiViewActivity extends AppCompatActivity{
     private void showToast(String message){
         Toast toast=Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+        private void deleteDoc() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("coordi").document("삭제할document이름여기에넣기")
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("jungeun", "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("jungeun", "Error deleting document", e);
+                    }
+                });
     }
 }

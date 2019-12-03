@@ -2,12 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ssu.mylook">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera"
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,43 +19,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ClotheViewActivity"></activity>
+        <activity android:name=".JungEunDBTest">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ClotheViewActivity" />
         <activity android:name=".UpperBarActivity" />
         <activity android:name=".ClotheEditActivity" />
         <activity android:name=".TestSeungminActivity" />
         <activity android:name=".CoordiViewActivity" />
         <activity android:name=".CoordiMainActivity" />
         <activity android:name=".TestJeongeun" />
-        <activity android:name=".FavoriteColorActivity"
-            android:label="FavoriteColorActivity"
-            android:exported="false">
+        <activity
+            android:name=".FavoriteColorActivity"
+            android:exported="false"
+            android:label="FavoriteColorActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FavoriteTagActivity"
-            android:label="FavoriteTagActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".FavoriteClotheActivity"
-            android:label="FavoriteClotheActivity"
-            android:exported="false">
+        <activity
+            android:name=".FavoriteTagActivity"
+            android:exported="false"
+            android:label="FavoriteTagActivity"></activity>
+        <activity
+            android:name=".FavoriteClotheActivity"
+            android:exported="false"
+            android:label="FavoriteClotheActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UnfavoriteClotheActivity"
-            android:label="UnfavoriteClotheActivity"
-            android:exported="false">
-        </activity>
+        <activity
+            android:name=".UnfavoriteClotheActivity"
+            android:exported="false"
+            android:label="UnfavoriteClotheActivity"></activity>
         <activity android:name=".CoordiInfoEditActivity" />
         <activity android:name=".ClotheSearchLayout" />
         <activity android:name=".CoordiInfoRegisterActivity" />
-        <activity android:name=".CoordiRegisterActivity"
-            android:label="CoordiRegisterActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".StyleAnalysisActivity" >
+        <activity
+            android:name=".CoordiRegisterActivity"
+            android:exported="false"
+            android:label="CoordiRegisterActivity"></activity>
+        <activity android:name=".StyleAnalysisActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -61,16 +72,19 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".CameraActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClotheRegisterActivity"></activity>
+        <activity android:name=".ClotheRegisterActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.ssu.mylook"
@@ -81,4 +95,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
 </manifest>

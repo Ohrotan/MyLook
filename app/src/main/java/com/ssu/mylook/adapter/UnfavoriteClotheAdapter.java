@@ -41,7 +41,7 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.unfavorite_clothe_item,null,false);
 
             holder = new CustomViewHolder();
-            holder.imageView = (ImageView) convertView.findViewById(R.id.zero_item_img);
+           // holder.imageView = (ImageView) convertView.findViewById(R.id.zero_item_img);
             holder.textTitle = (TextView) convertView.findViewById(R.id.zero_item_title);
 
 
@@ -53,8 +53,8 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
 
         CustomDTO dto = listCustom.get(position);
 
-        //holder.imageView.setImageResource(dto.getResId());
-        holder.textTitle.setText(dto.getTitle());
+       // holder.imageView.setImageResource(dto.getResId());
+        holder.textTitle.setText(dto.getName());
 
         return convertView;
     }

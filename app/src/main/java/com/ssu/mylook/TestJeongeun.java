@@ -1,11 +1,11 @@
 package com.ssu.mylook;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TestJeongeun extends AppCompatActivity implements View.OnClickListener {
     Button btn1;
@@ -15,6 +15,7 @@ public class TestJeongeun extends AppCompatActivity implements View.OnClickListe
     Button btn5;
     Button btn6;
     Button btn7;
+    Button btn8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class TestJeongeun extends AppCompatActivity implements View.OnClickListe
         btn5 = findViewById(R.id.jbtn5);
         btn6 = findViewById(R.id.jbtn6);
         btn7 = findViewById(R.id.jbtn7);
+        btn8=findViewById(R.id.jbtn8);
     }
 
     @Override
@@ -58,6 +60,9 @@ public class TestJeongeun extends AppCompatActivity implements View.OnClickListe
         }
         else if(v==btn7){
             intent = new Intent(this,FavoriteClotheActivity.class);
+            startActivity(intent);
+        } else if(v==btn8){
+            intent = new Intent(this,JungEunDBTest.class);
             startActivity(intent);
         }
 

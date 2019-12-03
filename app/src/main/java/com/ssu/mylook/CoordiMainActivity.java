@@ -12,15 +12,24 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ssu.mylook.adapter.CoordiMainAdapter;
 import com.ssu.mylook.dto.CustomDTO;
 import com.ssu.mylook.util.DBUtil;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class CoordiMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,6 +42,10 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     TextView Falltv;
     TextView Wintertv;
 
+    List<Object> Array = new ArrayList<Object>();
+    private FirebaseDatabase mDataBase;
+    private DatabaseReference mReference;
+    private ChildEventListener mChild;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,6 +62,8 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
        }
        return super.onOptionsItemSelected(item);
     }
+
+
 
 
     @Override
@@ -70,6 +85,12 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         adapter = new CoordiMainAdapter();
         MyGridView =(GridView)findViewById(R.id.CoordiMainGridView);
 
+
+        initDB();
+
+        MyGridView.setAdapter(adapter);
+
+
         //textView tv 대신 그리드뷰 적용되게 변경해보기
         final TextView tv = (TextView)findViewById(R.id.arrange_text);
         Spinner s = (Spinner)findViewById(R.id.arrange_spin);
@@ -88,8 +109,49 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
         MyGridView.setAdapter(adapter);
     }
+    private void initDB(){
+        mDataBase = FirebaseDatabase.getInstance();
+        mReference = mDataBase.getReference("log");
+        mReference.child("log").setValue("check");
+
+        mChild = new ChildEventListener(){
+
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mReference.addChildEventListener(mChild);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mReference.removeEventListener(mChild);
+    }
 
     private void setData(int position) {
+
+
         if(position==0){
             ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "reg_date", false);
             adapter.setListCustom(CoordiList);
@@ -97,16 +159,19 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         } else if(position==1){
             ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", false);
             adapter.setListCustom(CoordiList);
-            System.out.println("CoordiList 별점 내림차순 출력중");
+            System.out.println("CoordiList 별점 오름차순 출력중");
         } else if(position==2){
             ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", true);
             adapter.setListCustom(CoordiList);
+            System.out.println("CoordiList 별점 내림차순 출력중");
         } else if(position==3) {
             ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "count", false);
             adapter.setListCustom(CoordiList);
+            System.out.println("CoordiList 횟수 내림차순 출력중");
         } else if(position==4){
             ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "count", true);
             adapter.setListCustom(CoordiList);
+            System.out.println("CoordiList 횟수 오름차순 출력중");
         }
 /*
         TypedArray arrResId = getResources().obtainTypedArray(R.array.coordi_Id);
@@ -122,6 +187,10 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             dto.setContent(contents[i]);
 
             adapter.addItem(dto);
+
+        ArrayList<CustomDTO> a = DBUtil.getData("rating",false);
+
+        adapter.setListCustom(a);
 
         }*/
     }

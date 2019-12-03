@@ -3,11 +3,10 @@ package com.ssu.mylook;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.ssu.mylook.adapter.FavoriteTagAdapter;
-import com.ssu.mylook.dto.CustomDTO;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ssu.mylook.adapter.FavoriteTagAdapter;
 
 public class FavoriteTagActivity extends AppCompatActivity {
 
@@ -35,12 +34,12 @@ public class FavoriteTagActivity extends AppCompatActivity {
         String[] contents = getResources().getStringArray(R.array.favorite_tag_number);
 
         for (int i = 0; i < ranks.length; i++) {
-            CustomDTO dto = new CustomDTO();
-            dto.setRank(ranks[i]);
-            dto.setTitle(titles[i]);
-            dto.setContent(contents[i]);
-
-            adapter.addItem(dto);
+//            CustomDTO dto = new CustomDTO();
+//            dto.setRank(ranks[i]);
+//            dto.setTitle(titles[i]);
+//            dto.setContent(contents[i]);
+//
+//            adapter.addItem(dto);
 
         }
     }
