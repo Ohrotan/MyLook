@@ -3,11 +3,10 @@ package com.ssu.mylook;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.ssu.mylook.adapter.FavoriteColorAdapter;
-import com.ssu.mylook.dto.CustomDTO;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ssu.mylook.adapter.FavoriteColorAdapter;
 
 
 public class FavoriteColorActivity extends AppCompatActivity {
@@ -50,12 +49,12 @@ public class FavoriteColorActivity extends AppCompatActivity {
         String[] contents = getResources().getStringArray(R.array.favorite_color_number);
 
         for (int i = 0; i < ranks.length; i++) {
-            CustomDTO dto = new CustomDTO();
-            dto.setRank(ranks[i]);
-            dto.setTitle(titles[i]);
-            dto.setContent(contents[i]);
+          //  CustomDTO dto = new CustomDTO();
+            //dto.setRank(ranks[i]);
+           // dto.setTitle(titles[i]);
+            //dto.setContent(contents[i]);
 
-            adapter.addItem(dto);
+           // adapter.addItem(dto);
 
         }
     }

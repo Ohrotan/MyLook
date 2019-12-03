@@ -4,11 +4,10 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.ssu.mylook.adapter.FavoriteClotheAdapter;
-import com.ssu.mylook.dto.CustomDTO;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ssu.mylook.adapter.FavoriteClotheAdapter;
 
 public class FavoriteClotheActivity extends AppCompatActivity {
 
@@ -40,13 +39,13 @@ public class FavoriteClotheActivity extends AppCompatActivity {
         String[] contents = getResources().getStringArray(R.array.favorite_clothe_number);
 
         for (int i = 0; i < arrResId.length(); i++) {
-            CustomDTO dto = new CustomDTO();
-            dto.setRank(ranks[i]);
+           // CustomDTO dto = new CustomDTO();
+            //dto.setRank(ranks[i]);
             //dto.setResId(arrResId.getResourceId(i, 0));
-            dto.setTitle(titles[i]);
-            dto.setContent(contents[i]);
+           // dto.setTitle(titles[i]);
+          //  dto.setContent(contents[i]);
 
-           adapter.addItem(dto);
+         //  adapter.addItem(dto);
 
         }
     }
