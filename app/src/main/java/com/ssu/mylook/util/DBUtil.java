@@ -201,7 +201,7 @@ public class DBUtil {
                                 Log.w(TAG, "Error getting documents.", task.getException());
                             }
                         }
-                    })
+                    });
         } else { //오름차순 정렬
             db.collection(collection).orderBy(criteria, Query.Direction.ASCENDING)
                     .get()
