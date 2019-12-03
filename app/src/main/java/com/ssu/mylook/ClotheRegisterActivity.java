@@ -39,6 +39,18 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     Button btn_winter;
     Button btn_back;
     Button btn_save;
+    Button btn_red;
+    Button btn_orange;
+    Button btn_yellow;
+    Button btn_green;
+    Button btn_blue;
+    Button btn_darkblue;
+    Button btn_violet;
+    Button btn_pink;
+    Button btn_white;
+    Button btn_black;
+    Button btn_pattern;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +70,17 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         btn_winter= findViewById(R.id.win_btn);
         btn_back= findViewById(R.id.cancel_btn);
         btn_save= findViewById(R.id.save_btn);
+        btn_red= findViewById(R.id.btn_red);
+        btn_orange=findViewById(R.id.btn_orange);
+        btn_yellow=findViewById(R.id.btn_yellow);
+        btn_green=findViewById(R.id.btn_green);
+        btn_blue=findViewById(R.id.btn_blue);
+        btn_darkblue=findViewById(R.id.btn_darkblue);
+        btn_violet=findViewById(R.id.btn_violet);
+        btn_pink=findViewById(R.id.btn_pink);
+        btn_white=findViewById(R.id.btn_white);
+        btn_black=findViewById(R.id.btn_black);
+        btn_pattern=findViewById(R.id.btn_pattern);
 
         add_photo.setOnClickListener(this);
         btn_top.setOnClickListener(this);
@@ -71,6 +94,17 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         btn_winter.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         btn_save.setOnClickListener(this);
+        btn_red.setOnClickListener(this);
+        btn_orange.setOnClickListener(this);
+        btn_yellow.setOnClickListener(this);
+        btn_green.setOnClickListener(this);
+        btn_blue.setOnClickListener(this);
+        btn_darkblue.setOnClickListener(this);
+        btn_violet.setOnClickListener(this);
+        btn_pink.setOnClickListener(this);
+        btn_white.setOnClickListener(this);
+        btn_black.setOnClickListener(this);
+        btn_pattern.setOnClickListener(this);
     }
 
     @Override
@@ -161,6 +195,105 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             } else {
                 btn_winter.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 btn_winter.setTextColor(Color.DKGRAY);
+            }
+        }
+
+        else if(v==btn_red){
+            if (btn_red.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_red.setBackground(getResources().getDrawable(R.drawable.red_button1, null));
+                btn_red.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_red.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_red.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_orange){
+            if (btn_orange.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_orange.setBackground(getResources().getDrawable(R.drawable.orange_button, null));
+                btn_orange.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_orange.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_orange.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_yellow){
+            if (btn_yellow.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_yellow.setBackground(getResources().getDrawable(R.drawable.yellow_button, null));
+                btn_yellow.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_yellow.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_yellow.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_green){
+            if (btn_green.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_green.setBackground(getResources().getDrawable(R.drawable.green_button, null));
+                btn_green.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_green.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_green.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_blue){
+            if (btn_blue.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_blue.setBackground(getResources().getDrawable(R.drawable.blue_button, null));
+                btn_blue.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_blue.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_blue.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_darkblue){
+            if (btn_darkblue.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_darkblue.setBackground(getResources().getDrawable(R.drawable.darkblue_button, null));
+                btn_darkblue.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_darkblue.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_darkblue.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_violet){
+            if (btn_violet.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_violet.setBackground(getResources().getDrawable(R.drawable.violet_button, null));
+                btn_violet.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_violet.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_violet.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_pink){
+            if (btn_pink.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_pink.setBackground(getResources().getDrawable(R.drawable.pink_button, null));
+                btn_pink.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_pink.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_pink.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_white){
+            if (btn_white.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_white.setBackground(getResources().getDrawable(R.drawable.white_button, null));
+                btn_white.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_white.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_white.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_black){
+            if (btn_black.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_black.setBackground(getResources().getDrawable(R.drawable.black_button, null));
+                btn_black.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_black.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_black.setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_pattern){
+            if (btn_pattern.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_pattern.setTextColor(Color.TRANSPARENT);
+            } else {
+                btn_pattern.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_pattern.setTextColor(Color.DKGRAY);
             }
         }
         else if(v==btn_back){
