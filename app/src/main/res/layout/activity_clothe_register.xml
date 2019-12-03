@@ -188,6 +188,157 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="색깔"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_red"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="빨강" />
+
+                        <Button
+                            android:id="@+id/btn_orange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="주황" />
+
+                        <Button
+                            android:id="@+id/btn_yellow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="노랑" />
+
+                        <Button
+                            android:id="@+id/btn_green"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="초록" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btn_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickTag"
+                        android:text="파랑" />
+
+                    <Button
+                        android:id="@+id/btn_darkblue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickTag"
+                        android:text="남색" />
+
+                    <Button
+                        android:id="@+id/btn_violet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickTag"
+                        android:text="보라" />
+
+                    <Button
+                        android:id="@+id/btn_pink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_button"
+                        android:onClick="clickTag"
+                        android:text="분홍" />
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btn_black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="검정" />
+
+                        <Button
+                            android:id="@+id/btn_white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="흰색" />
+
+                        <Button
+                            android:id="@+id/btn_pattern"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:text="패턴" />
+
+                        <Button
+                            android:id="@+id/empty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button"
+                            android:onClick="clickTag"
+                            android:visibility="invisible"
+                            android:text="" />
+                    </LinearLayout>
+
+
+                    <TextView
                         android:id="@+id/memo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
