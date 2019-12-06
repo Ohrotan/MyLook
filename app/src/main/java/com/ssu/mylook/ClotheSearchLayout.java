@@ -2,9 +2,11 @@ package com.ssu.mylook;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,6 +15,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ssu.mylook.adapter.ClosetViewAdapter;
 
 import com.ssu.mylook.dto.ClotheItem;
 
@@ -26,6 +30,7 @@ public class ClotheSearchLayout extends AppCompatActivity implements View.OnClic
     TextView text4;
     GridView gridView;
     ClosetViewAdapter closetViewAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,7 @@ public class ClotheSearchLayout extends AppCompatActivity implements View.OnClic
         text3.setOnClickListener(this);
         text4.setOnClickListener(this);
 
-        closetViewAdapter =new ClosetViewAdapter();
+        closetViewAdapter=new ClosetViewAdapter(this);
         closetViewAdapter.addItem(new ClotheItem("옷 1",R.drawable.clothe1));
         closetViewAdapter.addItem(new ClotheItem("옷 2",R.drawable.clothe2));
         closetViewAdapter.addItem(new ClotheItem("옷 3",R.drawable.clothe3));
@@ -55,39 +60,6 @@ public class ClotheSearchLayout extends AppCompatActivity implements View.OnClic
                 Toast.makeText(getApplicationContext(),"title:"+closetViewAdapter.getItem(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
             }
         });
-
-    }
-
-    class ClosetViewAdapter extends BaseAdapter {
-        ArrayList<ClotheItem> items=new ArrayList<ClotheItem>();
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-
-        public void addItem(ClotheItem clotheItem) {
-            items.add(clotheItem);
-        }
-
-
-        @Override
-        public ClotheItem getItem(int i) {
-            return items.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View convertView, ViewGroup viewGroup) {
-            ItemViewerActivity itemViewer = new ItemViewerActivity(getApplicationContext());
-            itemViewer.setItem(items.get(i));
-            return itemViewer;
-        }
-
 
     }
 

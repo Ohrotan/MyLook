@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ssu.mylook.adapter.ClosetViewAdapter;
 import com.ssu.mylook.dto.ClotheItem;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,7 +60,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
         textD.setOnClickListener(this);
         textE.setOnClickListener(this);
 
-        closetViewAdapter=new ClosetViewAdapter();
+        closetViewAdapter=new ClosetViewAdapter(this);
         closetViewAdapter.addItem(new ClotheItem("옷 1",R.drawable.clothe1));
         closetViewAdapter.addItem(new ClotheItem("옷 2",R.drawable.clothe2));
         closetViewAdapter.addItem(new ClotheItem("옷 3",R.drawable.clothe3));
@@ -73,38 +74,6 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    class ClosetViewAdapter extends BaseAdapter {
-        ArrayList<ClotheItem> items=new ArrayList<ClotheItem>();
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-
-        public void addItem(ClotheItem clotheItem) {
-            items.add(clotheItem);
-        }
-
-
-        @Override
-        public ClotheItem getItem(int i) {
-            return items.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View convertView, ViewGroup viewGroup) {
-            ItemViewerActivity itemViewer = new ItemViewerActivity(getApplicationContext());
-            itemViewer.setItem(items.get(i));
-            return itemViewer;
-        }
-
-
-    }
 
     @Override
     public void onClick(View v) {
