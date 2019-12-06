@@ -12,9 +12,10 @@ public class CustomDTO {
     private List<String> seasons;
     //private String[] seasons;
     private String tag;
-    private double rating;
+    private float rating;
     private int count;
-    private String Id;
+    private String id;
+    private String userId;
 
 
 
@@ -23,8 +24,9 @@ public class CustomDTO {
     private String content;
     private int rank;
 
-    public CustomDTO() { }
-    public CustomDTO(String name, String img, String regDate, List<String> seasons, String tag, double rating, int count){
+    public CustomDTO() { super(); }
+    public CustomDTO(String id, String name, String img, String regDate, List<String> seasons, String tag, float rating, int count,String userId){
+        this.id=id;
         this.name=name;
         this.img=img;
         this.regDate=regDate;
@@ -32,13 +34,14 @@ public class CustomDTO {
         this.tag=tag;
         this.rating=rating;
         this.count=count;
+        this.userId=userId;
     }
 
     public static CustomDTO mapToDTO(Map<String,Object> data){
         CustomDTO customDTO  = new CustomDTO();
         customDTO.setImg((String)data.get("img"));
         customDTO.setName((String)data.get("name"));
-        customDTO.setRating((double)data.get("rating"));
+        customDTO.setRating((float)data.get("rating"));
         customDTO.setDate((String)data.get("regDate"));
         customDTO.setTag((String)data.get("tag"));
         customDTO.setCount((int)data.get("count"));
@@ -55,13 +58,12 @@ public class CustomDTO {
     }
 
     //여기서부터는 실제 사용할 것들
-    public void setRating(double rating){
+    public void setRating(float rating){
         this.rating=rating;
     }
-    public double getRating(){
+    public float getRating(){
         return rating;
     }
-
 
     public String getImg(){
         return img;
@@ -69,15 +71,16 @@ public class CustomDTO {
     public void setImg(String img){
         this.img=img;
     }
+
     public void setName(String name){this.name=name;}
     public String getName(){return name;}
 
     public List<String> getSeasons(){
         return seasons;
     }
-//    public void setSeason(int index, String seasons){
-//        this.seasons[index]=seasons;
-//    }
+    public void setSeason(List<String> seasons){
+        this.seasons=seasons;
+    }
 
     public int getCount(){
         return count;
@@ -92,6 +95,7 @@ public class CustomDTO {
     public void setDate(String regDate) {
         this.regDate = regDate;
     }
+
     public String getTag() {
         return tag;
     }
@@ -100,12 +104,18 @@ public class CustomDTO {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setId(String id) {
+        this.id = id;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
 
 
@@ -119,7 +129,6 @@ public class CustomDTO {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }

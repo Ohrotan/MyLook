@@ -29,7 +29,11 @@
         <activity android:name=".ClotheEditActivity" />
         <activity android:name=".TestSeungminActivity" />
         <activity android:name=".CoordiViewActivity" />
-        <activity android:name=".CoordiMainActivity" />
+        <activity android:name=".CoordiMainActivity" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".TestJeongeun" />
         <activity
             android:name=".FavoriteColorActivity"
