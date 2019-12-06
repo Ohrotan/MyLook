@@ -187,13 +187,14 @@ public class DBUtil {
     public ArrayList<CustomDTO> getDatas(String collection, String criteria, boolean order) {
         final ArrayList<CustomDTO> coordiView = new ArrayList<>();
         if (order) { //내림차순 정렬
-            db.collection(collection).orderBy(criteria, Query.Direction.DESCENDING)
+            db.collection("coordi").orderBy(criteria, Query.Direction.DESCENDING)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 //DocumentSnapshot document = task.getResult();
+
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     coordiView.add(CustomDTO.mapToDTO(document.getData()));
                                 }

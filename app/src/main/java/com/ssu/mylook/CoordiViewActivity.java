@@ -89,8 +89,6 @@ public class CoordiViewActivity extends AppCompatActivity{
         minusBtn.setOnClickListener(clickListener);
         plusBtn.setOnClickListener(clickListener);
 
-//        MyPlusMinusView plusMinusView = findViewById(R.id.plus_minus_View);
-//        plusMinusView.setOnMyChangeListener((OnMyChangeListener) this);
     }
 
     private void showToast(String message){
