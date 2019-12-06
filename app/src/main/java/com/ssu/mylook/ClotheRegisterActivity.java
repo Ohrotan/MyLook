@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -52,64 +53,70 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     Button btn_pink;
     Button btn_white;
     Button btn_black;
-    Button btn_pattern;
+    Button btn_gray;
 
     private String imageFilePath;
     private Uri photoUri;
+
+    Button[] season_btn = new Button[4];
+    Button[] color_btn = new Button[11];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothe_register);
-
-        add_photo= findViewById(R.id.add_photo);
-        btn_top= findViewById(R.id.button_top_clothe);
-        btn_bottom= findViewById(R.id.button_bottom_clothe);
-        btn_hat= findViewById(R.id.button_hat);
-        btn_shoes= findViewById(R.id.button_shoes);
-        btn_etc= findViewById(R.id.button_etc);
-        btn_spring= findViewById(R.id.spr_btn);
-        btn_summer= findViewById(R.id.sum_btn);
-        btn_fall= findViewById(R.id.fal_btn);
-        btn_winter= findViewById(R.id.win_btn);
-        btn_back= findViewById(R.id.cancel_btn);
-        btn_save= findViewById(R.id.save_btn);
-        btn_red= findViewById(R.id.btn_red);
-        btn_orange=findViewById(R.id.btn_orange);
-        btn_yellow=findViewById(R.id.btn_yellow);
-        btn_green=findViewById(R.id.btn_green);
-        btn_blue=findViewById(R.id.btn_blue);
-        btn_darkblue=findViewById(R.id.btn_darkblue);
-        btn_violet=findViewById(R.id.btn_violet);
-        btn_pink=findViewById(R.id.btn_pink);
-        btn_white=findViewById(R.id.btn_white);
-        btn_black=findViewById(R.id.btn_black);
-        btn_pattern=findViewById(R.id.btn_pattern);
-
-        //add_photo.setOnClickListener(this);
-        btn_top.setOnClickListener(this);
-        btn_bottom.setOnClickListener(this);
-        btn_hat.setOnClickListener(this);
-        btn_shoes.setOnClickListener(this);
-        btn_etc.setOnClickListener(this);
-        btn_spring.setOnClickListener(this);
-        btn_summer.setOnClickListener(this);
-        btn_fall.setOnClickListener(this);
-        btn_winter.setOnClickListener(this);
-        btn_back.setOnClickListener(this);
-        btn_save.setOnClickListener(this);
-        btn_red.setOnClickListener(this);
-        btn_orange.setOnClickListener(this);
-        btn_yellow.setOnClickListener(this);
-        btn_green.setOnClickListener(this);
-        btn_blue.setOnClickListener(this);
-        btn_darkblue.setOnClickListener(this);
-        btn_violet.setOnClickListener(this);
-        btn_pink.setOnClickListener(this);
-        btn_white.setOnClickListener(this);
-        btn_black.setOnClickListener(this);
-        btn_pattern.setOnClickListener(this);
-
+        //findViewById
+        {
+            add_photo = findViewById(R.id.add_photo);
+            btn_top = findViewById(R.id.button_top_clothe);
+            btn_bottom = findViewById(R.id.button_bottom_clothe);
+            btn_hat = findViewById(R.id.button_hat);
+            btn_shoes = findViewById(R.id.button_shoes);
+            btn_etc = findViewById(R.id.button_etc);
+            btn_spring = findViewById(R.id.spr_btn);
+            btn_summer = findViewById(R.id.sum_btn);
+            btn_fall = findViewById(R.id.fal_btn);
+            btn_winter = findViewById(R.id.win_btn);
+            btn_back = findViewById(R.id.cancel_btn);
+            btn_save = findViewById(R.id.save_btn);
+            btn_red = findViewById(R.id.btn_red);
+            btn_orange = findViewById(R.id.btn_orange);
+            btn_yellow = findViewById(R.id.btn_yellow);
+            btn_green = findViewById(R.id.btn_green);
+            btn_blue = findViewById(R.id.btn_blue);
+            btn_darkblue = findViewById(R.id.btn_darkblue);
+            btn_violet = findViewById(R.id.btn_violet);
+            btn_pink = findViewById(R.id.btn_pink);
+            btn_white = findViewById(R.id.btn_white);
+            btn_black = findViewById(R.id.btn_black);
+            btn_gray = findViewById(R.id.btn_gray);
+        }
+        //setOnClickListener
+        {
+            btn_top.setOnClickListener(this);
+            btn_bottom.setOnClickListener(this);
+            btn_hat.setOnClickListener(this);
+            btn_shoes.setOnClickListener(this);
+            btn_etc.setOnClickListener(this);
+            btn_spring.setOnClickListener(this);
+            btn_summer.setOnClickListener(this);
+            btn_fall.setOnClickListener(this);
+            btn_winter.setOnClickListener(this);
+            btn_back.setOnClickListener(this);
+            btn_save.setOnClickListener(this);
+            btn_red.setOnClickListener(this);
+            btn_orange.setOnClickListener(this);
+            btn_yellow.setOnClickListener(this);
+            btn_green.setOnClickListener(this);
+            btn_blue.setOnClickListener(this);
+            btn_darkblue.setOnClickListener(this);
+            btn_violet.setOnClickListener(this);
+            btn_pink.setOnClickListener(this);
+            btn_white.setOnClickListener(this);
+            btn_black.setOnClickListener(this);
+            btn_gray.setOnClickListener(this);
+        }
         add_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,12 +319,12 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
                 btn_black.setTextColor(Color.DKGRAY);
             }
         }
-        else if(v==btn_pattern){
-            if (btn_pattern.getCurrentTextColor() != Color.TRANSPARENT) {
-                btn_pattern.setTextColor(Color.TRANSPARENT);
+        else if(v==btn_gray){
+            if (btn_gray.getCurrentTextColor() != Color.TRANSPARENT) {
+                btn_gray.setTextColor(Color.TRANSPARENT);
             } else {
-                btn_pattern.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
-                btn_pattern.setTextColor(Color.DKGRAY);
+                btn_gray.setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                btn_gray.setTextColor(Color.DKGRAY);
             }
         }
         else if(v==btn_back){
@@ -329,6 +336,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             //저장하고
             intent = new Intent(this,ClosetActivity.class);
             startActivity(intent);
+
         }
     }
 
