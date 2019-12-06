@@ -30,7 +30,6 @@ import java.util.Date;
 
 public class ClotheRegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
-
     ImageView add_photo;
     Button btn_top;
     Button btn_bottom;
@@ -352,7 +351,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             {
                 //Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
                 Bitmap bitmap= BitmapFactory.decodeFile(imageFilePath);
-
+                Toast.makeText(this,"이미지 파일 경로 생성 완료",Toast.LENGTH_SHORT).show();
                 if(bitmap !=null)
                 {
                     add_photo.setImageBitmap(bitmap);
@@ -365,6 +364,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "TEST_" + timeStamp + "_";
+
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,      /* prefix */

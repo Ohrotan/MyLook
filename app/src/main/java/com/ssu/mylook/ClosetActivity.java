@@ -184,7 +184,6 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
                 text4.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
                 text4.setTextColor(Color.DKGRAY);
             }
-
         }
     }
 
@@ -211,7 +210,5 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
             overridePendingTransition(0, 0);
         }
-
-
     }
 }
