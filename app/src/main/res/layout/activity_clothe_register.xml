@@ -15,13 +15,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintDimensionRatio="H,2:1">
+
             <ImageView
-                android:id="@+id/add_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:id="@+id/add_photo"
                 app:srcCompat="@drawable/add_photo" />
-
+        </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_weight="4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
