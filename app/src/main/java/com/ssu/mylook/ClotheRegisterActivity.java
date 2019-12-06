@@ -2,27 +2,14 @@ package com.ssu.mylook;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-
+import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Camera;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ClotheRegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -112,7 +99,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         Intent intent;
         if(v == add_photo){
             intent = new Intent(this,CameraActivity.class);
-            startActivityForResult(intent,672);
+            startActivity(intent);
         }
         else if(v==btn_top){
             //색깔 바뀌도록

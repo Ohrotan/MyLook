@@ -21,14 +21,14 @@ import java.util.ArrayList;
 
 public class ClosetActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView text1;
-    TextView text2;
-    TextView text3;
-    TextView text4;
-    TextView textA;
-    TextView textB;
-    TextView textC;
-    TextView textD;
+        TextView text1;
+        TextView text2;
+        TextView text3;
+        TextView text4;
+        TextView textA;
+        TextView textB;
+        TextView textC;
+        TextView textD;
     TextView textE;
     GridView gridView;
     ClosetViewAdapter closetViewAdapter;
