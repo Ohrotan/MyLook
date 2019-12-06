@@ -121,11 +121,11 @@ public class ClotheListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder {
 
-        ImageView clothe_img;
-        TextView clothe_name;
-        CheckBox coordi_clothe_checkBox;
+} class ViewHolder {
 
-    }
+    ImageView clothe_img;
+    TextView clothe_name;
+    CheckBox coordi_clothe_checkBox;
+
 }

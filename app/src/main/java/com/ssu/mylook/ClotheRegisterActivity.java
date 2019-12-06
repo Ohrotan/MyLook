@@ -347,11 +347,11 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent intent) {
             super.onActivityResult(requestCode, resultCode, intent);
-            if(requestCode==1&& resultCode== Activity.RESULT_OK)
+            if(requestCode==1 && resultCode== Activity.RESULT_OK)
             {
                 //Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
                 Bitmap bitmap= BitmapFactory.decodeFile(imageFilePath);
-                Toast.makeText(this,"이미지 파일 경로 생성 완료",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"저장경로:"+imageFilePath,Toast.LENGTH_SHORT).show();
                 if(bitmap !=null)
                 {
                     add_photo.setImageBitmap(bitmap);
