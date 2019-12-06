@@ -1,14 +1,31 @@
 package com.ssu.mylook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class ClotheRegisterActivity extends AppCompatActivity implements View.OnClickListener{
@@ -38,12 +55,13 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     Button btn_black;
     Button btn_pattern;
 
+    private String imageFilePath;
+    private Uri photoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothe_register);
-
 
         add_photo= findViewById(R.id.add_photo);
         btn_top= findViewById(R.id.button_top_clothe);
@@ -69,7 +87,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         btn_black=findViewById(R.id.btn_black);
         btn_pattern=findViewById(R.id.btn_pattern);
 
-        add_photo.setOnClickListener(this);
+        //add_photo.setOnClickListener(this);
         btn_top.setOnClickListener(this);
         btn_bottom.setOnClickListener(this);
         btn_hat.setOnClickListener(this);
@@ -92,16 +110,36 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         btn_white.setOnClickListener(this);
         btn_black.setOnClickListener(this);
         btn_pattern.setOnClickListener(this);
+
+        add_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int permissionCheck = ContextCompat.checkSelfPermission(ClotheRegisterActivity.this, Manifest.permission.CAMERA);
+                if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(ClotheRegisterActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
+                } else {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        File photoFile = null;
+                        try {
+                            photoFile = createImageFile();
+                        } catch (IOException ex) {
+                            // Error occurred while creating the File
+                        }
+                        photoUri = FileProvider.getUriForFile(ClotheRegisterActivity.this, getPackageName(), photoFile);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                        startActivityForResult(intent, 1);
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         Intent intent;
-        if(v == add_photo){
-            intent = new Intent(this,CameraActivity.class);
-            startActivity(intent);
-        }
-        else if(v==btn_top){
+
+         if(v==btn_top){
             //색깔 바뀌도록
             if (btn_top.getCurrentTextColor() != Color.WHITE) {
                 btn_top.setBackground(getResources().getDrawable(R.drawable.purple_button, null));
@@ -293,8 +331,51 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             intent = new Intent(this,ClosetActivity.class);
             startActivity(intent);
         }
-
     }
+
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+            if (requestCode == 0)
+                if (grantResults[0] == 0) {
+                    Toast.makeText(this, "카메라 권한이 승인됨", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "카메라 권한이 거절되었습니다. 카메라를 이용하려면 권한을 승낙하세요.", Toast.LENGTH_SHORT).show();
+                }
+        }
+
+        //카메라로 촬영한 사진을 가져옴
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+            super.onActivityResult(requestCode, resultCode, intent);
+            if(requestCode==1&& resultCode== Activity.RESULT_OK)
+            {
+                //Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
+                Bitmap bitmap= BitmapFactory.decodeFile(imageFilePath);
+
+                if(bitmap !=null)
+                {
+                    add_photo.setImageBitmap(bitmap);
+                }
+            }
+        }
+
+
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "TEST_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,      /* prefix */
+                ".jpg",         /* suffix */
+                storageDir          /* directory */
+        );
+        imageFilePath = image.getAbsolutePath();
+        return image;
+    }
+
+
 
     }
 

@@ -1,4 +1,4 @@
-package com.ssu.mylook;
+/*package com.ssu.mylook;
 
 import android.Manifest;
 import android.app.Activity;
@@ -67,6 +67,8 @@ public class CameraActivity extends AppCompatActivity  {
                 Toast.makeText(this, "카메라 권한이 거절되었습니다. 카메라를 이용하려면 권한을 승낙하세요.", Toast.LENGTH_SHORT).show();
             }
         }
+
+       //카메라로 촬영한 사진을 가져옴
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -80,3 +82,4 @@ public class CameraActivity extends AppCompatActivity  {
         }
     }
     }
+*/
