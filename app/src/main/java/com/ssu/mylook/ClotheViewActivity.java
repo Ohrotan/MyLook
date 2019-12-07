@@ -30,12 +30,13 @@ public class ClotheViewActivity extends AppCompatActivity implements View.OnClic
         Intent intent;
         if(v==edit_clothe_info)
         {
-            //제대로 작동안함
+            //.update()
             intent = new Intent(this,ClotheEditActivity.class);
             startActivity(intent);
         }
         else if(v==delete_clothe)
         {
+            //.remove()
             //제대로 작동함
             //이전 액티비티가 나왔으면 좋겠는데 아직 공부를 덜해서
             intent=new Intent(this,ClosetActivity.class);

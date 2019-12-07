@@ -26,6 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.CoordiDTO;
 import com.ssu.mylook.dto.CustomDTO;
 
@@ -85,8 +86,45 @@ public class DBUtil {
 
     }
 
+    public void addClothe(ClotheDTO dto) {
+        db.collection("clothes")
+                .add(dto)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.v(TAG, "clothe success: " + documentReference.getId());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Log.w(TAG, "Error adding document", e);
+            }
+        });
+
+    }
+
+
     public void updateCoordi(String id, CoordiDTO dto) {
         db.collection("coordi").document(id).set(dto)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+
+
+    public void updateClothe(String id, ClotheDTO dto) {
+        db.collection("clothes").document(id).set(dto)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
