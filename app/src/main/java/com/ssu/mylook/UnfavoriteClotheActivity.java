@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.UnfavoriteClotheAdapter;
+import com.ssu.mylook.dto.CustomDTO;
 
 public class UnfavoriteClotheActivity extends AppCompatActivity {
 
@@ -46,6 +47,7 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                document.toObject(CustomDTO.class);
                                 Log.d("jungeun", document.getId() + "=>" + document.getData());
                             }
                         } else {
