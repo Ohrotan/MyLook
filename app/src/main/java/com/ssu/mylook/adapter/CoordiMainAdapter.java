@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class CoordiMainAdapter extends BaseAdapter {
 
@@ -59,7 +62,10 @@ public class CoordiMainAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         CustomViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.coordi_main_item,null,false);
+            //convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.coordi_main_item,null,false);
+
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.coordi_main_item, null);
 
             holder = new CoordiMainAdapter.CustomViewHolder();
             holder.textCount=(TextView)convertView.findViewById(R.id.coordi_item_count);
@@ -76,11 +82,12 @@ public class CoordiMainAdapter extends BaseAdapter {
 
         CustomDTO dto = listCustom.get(position);
 
-        holder.textRank.setText(dto.getRank());
+        holder.textRank.setText(dto.getRating()+"");
        // holder.imageView.setImageResource(dto.getResId());
-        holder.textTitle.setText(dto.getTitle());
-        holder.textCount.setText(dto.getCount());
-        holder.textRank.setText(dto.getRank());
+        new DBUtil().setImageViewFromDB(context,holder.imageView,dto.getImg());
+        holder.textTitle.setText(dto.getName());
+        holder.textCount.setText(dto.getCount()+"");
+     //   holder.textRank.setText(dto.getRank());
 
 
         return convertView;

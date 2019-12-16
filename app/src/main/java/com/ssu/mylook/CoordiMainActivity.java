@@ -126,7 +126,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     private void setData(int position) {
         if(position==0){
             //ArrayList<CustomDTO> CoordiList;
-                    db.collection("coordi").orderBy("reg_date", Query.Direction.DESCENDING)
+                    db.collection("coordi").orderBy("regDate", Query.Direction.DESCENDING)
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
