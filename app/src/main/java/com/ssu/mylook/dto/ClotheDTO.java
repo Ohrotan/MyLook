@@ -8,7 +8,7 @@ public class ClotheDTO {
     private String image;
     private String title;
     private String sort;
-    private List<String> season;
+    private List<String> season; //중복선택
     private String color;
     private String memo;
     private String regDate;

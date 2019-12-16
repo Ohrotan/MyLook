@@ -361,6 +361,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/memo_box"
                         android:layout_width="wrap_content"
                         android:layout_height="500dp"
                         android:layout_below="@+id/memo"

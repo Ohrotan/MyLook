@@ -39,6 +39,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 public class ClotheRegisterActivity extends AppCompatActivity implements View.OnClickListener{
@@ -47,7 +48,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     String image;
     EditText clothe_title;
     EditText memo;
-
+    Bitmap getBitmap;
 
     Button btn_back;
     Button btn_save;
@@ -61,8 +62,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
 
     ClotheDTO result = new ClotheDTO();
     ArrayList<String> selectedSeasons = new ArrayList<>();
-    ArrayList<String> selectedColors = new ArrayList<>();
-    ArrayList<String> selectedSorts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +71,8 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         getSupportActionBar().setTitle("옷 등록");
         //findViewById
         {
+            memo=findViewById(R.id.memo_box);
+            clothe_title=findViewById(R.id.clothe_name_textbox);
             add_photo = findViewById(R.id.add_photo);
             sort_btn[0] = findViewById(R.id.button_top_clothe);
             sort_btn[1] = findViewById(R.id.button_bottom_clothe);
@@ -150,8 +151,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (sort_btn[0].getCurrentTextColor() != Color.WHITE) {
                 sort_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                 sort_btn[0].setTextColor(Color.WHITE);
-                String btnName = btn.getText().toString();
-                selectedSorts.add(btnName);
             } else {
                 sort_btn[0].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 sort_btn[0].setTextColor(Color.DKGRAY);
@@ -161,8 +160,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (sort_btn[1].getCurrentTextColor() != Color.WHITE) {
                 sort_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                 sort_btn[1].setTextColor(Color.WHITE);
-                String btnName = btn.getText().toString();
-                selectedSorts.add(btnName);
             } else {
                 sort_btn[1].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 sort_btn[1].setTextColor(Color.DKGRAY);
@@ -172,8 +169,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (sort_btn[2].getCurrentTextColor() != Color.WHITE) {
                 sort_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                 sort_btn[2].setTextColor(Color.WHITE);
-                String btnName = btn.getText().toString();
-                selectedSorts.add(btnName);
             } else {
                 sort_btn[2].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 sort_btn[2].setTextColor(Color.DKGRAY);
@@ -183,8 +178,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (sort_btn[3].getCurrentTextColor() != Color.WHITE) {
                 sort_btn[3].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                 sort_btn[3].setTextColor(Color.WHITE);
-                String btnName = btn.getText().toString();
-                selectedSorts.add(btnName);
             } else {
                 sort_btn[3].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 sort_btn[3].setTextColor(Color.DKGRAY);
@@ -194,8 +187,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (sort_btn[4].getCurrentTextColor() != Color.WHITE) {
                 sort_btn[4].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                 sort_btn[4].setTextColor(Color.WHITE);
-                String btnName = btn.getText().toString();
-                selectedSorts.add(btnName);
             } else {
                 sort_btn[4].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 sort_btn[4].setTextColor(Color.DKGRAY);
@@ -251,8 +242,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (color_btn[0].getCurrentTextColor() != Color.TRANSPARENT) {
                 color_btn[0].setBackground(getResources().getDrawable(R.drawable.red_button1, null));
                 color_btn[0].setTextColor(Color.TRANSPARENT);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             } else {
                 color_btn[0].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[0].setTextColor(Color.DKGRAY);
@@ -262,8 +251,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (color_btn[1].getCurrentTextColor() != Color.TRANSPARENT) {
                 color_btn[1].setBackground(getResources().getDrawable(R.drawable.orange_button, null));
                 color_btn[1].setTextColor(Color.TRANSPARENT);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             } else {
                 color_btn[1].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[1].setTextColor(Color.DKGRAY);
@@ -273,8 +260,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (color_btn[2].getCurrentTextColor() != Color.TRANSPARENT) {
                 color_btn[2].setBackground(getResources().getDrawable(R.drawable.yellow_button, null));
                 color_btn[2].setTextColor(Color.TRANSPARENT);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             } else {
                 color_btn[2].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[2].setTextColor(Color.DKGRAY);
@@ -284,8 +269,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (color_btn[3].getCurrentTextColor() != Color.TRANSPARENT) {
                 color_btn[3].setBackground(getResources().getDrawable(R.drawable.green_button, null));
                 color_btn[3].setTextColor(Color.TRANSPARENT);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             } else {
                 color_btn[3].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[3].setTextColor(Color.DKGRAY);
@@ -295,8 +278,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (color_btn[4].getCurrentTextColor() != Color.TRANSPARENT) {
                 color_btn[4].setBackground(getResources().getDrawable(R.drawable.blue_button, null));
                 color_btn[4].setTextColor(Color.TRANSPARENT);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             } else {
                 color_btn[4].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[4].setTextColor(Color.DKGRAY);
@@ -306,8 +287,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (color_btn[5].getCurrentTextColor() != Color.TRANSPARENT) {
                 color_btn[5].setBackground(getResources().getDrawable(R.drawable.darkblue_button, null));
                 color_btn[5].setTextColor(Color.TRANSPARENT);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             } else {
                 color_btn[5].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[5].setTextColor(Color.DKGRAY);
@@ -317,8 +296,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             if (color_btn[6].getCurrentTextColor() != Color.TRANSPARENT) {
                 color_btn[6].setBackground(getResources().getDrawable(R.drawable.violet_button, null));
                 color_btn[6].setTextColor(Color.TRANSPARENT);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             } else {
                 color_btn[6].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[6].setTextColor(Color.DKGRAY);
@@ -331,8 +308,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             } else {
                 color_btn[7].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[7].setTextColor(Color.DKGRAY);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             }
         }
         else if(v==color_btn[8]){
@@ -342,8 +317,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             } else {
                 color_btn[8].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[8].setTextColor(Color.DKGRAY);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             }
         }
         else if(v==color_btn[9]){
@@ -353,8 +326,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             } else {
                 color_btn[9].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[9].setTextColor(Color.DKGRAY);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             }
         }
         else if(v==color_btn[10]){
@@ -363,8 +334,6 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             } else {
                 color_btn[10].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
                 color_btn[10].setTextColor(Color.DKGRAY);
-                String btnName = btn.getText().toString();
-                selectedColors.add(btnName);
             }
         }
 
@@ -373,6 +342,8 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
              onBackPressed();
         }
         else if(v==btn_save){
+             String uniqueID = UUID.randomUUID().toString();
+             new DBUtil().uploadImage(getBitmap, uniqueID);
 
              String str = "옷 이름: " + clothe_title.getText()
                      + "/계절:";
@@ -394,18 +365,20 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
              str += "/색깔:";
 
              for (int i = 0; i < 11; i++) {
-                 if (sort_btn[i].getCurrentTextColor() == Color.WHITE) {
+                 if (color_btn[i].getCurrentTextColor() == Color.TRANSPARENT) {
                      str += color_btn[i].getText();
                      break;
                  }
              }
 
+             Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
+
              //데이터베이스에 저장
-             result.setIMAGE(imageFilePath);
+             result.setIMAGE(uniqueID);
              result.setTTL(clothe_title.getText().toString());
              result.setMEMO(memo.getText().toString());
              for (int i = 0; i < 11; i++) {
-                 if (color_btn[i].getCurrentTextColor() == Color.WHITE) {
+                 if (color_btn[i].getCurrentTextColor() == Color.TRANSPARENT) {
                      result.setCOLOR(color_btn[i].getText().toString());
                      break;
                  }
@@ -467,6 +440,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
                 Toast.makeText(this,"저장경로:"+imageFilePath,Toast.LENGTH_SHORT).show();
                 if(bitmap !=null)
                 {
+                    getBitmap=bitmap;
                     add_photo.setImageBitmap(bitmap);
                 }
             }
