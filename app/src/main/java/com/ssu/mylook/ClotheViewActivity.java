@@ -1,7 +1,7 @@
 package com.ssu.mylook;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +14,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ssu.mylook.dto.ClotheDTO;
@@ -33,7 +27,7 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     TextView view_seasons;
     TextView view_memo;
     TextView view_sort;
-    String seasons;
+    String seasons="";
     String clotheID;
     private static final String TAG="MyTag";
 
@@ -57,9 +51,9 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
         //아직 인텐트로 아이디 받아오기 전
         clotheID = getIntent().getStringExtra("coltheID");
         if (clotheID == null) {
-            clotheID = "rvaHhIqeOSihwuTWp6Um";
+            clotheID = "bjJwiHkTuC8SP7341iuF";
         }
-        clotheID = "rvaHhIqeOSihwuTWp6Um";
+        clotheID = "bjJwiHkTuC8SP7341iuF";
 
         getData(clotheID);
     }
