@@ -1,18 +1,36 @@
 package com.ssu.mylook.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.ssu.mylook.dto.CustomDTO;
 import com.ssu.mylook.R;
+import com.ssu.mylook.dto.CustomDTO;
 
 import java.util.ArrayList;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 public class FavoriteColorAdapter extends BaseAdapter {
     private ArrayList<CustomDTO> listCustom = new ArrayList<>();
+    Context context;
+    ArrayList<String> clicked = new ArrayList<>();
+
+
+    public FavoriteColorAdapter(Context context){
+        this.context = context;
+        listCustom = new ArrayList<>();
+    }
+
+    public FavoriteColorAdapter(Context context, ArrayList<CustomDTO> list) {
+        this.context=context;
+        list.addAll(list);
+        this.listCustom=list;
+    }
+
 
     // ListView에 보여질 Item 수
     @Override
@@ -37,12 +55,14 @@ public class FavoriteColorAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         FavoriteColorAdapter.CustomViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_color_item,null,false);
+
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.favorite_color_item, null);
 
             holder = new CustomViewHolder();
-            holder.textRank= (TextView)convertView.findViewById(R.id.color_rank);
+            //holder.textRank= (TextView)convertView.findViewById(R.id.color_rank);
             holder.textTitle = (TextView) convertView.findViewById(R.id.color_title);
-            holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
+           // holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
 
 
             convertView.setTag(holder);
@@ -52,18 +72,17 @@ public class FavoriteColorAdapter extends BaseAdapter {
         }
 
         CustomDTO dto = listCustom.get(position);
-
-        holder.textRank.setText(dto.getRank());
-        holder.textTitle.setText(dto.getTitle());
-        holder.textContent.setText(dto.getContent());
+        //holder.textContent.setText(dto.getContent()); //색깔횟수
+        holder.textTitle.setText(dto.getName()); //색깔이름
+        //색깔횟수
 
         return convertView;
     }
 
     class CustomViewHolder {
-        TextView textContent;
+        //TextView textContent;
         TextView textTitle;
-        TextView textRank;
+        //TextView textRank;
     }
 
     // FavoriteTagActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수

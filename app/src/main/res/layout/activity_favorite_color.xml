@@ -9,33 +9,36 @@
 
 
 
-        <TextView
-            android:id="@+id/color_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="입은 코디의 색깔 분석:"
-            android:textSize="13sp"
-            android:textColor="#000000"/>
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical">-->
+    <TextView
+        android:id="@+id/color_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="입은 코디의 색깔 분석:"
+        android:textSize="13sp"
+        android:textColor="#000000"/>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingBottom="40dp"/>-->
-<!--    </LinearLayout>-->
-
-    <ListView
-        android:id="@+id/ColorListView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#e0e0e0"/>
+        android:orientation="vertical"
+        android:background="#e0e0e0">
+        <Spinner
+            android:id="@+id/favor_color_spin"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:entries="@array/favor_color_arrange" />
+        <ListView
+            android:id="@+id/ColorListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
 
 </LinearLayout>

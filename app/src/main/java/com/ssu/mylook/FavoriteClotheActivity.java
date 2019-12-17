@@ -1,18 +1,29 @@
 package com.ssu.mylook;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.FavoriteClotheAdapter;
+import com.ssu.mylook.dto.CustomDTO;
+
+import java.util.ArrayList;
 
 public class FavoriteClotheActivity extends AppCompatActivity {
 
     private FavoriteClotheAdapter adapter;
-    private ListView MyListView;
+    private ListView myListView;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,32 +33,53 @@ public class FavoriteClotheActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar() ;
         ab.setTitle("나의 성향 분석");
 
+        myListView =(ListView)findViewById(R.id.ListView);
 
-        adapter = new FavoriteClotheAdapter();
-        MyListView =(ListView)findViewById(R.id.ListView);
-
-        setData();
-
-        MyListView.setAdapter(adapter);
+        Spinner s = (Spinner)findViewById(R.id.favor_clothes_spin);
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setData(position);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+        setData(0);
     }
 
     // ranks, arrResId, titles, contents를 서버에서 가져온 데이터라고 가정.(일단레이아웃부터)
-    private void setData() {
-        String[] ranks = getResources().getStringArray(R.array.favorite_clothe_ranking);
-        TypedArray arrResId = getResources().obtainTypedArray(R.array.favorite_clothe_Id);
-        String[] titles = getResources().getStringArray(R.array.favorite_clothe_title);
-        String[] contents = getResources().getStringArray(R.array.favorite_clothe_number);
-
-        for (int i = 0; i < arrResId.length(); i++) {
-           // CustomDTO dto = new CustomDTO();
-            //dto.setRank(ranks[i]);
-            //dto.setResId(arrResId.getResourceId(i, 0));
-           // dto.setTitle(titles[i]);
-          //  dto.setContent(contents[i]);
-
-         //  adapter.addItem(dto);
-
+    private void setData(int position) {
+        if(position==0){
+            db.collection("clothes").orderBy("ttl", Query.Direction.DESCENDING)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            ArrayList<CustomDTO> list = new ArrayList<>();
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                item.setId(doc.getId());
+                                list.add(item);
+                            }
+                            adapter = new FavoriteClotheAdapter(FavoriteClotheActivity.this, list);
+                            myListView.setAdapter(adapter);
+                        }});
+        } else if(position==1){
+            db.collection("clothes").orderBy("ttl", Query.Direction.DESCENDING)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            ArrayList<CustomDTO> list = new ArrayList<>();
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                item.setId(doc.getId());
+                                list.add(item);
+                            }
+                            adapter = new FavoriteClotheAdapter(FavoriteClotheActivity.this, list);
+                            myListView.setAdapter(adapter);
+                        }});
         }
-    }
+}
 
 }

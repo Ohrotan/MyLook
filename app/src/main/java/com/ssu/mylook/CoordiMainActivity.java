@@ -94,32 +94,18 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         summertv.setOnClickListener(this);
         falltv.setOnClickListener(this);
         wintertv.setOnClickListener(this);
-        myGridView =(GridView)findViewById(R.id.CoordiMainGridView);
 
 
-        //textView tv 대신 그리드뷰 적용되게 변경해보기
-        final TextView tv = (TextView)findViewById(R.id.arrange_text);
         Spinner s = (Spinner)findViewById(R.id.arrange_spin);
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tv.setText("position : " + position + parent.getItemAtPosition(position));
-                tv.setText(""+parent.getItemAtPosition(position));
-                //MyGridView.setAdapter(adapter);
                 setData(position);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
         setData(0);
-        //adapter = new CoordiMainAdapter(this);
-
-        //리스트의 데이터를 먼저 세팅한 후에 setAdapter해야함!!!!!!
-//        myGridView.setAdapter(adapter);
-//        adapter.setListCustom(CoordiList);
-//        myGridView.setAdapter(adapter);
-
-
     }
 
 

@@ -30,7 +30,6 @@ public class CoordiMainAdapter extends BaseAdapter {
         this.context = context;
         list.addAll(list);
         this.listCustom=list;
-
     }
 
     public ArrayList<CustomDTO> getListCustom() {
