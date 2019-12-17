@@ -14,13 +14,13 @@ public class ClotheDTO {
     private String color;
     private String memo;
     private String regDate;
-    private Bitmap imageBitmap;
+    private String imageBitmap;
 
     public ClotheDTO()
     {
         super();
     }
-    public ClotheDTO(String id, String image, String title, String sort,  List<String> season, String color, String memo, String regDate,Bitmap imageBitmap)
+    public ClotheDTO(String id, String image, String title, String sort,  List<String> season, String color, String memo, String regDate,String imageBitmap)
     {
         super();
         this.id=id;
@@ -111,12 +111,12 @@ public class ClotheDTO {
     }
 
 
-    public Bitmap getImageBitmap()
+    public String getImageBitmap()
     {
         return imageBitmap;
     }
 
-    public void setImageBitmap(Bitmap bitmap)
+    public void setImageBitmap(String bitmap)
     {
         this.imageBitmap=bitmap;
     }

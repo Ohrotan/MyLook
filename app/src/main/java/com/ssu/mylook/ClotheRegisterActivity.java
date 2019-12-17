@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.util.DBUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -45,6 +47,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
 
     ImageView add_photo;
     String image;
+    String stringBitmap;
     EditText clothe_title;
     EditText memo;
     Bitmap getBitmap;
@@ -390,13 +393,15 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
 
              Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
 
+             stringBitmap=getBase64String(getBitmap);
+
              //데이터베이스에 저장
              result.setIMAGE(uniqueID);
              result.setTTL(clothe_title.getText().toString());
              result.setMEMO(memo.getText().toString());
              result.setSORT(selectedSort);
              result.setCOLOR(selectedColor);
-             result.setImageBitmap(getBitmap);
+             result.setImageBitmap(stringBitmap);
 
              ArrayList<String> seletedSeasons = new ArrayList<>();
              for (int i = 0; i < 4; i++) {
@@ -470,7 +475,20 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         return image;
     }
 
+    public String getBase64String(Bitmap bitmap)
+    {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
 
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+
+        return Base64.encodeToString(imageBytes, Base64.NO_WRAP);
     }
+
+
+
+
+
+}
 
