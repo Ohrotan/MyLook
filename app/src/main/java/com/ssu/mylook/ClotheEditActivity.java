@@ -1,7 +1,6 @@
 package com.ssu.mylook;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,8 +18,7 @@ import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
 import java.util.UUID;
 
 public class ClotheEditActivity extends ClotheRegisterActivity implements View.OnClickListener {
@@ -30,120 +27,309 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
     Button save;
     Button back;
 
-    String setSort=result.getSORT();
-    String setColor=result.getCOLOR();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getSupportActionBar().setTitle("옷 정보 수정");
         save= findViewById(R.id.cancel_btn);
         back= findViewById(R.id.save_btn);
 
         clotheID = getIntent().getStringExtra("coltheID");
         if (clotheID == null) {
-            clotheID = "bP9S6FQCAUSXRWsxD6Id";
+            clotheID = "IRv7OYfjuGzp8xSijrTZ";
         }
-        clotheID = "bP9S6FQCAUSXRWsxD6Id";
-
+        clotheID = "IRv7OYfjuGzp8xSijrTZ";
         getData(clotheID);
+
+        save.setOnClickListener(this);
+        back.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
-    Intent intent;
-
-    if(v==save){
-        //저장
-
-        String uniqueID = UUID.randomUUID().toString();
-        new DBUtil().uploadImage(getBitmap, uniqueID);
-
-
-        String str = "옷 이름: " + clothe_title.getText()
-                + "/계절:";
-
-        for (int i = 0; i < 4; i++) {
-            if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
-                str += season_btn[i].getText();
+        Button btn = (Button) v;
+        if(v==sort_btn[0]){
+            //색깔 바뀌도록
+            if (sort_btn[0].getCurrentTextColor() != Color.WHITE) {
+                sort_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                sort_btn[0].setTextColor(Color.WHITE);
+                selectedSort=sort_btn[0].getText().toString();
+            } else {
+                sort_btn[0].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                sort_btn[0].setTextColor(Color.DKGRAY);
             }
         }
-        str += "/구분:";
-
-        for (int i = 0; i < 5; i++) {
-            if (sort_btn[i].getCurrentTextColor() == Color.WHITE) {
-                str += sort_btn[i].getText();
-                break;
+        else if(v==sort_btn[1]){
+            if (sort_btn[1].getCurrentTextColor() != Color.WHITE) {
+                sort_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                sort_btn[1].setTextColor(Color.WHITE);
+                selectedSort=sort_btn[1].getText().toString();
+            } else {
+                sort_btn[1].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                sort_btn[1].setTextColor(Color.DKGRAY);
             }
         }
-
-        str += "/색깔:";
-
-        for (int i = 0; i < 11; i++) {
-            if (color_btn[i].getCurrentTextColor() == Color.TRANSPARENT) {
-                str += color_btn[i].getText();
-                break;
+        else if(v==sort_btn[2]){
+            if (sort_btn[2].getCurrentTextColor() != Color.WHITE) {
+                sort_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                sort_btn[2].setTextColor(Color.WHITE);
+                selectedSort=sort_btn[2].getText().toString();
+            } else {
+                sort_btn[2].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                sort_btn[2].setTextColor(Color.DKGRAY);
             }
         }
-
-        Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
-
-        //데이터베이스에 저장
-        //result.setIMAGE(uniqueID);
-        result.setTTL(clothe_title.getText().toString());
-        result.setMEMO(memo.getText().toString());
-        for (int i = 0; i < 11; i++) {
-            if (color_btn[i].getCurrentTextColor() == Color.TRANSPARENT) {
-                result.setCOLOR(color_btn[i].getText().toString());
-                break;
+        else if(v==sort_btn[3]){
+            if (sort_btn[3].getCurrentTextColor() != Color.WHITE) {
+                sort_btn[3].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                sort_btn[3].setTextColor(Color.WHITE);
+                selectedSort=sort_btn[3].getText().toString();
+            } else {
+                sort_btn[3].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                sort_btn[3].setTextColor(Color.DKGRAY);
             }
         }
-
-        for (int i = 0; i < 5; i++) {
-            if (sort_btn[i].getCurrentTextColor() == Color.WHITE) {
-                result.setSORT(sort_btn[i].getText().toString());
-                break;
-            }
-        }
-
-        ArrayList<String> seletedSeasons = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
-                seletedSeasons.add(season_btn[i].getText().toString());
+        else if(v==sort_btn[4]){
+            if (sort_btn[4].getCurrentTextColor() != Color.WHITE) {
+                sort_btn[4].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                sort_btn[4].setTextColor(Color.WHITE);
+                selectedSort=sort_btn[4].getText().toString();
+            } else {
+                sort_btn[4].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                sort_btn[4].setTextColor(Color.DKGRAY);
             }
         }
 
-        result.setSEASON(seletedSeasons);
-        Calendar c = new GregorianCalendar();
-        c.add(Calendar.HOUR_OF_DAY, 9);
-        int y = c.get(Calendar.YEAR);
-        int m = c.get(Calendar.MONTH) + 1;
-        int d = c.get(Calendar.DAY_OF_MONTH);
-        int h = c.get(Calendar.HOUR_OF_DAY);
-        int min = c.get(Calendar.MINUTE);
+        else if(v==season_btn[0]){
+            if (season_btn[0].getCurrentTextColor() != Color.WHITE) {
+                season_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                season_btn[0].setTextColor(Color.WHITE);
+                String btnName = btn.getText().toString();
+                selectedSeasons.add(btnName);
+            } else {
+                season_btn[0].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                season_btn[0].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==season_btn[1]){
+            if (season_btn[1].getCurrentTextColor() != Color.WHITE) {
+                season_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                season_btn[1].setTextColor(Color.WHITE);
+                String btnName = btn.getText().toString();
+                selectedSeasons.add(btnName);
+            } else {
+                season_btn[1].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                season_btn[1].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==season_btn[2]){
+            if (season_btn[2].getCurrentTextColor() != Color.WHITE) {
+                season_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                season_btn[2].setTextColor(Color.WHITE);
+                String btnName = btn.getText().toString();
+                selectedSeasons.add(btnName);
+            } else {
+                season_btn[2].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                season_btn[2].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==season_btn[3]){
+            if (season_btn[3].getCurrentTextColor() != Color.WHITE) {
+                season_btn[3].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                season_btn[3].setTextColor(Color.WHITE);
+                String btnName = btn.getText().toString();
+                selectedSeasons.add(btnName);
+            } else {
+                season_btn[3].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                season_btn[3].setTextColor(Color.DKGRAY);
+            }
+        }
 
-        new DBUtil().addClothe(result);
+        else if(v==color_btn[0]){
+            if (color_btn[0].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[0].setBackground(getResources().getDrawable(R.drawable.red_button1, null));
+                color_btn[0].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[0].getText().toString();
+            } else {
+                color_btn[0].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[0].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[1]){
+            if (color_btn[1].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[1].setBackground(getResources().getDrawable(R.drawable.orange_button, null));
+                color_btn[1].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[1].getText().toString();
+            } else {
+                color_btn[1].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[1].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[2]){
+            if (color_btn[2].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[2].setBackground(getResources().getDrawable(R.drawable.yellow_button, null));
+                color_btn[2].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[2].getText().toString();
+            } else {
+                color_btn[2].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[2].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[3]){
+            if (color_btn[3].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[3].setBackground(getResources().getDrawable(R.drawable.green_button, null));
+                color_btn[3].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[3].getText().toString();
+            } else {
+                color_btn[3].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[3].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[4]){
+            if (color_btn[4].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[4].setBackground(getResources().getDrawable(R.drawable.blue_button, null));
+                color_btn[4].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[4].getText().toString();
+            } else {
+                color_btn[4].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[4].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[5]){
+            if (color_btn[5].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[5].setBackground(getResources().getDrawable(R.drawable.darkblue_button, null));
+                color_btn[5].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[5].getText().toString();
+            } else {
+                color_btn[5].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[5].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[6]){
+            if (color_btn[6].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[6].setBackground(getResources().getDrawable(R.drawable.violet_button, null));
+                color_btn[6].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[6].getText().toString();
+            } else {
+                color_btn[6].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[6].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[7]){
+            if (color_btn[7].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[7].setBackground(getResources().getDrawable(R.drawable.pink_button, null));
+                color_btn[7].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[7].getText().toString();
+            } else {
+                color_btn[7].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[7].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[8]){
+            if (color_btn[8].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[8].setBackground(getResources().getDrawable(R.drawable.white_button, null));
+                color_btn[8].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[8].getText().toString();
+            } else {
+                color_btn[8].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[8].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[9]){
+            if (color_btn[9].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[9].setBackground(getResources().getDrawable(R.drawable.black_button, null));
+                color_btn[9].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[9].getText().toString();
+            } else {
+                color_btn[9].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[9].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==color_btn[10]){
+            if (color_btn[10].getCurrentTextColor() != Color.TRANSPARENT) {
+                color_btn[10].setTextColor(Color.TRANSPARENT);
+                selectedColor=color_btn[10].getText().toString();
+            } else {
+                color_btn[10].setBackground(getResources().getDrawable(R.drawable.gray_button, null));
+                color_btn[10].setTextColor(Color.DKGRAY);
+            }
+        }
+        else if(v==btn_save){
+            String uniqueID = UUID.randomUUID().toString();
+            new DBUtil().uploadImage(getBitmap, uniqueID);
 
-        //저장하고
-        intent = new Intent(this,ClosetActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
-        finish();
-    }
+            String str = "옷 이름: " + clothe_title.getText()
+                    + "/계절:";
+
+            for (int i = 0; i < 4; i++) {
+                if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
+                    str += season_btn[i].getText();
+                }
+            }
+            str += "/구분:";
+
+            for (int i = 0; i < 5; i++) {
+                if (sort_btn[i].getCurrentTextColor() == Color.WHITE) {
+                    str += sort_btn[i].getText();
+                    break;
+                }
+            }
+
+            str += "/색깔:";
+
+            for (int i = 0; i < 11; i++) {
+                if (color_btn[i].getCurrentTextColor() == Color.TRANSPARENT) {
+                    str += color_btn[i].getText();
+                    break;
+                }
+            }
+
+            Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
+
+            //데이터베이스에 저장
+            result.setIMAGE(uniqueID);
+            result.setTTL(clothe_title.getText().toString());
+            result.setMEMO(memo.getText().toString());
+            for (int i = 0; i < 11; i++) {
+                if (color_btn[i].getCurrentTextColor() == Color.TRANSPARENT) {
+                    result.setCOLOR(color_btn[i].getText().toString());
+                    break;
+                }
+            }
+
+            for (int i = 0; i < 5; i++) {
+                if (sort_btn[i].getCurrentTextColor() == Color.WHITE) {
+                    result.setSORT(sort_btn[i].getText().toString());
+                    break;
+                }
+            }
+
+            ArrayList<String> seletedSeasons = new ArrayList<>();
+            for (int i = 0; i < 4; i++) {
+                if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
+                    seletedSeasons.add(season_btn[i].getText().toString());
+                }
+            }
+
+            result.setSEASON(seletedSeasons);
+
+            new DBUtil().updateClothe(clotheID, result);
+
+            Intent intent = new Intent(this, ClosetActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+        }
 
     else if(v==back){
         //이전액티비티
         onBackPressed();
     }
 
-    intent = new Intent(this, ClosetActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-    startActivity(intent);
-    overridePendingTransition(0, 0);
-    finish();
 
 }
 
@@ -188,11 +374,11 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
                 case "봄":
                         season_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                         season_btn[0].setTextColor(Color.WHITE);
-                    break;
+                        break;
                 case "여름":
                         season_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                         season_btn[1].setTextColor(Color.WHITE);
-                    break;
+                        break;
                 case "가을":
                         season_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                         season_btn[2].setTextColor(Color.WHITE);
@@ -206,7 +392,7 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             }
         }
         //sort
-            switch (setSort) {
+            switch (result.getSORT()) {
                 case "상의":
                     sort_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                     sort_btn[0].setTextColor(Color.WHITE);
@@ -230,9 +416,10 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
                 default:
                     break;
             }
+
         //color
-        switch (setColor) {
-            case "빨강" :
+        switch (result.getCOLOR()) {
+            case "빨강":
                 color_btn[0].setBackground(getResources().getDrawable(R.drawable.red_button1, null));
                 color_btn[0].setTextColor(Color.TRANSPARENT);
                 break;

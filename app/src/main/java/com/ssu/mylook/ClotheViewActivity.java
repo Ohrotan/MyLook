@@ -35,6 +35,7 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothe_view);
+        getSupportActionBar().setTitle("옷 조회");
 
         view_clothe_img=findViewById(R.id.clothe_view_photo);
         edit_clothe_info=findViewById(R.id.edit_btn);
