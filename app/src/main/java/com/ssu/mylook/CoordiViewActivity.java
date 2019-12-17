@@ -55,6 +55,7 @@ public class CoordiViewActivity extends AppCompatActivity{
                         * 수정하기 : 해당 코디의 수정하기로 넘어감
                         * 코디 클릭시 나오는 코디ID 값으로 수정하기로 넘어가야 됨
                         *  */
+
                         showToast("수정하기 버튼 클릭");
                         break;
                     case R.id.remove_btn :

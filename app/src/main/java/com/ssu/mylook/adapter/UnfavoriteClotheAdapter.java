@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
 
@@ -75,9 +76,9 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
 
         CustomDTO dto = listCustom.get(position);
 
-       // holder.imageView.setImageResource(dto.getResId());
+        //holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getName());
-
+        new DBUtil().setImageViewFromDB(context,holder.imageView,dto.getImg());
         return convertView;
     }
 
