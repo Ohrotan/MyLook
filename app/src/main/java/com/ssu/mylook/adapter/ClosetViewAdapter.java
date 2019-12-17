@@ -7,27 +7,31 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ssu.mylook.ClotheSearchLayout;
 import com.ssu.mylook.R;
+import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.ClotheItem;
+import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
 
 public class ClosetViewAdapter extends BaseAdapter {
-    ArrayList<ClotheItem> items ;
+    private ArrayList<ClotheItem> items ;
     Context context;
 
     public ClosetViewAdapter(Context context)
     {
-        this.items=new ArrayList<>();
         this.context=context;
+        items=new ArrayList<>();
     }
 
     public ClosetViewAdapter(Context context, ArrayList<ClotheItem> items) {
+        this.context = context;
         this.items = items;
         items.addAll(items);
-        this.context = context;
+
     }
 
     class ViewHolder {
@@ -69,8 +73,15 @@ public class ClosetViewAdapter extends BaseAdapter {
             holder.clothe_title = (TextView) convertView.findViewById(R.id.closet_textview);
 
             convertView.setTag(holder);
-        }
+        }else {
             holder = (ClosetViewAdapter.ViewHolder) convertView.getTag();
+        }
+        ClotheItem itemDTO = items.get(position);
+
+
+        new DBUtil().setImageViewFromDB(context,holder.clothe_img,itemDTO.getImage());
+        holder.clothe_title.setText(itemDTO.getTitle());
+        Toast.makeText(context, holder.clothe_title+ "", Toast.LENGTH_LONG).show(); //옷 이름이 안뜸
 
         return convertView;
     }
