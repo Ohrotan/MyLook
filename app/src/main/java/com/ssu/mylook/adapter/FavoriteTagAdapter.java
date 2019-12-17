@@ -82,52 +82,24 @@ public class FavoriteTagAdapter extends BaseAdapter {
 
         CustomViewHolder holder;
         if (convertView == null) {
-
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.favorite_tag_item, null);
-
             holder = new CustomViewHolder();
             holder.textRank= (TextView)convertView.findViewById(R.id.tag_rank);
             holder.textTitle = (TextView) convertView.findViewById(R.id.tag_title);
             holder.textContent = (TextView) convertView.findViewById(R.id.tag_number);
-
             convertView.setTag(holder);
-
         } else {
             holder = (CustomViewHolder) convertView.getTag();
         }
+
         Custom2DTO dto = listCustom.get(position);
-//
-//
-//        db.collection("coordi").whereEqualTo("tag", "심플베이직").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    simple=task.getResult().size();
-//                } else {
-//                    //Log.d("TAG", "Error getting documents: ", task.getException());
-//                }
-//            }
-//        });
-//
-//        db.collection("coordi").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    //Log.d("TAG", task.getResult().size() + "");
-//                    allCoordi.setText("현재 옷장에 등록한 옷 : "+task.getResult().size());
-//                } else {
-//                    //Log.d("TAG", "Error getting documents: ", task.getException());
-//                    allCoordi.setText("Error : 옷장에 등록된 옷 data를 불러올 수 없습니다");
-//                }
-//            }
-//        });
 
         //setText
         if(lastcount < currentcount)
             holder.textRank.setText(Integer.toString(lastposition));
         else
-        holder.textRank.setText(Integer.toString(position));
+            holder.textRank.setText(Integer.toString(position+1));
         holder.textTitle.setText(dto.getField());
         holder.textContent.setText(Integer.toString(dto.getCount())+"회");
 
@@ -141,9 +113,9 @@ public class FavoriteTagAdapter extends BaseAdapter {
     }
 
     // FavoriteTagActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(Custom2DTO dto) {
-        listCustom.add(dto);
-    }
+//    public void addItem(Custom2DTO dto) {
+//        listCustom.add(dto);
+//    }
 }
 
 /*if(doc.get("tag").equals("심플베이직")){
