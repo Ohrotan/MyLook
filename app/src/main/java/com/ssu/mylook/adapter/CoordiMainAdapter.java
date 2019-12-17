@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
@@ -72,7 +71,7 @@ public class CoordiMainAdapter extends BaseAdapter {
             holder.imageView = (ImageView) convertView.findViewById(R.id.coordi_item_img);
             holder.textTitle = (TextView) convertView.findViewById(R.id.coordi_item_title);
             holder.textCount = (TextView) convertView.findViewById(R.id.coordi_item_count);
-            holder.ratingBar = (RatingBar) convertView.findViewById(R.id.coordi_item_rating);
+            holder.textRank = (TextView) convertView.findViewById(R.id.coordi_item_rating);
 
             convertView.setTag(holder);
 
@@ -82,12 +81,11 @@ public class CoordiMainAdapter extends BaseAdapter {
 
         CustomDTO dto = listCustom.get(position);
 
-//        holder.textRank.setText(dto.getRating()+"");
-        holder.ratingBar.setRating(dto.getRating());
+        holder.textRank.setText(dto.getRating()+"");
        // holder.imageView.setImageResource(dto.getResId());
         new DBUtil().setImageViewFromDB(context,holder.imageView,dto.getImg());
         holder.textTitle.setText(dto.getName());
-        holder.textCount.setText(dto.getCount()+"회 착용");
+        holder.textCount.setText(dto.getCount()+"");
      //   holder.textRank.setText(dto.getRank());
 
 
@@ -99,7 +97,6 @@ public class CoordiMainAdapter extends BaseAdapter {
         ImageView imageView;
         TextView textTitle;
         TextView textRank;
-        RatingBar ratingBar;
     }
 
     // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
