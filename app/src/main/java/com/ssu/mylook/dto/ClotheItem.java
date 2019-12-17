@@ -6,14 +6,14 @@ public class ClotheItem {
     private String title;
     private String image;
     private String id;
-    private Bitmap getBitmap;
+    private String getBitmap;
 
     public ClotheItem()
     {
         super();
     }
 
-    public ClotheItem(String title, String image, String id, Bitmap getBitmap){
+    public ClotheItem(String title, String image, String id, String getBitmap){
         this.title=title;
         this.image=image;
         this.id=id;
@@ -44,11 +44,11 @@ public class ClotheItem {
         this.id = id;
     }
 
-    public Bitmap getBitmap() {
+    public String getBitmap() {
         return getBitmap;
     }
 
-    public void setBitmap(Bitmap bitmap) {
+    public void setBitmap(String bitmap) {
         this.getBitmap = bitmap;
     }
 
