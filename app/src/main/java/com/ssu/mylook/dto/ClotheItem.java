@@ -2,6 +2,8 @@ package com.ssu.mylook.dto;
 
 import android.graphics.Bitmap;
 
+import java.util.Map;
+
 public class ClotheItem {
     private String title;
     private String image;
@@ -19,6 +21,7 @@ public class ClotheItem {
         this.id=id;
         this.getBitmap=getBitmap;
     }
+
 
     public String getTitle(){
         return title;
