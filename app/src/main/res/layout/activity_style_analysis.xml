@@ -361,6 +361,7 @@
                         android:paddingBottom="5dp"
                         android:background="#5d0082">
                         <TextView
+                            android:id="@+id/analysis"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"

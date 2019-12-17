@@ -8,14 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.Custom2DTO;
 
 import java.util.ArrayList;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class FavoriteColorAdapter extends BaseAdapter {
-    private ArrayList<CustomDTO> listCustom = new ArrayList<>();
+    private ArrayList<Custom2DTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class FavoriteColorAdapter extends BaseAdapter {
         listCustom = new ArrayList<>();
     }
 
-    public FavoriteColorAdapter(Context context, ArrayList<CustomDTO> list) {
+    public FavoriteColorAdapter(Context context, ArrayList<Custom2DTO> list) {
         this.context=context;
         list.addAll(list);
         this.listCustom=list;
@@ -61,8 +61,10 @@ public class FavoriteColorAdapter extends BaseAdapter {
 
             holder = new CustomViewHolder();
             //holder.textRank= (TextView)convertView.findViewById(R.id.color_rank);
+            holder.textRank= (TextView)convertView.findViewById(R.id.color_rank);
             holder.textTitle = (TextView) convertView.findViewById(R.id.color_title);
-           // holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
+            // holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
+            holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
 
 
             convertView.setTag(holder);
@@ -71,22 +73,18 @@ public class FavoriteColorAdapter extends BaseAdapter {
             holder = (FavoriteColorAdapter.CustomViewHolder) convertView.getTag();
         }
 
-        CustomDTO dto = listCustom.get(position);
-        //holder.textContent.setText(dto.getContent()); //색깔횟수
-        holder.textTitle.setText(dto.getName()); //색깔이름
-        //색깔횟수
+        Custom2DTO dto = listCustom.get(position);
+        holder.textContent.setText(Integer.toString(dto.getCount())+"회"); //색깔횟수
+        holder.textTitle.setText(dto.getField()); //색깔이름
+        holder.textRank.setText(Integer.toString(position+1));
 
         return convertView;
     }
 
     class CustomViewHolder {
-        //TextView textContent;
+        TextView textContent;
         TextView textTitle;
-        //TextView textRank;
+        TextView textRank;
     }
 
-    // FavoriteTagActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(CustomDTO dto) {
-        listCustom.add(dto);
-    }
 }

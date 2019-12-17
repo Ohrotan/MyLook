@@ -1,6 +1,7 @@
 package com.ssu.mylook;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -13,14 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.FavoriteTagAdapter;
 import com.ssu.mylook.dto.Custom2DTO;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class FavoriteTagActivity extends AppCompatActivity {
@@ -28,209 +34,235 @@ public class FavoriteTagActivity extends AppCompatActivity {
     private FavoriteTagAdapter adapter;
     private ListView myListView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    public int simple=0;
-    int campus=0;
-    int casual=0;
-    int unique=0;
-    int sporty=0;
-    int lovely=0;
-    int office=0;
-    int sexy=0;
-    int fancy=0;
+    static int simple = 0;
+    static int campus = 0;
+    static int casual = 0;
+    static int unique = 0;
+    static int sporty = 0;
+    static int lovely = 0;
+    static int office = 0;
+    static int sexy = 0;
+    static int fancy = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_tag);
-        ActionBar ab = getSupportActionBar() ;
+        ActionBar ab = getSupportActionBar();
         ab.setTitle("나의 성향 분석");
 
-        myListView =(ListView)findViewById(R.id.TagListView);
+        myListView = (ListView) findViewById(R.id.TagListView);
 
-        Spinner s = (Spinner)findViewById(R.id.favor_tag_spin);
+        Spinner s = (Spinner) findViewById(R.id.favor_tag_spin);
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setData(position);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
         setData(0);
 
     }
 
     private void setData(int position) {
-        if(position==0){
+        if (position == 0) {
+            simple = 0;
+            unique = 0;
+            casual = 0;
+            campus = 0;
+            sporty = 0;
+            lovely = 0;
+            sexy = 0;
+            fancy = 0;
+            office = 0;
+            db.collection("coordi").whereEqualTo("tag", "심플베이직").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("TAG", task.getResult().size() + "simple");
+                        simple = task.getResult().size();
+                        Log.d("TAG", simple + "this is simple");
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "캠퍼스룩").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("TAG", task.getResult().size() + "campus");
+                        campus = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "캐주얼").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("TAG", task.getResult().size() + "casual");
+                        casual = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "유니크").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+//                        Log.d("TAG", task.getResult().size() + "asdfghj");
+                        unique = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "스포티").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+//                        Log.d("TAG", task.getResult().size() + "asdfghj");
+                        sporty = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "러블리").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("TAG", task.getResult().size() + "lovely");
+                        lovely = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "오피스룩").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+//                        Log.d("TAG", task.getResult().size() + "asdfghj");
+                        office = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "섹시글램").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+//                        Log.d("TAG", task.getResult().size() + "asdfghj");
+                        sexy = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+            db.collection("coordi").whereEqualTo("tag", "화려한").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+//                        Log.d("TAG", task.getResult().size() + "asdfghj");
+                        fancy = task.getResult().size();
+                    } else {
+                        //Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
             db.collection("coordi")
-                    .whereEqualTo("tag","심플베이직")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            final Map<String, Integer> tags = new HashMap<>();
+                            tags.put("심플베이직", simple);
+                            tags.put("캠퍼스룩", campus);
+                            tags.put("캐주얼", casual);
+                            tags.put("유니크", unique);
+                            tags.put("스포티", sporty);
+                            tags.put("러블리", lovely);
+                            tags.put("오피스룩", office);
+                            tags.put("섹시글램", sexy);
+                            tags.put("화려한", fancy);
+
                             ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                simple++;
-                                item.setCount(simple);
+                            // value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
+                            List<Map.Entry<String, Integer>> sorting = new LinkedList<>(tags.entrySet());
+                            Collections.sort(sorting, new Comparator<Map.Entry<String, Integer>>() {
+                                @Override
+                                public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                                    int comparision = (o1.getValue() - o2.getValue()) * -1;
+                                    return comparision == 0 ? o1.getKey().compareTo(o2.getKey()) : comparision;
+                                }
+
+                            });
+                            // 순서유지를 위해 LinkedHashMap을 사용
+                            Map<String, Integer> sortedMap = new LinkedHashMap<>();
+                            for (Iterator<Map.Entry<String, Integer>> iter = sorting.iterator(); iter.hasNext(); ) {
+                                Map.Entry<String, Integer> entry = iter.next();
+                                list.add(new Custom2DTO(entry.getKey(), entry.getValue()));
+                                sortedMap.put(entry.getKey(), entry.getValue());
                             }
+
+                            adapter = new FavoriteTagAdapter(FavoriteTagActivity.this, list);
+                            myListView.setAdapter(adapter);
                         }
                     });
+        }else if(position==1){
             db.collection("coordi")
-                    .whereEqualTo("tag","캠퍼스")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            final Map<String, Integer> tags = new HashMap<>();
+                            tags.put("심플베이직", simple);
+                            tags.put("캠퍼스룩", campus);
+                            tags.put("캐주얼", casual);
+                            tags.put("유니크", unique);
+                            tags.put("스포티", sporty);
+                            tags.put("러블리", lovely);
+                            tags.put("오피스룩", office);
+                            tags.put("섹시글램", sexy);
+                            tags.put("화려한", fancy);
+
                             ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                campus++;
-                                item.setCount(campus);
+                            // value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
+                            List<Map.Entry<String, Integer>> sorting = new LinkedList<>(tags.entrySet());
+                            Collections.sort(sorting, new Comparator<Map.Entry<String, Integer>>() {
+                                @Override
+                                public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                                    int comparision = (o1.getValue() - o2.getValue());
+                                    return comparision == 0 ? o1.getKey().compareTo(o2.getKey()) : comparision;
+                                }
+
+                            });
+                            // 순서유지를 위해 LinkedHashMap을 사용
+                            Map<String, Integer> sortedMap = new LinkedHashMap<>();
+                            for(Iterator<Map.Entry<String, Integer>> iter = sorting.iterator(); iter.hasNext();){
+                                Map.Entry<String, Integer> entry = iter.next();
+                                list.add(new Custom2DTO(entry.getKey(),entry.getValue()));
+                                sortedMap.put(entry.getKey(), entry.getValue());
                             }
-                        }
-                    });
-            db.collection("coordi")
-                    .whereEqualTo("tag","캐주얼")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                casual++;
-                                item.setCount(casual);
-                            }
-                        }
-                    });
-            db.collection("coordi")
-                    .whereEqualTo("tag","유니크")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                unique++;
-                                item.setCount(unique);
-                            }
-                        }
-                    });db.collection("coordi")
-                    .whereEqualTo("tag","스포티")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                sporty++;
-                                item.setCount(lovely);
-                            }
-                        }
-                    });db.collection("coordi")
-                    .whereEqualTo("tag","러블리")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                lovely++;
-                                item.setCount(lovely);
-                            }
-                        }
-                    });db.collection("coordi")
-                    .whereEqualTo("tag","오피스룩")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                office++;
-                                item.setCount(office);
-                            }
-                        }
-                    });db.collection("coordi")
-                    .whereEqualTo("tag","섹시글램")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                sexy++;
-                                item.setCount(sexy);
-                            }
-                        }
-                    });
-            db.collection("coordi")
-                    .whereEqualTo("tag","화려한")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                fancy++;
-                                item.setCount(fancy);
-                            }
-                        }
-                    });
-            Map<String, Integer> tags = new HashMap<>();
-            tags.put("심플베이직", simple);
-            tags.put("캠퍼스룩", campus);
-            tags.put("캐주얼", casual);
-            tags.put("유니크", unique);
-            tags.put("스포티", sporty);
-            tags.put("러블리", lovely);
-            tags.put("오피스룩", office);
-            tags.put("섹시글램", sexy);
-            tags.put("화려한", fancy);
-            //MapPost myMapPost = new MapPost("My great post", categories);
-            db.collection("coordi")
-                    .orderBy("tag")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom2DTO item = doc.toObject(Custom2DTO.class);
-                                list.add(item);
-                            }
+
                             adapter = new FavoriteTagAdapter(FavoriteTagActivity.this, list);
                             myListView.setAdapter(adapter);
                         }
                     });
 
-        }
-//        else if(position==1){
-//            db.collection("coordi").orderBy("tag", Query.Direction.ASCENDING)
-//                    .get()
-//                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                            ArrayList<CustomDTO> list = new ArrayList<>();
-//                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-//                                CustomDTO item = doc.toObject(CustomDTO.class);
-//                                item.setId(doc.getId());
-//                                list.add(item);
-//                            }
-//                            adapter = new FavoriteTagAdapter(FavoriteTagActivity.this, list);
-//                            myListView.setAdapter(adapter);
-//                        }
-//                    });
-//        }
 
     }
+
+}
 
 
 

@@ -1,14 +1,13 @@
 package com.ssu.mylook.adapter;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.CustomDTO;
@@ -16,26 +15,24 @@ import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
-public class FavoriteClotheAdapter extends BaseAdapter {
+public class CoordiViewAdapter extends BaseAdapter {
     private ArrayList<CustomDTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
-
-    public FavoriteClotheAdapter(Context context){
+    public CoordiViewAdapter(Context context){
         this.context = context;
         listCustom = new ArrayList<>();
     }
 
-    public FavoriteClotheAdapter(Context context, ArrayList<CustomDTO> list) {
+    public CoordiViewAdapter(Context context, ArrayList<CustomDTO> list) {
         this.context=context;
         list.addAll(list);
         this.listCustom=list;
     }
 
-
-    // ListView에 보여질 Item 수
     @Override
     public int getCount() {
         return listCustom.size();
@@ -55,18 +52,19 @@ public class FavoriteClotheAdapter extends BaseAdapter {
 
     // 실제로 Item이 보여지는 부분
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         CustomViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_clothe_item,null,false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.activity_coordi_view, null);
 
             holder = new CustomViewHolder();
-            holder.textRank= (TextView)convertView.findViewById(R.id.item_ranking);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.item_image);
-            holder.textTitle = (TextView) convertView.findViewById(R.id.item_title);
-            holder.textContent = (TextView) convertView.findViewById(R.id.item_number);
-
-
+            holder.imageView = (ImageView) convertView.findViewById(R.id.coordi_view_img);
+            holder.textTitle = (TextView) convertView.findViewById(R.id.coordi_view_title);
+            holder.textCount =(TextView)  convertView.findViewById(R.id.coordi_view_number);
+            holder.textTag =(TextView)  convertView.findViewById(R.id.coordi_view_tag);
+            holder.textSeasons=(TextView) convertView.findViewById(R.id.coordi_view_weather);
+            holder.ratingBar=(RatingBar)convertView.findViewById(R.id.coordi_view_rating);
             convertView.setTag(holder);
 
         } else {
@@ -75,31 +73,23 @@ public class FavoriteClotheAdapter extends BaseAdapter {
 
         CustomDTO dto = listCustom.get(position);
 
-        //holder.textRank.setText(dto.getRank());
-        //holder.imageView.setImageResource(dto.getResId());
+        // holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getName());
         new DBUtil().setImageViewFromDB(context,holder.imageView,dto.getImg());
-        //holder.textContent.setText(dto.getContent());
-
-        holder.textRank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), (position+1)+"번째", Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.textTag.setText("#"+dto.getTag());
+        holder.textCount.setText(dto.getCount());
+        holder.textSeasons.setText((CharSequence) dto.getSeasons());
+        holder.ratingBar.setRating(dto.getRating());
 
         return convertView;
     }
 
     class CustomViewHolder {
-        TextView textContent;
         ImageView imageView;
         TextView textTitle;
-        TextView textRank;
-    }
-
-    // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(CustomDTO dto) {
-        listCustom.add(dto);
+        TextView textTag;
+        TextView textSeasons;
+        TextView textCount;
+        RatingBar ratingBar;
     }
 }
