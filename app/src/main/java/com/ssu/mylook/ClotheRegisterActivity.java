@@ -37,8 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.UUID;
 
 
@@ -397,6 +396,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
              result.setMEMO(memo.getText().toString());
              result.setSORT(selectedSort);
              result.setCOLOR(selectedColor);
+             result.setImageBitmap(getBitmap);
 
              ArrayList<String> seletedSeasons = new ArrayList<>();
              for (int i = 0; i < 4; i++) {
@@ -413,6 +413,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
              int d = c.get(Calendar.DAY_OF_MONTH);
              int h = c.get(Calendar.HOUR_OF_DAY);
              int min = c.get(Calendar.MINUTE);
+             result.setREGDATE(y + "-" + m + "-" + d + " " + h + ":" + min);
 
              new DBUtil().addClothe(result);
 
