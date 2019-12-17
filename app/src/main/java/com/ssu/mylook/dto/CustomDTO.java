@@ -10,8 +10,10 @@ public class CustomDTO {
     private String img;
     private String regDate;
     private List<String> seasons;
+    private List<String> used;
     //private String[] seasons;
     private String tag;
+    //Map<String,Boolean> tag;
     private float rating;
     private int count;
     private String id;
@@ -20,12 +22,12 @@ public class CustomDTO {
 
 
     //아직 수정중
-    private String title;
-    private String content;
+//    private String title;
+//    private String content;
     private int rank;
 
     public CustomDTO() { super(); }
-    public CustomDTO(String id, String name, String img, String regDate, List<String> seasons, String tag, float rating, int count,String userId){
+    public CustomDTO(String id, String name, String img, String regDate, List<String> seasons, String tag, float rating, int count,String userId, List<String> used){
         this.id=id;
         this.name=name;
         this.img=img;
@@ -35,6 +37,7 @@ public class CustomDTO {
         this.rating=rating;
         this.count=count;
         this.userId=userId;
+        this.used=used;
     }
 
     public static CustomDTO mapToDTO(Map<String,Object> data){
@@ -48,14 +51,14 @@ public class CustomDTO {
         return customDTO;
     }
 
-
-    //배열 써서 사용했던 Rank
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-    public int getRank(){
-        return rank;
-    }
+//
+////    //배열 써서 사용했던 Rank
+//    public void setRank(int rank) {
+//        this.rank = rank;
+//    }
+//    public int getRank(){
+//        return rank;
+//    }
 
     //여기서부터는 실제 사용할 것들
     public void setRating(float rating){
@@ -81,6 +84,9 @@ public class CustomDTO {
     public void setSeason(List<String> seasons){
         this.seasons=seasons;
     }
+
+    public List<String> getUsed(){return used;}
+    public void setUsed(List<String> used) {this.used=used;}
 
     public int getCount(){
         return count;
@@ -119,19 +125,19 @@ public class CustomDTO {
 
 
 
-    //얜 아직 모르겠는것
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
+//    //얜 아직 모르겠는것
+//    public String getContent() {
+//        return content;
+//    }
+//    public void setContent(String content) {
+//        this.content = content;
+//    }
+//    public String getTitle() {
+//        return title;
+//    }
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
 
 
 

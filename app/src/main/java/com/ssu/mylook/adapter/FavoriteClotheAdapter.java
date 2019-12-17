@@ -1,6 +1,7 @@
 package com.ssu.mylook.adapter;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,22 @@ import java.util.ArrayList;
 
 
 public class FavoriteClotheAdapter extends BaseAdapter {
-
     private ArrayList<CustomDTO> listCustom = new ArrayList<>();
+    Context context;
+    ArrayList<String> clicked = new ArrayList<>();
+
+
+    public FavoriteClotheAdapter(Context context){
+        this.context = context;
+        listCustom = new ArrayList<>();
+    }
+
+    public FavoriteClotheAdapter(Context context, ArrayList<CustomDTO> list) {
+        this.context=context;
+        list.addAll(list);
+        this.listCustom=list;
+    }
+
 
     // ListView에 보여질 Item 수
     @Override
@@ -59,10 +74,10 @@ public class FavoriteClotheAdapter extends BaseAdapter {
 
         CustomDTO dto = listCustom.get(position);
 
-        holder.textRank.setText(dto.getRank());
+        //holder.textRank.setText(dto.getRank());
         //holder.imageView.setImageResource(dto.getResId());
-        holder.textTitle.setText(dto.getTitle());
-        holder.textContent.setText(dto.getContent());
+        holder.textTitle.setText(dto.getName());
+        //holder.textContent.setText(dto.getContent());
 
         holder.textRank.setOnClickListener(new View.OnClickListener() {
             @Override

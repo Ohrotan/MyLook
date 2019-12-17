@@ -8,11 +8,13 @@
     tools:context="com.ssu.mylook.UnfavoriteClotheActivity">
 
     <TextView
+        android:id="@+id/all_coori_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="현재 옷장에 등록한 옷 : 32벌"
         android:textColor="#000000"/>
     <TextView
+        android:id="@+id/never_coordi_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="한 번도 입지 않은 옷 : 3벌"
