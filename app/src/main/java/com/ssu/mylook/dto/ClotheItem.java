@@ -1,12 +1,23 @@
 package com.ssu.mylook.dto;
 
+import android.graphics.Bitmap;
+
 public class ClotheItem {
     private String title;
-    private int image;
+    private String image;
+    private String id;
+    private Bitmap getBitmap;
 
-    public ClotheItem(String title, int image){
+    public ClotheItem()
+    {
+        super();
+    }
+
+    public ClotheItem(String title, String image, String id, Bitmap getBitmap){
         this.title=title;
         this.image=image;
+        this.id=id;
+        this.getBitmap=getBitmap;
     }
 
     public String getTitle(){
@@ -17,11 +28,29 @@ public class ClotheItem {
         this.title=title;
     }
 
-    public int getImage(){
+    public String getImage(){
         return image;
     }
 
-    public void setImage(int image){
+    public void setImage(String image){
         this.image=image;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Bitmap getBitmap() {
+        return getBitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.getBitmap = bitmap;
+    }
+
+
 }

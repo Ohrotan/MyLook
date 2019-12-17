@@ -1,6 +1,8 @@
 package com.ssu.mylook.dto;
 //DB의 데이터를 저장할 클래스
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
 public class ClotheDTO {
@@ -12,12 +14,13 @@ public class ClotheDTO {
     private String color;
     private String memo;
     private String regDate;
+    private Bitmap imageBitmap;
 
     public ClotheDTO()
     {
         super();
     }
-    public ClotheDTO(String id, String image, String title, String sort,  List<String> season, String color, String memo, String regDate)
+    public ClotheDTO(String id, String image, String title, String sort,  List<String> season, String color, String memo, String regDate,Bitmap imageBitmap)
     {
         super();
         this.id=id;
@@ -28,6 +31,7 @@ public class ClotheDTO {
         this.memo=memo;
         this.color=color;
         this.regDate=regDate;
+        this.imageBitmap=imageBitmap;
     }
 
     public String getID()
@@ -40,6 +44,7 @@ public class ClotheDTO {
         this.id=id;
     }
 
+
     public String getIMAGE()
     {
         return image;
@@ -49,6 +54,7 @@ public class ClotheDTO {
     {
         this.image=image;
     }
+
 
     public String getTTL()
     {
@@ -60,6 +66,7 @@ public class ClotheDTO {
         this.sort=sort;
     }
 
+
     public String getSORT()
     {
         return sort;
@@ -69,6 +76,7 @@ public class ClotheDTO {
     {
         this.title=title;
     }
+
 
     public List<String> getSEASON()
     {
@@ -80,6 +88,7 @@ public class ClotheDTO {
         this.season=season;
     }
 
+
     public String getCOLOR()
     {
         return color;
@@ -89,6 +98,7 @@ public class ClotheDTO {
     {
         this.color=color;
     }
+
 
     public String getMEMO()
     {
@@ -101,12 +111,24 @@ public class ClotheDTO {
     }
 
 
+    public Bitmap getImageBitmap()
+    {
+        return imageBitmap;
+    }
+
+    public void setImageBitmap(Bitmap bitmap)
+    {
+        this.imageBitmap=bitmap;
+    }
+
+
+
     public String getREGDATE()
     {
         return regDate;
     }
 
-    public void setREGDATE(String memo)
+    public void setREGDATE(String regDate)
     {
         this.regDate=regDate;
     }

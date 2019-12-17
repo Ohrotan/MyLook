@@ -3,6 +3,7 @@ package com.ssu.mylook;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,12 +11,24 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.ClosetViewAdapter;
+import com.ssu.mylook.adapter.CoordiMainAdapter;
+import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.ClotheItem;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -33,12 +46,14 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
     TextView textE;
     GridView gridView;
     ClosetViewAdapter closetViewAdapter;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closet);
 
+        Intent intent = new Intent();
         gridView=(GridView)findViewById(R.id.gridView);
         text1=(TextView)findViewById(R.id.upper_spring);
         text2=(TextView)findViewById(R.id.upper_summer);
@@ -60,20 +75,43 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
         textD.setOnClickListener(this);
         textE.setOnClickListener(this);
 
-        closetViewAdapter=new ClosetViewAdapter(this);
-        closetViewAdapter.addItem(new ClotheItem("옷 1",R.drawable.clothe1));
+       //closetViewAdapter=new ClosetViewAdapter(this);
+        /*closetViewAdapter.addItem(new ClotheItem("옷 1",R.drawable.clothe1));
         closetViewAdapter.addItem(new ClotheItem("옷 2",R.drawable.clothe2));
         closetViewAdapter.addItem(new ClotheItem("옷 3",R.drawable.clothe3));
+        */
 
-        gridView.setAdapter(closetViewAdapter);
+        //gridView.setAdapter(closetViewAdapter);
+        setData(0);
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Toast.makeText(getApplicationContext(),"title:"+closetViewAdapter.getItem(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
+
             }
         });
     }
 
+    private void setData(int position) {
+        if(position==0){
+            db.collection("clothes").orderBy("regdate", Query.Direction.DESCENDING)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            ArrayList<ClotheItem> list = new ArrayList<>();
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                ClotheItem item = doc.toObject(ClotheItem.class);
+                                item.setId(doc.getId());
+                                list.add(item);
+                            }
+                            closetViewAdapter = new ClosetViewAdapter(ClosetActivity.this,list);
+                            gridView.setAdapter(closetViewAdapter);
+                        }});
+
+        }
+
+    }
 
     @Override
     public void onClick(View v) {

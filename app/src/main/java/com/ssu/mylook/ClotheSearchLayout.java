@@ -49,9 +49,7 @@ public class ClotheSearchLayout extends AppCompatActivity implements View.OnClic
         text4.setOnClickListener(this);
 
         closetViewAdapter=new ClosetViewAdapter(this);
-        closetViewAdapter.addItem(new ClotheItem("옷 1",R.drawable.clothe1));
-        closetViewAdapter.addItem(new ClotheItem("옷 2",R.drawable.clothe2));
-        closetViewAdapter.addItem(new ClotheItem("옷 3",R.drawable.clothe3));
+
 
         gridView.setAdapter(closetViewAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

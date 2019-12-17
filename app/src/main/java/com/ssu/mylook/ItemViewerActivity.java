@@ -27,6 +27,6 @@ public class ItemViewerActivity extends LinearLayout {
 
     public void setItem(ClotheItem clotheItem){
         textView.setText(clotheItem.getTitle());
-        imageView.setImageResource(clotheItem.getImage());
+        imageView.setImageBitmap(clotheItem.getBitmap());
     }
 }
