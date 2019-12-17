@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,9 +15,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.ssu.mylook.adapter.CoordiViewAdapter;
+import com.ssu.mylook.dto.CustomDTO;
+
+import java.util.ArrayList;
 
 public class CoordiViewActivity extends AppCompatActivity{
+    private CoordiViewAdapter adapter;
+    private ListView myListView;
 
     //코디 메인에서 누른 코디가 출력되도록 하는 함수, id값 받아와야 함
 
@@ -28,7 +37,7 @@ public class CoordiViewActivity extends AppCompatActivity{
     //해당 코디 수정/삭제 버튼
     RelativeLayout editBtn; //수정 : 해당 코디 (이미지 수정/내용정보 수정) 액티비티로 이동
     RelativeLayout removeBtn;   //삭제 : DB 에서 바로 삭제
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,7 @@ public class CoordiViewActivity extends AppCompatActivity{
         ActionBar ab = getSupportActionBar();
         ab.setTitle("코디 상세");
 
+        myListView = findViewById(R.id.CoordiListView);
         //코디 횟수 증가
         minusBtn = findViewById(R.id.minusCount);
         count = findViewById(R.id.coordi_item_count);
@@ -46,6 +56,8 @@ public class CoordiViewActivity extends AppCompatActivity{
         //수정하기, 삭제하기 버튼
         editBtn = (RelativeLayout) findViewById(R.id.edit_btn);
         removeBtn = (RelativeLayout) findViewById(R.id.remove_btn);
+
+        setData();
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +109,6 @@ public class CoordiViewActivity extends AppCompatActivity{
     }
 
         private void deleteDoc() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("coordi").document("삭제할document이름여기에넣기")
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>(){
@@ -112,5 +123,42 @@ public class CoordiViewActivity extends AppCompatActivity{
                         Log.w("jungeun", "Error deleting document", e);
                     }
                 });
+    }
+
+    private void setData() {
+        //id받아오는거 모름
+        db.collection("coordi")
+                .whereEqualTo("id", 0)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ArrayList<CustomDTO> list = new ArrayList<>();
+                        for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                            CustomDTO item = doc.toObject(CustomDTO.class);
+                            item.setId(doc.getId());
+                            list.add(item);
+                        }
+                        adapter = new CoordiViewAdapter(CoordiViewActivity.this, list);
+                        myListView.setAdapter(adapter);
+                    }
+                });
+        //count 개수 받아오기, 수정한 값 저장하기
+//        DocumentReference docRef = db.collection("coordi").document("asdf");
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                    } else {
+//                        Log.d(TAG, "No such document");
+//                    }
+//                } else {
+//                    Log.d(TAG, "get failed with ", task.getException());
+//                }
+//            }
+//        });
     }
 }

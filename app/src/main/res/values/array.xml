@@ -140,10 +140,10 @@
 
     <string-array name="arrange">
         <item>최신등록순</item>
-        <item>별점높은순</item>
         <item>별점낮은순</item>
-        <item>착용횟수 높은순</item>
+        <item>별점높은순</item>
         <item>착용횟수 낮은순</item>
+        <item>착용횟수 높은순</item>
     </string-array>
     <string-array name="favor_clothes_arrange">
         <item>활용횟수 많은순</item>
