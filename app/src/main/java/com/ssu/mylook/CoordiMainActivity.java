@@ -76,6 +76,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,28 +100,14 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 setData(position);
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-        //setData(0);
+        setData(0);
     }
-    @Override
-    public void onClick(View v) {
-        if (v== springtv){
-            showToast("spring category");
 
-        } else if(v== summertv){
-            showToast("summer category");
-        }else if(v== falltv){
-            showToast("fall category");
-        } else if(v== wintertv){
-            showToast("winter category");
-        }
-    }
 
     private void setData(int position) {
         if(position==0){
@@ -225,7 +212,18 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         toast.show();
     }
 
-
+    @Override
+    public void onClick(View v) {
+        if (v== springtv){
+            showToast("spring category");
+        } else if(v== summertv){
+            showToast("summer category");
+        }else if(v== falltv){
+            showToast("fall category");
+        } else if(v== wintertv){
+            showToast("winter category");
+        }
+    }
 
 
 

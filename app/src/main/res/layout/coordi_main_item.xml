@@ -23,15 +23,15 @@
         android:textColor="#000000"
         android:textStyle="bold" />
 <!--    ratingBar로 수정해야함 -->
-    <RatingBar
+    <TextView
         android:id="@+id/coordi_item_rating"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_margin="15dp"
-        android:rating="2.5"
-        android:layout_gravity="center"
-        android:isIndicator="true"/>
+        android:gravity="center"
+        android:text="★★★☆☆"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/coordi_item_count"
         android:layout_width="180dp"
