@@ -52,7 +52,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     private DatabaseReference mReference;
     private ChildEventListener mChild;
 
-
     TextView springtv;
     TextView summertv;
     TextView falltv;
