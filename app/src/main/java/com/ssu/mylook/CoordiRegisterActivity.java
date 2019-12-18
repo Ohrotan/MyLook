@@ -138,6 +138,8 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             new DBUtil().uploadImage(getBitmapFromView(coordi_v), uniqueID);
             Intent intent = new Intent(this, CoordiInfoRegisterActivity.class);
             intent.putExtra("imgId", uniqueID);
+            intent.putExtra("clothesIds", clotheListAdapter.getClickedIds());
+            intent.putExtra("img", getBitmapFromView(coordi_v));
 
             startActivity(intent);
             finish();
@@ -191,15 +193,15 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
                     builder.setPositiveButton("다음", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            for (int i = 0; i < clotheListAdapter.getClicked().size(); i++) {
+                            for (int i = 0; i < clotheListAdapter.getClickedImgs().size(); i++) {
                                 ImageView img = new ImageView(CoordiRegisterActivity.this);
                                 img.setImageResource(R.drawable.plus);
                                 new DBUtil().setImageViewFromDB(CoordiRegisterActivity.this,
-                                        img, clotheListAdapter.getClicked().get(i));
+                                        img, clotheListAdapter.getClickedImgs().get(i));
                                 img.setOnTouchListener(
                                         new MyDragListener(getResources().getDrawable(R.drawable.red_button),
                                                 delete_btn));
-                              //  img.offsetTopAndBottom(10 * i);
+                                //  img.offsetTopAndBottom(10 * i);
                                 coordi_v.addView(img);
                             }
                             /*ImageView img = new ImageView(CoordiRegisterActivity.this);
@@ -233,7 +235,21 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
     public Bitmap getBitmapFromView(View view) {
         //Define a bitmap with the same size as the view
         delete_btn.setVisibility(View.GONE);
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+
+        int maxSize = 100;
+        int width = view.getWidth();
+        int height = view.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+
+        Bitmap returnedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         //Bind a canvas to it
         Canvas canvas = new Canvas(returnedBitmap);
         //Get the view's background
@@ -248,6 +264,7 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         view.draw(canvas);
         delete_btn.setVisibility(View.VISIBLE);
         //return the bitmap
+
 
         return returnedBitmap;
     }

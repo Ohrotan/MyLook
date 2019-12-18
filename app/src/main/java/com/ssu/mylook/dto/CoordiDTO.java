@@ -7,6 +7,7 @@ public class CoordiDTO {
     String img;
     String name;
     List<String> seasons;
+    List<String> used;
     String tag;
     float rating;
     String regDate;
@@ -62,6 +63,14 @@ public class CoordiDTO {
         this.seasons = seasons;
     }
 
+
+    public List<String> getUsed() {
+        return used;
+    }
+
+    public void setUsed(List<String> used) {
+        this.used = used;
+    }
 
     public String getTag() {
         return tag;
