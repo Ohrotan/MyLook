@@ -1,8 +1,8 @@
 package com.ssu.mylook;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +56,11 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     TextView summertv;
     TextView falltv;
     TextView wintertv;
+    static boolean spring=false;
+    static boolean summer=false;
+    static boolean fall=false;
+    static boolean winter=false;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,10 +111,77 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             public void onNothingSelected(AdapterView<?> parent) {}
         });
         setData(0);
+        myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //ClotheDTO clothe = list.get(position).getID();
+                Intent intent = new Intent(CoordiMainActivity.this,CoordiViewActivity.class);
+
+                //intent.putExtra("coordiID", CoordiViewAdapter.getItem(position).getID());
+
+                ////Bundle bundle = new Bundle();
+
+                startActivity(intent);
+            }
+
+        });
     }
 
 
     private void setData(int position) {
+        final ArrayList<CustomDTO> list = new ArrayList<>();
+        if(spring){
+            db.collection("coordi").whereEqualTo("seasons","봄")
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                item.setId(doc.getId());
+                                list.add(item);
+                            }
+                        }});
+        }
+        if(summer){
+            db.collection("coordi").whereEqualTo("seasons","여름")
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                item.setId(doc.getId());
+                                list.add(item);
+                            }
+                        }});
+        }
+        if(fall){
+            db.collection("coordi").whereEqualTo("seasons","가을")
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                item.setId(doc.getId());
+                                list.add(item);
+                            }
+                        }});
+        }
+        if(winter){
+            db.collection("coordi").whereEqualTo("seasons","겨울")
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                item.setId(doc.getId());
+                                list.add(item);
+                            }
+                        }});
+        }
         if(position==0){
             //ArrayList<CustomDTO> CoordiList;
                     db.collection("coordi").orderBy("regDate", Query.Direction.DESCENDING)
@@ -117,7 +189,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    ArrayList<CustomDTO> list = new ArrayList<>();
                                     for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                         CustomDTO item = doc.toObject(CustomDTO.class);
                                         item.setId(doc.getId());
@@ -136,7 +207,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CustomDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                 CustomDTO item = doc.toObject(CustomDTO.class);
                                 item.setId(doc.getId());
@@ -155,7 +226,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CustomDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                 CustomDTO item = doc.toObject(CustomDTO.class);
                                 item.setId(doc.getId());
@@ -174,7 +245,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CustomDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                 CustomDTO item = doc.toObject(CustomDTO.class);
                                 item.setId(doc.getId());
@@ -193,7 +264,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CustomDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                 CustomDTO item = doc.toObject(CustomDTO.class);
                                 item.setId(doc.getId());
@@ -215,14 +286,50 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v== springtv){
-            showToast("spring category");
+            if (springtv.getCurrentTextColor() != Color.WHITE) {
+                spring=true;
+                springtv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
+                springtv.setTextColor(Color.WHITE);
+                showToast("spring category");
+            } else {
+                spring=false;
+                springtv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
+                springtv.setTextColor(Color.DKGRAY);
+            }
         } else if(v== summertv){
-            showToast("summer category");
+            if (summertv.getCurrentTextColor() != Color.WHITE) {
+                summer=true;
+                summertv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
+                summertv.setTextColor(Color.WHITE);showToast("summer category");
+            } else {
+                summer=false;
+                summertv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
+                summertv.setTextColor(Color.DKGRAY);
+            }
         }else if(v== falltv){
-            showToast("fall category");
+            if (falltv.getCurrentTextColor() != Color.WHITE) {
+                fall=true;
+                falltv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
+                falltv.setTextColor(Color.WHITE);
+                showToast("fall category");
+            } else {
+                fall=false;
+                falltv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
+                falltv.setTextColor(Color.DKGRAY);
+            }
         } else if(v== wintertv){
-            showToast("winter category");
+            if (wintertv.getCurrentTextColor() != Color.WHITE) {
+                winter=true;
+                wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
+                wintertv.setTextColor(Color.WHITE);showToast("winter category");
+            } else {
+                winter=false;
+                wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
+                wintertv.setTextColor(Color.DKGRAY);
+            }
+
         }
+
     }
 
 
