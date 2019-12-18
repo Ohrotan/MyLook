@@ -1,9 +1,10 @@
 package com.ssu.mylook;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,21 +65,23 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
         cancel_btn = findViewById(R.id.canel_btn);
         save_btn = findViewById(R.id.save_btn);
 
+        final String imgId = getIntent().getStringExtra("imgId");
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        String imgId = getIntent().getStringExtra("imgId");
         if (imgId != null) {
-            SystemClock.sleep(1500);
             result.setImg(imgId);
-            new DBUtil().setImageViewFromDB(this, coordi_img, imgId);
-        } else {
-            new DBUtil().setImageViewFromDB(this, coordi_img, "236b2b35-d300-442b-8dfe-3cd826576ef5");
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    coordi_img.setImageBitmap((Bitmap)getIntent().getParcelableExtra("img"));
+                   // new DBUtil().setImageViewFromDB(CoordiInfoRegisterActivity.this, coordi_img, imgId);
+                }
+            });
         }
+        result.setUsed(getIntent().getStringArrayListExtra("clothesIds"));
+
+
     }
+
 
     public void clicked(Button btn) {
         btn.setBackground(getResources().getDrawable(R.drawable.purple_button, null));

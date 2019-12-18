@@ -2,7 +2,6 @@ package com.ssu.mylook.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.ClotheListItem;
@@ -23,7 +21,8 @@ public class ClotheListAdapter extends BaseAdapter {
     ArrayList<ClotheListItem> list;
     ViewHolder viewholder;
 
-    ArrayList<String> clicked = new ArrayList<>();
+    ArrayList<String> clickedImgs = new ArrayList<>();
+    ArrayList<String> clickedIds = new ArrayList<>();
 
     public ClotheListAdapter(Context context) {
         this.context = context;
@@ -43,7 +42,7 @@ public class ClotheListAdapter extends BaseAdapter {
 
     public ClotheListAdapter(Context context, ArrayList<ClotheListItem> list) {
         this.context = context;
-        list.addAll(list);
+        //list.addAll(list);
         this.list = list;
     }
 
@@ -66,12 +65,20 @@ public class ClotheListAdapter extends BaseAdapter {
         return list.get(position).getImage();
     }
 
-    public ArrayList<String> getClicked() {
-        return clicked;
+    public ArrayList<String> getClickedImgs() {
+        return clickedImgs;
     }
 
-    public void setClicked(ArrayList<String> clicked) {
-        this.clicked = clicked;
+    public void setClickedImgs(ArrayList<String> clicked) {
+        this.clickedImgs = clicked;
+    }
+
+    public ArrayList<String> getClickedIds() {
+        return clickedIds;
+    }
+
+    public void setClickedIds(ArrayList<String> clicked) {
+        this.clickedIds = clicked;
     }
 
     @Override
@@ -91,38 +98,46 @@ public class ClotheListAdapter extends BaseAdapter {
         viewholder.coordi_clothe_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(context,""+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
-
-                clicked.add(list.get(position).getImage());
+                if (isChecked) {
+                    clickedImgs.add(list.get(position).getImage());
+                    clickedIds.add(list.get(position).getId());
+                } else {
+                    clickedImgs.remove(list.get(position).getImage());
+                    clickedIds.remove(list.get(position).getId());
+                }
+                //  Toast.makeText(context,""+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
             }
+
         });
 
         viewholder.clothe_name.setText(list.get(position).getName());
         new DBUtil().setImageViewFromDB(context, viewholder.clothe_img, list.get(position).getImage());
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             //   Toast.makeText(context,""+position,Toast.LENGTH_SHORT).show();
-
-                if (viewholder.coordi_clothe_checkBox.isChecked()) {
-                    viewholder.coordi_clothe_checkBox.setChecked(false);
-                    clicked.remove(list.get(position).getImage());
-                } else {
-             //       Toast.makeText(context,""+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
-                    viewholder.coordi_clothe_checkBox.setChecked(true);
-
-
-
-                }
-
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context,"click"+position,Toast.LENGTH_SHORT).show();
+//
+//                if (viewholder.coordi_clothe_checkBox.isChecked()) {
+//                    viewholder.coordi_clothe_checkBox.setChecked(false);
+//                    clicked.remove(list.get(position).getImage());
+//                } else {
+//                    Toast.makeText(context,"unclick"+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
+//                    viewholder.coordi_clothe_checkBox.setChecked(true);
+//
+//
+//
+//                }
+//
+//            }
+//        });
         return convertView;
     }
 
 
-} class ViewHolder {
+}
+
+class ViewHolder {
 
     ImageView clothe_img;
     TextView clothe_name;
