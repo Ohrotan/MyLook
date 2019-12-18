@@ -7,22 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.ClotheDTO;
-import com.ssu.mylook.dto.ClotheItem;
 import com.ssu.mylook.dto.ClotheTitleDTO;
 import com.ssu.mylook.util.DBUtil;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 
 public class ClosetViewAdapter extends BaseAdapter {
@@ -41,7 +31,6 @@ public class ClosetViewAdapter extends BaseAdapter {
     public ClosetViewAdapter(Context context, ArrayList<ClotheDTO> items) {
         this.context = context;
         this.items = items;
-        this.items.addAll(items);
     }
 
     class ViewHolder {

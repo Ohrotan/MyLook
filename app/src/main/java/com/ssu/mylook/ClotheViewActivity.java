@@ -53,14 +53,8 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
         edit_clothe_info.setOnClickListener(this);
         delete_clothe.setOnClickListener(this);
 
-        //id불러오기가 안되는 상황
-
-
-        //clotheID =intent.getStringExtra("position");
 
         clotheID=getIntent().getStringExtra("clotheID");
-        //Log.d(TAG, clotheID); //id가 안넘어와서 출력도 해볼수없음
-
 
         if (clotheID == null) {
             clotheID = "IRv7OYfjuGzp8xSijrTZ";
@@ -76,8 +70,8 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
         Intent intent;
         if(v==edit_clothe_info)
         {
-            //.update()
             intent = new Intent(this,ClotheEditActivity.class);
+            intent.putExtra("clotheID",clotheID);
             startActivity(intent);
         }
         else if(v==delete_clothe)
