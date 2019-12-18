@@ -16,6 +16,7 @@ public class ClotheItem {
     }
 
     public ClotheItem(String title, String image, String id, String getBitmap){
+        super();
         this.title=title;
         this.image=image;
         this.id=id;
@@ -55,5 +56,8 @@ public class ClotheItem {
         this.getBitmap = bitmap;
     }
 
-
+    @Override
+    public String toString(){
+        return "ClotheDTO[id="+id+",title="+title+",image="+image+"]";
+    }
 }

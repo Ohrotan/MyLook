@@ -6,11 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -24,22 +23,24 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.ClosetViewAdapter;
 
+import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.ClotheItem;
-
-import org.w3c.dom.Text;
+import com.ssu.mylook.dto.ClotheTitleDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ClotheSearchLayout extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ClotheSearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
-
+    private static final String TAG="MyTag";
     GridView gridView;
     ClosetViewAdapter closetViewAdapter;
     SearchView searchView;
-    String keyword;
+    String[] clotheNameList;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<ClotheItem> list = new ArrayList<>();
 
+  //  int j=list.size();
+   // int k=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class ClotheSearchLayout extends AppCompatActivity implements SearchView.
         setContentView(R.layout.activity_clothe_search_layout);
 
         searchView=(SearchView) findViewById(R.id.search_view);
+
+        clotheNameList = new String[10];
         CharSequence query = searchView.getQuery();
         boolean isIconfied=searchView.isIconfiedByDefault();
 
@@ -54,7 +57,8 @@ public class ClotheSearchLayout extends AppCompatActivity implements SearchView.
         searchView.setQueryHint("검색어 입력");
 
         gridView=(GridView)findViewById(R.id.gridView);
-        setData(0);
+        setData(0); //setAdapter
+
 
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -66,14 +70,20 @@ public class ClotheSearchLayout extends AppCompatActivity implements SearchView.
         searchView.setOnQueryTextListener(this);
 
 
-        closetViewAdapter=new ClosetViewAdapter(this);
-        gridView.setAdapter(closetViewAdapter);
-
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                Toast.makeText(getApplicationContext(),"title:"+closetViewAdapter.getItem(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //ClotheDTO clothe = list.get(position).getID();
+                Intent intent = new Intent(ClotheSearchActivity.this,ClotheViewActivity.class);
+                Log.d(TAG, closetViewAdapter.getItem(position).getID());
+
+                    intent.putExtra("clotheID",closetViewAdapter.getItem(position).getID());
+
+                //Bundle bundle = new Bundle();
+
+                startActivity(intent);
             }
+
         });
 
     }
@@ -96,7 +106,7 @@ public class ClotheSearchLayout extends AppCompatActivity implements SearchView.
                spring_menu.setTextColor(Color.DKGRAY);
            }
        }
-       else if(v==summer_menu){
+       if(v==summer_menu){
            if (summer_menu.getCurrentTextColor() != Color.WHITE) {
                summer_menu.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
                summer_menu.setTextColor(Color.WHITE);
@@ -105,7 +115,7 @@ public class ClotheSearchLayout extends AppCompatActivity implements SearchView.
                summer_menu.setTextColor(Color.DKGRAY);
            }
        }
-       else if(v==fall_menu) {
+       if(v==fall_menu) {
            if (fall_menu.getCurrentTextColor() != Color.WHITE) {
                fall_menu.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
                fall_menu.setTextColor(Color.WHITE);
@@ -114,7 +124,7 @@ public class ClotheSearchLayout extends AppCompatActivity implements SearchView.
                fall_menu.setTextColor(Color.DKGRAY);
            }
        }
-       else if(v==winter_menu){
+       if(v==winter_menu){
            if (winter_menu.getCurrentTextColor() != Color.WHITE) {
                winter_menu.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
                winter_menu.setTextColor(Color.WHITE);
@@ -166,19 +176,22 @@ public class ClotheSearchLayout extends AppCompatActivity implements SearchView.
     }
 
     private void setData(int position) {
+
         if(position==0){
             db.collection("clothes").orderBy("regdate", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<ClotheItem> list = new ArrayList<>();
+                            ArrayList<ClotheDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                ClotheItem item = doc.toObject(ClotheItem.class);
-                                item.setId(doc.getId());
+                                ClotheDTO item = doc.toObject(ClotheDTO.class);
+                                item.setID(doc.getId());
                                 list.add(item);
+                                //clotheNameList[k]+=item.getTTL().toString();
+                               // Toast.makeText(getApplicationContext(),"옷 이름: "+clotheNameList[k].toString(),Toast.LENGTH_LONG);
                             }
-                            closetViewAdapter = new ClosetViewAdapter(ClotheSearchLayout.this,list);
+                            closetViewAdapter = new ClosetViewAdapter(ClotheSearchActivity.this,list);
                             gridView.setAdapter(closetViewAdapter);
                         }});
 

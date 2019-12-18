@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,6 +20,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.util.DBUtil;
+
+import java.util.ArrayList;
 
 public class ClotheViewActivity extends ClotheRegisterActivity implements View.OnClickListener {
     RelativeLayout edit_clothe_info;
@@ -49,12 +53,20 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
         edit_clothe_info.setOnClickListener(this);
         delete_clothe.setOnClickListener(this);
 
-        //아직 인텐트로 아이디 받아오기 전
-        clotheID = getIntent().getStringExtra("coltheID");
+        //id불러오기가 안되는 상황
+
+
+        //clotheID =intent.getStringExtra("position");
+
+        clotheID=getIntent().getStringExtra("clotheID");
+        //Log.d(TAG, clotheID); //id가 안넘어와서 출력도 해볼수없음
+
+
         if (clotheID == null) {
-            clotheID = "bjJwiHkTuC8SP7341iuF";
+            clotheID = "IRv7OYfjuGzp8xSijrTZ";
         }
-        clotheID = "bjJwiHkTuC8SP7341iuF";
+
+        //clotheID = "bjJwiHkTuC8SP7341iuF";
 
         getData(clotheID);
     }
@@ -124,6 +136,7 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     public void getData(String id) {
         final String TAG = "clothe database";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Toast.makeText(getApplicationContext(),""+clotheID.toString(),Toast.LENGTH_LONG);
         db.collection("clothes").document(id)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -222,6 +223,7 @@ public class DBUtil {
                 });
     }
 
+
     public ArrayList<CustomDTO> getDatas(String collection, String criteria, boolean order) {
         final ArrayList<CustomDTO> coordiView = new ArrayList<>();
         if (order) { //내림차순 정렬
@@ -313,6 +315,7 @@ public class DBUtil {
     // ex)        ImageView img = new ImageView(this);
     //            img.setImageResource(R.drawable.pre_img);
     //            DBUtil.setImageViewFromDB(this, img, "coordi1");
+
     public void setImageViewFromDB(final Context con, final ImageView imageView, String name) {
         StorageReference httpsReference = FirebaseStorage.getInstance()
                 .getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/" +
@@ -328,6 +331,5 @@ public class DBUtil {
         });
 
     }
-
 
 }
