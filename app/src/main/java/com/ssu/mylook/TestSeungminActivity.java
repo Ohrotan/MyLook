@@ -51,7 +51,7 @@ public class TestSeungminActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);
         }
         else if(v==btn5){
-            intent = new Intent(this,ClotheSearchLayout.class);
+            intent = new Intent(this, ClotheSearchActivity.class);
             startActivity(intent);
         }
 

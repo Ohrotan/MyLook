@@ -60,7 +60,7 @@
             android:exported="false"
             android:label="UnfavoriteClotheActivity"></activity>
         <activity android:name=".CoordiInfoEditActivity" />
-        <activity android:name=".ClotheSearchLayout" />
+        <activity android:name=".ClotheSearchActivity" />
         <activity android:name=".CoordiInfoRegisterActivity" />
         <activity
             android:name=".CoordiRegisterActivity"

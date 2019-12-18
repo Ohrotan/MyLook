@@ -9,35 +9,45 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ssu.mylook.ClotheSearchLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.ClotheItem;
+import com.ssu.mylook.dto.ClotheTitleDTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 public class ClosetViewAdapter extends BaseAdapter {
-    private ArrayList<ClotheItem> items ;
-    Context context;
 
-    public ClosetViewAdapter(Context context)
-    {
-        this.context=context;
-        items=new ArrayList<>();
+    private List<ClotheTitleDTO> clotheNames;
+    private ArrayList<ClotheTitleDTO> arrayList;
+    private ArrayList<ClotheDTO> items;
+    private Context context;
+    ClotheDTO itemDTO;
+
+    public ClosetViewAdapter(Context context) {
+        this.context = context;
+        items = new ArrayList<>();
     }
 
-    public ClosetViewAdapter(Context context, ArrayList<ClotheItem> items) {
+    public ClosetViewAdapter(Context context, ArrayList<ClotheDTO> items) {
         this.context = context;
         this.items = items;
         this.items.addAll(items);
-
     }
 
     class ViewHolder {
         ImageView clothe_img;
         TextView clothe_title;
+        String id;
     }
 
     @Override
@@ -46,14 +56,14 @@ public class ClosetViewAdapter extends BaseAdapter {
     }
 
 
-    public void addItem(ClotheItem clotheItem) {
+    public void addItem(ClotheDTO clotheItem) {
 
         items.add(clotheItem);
     }
 
 
     @Override
-    public ClotheItem getItem(int position) {
+    public ClotheDTO getItem(int position) {
         return items.get(position);
     }
 
@@ -64,7 +74,7 @@ public class ClosetViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-       ClosetViewAdapter.ViewHolder holder;
+        ClosetViewAdapter.ViewHolder holder;
         //항목 레이아웃 초기화
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -74,16 +84,17 @@ public class ClosetViewAdapter extends BaseAdapter {
             holder.clothe_title = (TextView) convertView.findViewById(R.id.closet_textview);
 
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ClosetViewAdapter.ViewHolder) convertView.getTag();
         }
-        Toast.makeText(context, ""+position, Toast.LENGTH_LONG).show();
-        ClotheItem itemDTO = items.get(position);
+        //Toast.makeText(context, "" + position, Toast.LENGTH_LONG).show();
+        itemDTO = items.get(position);
 
 
-        new DBUtil().setImageViewFromDB(context,holder.clothe_img,itemDTO.getImage());
-        holder.clothe_title.setText(itemDTO.getTitle());
-        //Toast.makeText(context, holder.clothe_title+ "", Toast.LENGTH_LONG).show(); //옷 이름이 안뜸
+        new DBUtil().setImageViewFromDB(context, holder.clothe_img, itemDTO.getIMAGE());
+        holder.clothe_title.setText(itemDTO.getTTL());
+
+        //Toast.makeText(context, holder.clothe_title.getText().toString() + "", Toast.LENGTH_LONG).show(); //옷 이름이 안뜸
 
         return convertView;
     }
@@ -94,13 +105,14 @@ public class ClosetViewAdapter extends BaseAdapter {
         if (charText.length() == 0) {
             items.addAll(items);
         } else {
-            for (ClotheItem wp : items) {
+            for (ClotheDTO wp : items) {
                 //getTitle()에 문제가 있어서 안뜨는거같음
-                if (wp.getTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (wp.getTTL().toLowerCase(Locale.getDefault()).contains(charText)) {
                     items.add(wp);
                 }
             }
+            //}
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
     }
 }

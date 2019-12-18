@@ -81,25 +81,30 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                Toast.makeText(getApplicationContext(),"title:"+closetViewAdapter.getItem(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"title:"+closetViewAdapter.getItem(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    private void setData(int position) {
+    private void setData(final int position) {
+        final String TAG = "clothe database";
         if(position==0){
             db.collection("clothes").orderBy("regdate", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<ClotheItem> list = new ArrayList<>();
+                            ArrayList<ClotheDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                ClotheItem item = doc.toObject(ClotheItem.class);
-                                item.setId(doc.getId());
+                                ClotheDTO item = doc.toObject(ClotheDTO.class);
+                                item.setID(doc.getId());
                                 list.add(item);
+                                Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
                             }
+
+
                             closetViewAdapter = new ClosetViewAdapter(ClosetActivity.this,list);
                             gridView.setAdapter(closetViewAdapter);
                         }});
