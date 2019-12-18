@@ -36,11 +36,11 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
         save= findViewById(R.id.cancel_btn);
         back= findViewById(R.id.save_btn);
 
-        clotheID = getIntent().getStringExtra("coltheID");
+        clotheID = getIntent().getStringExtra("clotheID");
         if (clotheID == null) {
             clotheID = "IRv7OYfjuGzp8xSijrTZ";
         }
-        clotheID = "IRv7OYfjuGzp8xSijrTZ";
+        //clotheID = "IRv7OYfjuGzp8xSijrTZ";
         getData(clotheID);
 
         save.setOnClickListener(this);
@@ -257,9 +257,9 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
                 color_btn[10].setTextColor(Color.DKGRAY);
             }
         }
-        else if(v==btn_save){
-            String uniqueID = UUID.randomUUID().toString();
-            new DBUtil().uploadImage(getBitmap, uniqueID);
+        else if(v==btn_save){ //다시 저장
+            //String uniqueID = UUID.randomUUID().toString();
+            //new DBUtil().uploadImage(getBitmap, uniqueID);
 
             String str = "옷 이름: " + clothe_title.getText()
                     + "/계절:";
@@ -290,7 +290,7 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
 
             //데이터베이스에 저장
-            result.setIMAGE(uniqueID);
+            //result.setIMAGE(uniqueID);
             result.setTTL(clothe_title.getText().toString());
             result.setMEMO(memo.getText().toString());
             for (int i = 0; i < 11; i++) {

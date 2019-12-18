@@ -10,131 +10,35 @@ public class ClotheDTO {
     private String image;
     private String title;
     private String sort;
-    private List<String> season; //중복선택
+    private List<String> seasons; //중복선택
     private String color;
     private String memo;
     private String regDate;
-    private String imageBitmap;
 
-    public ClotheDTO()
-    {
+
+
+    public ClotheDTO() {
         super();
     }
-    public ClotheDTO(String id, String image, String title, String sort,  List<String> season, String color, String memo, String regDate,String imageBitmap)
+
+
+    public ClotheDTO(String id, String image, String title, String sort,  List<String> seasons, String color, String memo, String regDate)
     {
         super();
         this.id=id;
         this.image=image;
         this.title=title;
         this.sort=sort;
-        this.season=season;
+        this.seasons=seasons;
         this.memo=memo;
         this.color=color;
         this.regDate=regDate;
-        this.imageBitmap=imageBitmap;
-    }
-
-    public String getID()
-    {
-        return id;
-    }
-
-    public void setID(String id)
-    {
-        this.id=id;
     }
 
 
-    public String getIMAGE()
-    {
-        return image;
-    }
-
-    public void setIMAGE(String image)
-    {
-        this.image=image;
-    }
-
-
-    public String getTTL()
-    {
-        return title;
-    }
-
-    public void setSORT(String sort)
-    {
-        this.sort=sort;
-    }
-
-
-    public String getSORT()
-    {
-        return sort;
-    }
-
-    public void setTTL(String title)
-    {
-        this.title=title;
-    }
-
-
-    public List<String> getSEASON()
-    {
-        return season;
-    }
-
-    public void setSEASON(List<String> season)
-    {
-        this.season=season;
-    }
-
-
-    public String getCOLOR()
-    {
-        return color;
-    }
-
-    public void setCOLOR(String color)
-    {
-        this.color=color;
-    }
-
-
-    public String getMEMO()
-    {
-        return memo;
-    }
-
-    public void setMEMO(String memo)
-    {
-        this.memo=memo;
-    }
-
-
-    public String getImageBitmap()
-    {
-        return imageBitmap;
-    }
-
-    public void setImageBitmap(String bitmap)
-    {
-        this.imageBitmap=bitmap;
-    }
-
-
-
-    public String getREGDATE()
-    {
-        return regDate;
-    }
-
-    public void setREGDATE(String regDate)
-    {
-        this.regDate=regDate;
-    }
 
     @Override
     public String toString(){
-        return "ClotheDTO[id="+id+",title="+title+",image="+image+",sort="+sort+",season="+season+",memo="+memo+",color="+color+",date="+regDate+"]";
+        return "ClotheDTO[id="+id+",title="+title+",image="+image+",sort="+sort+",season="+seasons+",memo="+memo+",color="+color+",date="+regDate+"]";
     }
 }

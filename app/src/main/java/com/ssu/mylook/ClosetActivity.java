@@ -78,12 +78,19 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
 
         //gridView.setAdapter(closetViewAdapter);
         setData(0);
-        gridView.setOnItemClickListener(new OnItemClickListener() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-               // Toast.makeText(getApplicationContext(),"title:"+closetViewAdapter.getItem(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //ClotheDTO clothe = list.get(position).getID();
+                Intent intent = new Intent(ClosetActivity.this,ClotheViewActivity.class);
 
+                intent.putExtra("clotheID",closetViewAdapter.getItem(position).getID());
+
+                //Bundle bundle = new Bundle();
+
+                startActivity(intent);
             }
+
         });
     }
 
