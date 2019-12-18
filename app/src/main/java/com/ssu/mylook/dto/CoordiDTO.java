@@ -6,8 +6,8 @@ public class CoordiDTO {
     String id;
     String img;
     String name;
-    List<String> seasons;
     List<String> used;
+    List<String> seasons;
     String tag;
     float rating;
     String regDate;

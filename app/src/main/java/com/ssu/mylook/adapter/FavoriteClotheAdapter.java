@@ -8,17 +8,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.Custom3DTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 
 public class FavoriteClotheAdapter extends BaseAdapter {
-    private ArrayList<CustomDTO> listCustom = new ArrayList<>();
+    private ArrayList<Custom3DTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class FavoriteClotheAdapter extends BaseAdapter {
         listCustom = new ArrayList<>();
     }
 
-    public FavoriteClotheAdapter(Context context, ArrayList<CustomDTO> list) {
+    public FavoriteClotheAdapter(Context context, ArrayList<Custom3DTO> list) {
         this.context=context;
         list.addAll(list);
         this.listCustom=list;
@@ -58,7 +59,8 @@ public class FavoriteClotheAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         CustomViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_clothe_item,null,false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.favorite_clothe_item, null);
 
             holder = new CustomViewHolder();
             holder.textRank= (TextView)convertView.findViewById(R.id.item_ranking);
@@ -73,20 +75,20 @@ public class FavoriteClotheAdapter extends BaseAdapter {
             holder = (CustomViewHolder) convertView.getTag();
         }
 
-        CustomDTO dto = listCustom.get(position);
+        Custom3DTO dto = listCustom.get(position);
 
         //holder.textRank.setText(dto.getRank());
         //holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getName());
         new DBUtil().setImageViewFromDB(context,holder.imageView,dto.getImg());
-        //holder.textContent.setText(dto.getContent());
-
-        holder.textRank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), (position+1)+"번째", Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.textRank.setText(position+1);
+        holder.textContent.setText(dto.getCount());
+//        holder.textRank.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(v.getContext(), (position+1)+"번째", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         return convertView;
     }
@@ -99,7 +101,7 @@ public class FavoriteClotheAdapter extends BaseAdapter {
     }
 
     // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(CustomDTO dto) {
+    public void addItem(Custom3DTO dto) {
         listCustom.add(dto);
     }
 }

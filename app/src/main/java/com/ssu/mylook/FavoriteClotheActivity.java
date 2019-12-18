@@ -12,10 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.FavoriteClotheAdapter;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.Custom3DTO;
 
 import java.util.ArrayList;
 
@@ -50,14 +49,14 @@ public class FavoriteClotheActivity extends AppCompatActivity {
 
     private void setData(int position) {
         if(position==0){
-            db.collection("clothes").orderBy("ttl", Query.Direction.DESCENDING)
+            db.collection("clothes").orderBy("used")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<CustomDTO> list = new ArrayList<>();
+                            ArrayList<Custom3DTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                Custom3DTO item = doc.toObject(Custom3DTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -65,14 +64,14 @@ public class FavoriteClotheActivity extends AppCompatActivity {
                             myListView.setAdapter(adapter);
                         }});
         } else if(position==1){
-            db.collection("clothes").orderBy("ttl", Query.Direction.DESCENDING)
+            db.collection("clothes").orderBy("used")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<CustomDTO> list = new ArrayList<>();
+                            ArrayList<Custom3DTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                Custom3DTO item = doc.toObject(Custom3DTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
