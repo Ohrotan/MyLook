@@ -63,11 +63,11 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         ActionBar ab = getSupportActionBar();
         ab.setTitle("코디 상세");
 
-        myListView = findViewById(R.id.CoordiListView);
+        //myListView = findViewById(R.id.CoordiListView);
         //코디 횟수 증가
-        header = getLayoutInflater().inflate(R.layout.coordi_view_item, null, false);
-        minusBtn = (ImageButton)header.findViewById(R.id.minusCount);
-        plusBtn = (ImageButton)header.findViewById(R.id.plusCount);
+//        header = getLayoutInflater().inflate(R.layout.coordi_view_item, null, false);
+//        minusBtn = (ImageButton)header.findViewById(R.id.minusCount);
+//        plusBtn = (ImageButton)header.findViewById(R.id.plusCount);
 //        mButton.setOnClickListener(new View.OnClickListener() {
 ////            @Override  public void onClick(View v) {
 ////                 mList.addFooterView(header);
@@ -75,9 +75,9 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
 ////                 });
 
 
-        //minusBtn = findViewById(R.id.minusCount);
-        count = findViewById(R.id.coordi_item_count);
-       // plusBtn = findViewById(R.id.plusCount);
+        minusBtn = findViewById(R.id.minusCount);
+        //count = findViewById(R.id.coordi_item_count);
+        plusBtn = findViewById(R.id.plusCount);
 
         //수정하기, 삭제하기 버튼
         editBtn = (RelativeLayout) findViewById(R.id.edit_btn);
@@ -96,6 +96,9 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         removeBtn.setOnClickListener(this);
         minusBtn.setOnClickListener(this);
         plusBtn.setOnClickListener(this);
+
+        //coordiID="RZoI85VFpuiLs6kO6EZn";
+
 
         coordiID=getIntent().getStringExtra("coordiID");
         getData(coordiID);
@@ -195,6 +198,11 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                         Log.w("jungeun", "Error deleting document", e);
                     }
                 });
+        Intent intent=new Intent(this,CoordiMainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();//저장
     }
     public void setField(CustomDTO result) {
         new DBUtil().setImageViewFromDB(this, coordi_view_img, result.getImg());
@@ -237,7 +245,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 results = document.toObject(CustomDTO.class);
-                                Log.v(TAG, "DocumentSnapshot data: " + results.toString());
+                                //Log.v(TAG, "DocumentSnapshot data: " + results.toString());
                                 setField(results);
                             } else {
                                 Log.v(TAG, "No such document");
