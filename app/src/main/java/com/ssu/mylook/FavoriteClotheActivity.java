@@ -47,7 +47,7 @@ public class FavoriteClotheActivity extends AppCompatActivity {
         setData(0);
     }
 
-    // ranks, arrResId, titles, contents를 서버에서 가져온 데이터라고 가정.(일단레이아웃부터)
+
     private void setData(int position) {
         if(position==0){
             db.collection("clothes").orderBy("ttl", Query.Direction.DESCENDING)
