@@ -69,14 +69,28 @@
         android:layout_height="fill_parent"
         android:layout_weight="100"
         android:orientation="vertical">
-        <SearchView
-            android:id="@+id/search_view"
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/search_view"
+            android:layout_width="0dp"
+            android:layout_weight="9"
+            android:layout_height="wrap_content"
             android:inputType="text"
-            android:iconifiedByDefault="false"
-            android:queryHint="검색할 단어를 입력하세요." />
+            android:hint="검색할 단어를 입력하세요." />
+
+           <ImageButton
+               android:id="@+id/search_btn"
+               android:layout_width="0dp"
+               android:layout_height="40dp"
+               android:layout_weight="1"
+               android:src ="@drawable/search"/>
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

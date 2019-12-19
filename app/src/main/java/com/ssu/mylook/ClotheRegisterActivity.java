@@ -67,6 +67,8 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     String selectedSort;
     String selectedColor;
 
+    int shot=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -453,6 +455,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
             super.onActivityResult(requestCode, resultCode, intent);
             if(requestCode==1 && resultCode== Activity.RESULT_OK)
             {
+                 shot=1;
                 //Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
                 Bitmap bitmap= BitmapFactory.decodeFile(imageFilePath);
                 Toast.makeText(this,"저장경로:"+imageFilePath,Toast.LENGTH_SHORT).show();

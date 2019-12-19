@@ -2,35 +2,49 @@ package com.ssu.mylook.dto;
 
 public class FavorDTO {
     String id;
-    String img;
-    String name;
+    String image;
+    String title;
     int count;
 
     public FavorDTO() {
-        super();
-    }
-    public FavorDTO(String id, String img, String name, int count){
-        this.id=id;this.img=img;this.name=name;this.count=count;
     }
 
-    public String getImg(){
-        return img;
+    public FavorDTO(String id, String image, String title, int count) {
+        this.id = id;
+        this.image = image;
+        this.title = title;
+        this.count = count;
     }
-    public void setImg(String img){
-        this.img=img;
-    }
-    public void setName(String name){this.name=name;}
-    public String getName(){return name;}
-    public int getCount(){
-        return count;
-    }
-    public void setCount(int count){
-        this.count=count;
-    }
+
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
