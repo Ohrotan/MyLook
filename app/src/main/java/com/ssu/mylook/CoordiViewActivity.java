@@ -211,6 +211,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void setField(CoordiDTO result) {
+        int check=0;
         new DBUtil().setImageViewFromDB(this, coordi_view_img, result.getImg());
         coordi_view_name.setText(result.getName());//name
         coordi_view_rating.setRating(result.getRating()); //rating
@@ -220,17 +221,29 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         for (String s : result.getSeasons()) {
             switch (s) {
                 case "봄":
-                    seasons = "봄";
+                    check++;
+                    seasons="봄 ";
                     break;
                 case "여름":
-                    seasons += " ,여름";
+                    if(check==0){
+                        seasons+="여름 ";}
+                    else
+                        seasons+=", 여름";
+                    check++;
                     break;
                 case "가을":
-                    seasons += " ,가을";
+                    if(check==0){
+                        seasons+="가을 ";}
+                    else
+                        seasons+=", 가을";
+                    check++;
                     break;
                 case "겨울":
-                    seasons += " ,겨울";
-                    break;
+                    if(check==0){
+                        seasons+="겨울 ";}
+                    else
+                        seasons+=", 겨울";
+                    check++;
                 default:
                     break;
             }
