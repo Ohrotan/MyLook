@@ -59,7 +59,7 @@ public class JungEunDBTest extends AppCompatActivity implements View.OnClickList
                                 Log.d("jungeun", "id = "+CoordiDTO.getId());
                                 Log.d("jungeun", "name = "+CoordiDTO.getName());
                                 Log.d("jungeun", "img = " + CoordiDTO.getImg());
-                                Log.d("jungeun","regDate = "+CoordiDTO.getDate());
+                                Log.d("jungeun","regDate = "+CoordiDTO.getRegDate());
                                // Log.d("jungeun","seasons = "+CoordiDTO.getSeason());
                                 Log.d("jungeun","tag = "+CoordiDTO.getTag());
                                 Log.d("jungeun","count = "+CoordiDTO.getCount());
@@ -87,7 +87,7 @@ public class JungEunDBTest extends AppCompatActivity implements View.OnClickList
                         CoordiDTO CoordiDTO = document.toObject(CoordiDTO.class);
                         Log.d("jungeun", "name = "+CoordiDTO.getName());
                         Log.d("jungeun", "img = " + CoordiDTO.getImg());
-                        Log.d("jungeun","regDate = "+CoordiDTO.getDate());
+                        Log.d("jungeun","regDate = "+CoordiDTO.getRegDate());
                        // Log.d("jungeun","seasons = "+CoordiDTO.getSeason());
                         Log.d("jungeun","tag = "+CoordiDTO.getTag());
                         Log.d("jungeun","count = "+CoordiDTO.getCount());
