@@ -32,6 +32,8 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     String clotheID;
     private static final String TAG = "MyTag";
 
+    public static final int REQUEST_FROM_VIEW=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +67,18 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     @Override
     public void onClick(View v) {
         Intent intent;
-        if (v == edit_clothe_info) {
-            intent = new Intent(this, ClotheEditActivity.class);
-            intent.putExtra("clotheID", clotheID);
-            Log.v("cedit view->edit click", clotheID);
-            startActivityForResult(intent, 1);
-        } else if (v == delete_clothe) {
+
+        if(v==edit_clothe_info)
+        {
+            //edit한테 보냄. 제대로 작동 함.
+            intent = new Intent(this,ClotheEditActivity.class);
+            intent.putExtra("clotheID",clotheID);
+            intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            startActivity(intent);
+            finish();
+        }
+        else if(v==delete_clothe)
+        {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("clothes").document(clotheID)
                     .delete()
@@ -97,21 +105,21 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     }
 
 
-   /* @Override
+//손 댈 필요 없음
    public void onActivityResult(int requestCode,int resultCode,Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG,"들어오긴했는데 조건이 다름");
-        if(requestCode==1&&resultCode==RESULT_OK)
+        if(requestCode==REQUEST_FROM_VIEW&&resultCode==RESULT_OK)
         {
             Log.d(TAG,"들어옴");
             clotheID = getIntent().getStringExtra("clotheID");
             getData(clotheID);
             //String resultMsg=data.getStringExtra("clotheID");
            //데이터 다시 셋팅
+            Intent intent = new Intent(this,ClosetActivity.class);
         }
-    }
 
-    */
+    }
 
 
     public void setField(ClotheDTO result) {

@@ -41,6 +41,8 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
     GridView gridView;
     ClosetViewAdapter closetViewAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public static final int REQUEST_FROM_MAIN=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
 
                 //Bundle bundle = new Bundle();
 
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_FROM_MAIN);
             }
 
         });
@@ -118,11 +120,21 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+<<<<<<< HEAD
+        if(requestCode==REQUEST_FROM_MAIN){
+        if(resultCode==RESULT_OK)
+        {
+=======
         if (resultCode == RESULT_OK) {
+>>>>>>> 41a52b566c7692f3560413ba7b2e9468801b4b0d
             //String resultMsg=data.getStringExtra("clotheID");
             setData();
         }
     }
+<<<<<<< HEAD
+}
+    private void setData(final int position) {
+=======
 
     private void setDataAll() {
         selectedCates.add("상의");
@@ -180,6 +192,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void setData() {
+>>>>>>> 41a52b566c7692f3560413ba7b2e9468801b4b0d
         final String TAG = "clothe database";
         Log.v("seasons", selectedSeasons.toString());
         Log.v("seasons", selectedCates.toString());

@@ -35,13 +35,16 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
         save = findViewById(R.id.cancel_btn);
         back = findViewById(R.id.save_btn);
 
+
         clotheID = getIntent().getStringExtra("clotheID");
+
         if (clotheID == null) {
             clotheID = "IRv7OYfjuGzp8xSijrTZ";
         }
         Log.v("cedit", clotheID);
         //clotheID = "IRv7OYfjuGzp8xSijrTZ";
-        getData(clotheID);
+
+        getData(clotheID); //setField까지 다 해줌
 
         save.setOnClickListener(this);
         back.setOnClickListener(this);
@@ -302,10 +305,12 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
 
 
             Intent intent = new Intent(this, ClotheViewActivity.class);
-            setResult(RESULT_OK, intent);
+
+
             intent.putExtra("clotheID", clotheID);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
+            setResult(RESULT_OK,intent);
+           // startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
         } else if (v == back) {
