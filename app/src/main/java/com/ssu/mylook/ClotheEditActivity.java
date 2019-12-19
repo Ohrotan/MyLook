@@ -323,8 +323,9 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             new DBUtil().updateClothe(clotheID, result);
 
 
-            Intent intent = new Intent(this, ClosetActivity.class);
+            Intent intent = new Intent(this, ClotheViewActivity.class);
             setResult(RESULT_OK,intent);
+            intent.putExtra("clotheID",clotheID);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
             overridePendingTransition(0, 0);

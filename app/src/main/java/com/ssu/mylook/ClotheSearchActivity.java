@@ -65,7 +65,7 @@ public class ClotheSearchActivity extends AppCompatActivity implements View.OnCl
                             ClotheDTO item = doc.toObject(ClotheDTO.class);
                             item.setId(doc.getId());
                             list.add(item);
-                            Toast.makeText(getApplicationContext(), "" + item.getTitle(), Toast.LENGTH_LONG).show();
+
                             //Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
                         }
                     }
@@ -96,7 +96,6 @@ public class ClotheSearchActivity extends AppCompatActivity implements View.OnCl
             if (v == search_btn) {
                 //검색한 단어
                 search_keyword = editText.getText().toString();
-                Toast.makeText(getApplicationContext(), "" + search_keyword, Toast.LENGTH_LONG).show();
                 resultList = new ArrayList<>();
                 //검색한 단어와 리스트의 단어를 비교
                for(ClotheDTO dto : list){
