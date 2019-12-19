@@ -5,7 +5,7 @@ package com.ssu.mylook.dto;
 import java.util.List;
 import java.util.Map;
 
-public class CoordiDTO {
+public class CoordiDTO implements Comparable<CoordiDTO> {
     private String name;
     private String img;
     private String regDate;
@@ -151,5 +151,10 @@ public class CoordiDTO {
 
     public void setRank(int rank) {
         this.rank = rank;
+    }
+
+    @Override
+    public int compareTo(CoordiDTO o) {
+        return o.getRegDate().compareTo(regDate);
     }
 }
