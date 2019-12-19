@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +36,8 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
     Button save_btn;
 
     CoordiDTO result = new CoordiDTO();
+
+    private static final String TAG = "MyTag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +96,88 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
             new DBUtil().setImageViewFromDB(this, coordi_img, imgId);
         }
 
+
+
+        //필드 세팅
         if (getIntent().getStringExtra("mode") != null) {
             result = getIntent().getParcelableExtra("coordiDTO");
+            String coordiID = result.getId();
+
+            Log.d(TAG,"coordiID확인 : "+coordiID);
+
+            //name
             coordi_name_etv.setText(result.getName());
-            String tag = result.getTag();
+
+            //rating
+            rating.setRating(result.getRating());
+
+            //season
+            for (String s : result.getSeasons()) {
+                switch (s) {
+                    case "봄":
+                        season_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[0].setTextColor(Color.WHITE);
+                        break;
+                    case "여름":
+                        season_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[1].setTextColor(Color.WHITE);
+                        break;
+                    case "가을":
+                        season_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[2].setTextColor(Color.WHITE);
+                        break;
+                    case "겨울":
+                        season_btn[3].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[3].setTextColor(Color.WHITE);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            //tag
+            switch (result.getTag()) {
+                case "심플베이직":
+                    tag_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[0].setTextColor(Color.WHITE);
+                    break;
+                case "캠퍼스룩":
+                    tag_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[1].setTextColor(Color.WHITE);
+                    break;
+                case "캐주얼":
+                    tag_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[2].setTextColor(Color.WHITE);
+                    break;
+                case "유니크":
+                    tag_btn[3].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[3].setTextColor(Color.WHITE);
+                    break;
+                case "스포티":
+                    tag_btn[4].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[4].setTextColor(Color.WHITE);
+                    break;
+                case "러블리":
+                    tag_btn[5].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[5].setTextColor(Color.WHITE);
+                    break;
+                case "오피스룩":
+                    tag_btn[6].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[6].setTextColor(Color.WHITE);
+                    break;
+                case "섹시글램":
+                    tag_btn[7].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[7].setTextColor(Color.WHITE);
+                    break;
+                case "화려한":
+                    tag_btn[8].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[8].setTextColor(Color.WHITE);
+                    break;
+                default:
+                    break;
+            }
+
 
         }
     }
@@ -142,6 +223,7 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
     }
 
+
     @Override
     public void onClick(View v) {
         if (v == save_btn) {
@@ -166,60 +248,75 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
             str += "/평점:" + rating.getRating();
 
-            Toast.makeText(this, str + "점 ", Toast.LENGTH_LONG).show();
 
             //데이터베이스에 저장
-            result.setCount(0);
+            ///////////////////////////////////////////////////////////////////둘다 적용
+
             result.setName(coordi_name_etv.getText().toString());
-            result.setRating(rating.getRating());
-            for (int i = 0; i < 9; i++) {
-                if (tag_btn[i].getCurrentTextColor() == Color.WHITE) {
-                    result.setTag(tag_btn[i].getText().toString());
-                    break;
-                }
-            }
-            ArrayList<String> seletedSeasons = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
-                    seletedSeasons.add(season_btn[i].getText().toString());
-                }
-            }
-            result.setSeasons(seletedSeasons);
-            Calendar c = new GregorianCalendar();
-            int y = c.get(Calendar.YEAR);
-            int m = c.get(Calendar.MONTH) + 1;
-            int d = c.get(Calendar.DAY_OF_MONTH);
-            int h = c.get(Calendar.HOUR_OF_DAY);
-            int min = c.get(Calendar.MINUTE);
-
-            String date = y + "-";
-            if (m < 10) {
-                date = date + "0" + m + "-";
-            } else {
-                date = date + m + "-";
-            }
-            if (d < 10) {
-                date = date + "0" + d + " ";
-            } else {
-                date = date + d + " ";
-            }
-            if (h < 10) {
-                date = date + "0" + h + ":";
-            } else {
-                date = date + h + ":";
-            }
-            if (min < 10) {
-                date = date + "0" + min;
-            } else {
-                date = date + min;
-            }
-
-            result.setRegDate(date);
-            result.setUserId("admin");//나중에 shared preference 이용하기
-            new DBUtil().addCoordi(result);
             for (String cid : result.getUsed()) {
+                Calendar c = new GregorianCalendar();
+                int y = c.get(Calendar.YEAR);
+                int m = c.get(Calendar.MONTH) + 1;
+                int d = c.get(Calendar.DAY_OF_MONTH);
+                int h = c.get(Calendar.HOUR_OF_DAY);
+                int min = c.get(Calendar.MINUTE);
+
+                result.setRating(rating.getRating());
+                for (int i = 0; i < 9; i++) {
+                    if (tag_btn[i].getCurrentTextColor() == Color.WHITE) {
+                        result.setTag(tag_btn[i].getText().toString());
+                        break;
+                    }
+                }
+                ArrayList<String> seletedSeasons = new ArrayList<>();
+                for (int i = 0; i < 4; i++) {
+                    if (season_btn[i].getCurrentTextColor() == Color.WHITE) {
+                        seletedSeasons.add(season_btn[i].getText().toString());
+                    }
+                }
+                result.setSeasons(seletedSeasons);
+
+                String date = y + "-";
+                if (m < 10) {
+                    date = date + "0" + m + "-";
+                } else {
+                    date = date + m + "-";
+                }
+                if (d < 10) {
+                    date = date + "0" + d + " ";
+                } else {
+                    date = date + d + " ";
+                }
+                if (h < 10) {
+                    date = date + "0" + h + ":";
+                } else {
+                    date = date + h + ":";
+                }
+                if (min < 10) {
+                    date = date + "0" + min;
+                } else {
+                    date = date + min;
+                }
+                result.setRegDate(date);
+
                 new DBUtil().updateClotheCount(cid);
             }
+           //////////////////////////////////////////////////////////////////////수정
+            if (getIntent().getStringExtra("mode") != null)
+            {
+                Log.d(TAG,"수정"+result.getId());
+                new DBUtil().updateCoordi(result.getId(), result);
+            }
+            else ///////////////////////////////////////////////////처음 생성
+            {
+                Log.d(TAG,"처음생성"+result.getId());
+                result.setCount(0);
+                result.setUserId("admin");//나중에 shared preference 이용하기
+                new DBUtil().addCoordi(result);
+            }
+
+
+
 
             Intent intent = new Intent(this, CoordiMainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

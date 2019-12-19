@@ -54,6 +54,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
     RelativeLayout removeBtn;   //삭제 : DB 에서 바로 삭제
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+//coordiview에서 코디 수정으로 갈때 아이디를 같이 줘야함
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                  *  */
                 intent = new Intent(this, CoordiInfoRegisterActivity.class);
                 intent.putExtra("mode","edit");
+                results.setId(getIntent().getStringExtra("coordiID"));
                 intent.putExtra("coordiDTO",results);
                 startActivity(intent);
                 break;
@@ -154,6 +156,8 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                                 Log.w("TAG", "Error updating document", e);
                             }
                         });
+                intent=getIntent();
+                setResult(RESULT_OK,intent);
                 break;
             case R.id.plusCount:
                 //DB에서 이 count 값 가져오기, 변경시킨 값 다시 DB에 저장하기 구현해야함
@@ -177,11 +181,12 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                                 Log.w("TAG", "Error updating document", e);
                             }
                         });
+                intent=getIntent();
+                setResult(RESULT_OK,intent);
                 break;
         }
 
     }
-
 
     private void showToast(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
@@ -211,6 +216,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void setField(CoordiDTO result) {
+        int check=0;
         new DBUtil().setImageViewFromDB(this, coordi_view_img, result.getImg());
         coordi_view_name.setText(result.getName());//name
         coordi_view_rating.setRating(result.getRating()); //rating
@@ -220,17 +226,29 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         for (String s : result.getSeasons()) {
             switch (s) {
                 case "봄":
-                    seasons = "봄";
+                    check++;
+                    seasons="봄 ";
                     break;
                 case "여름":
-                    seasons += " ,여름";
+                    if(check==0){
+                        seasons+="여름 ";}
+                    else
+                        seasons+=", 여름";
+                    check++;
                     break;
                 case "가을":
-                    seasons += " ,가을";
+                    if(check==0){
+                        seasons+="가을 ";}
+                    else
+                        seasons+=", 가을";
+                    check++;
                     break;
                 case "겨울":
-                    seasons += " ,겨울";
-                    break;
+                    if(check==0){
+                        seasons+="겨울 ";}
+                    else
+                        seasons+=", 겨울";
+                    check++;
                 default:
                     break;
             }

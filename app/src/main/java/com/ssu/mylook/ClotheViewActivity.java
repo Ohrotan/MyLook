@@ -72,7 +72,7 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
         {
             intent = new Intent(this,ClotheEditActivity.class);
             intent.putExtra("clotheID",clotheID);
-            startActivity(intent);
+            startActivityForResult(new Intent(this,ClotheEditActivity.class),1);
         }
         else if(v==delete_clothe)
         {
@@ -100,6 +100,24 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
             finish();//저장
         }
     }
+
+
+   /* @Override
+   public void onActivityResult(int requestCode,int resultCode,Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG,"들어오긴했는데 조건이 다름");
+        if(requestCode==1&&resultCode==RESULT_OK)
+        {
+            Log.d(TAG,"들어옴");
+            clotheID = getIntent().getStringExtra("clotheID");
+            getData(clotheID);
+            //String resultMsg=data.getStringExtra("clotheID");
+           //데이터 다시 셋팅
+        }
+    }
+
+    */
+
 
 
     public void setField(ClotheDTO result) {
