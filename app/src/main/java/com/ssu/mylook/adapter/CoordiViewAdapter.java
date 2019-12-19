@@ -29,7 +29,6 @@ public class CoordiViewAdapter extends BaseAdapter {
 
     public CoordiViewAdapter(Context context, ArrayList<CoordiDTO> list) {
         this.context=context;
-        list.addAll(list);
         this.listCustom=list;
     }
 

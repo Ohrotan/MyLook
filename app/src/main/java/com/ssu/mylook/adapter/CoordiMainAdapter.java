@@ -29,7 +29,6 @@ public class CoordiMainAdapter extends BaseAdapter {
     }
     public CoordiMainAdapter(Context context, ArrayList<CoordiDTO> list) {
         this.context = context;
-        list.addAll(list);
         this.listCustom=list;
     }
 
