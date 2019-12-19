@@ -1,9 +1,9 @@
 package com.ssu.mylook;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,26 +68,42 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
         if (imgId != null) {
             result.setImg(imgId);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // coordi_img.setImageBitmap((Bitmap)getIntent().getParcelableExtra("img"));
-                    Log.v("dbimg coordi info", DBUtil.coordiImg + "");
-                    while (true) {
-                        Log.v("dbimg coordi while", DBUtil.coordiImg + "");
-                        if (DBUtil.coordiImg) {
-                            new DBUtil().setImageViewFromDB(CoordiInfoRegisterActivity.this, coordi_img, imgId);
-                            break;
-                        }
-                    }
-                }
-            });
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    coordi_img.setImageBitmap((Bitmap) getIntent().getParcelableExtra("img"));
+//                    // coordi_img.setImageBitmap((Bitmap)getIntent().getParcelableExtra("img"));
+//                    Log.v("dbimg coordi info", DBUtil.coordiImg + "");
+//                    while (true) {
+//                        //Log.v("dbimg coordi while", DBUtil.coordiImg + "");
+//                        if (DBUtil.coordiImg) {
+//                            break;
+//                        }
+//                        break;
+//                    }
+//                }
+//            });
         }
         result.setUsed(getIntent().getStringArrayListExtra("clothesIds"));
 
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+
+        }
+        final String imgId = getIntent().getStringExtra("imgId");
+        byte[] BYTE = (byte[]) getIntent().getByteArrayExtra("img");
+        // BitmapFactory.decodeByteArray(BYTE,0,BYTE.length)
+        coordi_img.setImageBitmap(BitmapFactory.decodeByteArray(BYTE, 0, BYTE.length));
+        // new DBUtil().setImageViewFromDB(CoordiInfoRegisterActivity.this, coordi_img, imgId);
+
+    }
 
     public void clicked(Button btn) {
         btn.setBackground(getResources().getDrawable(R.drawable.purple_button, null));
