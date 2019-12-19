@@ -15,7 +15,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 public class JungEunDBTest extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -55,15 +55,15 @@ public class JungEunDBTest extends AppCompatActivity implements View.OnClickList
                             for(QueryDocumentSnapshot document : task.getResult())
                             {
                                 Log.d("jungeun", document.getId()+"=>"+document.getData());
-                                CustomDTO customDTO = document.toObject(CustomDTO.class);
-                                Log.d("jungeun", "id = "+customDTO.getId());
-                                Log.d("jungeun", "name = "+customDTO.getName());
-                                Log.d("jungeun", "img = " + customDTO.getImg());
-                                Log.d("jungeun","regDate = "+customDTO.getDate());
-                               // Log.d("jungeun","seasons = "+customDTO.getSeason());
-                                Log.d("jungeun","tag = "+customDTO.getTag());
-                                Log.d("jungeun","count = "+customDTO.getCount());
-                                Log.d("jungeun","rating = "+customDTO.getRating());
+                                CoordiDTO CoordiDTO = document.toObject(CoordiDTO.class);
+                                Log.d("jungeun", "id = "+CoordiDTO.getId());
+                                Log.d("jungeun", "name = "+CoordiDTO.getName());
+                                Log.d("jungeun", "img = " + CoordiDTO.getImg());
+                                Log.d("jungeun","regDate = "+CoordiDTO.getDate());
+                               // Log.d("jungeun","seasons = "+CoordiDTO.getSeason());
+                                Log.d("jungeun","tag = "+CoordiDTO.getTag());
+                                Log.d("jungeun","count = "+CoordiDTO.getCount());
+                                Log.d("jungeun","rating = "+CoordiDTO.getRating());
                             }
                         } else{
                             Log.d("jungeun", "Error getting documents: ",task.getException());
@@ -84,14 +84,14 @@ public class JungEunDBTest extends AppCompatActivity implements View.OnClickList
                     if(document.exists()){
                         Log.d("jungeun","DocumentSnapshot data: "+document.getData());
 
-                        CustomDTO customDTO = document.toObject(CustomDTO.class);
-                        Log.d("jungeun", "name = "+customDTO.getName());
-                        Log.d("jungeun", "img = " + customDTO.getImg());
-                        Log.d("jungeun","regDate = "+customDTO.getDate());
-                       // Log.d("jungeun","seasons = "+customDTO.getSeason());
-                        Log.d("jungeun","tag = "+customDTO.getTag());
-                        Log.d("jungeun","count = "+customDTO.getCount());
-                        Log.d("jungeun","rating = "+customDTO.getRating());
+                        CoordiDTO CoordiDTO = document.toObject(CoordiDTO.class);
+                        Log.d("jungeun", "name = "+CoordiDTO.getName());
+                        Log.d("jungeun", "img = " + CoordiDTO.getImg());
+                        Log.d("jungeun","regDate = "+CoordiDTO.getDate());
+                       // Log.d("jungeun","seasons = "+CoordiDTO.getSeason());
+                        Log.d("jungeun","tag = "+CoordiDTO.getTag());
+                        Log.d("jungeun","count = "+CoordiDTO.getCount());
+                        Log.d("jungeun","rating = "+CoordiDTO.getRating());
 
 
                     } else{

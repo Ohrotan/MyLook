@@ -10,14 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class UnfavoriteClotheAdapter extends BaseAdapter {
-    private ArrayList<CustomDTO> listCustom = new ArrayList<>();
+    private ArrayList<CoordiDTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
         listCustom = new ArrayList<>();
     }
 
-    public UnfavoriteClotheAdapter(Context context, ArrayList<CustomDTO> list) {
+    public UnfavoriteClotheAdapter(Context context, ArrayList<CoordiDTO> list) {
         this.context=context;
         list.addAll(list);
         this.listCustom=list;
@@ -73,7 +73,7 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
             holder = (UnfavoriteClotheAdapter.CustomViewHolder) convertView.getTag();
         }
 
-        CustomDTO dto = listCustom.get(position);
+        CoordiDTO dto = listCustom.get(position);
 
        // holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getName());
@@ -87,7 +87,7 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
     }
 
     // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(CustomDTO dto) {
+    public void addItem(CoordiDTO dto) {
         listCustom.add(dto);
     }
 }

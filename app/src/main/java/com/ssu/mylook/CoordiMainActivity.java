@@ -27,7 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ssu.mylook.adapter.CoordiMainAdapter;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     private CoordiMainAdapter adapter;
     private GridView myGridView;
 
-    final ArrayList<CustomDTO> CoordiList = new ArrayList<>();
+    final ArrayList<CoordiDTO> CoordiList = new ArrayList<>();
     final static String TAG = "Database";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     // Create a storage reference from our app
@@ -129,7 +129,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
 
     private void setData(int position) {
-        final ArrayList<CustomDTO> list = new ArrayList<>();
+        final ArrayList<CoordiDTO> list = new ArrayList<>();
         if(spring){
             db.collection("coordi").whereEqualTo("seasons","봄")
                     .get()
@@ -137,7 +137,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -150,7 +150,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -163,7 +163,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -176,21 +176,21 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
                         }});
         }
         if(position==0){
-            //ArrayList<CustomDTO> CoordiList;
+            //ArrayList<CoordiDTO> CoordiList;
                     db.collection("coordi").orderBy("regDate", Query.Direction.DESCENDING)
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                     for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                        CustomDTO item = doc.toObject(CustomDTO.class);
+                                        CoordiDTO item = doc.toObject(CoordiDTO.class);
                                         item.setId(doc.getId());
                                         list.add(item);
                                     }
@@ -200,16 +200,16 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             //adapter.setListCustom(CoordiList);
             showToast("CoordiList 등록날짜순 출력중");
         } else if(position==1){
-            //ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", false);
-            ArrayList<CustomDTO> CoodiList;
+            //ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", false);
+            ArrayList<CoordiDTO> CoodiList;
             db.collection("coordi").orderBy("rating", Query.Direction.ASCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CoordiDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -219,16 +219,16 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             //adapter.setListCustom(CoordiList);
             showToast("CoordiList 별점 오름차순 출력중");
         } else if(position==2){
-            //ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", true);
+            //ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", true);
             //adapter.setListCustom(CoordiList);
             db.collection("coordi").orderBy("rating", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CoordiDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -238,16 +238,16 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             //adapter.setListCustom(CoordiList);
             showToast("CoordiList 별점 내림차순 출력중");
         } else if(position==3) {
-//            ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "count", false);
+//            ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "count", false);
 //            adapter.setListCustom(CoordiList);
             db.collection("coordi").orderBy("count", Query.Direction.ASCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CoordiDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -257,16 +257,16 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             //adapter.setListCustom(CoordiList);
             showToast("CoordiList 횟수 내림차순 출력중");
         } else if(position==4){
-//            ArrayList<CustomDTO> CoordiList = new DBUtil().getDatas("coordi", "count", true);
+//            ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "count", true);
 //            adapter.setListCustom(CoordiList);
             db.collection("coordi").orderBy("count", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                            ArrayList<CustomDTO> list = new ArrayList<>();
+//                            ArrayList<CoordiDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CustomDTO item = doc.toObject(CustomDTO.class);
+                                CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
