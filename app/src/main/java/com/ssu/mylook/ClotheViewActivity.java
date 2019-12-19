@@ -92,8 +92,10 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
                         }
                     });
             intent=new Intent(this,ClosetActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+            setResult(RESULT_OK,intent);
             startActivity(intent);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             overridePendingTransition(0, 0);
             finish();//저장
         }

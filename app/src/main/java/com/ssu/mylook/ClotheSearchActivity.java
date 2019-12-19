@@ -97,6 +97,7 @@ public class ClotheSearchActivity extends AppCompatActivity implements View.OnCl
     }
 
 
+
         @Override
         public void onClick (View v){
             if (v == search_btn) {
@@ -188,30 +189,5 @@ public class ClotheSearchActivity extends AppCompatActivity implements View.OnCl
 
         }
 
-
-     /*   private void setData ( int position){
-
-            if (position == 0) {
-                db.collection("clothes").orderBy("regdate", Query.Direction.DESCENDING)
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                ArrayList<ClotheDTO> list = new ArrayList<>();
-                                for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                    ClotheDTO item = doc.toObject(ClotheDTO.class);
-                                    item.setId(doc.getId());
-                                    list.add(item);
-                                    //clotheNameList[k]+=item.getTTL().toString();
-                                    // Toast.makeText(getApplicationContext(),"옷 이름: "+clotheNameList[k].toString(),Toast.LENGTH_LONG);
-                                }
-                                closetViewAdapter = new ClosetViewAdapter(ClotheSearchActivity.this, list);
-                                gridView.setAdapter(closetViewAdapter);
-                            }
-                        });
-
-            }
-
-        }*/
 
 }

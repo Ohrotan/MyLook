@@ -258,9 +258,11 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             }
         }
         else if(v==btn_save){ //다시 저장
-            String uniqueID = UUID.randomUUID().toString();
-            new DBUtil().uploadImage(myBitmap, uniqueID);
 
+                String uniqueID = UUID.randomUUID().toString();
+                if(shot==1) { //사진이 새로 찍혔을 경우에만
+                new DBUtil().uploadImage(myBitmap, uniqueID);
+                }
             String str = "옷 이름: " + clothe_title.getText()
                     + "/계절:";
 
@@ -290,7 +292,9 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
 
             //데이터베이스에 저장
-            result.setImage(uniqueID);
+            if(shot==1) {
+                result.setImage(uniqueID);
+            }
             result.setTitle(clothe_title.getText().toString());
             result.setMemo(memo.getText().toString());
             for (int i = 0; i < 11; i++) {
@@ -318,7 +322,9 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
 
             new DBUtil().updateClothe(clotheID, result);
 
+
             Intent intent = new Intent(this, ClosetActivity.class);
+            setResult(RESULT_OK,intent);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
             overridePendingTransition(0, 0);
