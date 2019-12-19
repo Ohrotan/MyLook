@@ -16,7 +16,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.UnfavoriteClotheAdapter;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
 
@@ -60,9 +60,9 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        ArrayList<CustomDTO> list = new ArrayList<>();
+                        ArrayList<CoordiDTO> list = new ArrayList<>();
                         for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                            CustomDTO item = doc.toObject(CustomDTO.class);
+                            CoordiDTO item = doc.toObject(CoordiDTO.class);
                             item.setId(doc.getId());
                             list.add(item);
 

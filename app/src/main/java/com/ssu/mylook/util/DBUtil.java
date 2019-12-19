@@ -29,7 +29,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.CoordiDTO;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -224,8 +224,8 @@ public class DBUtil {
     }
 
 
-    public ArrayList<CustomDTO> getDatas(String collection, String criteria, boolean order) {
-        final ArrayList<CustomDTO> coordiView = new ArrayList<>();
+    public ArrayList<CoordiDTO> getDatas(String collection, String criteria, boolean order) {
+        final ArrayList<CoordiDTO> coordiView = new ArrayList<>();
         if (order) { //내림차순 정렬
             db.collection("coordi").orderBy(criteria, Query.Direction.DESCENDING)
                     .get()
@@ -236,7 +236,7 @@ public class DBUtil {
                                 //DocumentSnapshot document = task.getResult();
 
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    coordiView.add(CustomDTO.mapToDTO(document.getData()));
+                                    coordiView.add(CoordiDTO.mapToDTO(document.getData()));
                                 }
                             } else {
                                 Log.w(TAG, "Error getting documents.", task.getException());
@@ -251,7 +251,7 @@ public class DBUtil {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    //a.add(CustomDTO.mapToDTO(document.getData()));
+                                    //a.add(CoordiDTO.mapToDTO(document.getData()));
                                 }
                             } else {
                                 //Log.w(TAG, "Error getting documents.", task.getException());

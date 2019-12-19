@@ -24,7 +24,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ssu.mylook.adapter.CoordiViewAdapter;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 import com.ssu.mylook.util.DBUtil;
 
 public class CoordiViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -42,7 +42,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
     TextView coordi_view_count;
     String seasons="";
 
-    CustomDTO results = new CustomDTO();
+    CoordiDTO results = new CoordiDTO();
 
     //+,-버튼 클릭시 코디 입은횟수 증감
     ImageButton minusBtn;
@@ -204,7 +204,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         overridePendingTransition(0, 0);
         finish();//저장
     }
-    public void setField(CustomDTO result) {
+    public void setField(CoordiDTO result) {
         new DBUtil().setImageViewFromDB(this, coordi_view_img, result.getImg());
         coordi_view_name.setText(result.getName());//name
         coordi_view_rating.setRating(result.getRating()); //rating
@@ -244,7 +244,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                results = document.toObject(CustomDTO.class);
+                                results = document.toObject(CoordiDTO.class);
                                 //Log.v(TAG, "DocumentSnapshot data: " + results.toString());
                                 setField(results);
                             } else {

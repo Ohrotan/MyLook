@@ -10,7 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
@@ -20,23 +20,23 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 public class CoordiMainAdapter extends BaseAdapter {
 
     Context context;
-    private ArrayList<CustomDTO> listCustom;
+    private ArrayList<CoordiDTO> listCustom;
     ArrayList<String> clicked = new ArrayList<>();
 
     public CoordiMainAdapter(Context context){
         this.context = context;
         listCustom = new ArrayList<>();
     }
-    public CoordiMainAdapter(Context context, ArrayList<CustomDTO> list) {
+    public CoordiMainAdapter(Context context, ArrayList<CoordiDTO> list) {
         this.context = context;
         list.addAll(list);
         this.listCustom=list;
     }
 
-    public ArrayList<CustomDTO> getListCustom() {
+    public ArrayList<CoordiDTO> getListCustom() {
         return listCustom;
     }
-    public void setListCustom(ArrayList<CustomDTO> listCustom) {
+    public void setListCustom(ArrayList<CoordiDTO> listCustom) {
         this.listCustom = listCustom;
     }
 
@@ -80,7 +80,7 @@ public class CoordiMainAdapter extends BaseAdapter {
             holder = (CoordiMainAdapter.CustomViewHolder) convertView.getTag();
         }
 
-        CustomDTO dto = listCustom.get(position);
+        CoordiDTO dto = listCustom.get(position);
 
         holder.ratingBar.setRating(dto.getRating());
        // holder.imageView.setImageResource(dto.getResId());
@@ -101,7 +101,7 @@ public class CoordiMainAdapter extends BaseAdapter {
     }
 
     // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(CustomDTO dto) {
+    public void addItem(CoordiDTO dto) {
         listCustom.add(dto);
     }
 }

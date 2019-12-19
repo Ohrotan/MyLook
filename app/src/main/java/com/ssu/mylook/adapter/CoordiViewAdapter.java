@@ -10,7 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.CustomDTO;
+import com.ssu.mylook.dto.CoordiDTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class CoordiViewAdapter extends BaseAdapter {
-    private ArrayList<CustomDTO> listCustom = new ArrayList<>();
+    private ArrayList<CoordiDTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class CoordiViewAdapter extends BaseAdapter {
         listCustom = new ArrayList<>();
     }
 
-    public CoordiViewAdapter(Context context, ArrayList<CustomDTO> list) {
+    public CoordiViewAdapter(Context context, ArrayList<CoordiDTO> list) {
         this.context=context;
         list.addAll(list);
         this.listCustom=list;
@@ -71,7 +71,7 @@ public class CoordiViewAdapter extends BaseAdapter {
             holder = (CustomViewHolder) convertView.getTag();
         }
 
-        CustomDTO dto = listCustom.get(position);
+        CoordiDTO dto = listCustom.get(position);
 
         // holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getName());
