@@ -503,4 +503,31 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
             startActivity(new Intent(this,FavoriteClotheActivity.class));
         }
     }
+
+    public void clickTab(View v) {
+        ImageView[] img = new ImageView[3];
+        img[0] = findViewById(R.id.tab_closet);
+        img[1] = findViewById(R.id.tab_coordi);
+        img[2] = findViewById(R.id.tab_analysis);
+
+        if (v == img[0]) {
+            Intent intent = new Intent(this, ClosetActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        } else if (v == img[1]) {
+            Intent intent = new Intent(this, CoordiMainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        } else if (v == img[2]) {
+            Intent intent = new Intent(this, StyleAnalysisActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        }
+    }
 }
