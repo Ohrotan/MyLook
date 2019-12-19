@@ -24,14 +24,14 @@ public class FavoriteClotheAdapter extends BaseAdapter {
     ArrayList<String> clicked = new ArrayList<>();
 
 
-    public FavoriteClotheAdapter(Context context){
+    public FavoriteClotheAdapter(Context context) {
         this.context = context;
         listCustom = new ArrayList<>();
     }
 
     public FavoriteClotheAdapter(Context context, ArrayList<FavorDTO> list) {
-        this.context=context;
-        this.listCustom=list;
+        this.context = context;
+        this.listCustom = list;
     }
 
 
@@ -62,7 +62,7 @@ public class FavoriteClotheAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.favorite_clothe_item, null);
 
             holder = new CustomViewHolder();
-            holder.textRank= (TextView)convertView.findViewById(R.id.item_ranking);
+            holder.textRank = (TextView) convertView.findViewById(R.id.item_ranking);
             holder.imageView = (ImageView) convertView.findViewById(R.id.item_image);
             holder.textTitle = (TextView) convertView.findViewById(R.id.item_title);
             holder.textContent = (TextView) convertView.findViewById(R.id.item_number);
@@ -78,10 +78,10 @@ public class FavoriteClotheAdapter extends BaseAdapter {
 
         //holder.textRank.setText(dto.getRank());
         //holder.imageView.setImageResource(dto.getResId());
-        holder.textTitle.setText(dto.getName());
-        new DBUtil().setImageViewFromDB(context,holder.imageView,dto.getImg());
-        holder.textRank.setText(position+1);
-        holder.textContent.setText(dto.getCount());
+        holder.textTitle.setText(dto.getTitle());
+        new DBUtil().setImageViewFromDB(context, holder.imageView, dto.getImage());
+        holder.textRank.setText((position + 1) + "");
+        holder.textContent.setText(dto.getCount() + "");
 //        holder.textRank.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

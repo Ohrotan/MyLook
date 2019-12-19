@@ -139,6 +139,32 @@ public class DBUtil {
                 });
     }
 
+    public void updateClotheCount(final String id) {
+        db.collection("clothes").document(id).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        long cnt = 1;
+                        if (documentSnapshot.get("count") != null) {
+                            cnt = (long) documentSnapshot.get("count") + 1;
+                        }
+                        db.collection("clothes").document(id).update("count", cnt)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error updating document", e);
+                                    }
+                                });
+                    }
+                });
+
+    }
 
     public void addData() {
 

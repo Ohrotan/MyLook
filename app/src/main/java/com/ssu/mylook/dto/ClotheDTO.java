@@ -1,15 +1,10 @@
 package com.ssu.mylook.dto;
 //DB의 데이터를 저장할 클래스
 
-import android.graphics.Bitmap;
-
 import java.util.List;
 
 public class ClotheDTO {
     private String id;
-
-
-
     private String image;
     private String title;
     private String sort;
@@ -17,24 +12,23 @@ public class ClotheDTO {
     private String color;
     private String memo;
     private String regDate;
-
+    private int count;
 
 
     public ClotheDTO() {
         super();
     }
 
-    public ClotheDTO(String id, String image, String title, String sort,  List<String> seasons, String color, String memo, String regDate)
-    {
+    public ClotheDTO(String id, String image, String title, String sort, List<String> seasons, String color, String memo, String regDate) {
         super();
-        this.id=id;
-        this.image=image;
-        this.title=title;
-        this.sort=sort;
-        this.seasons=seasons;
-        this.memo=memo;
-        this.color=color;
-        this.regDate=regDate;
+        this.id = id;
+        this.image = image;
+        this.title = title;
+        this.sort = sort;
+        this.seasons = seasons;
+        this.memo = memo;
+        this.color = color;
+        this.regDate = regDate;
     }
 
     public String getId() {
@@ -101,8 +95,16 @@ public class ClotheDTO {
         this.regDate = regDate;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     @Override
-    public String toString(){
-        return "ClotheDTO[id="+id+",title="+title+",image="+image+",sort="+sort+",season="+seasons+",memo="+memo+",color="+color+",date="+regDate+"]";
+    public String toString() {
+        return "ClotheDTO[id=" + id + ",title=" + title + ",image=" + image + ",sort=" + sort + ",season=" + seasons + ",memo=" + memo + ",color=" + color + ",date=" + regDate + "]";
     }
 }

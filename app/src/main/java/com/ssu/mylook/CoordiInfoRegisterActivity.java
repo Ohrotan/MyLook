@@ -200,6 +200,9 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
             result.setRegDate(y + "-" + m + "-" + d + " " + h + ":" + min);
             result.setUserId("admin");//나중에 shared preference 이용하기
             new DBUtil().addCoordi(result);
+            for (String cid : result.getUsed()) {
+                new DBUtil().updateClotheCount(cid);
+            }
 
             Intent intent = new Intent(this, CoordiMainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
