@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.Custom2DTO;
+import com.ssu.mylook.dto.TagColorDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class FavoriteTagAdapter extends BaseAdapter {
-    private ArrayList<Custom2DTO> listCustom = new ArrayList<>();
+    private ArrayList<TagColorDTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
@@ -46,14 +46,13 @@ public class FavoriteTagAdapter extends BaseAdapter {
     private ArrayList<List<String>> mArrayList;
     ArrayList<String[]> list = new ArrayList<String[]>();
 
-//    public FavoriteTagAdapter(Context context, ArrayList<Custom2DTO> list){
+//    public FavoriteTagAdapter(Context context, ArrayList<TagColorDTO> list){
 //        this.context = context;
 //        listCustom = new ArrayList<>();
 //    }
 
-    public FavoriteTagAdapter(Context context, ArrayList<Custom2DTO> list) {
+    public FavoriteTagAdapter(Context context, ArrayList<TagColorDTO> list) {
         this.context=context;
-        list.addAll(list);
         this.listCustom=list;
     }
 
@@ -96,7 +95,7 @@ public class FavoriteTagAdapter extends BaseAdapter {
         } else {
             holder = (CustomViewHolder) convertView.getTag();
         }
-        Custom2DTO dto = listCustom.get(position);
+        TagColorDTO dto = listCustom.get(position);
 
 
         //setText
@@ -117,7 +116,7 @@ public class FavoriteTagAdapter extends BaseAdapter {
     }
 
     // FavoriteTagActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(Custom2DTO dto) {
+    public void addItem(TagColorDTO dto) {
         listCustom.add(dto);
     }
 }

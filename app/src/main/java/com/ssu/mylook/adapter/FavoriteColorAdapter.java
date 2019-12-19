@@ -8,14 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.Custom2DTO;
+import com.ssu.mylook.dto.TagColorDTO;
 
 import java.util.ArrayList;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class FavoriteColorAdapter extends BaseAdapter {
-    private ArrayList<Custom2DTO> listCustom = new ArrayList<>();
+    private ArrayList<TagColorDTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
@@ -25,9 +25,8 @@ public class FavoriteColorAdapter extends BaseAdapter {
         listCustom = new ArrayList<>();
     }
 
-    public FavoriteColorAdapter(Context context, ArrayList<Custom2DTO> list) {
+    public FavoriteColorAdapter(Context context, ArrayList<TagColorDTO> list) {
         this.context=context;
-        list.addAll(list);
         this.listCustom=list;
     }
 
@@ -73,7 +72,7 @@ public class FavoriteColorAdapter extends BaseAdapter {
             holder = (FavoriteColorAdapter.CustomViewHolder) convertView.getTag();
         }
 
-        Custom2DTO dto = listCustom.get(position);
+        TagColorDTO dto = listCustom.get(position);
         holder.textContent.setText(Integer.toString(dto.getCount())+"회"); //색깔횟수
         holder.textTitle.setText(dto.getField()); //색깔이름
         holder.textRank.setText(Integer.toString(position+1));

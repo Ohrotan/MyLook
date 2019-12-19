@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.FavoriteColorAdapter;
-import com.ssu.mylook.dto.Custom2DTO;
+import com.ssu.mylook.dto.TagColorDTO;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -222,7 +222,7 @@ public class FavoriteColorActivity extends AppCompatActivity {
                             tags.put("회색", gray);
                             //tags.put("패턴", pattern);
 
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
+                            ArrayList<TagColorDTO> list = new ArrayList<>();
                             // value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
                             List<Map.Entry<String, Integer>> sorting = new LinkedList<>(tags.entrySet());
                             Collections.sort(sorting, new Comparator<Map.Entry<String, Integer>>() {
@@ -237,7 +237,7 @@ public class FavoriteColorActivity extends AppCompatActivity {
                             Map<String, Integer> sortedMap = new LinkedHashMap<>();
                             for(Iterator<Map.Entry<String, Integer>> iter = sorting.iterator(); iter.hasNext();){
                                 Map.Entry<String, Integer> entry = iter.next();
-                                list.add(new Custom2DTO(entry.getKey(),entry.getValue()));
+                                list.add(new TagColorDTO(entry.getKey(),entry.getValue()));
                                 sortedMap.put(entry.getKey(), entry.getValue());
                             }
 
@@ -266,7 +266,7 @@ public class FavoriteColorActivity extends AppCompatActivity {
                             tags.put("회색", gray);
                             //tags.put("패턴", pattern);
 
-                            ArrayList<Custom2DTO> list = new ArrayList<>();
+                            ArrayList<TagColorDTO> list = new ArrayList<>();
                             // value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
                             List<Map.Entry<String, Integer>> sorting = new LinkedList<>(tags.entrySet());
                             Collections.sort(sorting, new Comparator<Map.Entry<String, Integer>>() {
@@ -281,7 +281,7 @@ public class FavoriteColorActivity extends AppCompatActivity {
                             Map<String, Integer> sortedMap = new LinkedHashMap<>();
                             for(Iterator<Map.Entry<String, Integer>> iter = sorting.iterator(); iter.hasNext();){
                                 Map.Entry<String, Integer> entry = iter.next();
-                                list.add(new Custom2DTO(entry.getKey(),entry.getValue()));
+                                list.add(new TagColorDTO(entry.getKey(),entry.getValue()));
                                 sortedMap.put(entry.getKey(), entry.getValue());
                             }
 

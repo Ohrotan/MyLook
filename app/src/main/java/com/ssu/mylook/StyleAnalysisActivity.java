@@ -21,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.AnalysisZeroAdapter;
 import com.ssu.mylook.dto.AnalysisDTO;
-import com.ssu.mylook.dto.Custom2DTO;
+import com.ssu.mylook.dto.TagColorDTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
@@ -290,7 +290,7 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                         tags.put("섹시글램", sexy);
                         tags.put("화려한", fancy);
 
-                        ArrayList<Custom2DTO> list = new ArrayList<>();
+                        ArrayList<TagColorDTO> list = new ArrayList<>();
                         // value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
                         List<Map.Entry<String, Integer>> sorting = new LinkedList<>(tags.entrySet());
                         Collections.sort(sorting, new Comparator<Map.Entry<String, Integer>>() {
@@ -305,7 +305,7 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                         Map<String, Integer> sortedMap = new LinkedHashMap<>();
                         for (Iterator<Map.Entry<String, Integer>> iter = sorting.iterator(); iter.hasNext(); ) {
                             Map.Entry<String, Integer> entry = iter.next();
-                            list.add(new Custom2DTO(entry.getKey(), entry.getValue()));
+                            list.add(new TagColorDTO(entry.getKey(), entry.getValue()));
                             sortedMap.put(entry.getKey(), entry.getValue());
                         }
                         favorTag1.setText("#"+list.get(0).getField());
@@ -445,7 +445,7 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                         tags.put("회색", gray);
                         //tags.put("패턴", pattern);
 
-                        ArrayList<Custom2DTO> list = new ArrayList<>();
+                        ArrayList<TagColorDTO> list = new ArrayList<>();
                         // value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
                         List<Map.Entry<String, Integer>> sorting = new LinkedList<>(tags.entrySet());
                         Collections.sort(sorting, new Comparator<Map.Entry<String, Integer>>() {
@@ -460,7 +460,7 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                         Map<String, Integer> sortedMap = new LinkedHashMap<>();
                         for(Iterator<Map.Entry<String, Integer>> iter = sorting.iterator(); iter.hasNext();){
                             Map.Entry<String, Integer> entry = iter.next();
-                            list.add(new Custom2DTO(entry.getKey(),entry.getValue()));
+                            list.add(new TagColorDTO(entry.getKey(),entry.getValue()));
                             sortedMap.put(entry.getKey(), entry.getValue());
 
                         }
