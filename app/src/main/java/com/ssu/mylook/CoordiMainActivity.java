@@ -77,7 +77,8 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         if (id == R.id.action_add) {
 //           Toast.makeText(this, "코디추가버튼 클릭",Toast.LENGTH_SHORT).show();
 //           return true;
-            startActivity(new Intent(this, CoordiRegisterActivity.class));
+            Intent intent = new Intent(this,CoordiRegisterActivity.class);
+            startActivityForResult(intent,REQUEST_CODE_COUNT);
             return true;
         }
 //       else if(id==R.id.action_search) {
@@ -153,7 +154,9 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
                 intent.putExtra("coordiID", adapter.getItem(position).getId());
 
+
                 startActivityForResult(intent, REQUEST_CODE_COUNT);
+
             }
 
         });
@@ -184,7 +187,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         if (position == 0) {
             //ArrayList<CoordiDTO> CoordiList;
             Log.v("seasons:", "position(0이면최신순):" + position);
-            queryList.orderBy("regDate")
+            queryList.orderBy("regDate", Query.Direction.DESCENDING)
                     .get()
 //                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
 //                        @Override

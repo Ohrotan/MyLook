@@ -320,7 +320,8 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
             Intent intent = new Intent(this, CoordiMainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
+            setResult(RESULT_OK,intent);
+            Log.v("IntentTAG : ","coordi register :");
             overridePendingTransition(0, 0);
             finish();
 

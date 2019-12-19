@@ -136,7 +136,7 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             intent.putExtra("clothesIds", clotheListAdapter.getClickedIds());
             //  Log.v("img size",getBitmapFromView(coordi_v).getByteCount()+"");
             intent.putExtra("img", byteBitmap);
-
+            intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             startActivity(intent);
             finish();
 
