@@ -81,7 +81,7 @@ public class FavoriteClotheAdapter extends BaseAdapter {
         holder.textTitle.setText(dto.getTitle());
         new DBUtil().setImageViewFromDB(context, holder.imageView, dto.getImage());
         holder.textRank.setText((position + 1) + "");
-        holder.textContent.setText(dto.getCount() + "");
+        holder.textContent.setText(dto.getCount() + " 회");
 //        holder.textRank.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

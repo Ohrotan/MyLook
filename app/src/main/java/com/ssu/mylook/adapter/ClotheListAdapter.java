@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
+import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.ClotheListItem;
 import com.ssu.mylook.util.DBUtil;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class ClotheListAdapter extends BaseAdapter {
     Context context;
-    ArrayList<ClotheListItem> list;
+    ArrayList<ClotheDTO> list;
     ViewHolder viewholder;
 
     ArrayList<String> clickedImgs = new ArrayList<>();
@@ -40,7 +41,7 @@ public class ClotheListAdapter extends BaseAdapter {
         */
     }
 
-    public ClotheListAdapter(Context context, ArrayList<ClotheListItem> list) {
+    public ClotheListAdapter(Context context, ArrayList<ClotheDTO> list) {
         this.context = context;
         //list.addAll(list);
         this.list = list;
@@ -110,7 +111,7 @@ public class ClotheListAdapter extends BaseAdapter {
 
         });
 
-        viewholder.clothe_name.setText(list.get(position).getName());
+        viewholder.clothe_name.setText(list.get(position).getTitle());
         new DBUtil().setImageViewFromDB(context, viewholder.clothe_img, list.get(position).getImage());
 
         return convertView;

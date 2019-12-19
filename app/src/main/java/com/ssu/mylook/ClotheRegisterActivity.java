@@ -510,7 +510,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
 
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
 

@@ -17,14 +17,15 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.ClotheListAdapter;
-import com.ssu.mylook.dto.ClotheListItem;
+import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -68,13 +69,6 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         cancel_btn = findViewById(R.id.cancel_btn);
         next_btn = findViewById(R.id.next_btn);
 
-//test용
-        ImageView img = new ImageView(CoordiRegisterActivity.this);
-        img.setImageResource(R.drawable.clothe3);
-        img.setOnTouchListener(new MyDragListener(getResources().getDrawable(R.drawable.red_button),
-                delete_btn));
-        coordi_v.addView(img);
-//test용
 
         //옷 추가 레이아웃
         clotheListAdapter = new ClotheListAdapter(this);
@@ -159,29 +153,33 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
 
 
                     EditText etv = clotheAddPopup.findViewById(R.id.search_etv);
-                    String keyword = etv.getText().toString();
+                    final String keyword = etv.getText().toString();
 
-                    Toast.makeText(CoordiRegisterActivity.this, selectedCates.toString() + "/" +
-                            selectedSeasons.toString() + "/" + keyword, Toast.LENGTH_LONG).show();
-                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    db.collection("clothes")
-                            .get()
-                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                @Override
-                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    ArrayList<ClotheListItem> list = new ArrayList<>();
-                                    for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                        ClotheListItem item = doc.toObject(ClotheListItem.class);
-                                        item.setId(doc.getId());
-                                        list.add(item);
-                                    }
-                                    clotheListAdapter = new ClotheListAdapter(CoordiRegisterActivity.this, list);
-
-                                    listView.setAdapter(clotheListAdapter);
-                                    //listView.se
-
+                    Query qr = FirebaseFirestore.getInstance().collection("clothes");
+                    if (selectedCates.size() != 0) {
+                        qr = qr.whereEqualTo("sort", selectedCates.get(0));
+                    }
+                    if (selectedSeasons.size() != 0) {
+                        qr = qr.whereArrayContainsAny("seasons", selectedSeasons);
+                    }
+                    qr.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            ArrayList<ClotheDTO> list = new ArrayList<>();
+                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                ClotheDTO item = doc.toObject(ClotheDTO.class);
+                                if (item.getTitle().contains(keyword)) {
+                                    item.setId(doc.getId());
+                                    list.add(item);
                                 }
-                            });
+                            }
+                            clotheListAdapter = new ClotheListAdapter(CoordiRegisterActivity.this, list);
+
+                            listView.setAdapter(clotheListAdapter);
+                            //listView.se
+
+                        }
+                    });
 
                     View clotheListPopup = inflater.inflate(R.layout.layout_clothe_add, null);
 
@@ -198,6 +196,10 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
                             for (int i = 0; i < clotheListAdapter.getClickedImgs().size(); i++) {
                                 ImageView img = new ImageView(CoordiRegisterActivity.this);
                                 img.setImageResource(R.drawable.plus);
+
+                                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
+                                img.setLayoutParams(layoutParams);
+
                                 new DBUtil().setImageViewFromDB(CoordiRegisterActivity.this,
                                         img, clotheListAdapter.getClickedImgs().get(i));
                                 img.setOnTouchListener(
@@ -253,7 +255,6 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
 
         Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         //Bind a canvas to it
-
 
 
         Canvas canvas = new Canvas(returnedBitmap);
