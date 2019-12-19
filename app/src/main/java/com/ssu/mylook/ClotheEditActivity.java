@@ -258,8 +258,8 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             }
         }
         else if(v==btn_save){ //다시 저장
-            //String uniqueID = UUID.randomUUID().toString();
-            //new DBUtil().uploadImage(getBitmap, uniqueID);
+            String uniqueID = UUID.randomUUID().toString();
+            new DBUtil().uploadImage(getBitmap, uniqueID);
 
             String str = "옷 이름: " + clothe_title.getText()
                     + "/계절:";
@@ -290,19 +290,19 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
 
             //데이터베이스에 저장
-            //result.setIMAGE(uniqueID);
-            result.setTTL(clothe_title.getText().toString());
-            result.setMEMO(memo.getText().toString());
+            result.setImage(uniqueID);
+            result.setTitle(clothe_title.getText().toString());
+            result.setMemo(memo.getText().toString());
             for (int i = 0; i < 11; i++) {
                 if (color_btn[i].getCurrentTextColor() == Color.TRANSPARENT) {
-                    result.setCOLOR(color_btn[i].getText().toString());
+                    result.setColor(color_btn[i].getText().toString());
                     break;
                 }
             }
 
             for (int i = 0; i < 5; i++) {
                 if (sort_btn[i].getCurrentTextColor() == Color.WHITE) {
-                    result.setSORT(sort_btn[i].getText().toString());
+                    result.setSort(sort_btn[i].getText().toString());
                     break;
                 }
             }
@@ -314,7 +314,7 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
                 }
             }
 
-            result.setSEASON(seletedSeasons);
+            result.setSeasons(seletedSeasons);
 
             new DBUtil().updateClothe(clotheID, result);
 
@@ -360,16 +360,16 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
     public void setField(ClotheDTO result) {
 
         //image
-        new DBUtil().setImageViewFromDB(this,add_photo,result.getIMAGE());
+        new DBUtil().setImageViewFromDB(this,add_photo,result.getImage());
 
         //title
-        clothe_title.setText(result.getTTL());
+        clothe_title.setText(result.getTitle());
 
         //memo
-        memo.setText(result.getMEMO());
+        memo.setText(result.getMemo());
 
         //season
-        for (String s : result.getSEASON()) {
+        for (String s : result.getSeasons()) {
             switch (s) {
                 case "봄":
                         season_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
@@ -392,7 +392,7 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             }
         }
         //sort
-            switch (result.getSORT()) {
+            switch (result.getSort()) {
                 case "상의":
                     sort_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
                     sort_btn[0].setTextColor(Color.WHITE);
@@ -418,7 +418,7 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
             }
 
         //color
-        switch (result.getCOLOR()) {
+        switch (result.getColor()) {
             case "빨강":
                 color_btn[0].setBackground(getResources().getDrawable(R.drawable.red_button1, null));
                 color_btn[0].setTextColor(Color.TRANSPARENT);

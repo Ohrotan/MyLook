@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -84,7 +86,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
                 //ClotheDTO clothe = list.get(position).getID();
                 Intent intent = new Intent(ClosetActivity.this,ClotheViewActivity.class);
 
-                intent.putExtra("clotheID",closetViewAdapter.getItem(position).getID());
+                intent.putExtra("clotheID",closetViewAdapter.getItem(position).getId());
 
                 //Bundle bundle = new Bundle();
 
@@ -94,10 +96,43 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                startActivityForResult(new Intent(this,ClotheRegisterActivity.class),1);
+                return true;
+
+            case R.id.action_search:
+                startActivity(new Intent(this,ClotheSearchActivity.class));
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1 && resultCode==RESULT_OK)
+        {
+            //String resultMsg=data.getStringExtra("clotheID");
+            setData(0);
+        }
+    }
+
     private void setData(final int position) {
         final String TAG = "clothe database";
         if(position==0){
-            db.collection("clothes").orderBy("regdate", Query.Direction.DESCENDING)
+            db.collection("clothes").orderBy("regDate", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -105,12 +140,11 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
                             ArrayList<ClotheDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                 ClotheDTO item = doc.toObject(ClotheDTO.class);
-                                item.setID(doc.getId());
+                                item.setId(doc.getId());
                                 list.add(item);
-                                Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), ""+item.getTitle(), Toast.LENGTH_LONG).show();
                                 //Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
                             }
-
 
                             closetViewAdapter = new ClosetViewAdapter(ClosetActivity.this,list);
                             gridView.setAdapter(closetViewAdapter);

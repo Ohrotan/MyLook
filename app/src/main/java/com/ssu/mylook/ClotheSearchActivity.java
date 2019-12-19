@@ -75,9 +75,9 @@ public class ClotheSearchActivity extends AppCompatActivity implements SearchVie
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //ClotheDTO clothe = list.get(position).getID();
                 Intent intent = new Intent(ClotheSearchActivity.this,ClotheViewActivity.class);
-                Log.d(TAG, closetViewAdapter.getItem(position).getID());
+                Log.d(TAG, closetViewAdapter.getItem(position).getId());
 
-                    intent.putExtra("clotheID",closetViewAdapter.getItem(position).getID());
+                    intent.putExtra("clotheID",closetViewAdapter.getItem(position).getId());
 
                 //Bundle bundle = new Bundle();
 
@@ -186,7 +186,7 @@ public class ClotheSearchActivity extends AppCompatActivity implements SearchVie
                             ArrayList<ClotheDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                 ClotheDTO item = doc.toObject(ClotheDTO.class);
-                                item.setID(doc.getId());
+                                item.setId(doc.getId());
                                 list.add(item);
                                 //clotheNameList[k]+=item.getTTL().toString();
                                // Toast.makeText(getApplicationContext(),"옷 이름: "+clotheNameList[k].toString(),Toast.LENGTH_LONG);

@@ -111,9 +111,6 @@ public class ClotheListAdapter extends BaseAdapter {
                 } else {
              //       Toast.makeText(context,""+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
                     viewholder.coordi_clothe_checkBox.setChecked(true);
-
-
-
                 }
 
             }
