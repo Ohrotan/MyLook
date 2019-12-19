@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -131,9 +130,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
                                 ClotheDTO item = doc.toObject(ClotheDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
-                                Toast.makeText(getApplicationContext(), ""+item.getTitle(), Toast.LENGTH_LONG).show();
-                                //Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
-                            }
+                                 }
 
                             closetViewAdapter = new ClosetViewAdapter(ClosetActivity.this,list);
                             gridView.setAdapter(closetViewAdapter);
@@ -223,7 +220,6 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
     }
-
 
     public void clickTab(View v) {
         ImageView[] img = new ImageView[3];
