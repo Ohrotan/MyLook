@@ -27,7 +27,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ssu.mylook.adapter.CoordiMainAdapter;
-import com.ssu.mylook.adapter.CoordiViewAdapter;
 import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
@@ -133,7 +132,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                 //ClotheDTO clothe = list.get(position).getID();
                 Intent intent = new Intent(CoordiMainActivity.this,CoordiViewActivity.class);
 
-                intent.putExtra("coordiID", CoordiMainAdapter.getItem(position).getID());
+                intent.putExtra("coordiID", adapter.getItem(position).getId());
 
                 startActivity(intent);
             }
@@ -142,10 +141,10 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    private void setData(int position) {
+    private void setData(final int position) {
         final ArrayList<CoordiDTO> list = new ArrayList<>();
         if(spring){
-            db.collection("coordi").whereEqualTo("seasons","봄")
+            db.collection("coordi").whereArrayContains("seasons","봄")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -158,7 +157,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                         }});
         }
         if(summer){
-            db.collection("coordi").whereEqualTo("seasons","여름")
+            db.collection("coordi").whereArrayContains("seasons","여름")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -171,7 +170,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                         }});
         }
         if(fall){
-            db.collection("coordi").whereEqualTo("seasons","가을")
+            db.collection("coordi").whereArrayContains("seasons","가을")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -184,7 +183,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                         }});
         }
         if(winter){
-            db.collection("coordi").whereEqualTo("seasons","겨울")
+            db.collection("coordi").whereArrayContains("seasons","겨울")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override

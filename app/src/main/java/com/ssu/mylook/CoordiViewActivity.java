@@ -131,15 +131,20 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
 //                int printCount=dbcount;
 //                printCount--;
 //                count.setText(""+printCount);
-                showToast("- 버튼 클릭 : "+dbcount--);
+                showToast("- 버튼 클릭 : "+dbcount);
+                if(dbcount==0||dbcount<0){
+                    showToast("0 이하로 낮출 수 없습니다.");
+                    break;
+                }
 
                 //final String TAG="";
                 DocumentReference countMinusRef = db.collection("coordi").document(coordiID);
                 countMinusRef
-                        .update("count", dbcount--)
+                        .update("count", --dbcount)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                coordi_view_count.setText(dbcount+"");
                                 Log.d("TAG", "DocumentSnapshot successfully updated!");
                             }
                         })
@@ -155,13 +160,14 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
 //                printCount = Integer.parseInt(count.getText().toString());
 //                printCount++;
 //                count.setText(""+printCount);
-                showToast("+ 버튼 클릭 : "+dbcount++);
+                //showToast("+ 버튼 클릭 : "+dbcount);
                 DocumentReference countPlusRef = db.collection("coordi").document(coordiID);
                 countPlusRef
-                        .update("count", dbcount++)
+                        .update("count", ++dbcount)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                coordi_view_count.setText(dbcount+"");
                                 Log.d("TAG", "DocumentSnapshot successfully updated!");
                             }
                         })
@@ -208,8 +214,8 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         new DBUtil().setImageViewFromDB(this, coordi_view_img, result.getImg());
         coordi_view_name.setText(result.getName());//name
         coordi_view_rating.setRating(result.getRating()); //rating
-        coordi_view_tag.setText(result.getTag());//tag, count
-        coordi_view_count.setText(result.getCount());
+        coordi_view_tag.setText("#"+result.getTag());//tag
+        coordi_view_count.setText(result.getCount()+"");//count
         dbcount=result.getCount();
         for (String s : result.getSeasons()) {
             switch (s) {
