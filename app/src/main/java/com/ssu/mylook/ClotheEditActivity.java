@@ -259,7 +259,7 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
         }
         else if(v==btn_save){ //다시 저장
             String uniqueID = UUID.randomUUID().toString();
-            new DBUtil().uploadImage(getBitmap, uniqueID);
+            new DBUtil().uploadImage(myBitmap, uniqueID);
 
             String str = "옷 이름: " + clothe_title.getText()
                     + "/계절:";
