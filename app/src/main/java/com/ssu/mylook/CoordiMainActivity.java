@@ -22,15 +22,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.core.OrderBy;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firestore.v1.StructuredQuery;
 import com.ssu.mylook.adapter.CoordiMainAdapter;
 import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -133,11 +130,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        selectedSeasons.add("봄");
-
-//        selectedSeasons.add("여름");
-//        selectedSeasons.add("가을");
-//        selectedSeasons.add("겨울");
         springtv.performClick();
         summertv.performClick();
         falltv.performClick();
@@ -163,28 +155,16 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         Log.v("setdata", position + "");
         final ArrayList<CoordiDTO> list = new ArrayList<>();
         Query queryList = db.collection("coordi");
-//        if(spring){
-//            //db.collection("coordi").endAt("").we
-//            queryList =queryList.whereIn("seasons",selectedSeasons);
-//        }
-//        if(summer) {
-//            queryList = queryList.whereArrayContains("seasons", "여름");
-//        }
-//        if(fall){
-//            queryList=queryList.whereArrayContains("seasons","가을");
-//        }
-//        if(winter){
-//            queryList=queryList.whereArrayContains("seasons","겨울");
-//        }
+        Log.v("seasons", selectedSeasons.toString());
+        if(selectedSeasons.size()==0){
+            adapter = new CoordiMainAdapter(CoordiMainActivity.this, list);
+            myGridView.setAdapter(adapter);
+            return;
+        }
+        queryList = queryList.whereArrayContainsAny("seasons", selectedSeasons);
 
-
-        // queryList = queryList.whereIn("seasons",selectedSeasons);
-        // Log.v("seasons:","wheereIn까지호출");
         if (position == 0) {
-
-            //ArrayList<CoordiDTO> CoordiList;
-            Log.v("seasons:", "position(0이면최신순):" + position);
-            queryList.orderBy("regDate")
+            queryList.orderBy("regDate", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -193,17 +173,11 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                                 CoordiDTO item = doc.toObject(CoordiDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
-                                Log.v("seasons:", "item name:" + item.getName() + "/" + item.getRegDate());
                             }
-                            Collections.sort(list);
-
                             adapter = new CoordiMainAdapter(CoordiMainActivity.this, list);
                             myGridView.setAdapter(adapter);
                         }
                     });
-            //adapter.setListCustom(CoordiList);
-
-            //   showToast("CoordiList 등록날짜순 출력중");
         } else if (position == 1) {
 
             //ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", false);
@@ -353,19 +327,20 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         } else if (v == wintertv) {
             if (wintertv.getCurrentTextColor() != Color.WHITE) {
                 //winter=true;
-                // selectedSeasons.add("겨울");
-                setData(s.getSelectedItemPosition());
+                selectedSeasons.add("겨울");
+
                 wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
                 //wintertv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));showToast("winter category");
                 wintertv.setTextColor(Color.WHITE);
             } else {
                 //winter=false;
-                selectedSeasons.add("겨울");
+                selectedSeasons.remove("겨울");
                 wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
                 wintertv.setTextColor(Color.DKGRAY);
             }
 
         }
+        setData(s.getSelectedItemPosition());
 
     }
 

@@ -417,13 +417,36 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
              result.setSeasons(seletedSeasons);
 
              Calendar c = new GregorianCalendar();
-             c.add(Calendar.HOUR_OF_DAY, 9);
              int y = c.get(Calendar.YEAR);
              int m = c.get(Calendar.MONTH) + 1;
              int d = c.get(Calendar.DAY_OF_MONTH);
              int h = c.get(Calendar.HOUR_OF_DAY);
              int min = c.get(Calendar.MINUTE);
-             result.setRegDate(y + "-" + m + "-" + d + " " + h + ":" + min);
+
+
+             String date = y + "-";
+             if (m < 10) {
+                 date = date + "0" + m + "-";
+             } else {
+                 date = date + m + "-";
+             }
+             if (d < 10) {
+                 date = date + "0" + d + " ";
+             } else {
+                 date = date + d + " ";
+             }
+             if (h < 10) {
+                 date = date + "0" + h + ":";
+             } else {
+                 date = date + h + ":";
+             }
+             if (min < 10) {
+                 date = date + "0" + min;
+             } else {
+                 date = date + min;
+             }
+
+             result.setRegDate(date);
 
              new DBUtil().addClothe(result);
 
