@@ -5,10 +5,6 @@ import android.util.Log;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -20,40 +16,39 @@ import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class UnfavoriteClotheActivity extends AppCompatActivity {
 
     private UnfavoriteClotheAdapter adapter;
     private GridView myListView;
     private TextView allCoordi;
     private TextView neverCoordi;
+    private TextView tv;
+    final int[] ratio = new int[]{1, 1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unfavorite_clothe);
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("나의 성향 분석");
+        ab.setTitle("한번도 안 입은 옷 분석");
 
 //        adapter = new UnfavoriteClotheAdapter();
-        myListView =(GridView)findViewById(R.id.ZeroClotheGridView);
+        myListView = (GridView) findViewById(R.id.ZeroClotheGridView);
         allCoordi = findViewById(R.id.all_coori_num);
         neverCoordi = findViewById(R.id.never_coordi_num);
-
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-
+        tv = findViewById(R.id.textView8);
 
         setData();
-       // MyListView.setAdapter(adapter);
-
     }
 
 
     private void setData() {
         //코디 총 갯수, 한 번도 입지않은 코디 가져와서 출력해야함
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("coordi")
                 .whereEqualTo("count", 0)
                 .get()
@@ -77,25 +72,31 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     Log.d("allCoordi size :", task.getResult().size() + "");
-                    allCoordi.setText("현재 옷장에 등록한 옷 : "+task.getResult().size());
+                    ratio[0] = task.getResult().size();
+                    allCoordi.setText(" / " + task.getResult().size() + "벌");
+                    db.collection("coordi").whereEqualTo("count", 0).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                //Log.d("TAG", task.getResult().size() + "");
+                                ratio[1] = task.getResult().size();
+                                neverCoordi.setText(+task.getResult().size() + "벌");
+
+                                tv.setText("한번도 안 입은 옷: " + Math.round((float) ratio[1] / ratio[0] * 100.0) +"%");
+                            } else {
+                                //Log.d("TAG", "Error getting documents: ", task.getException());
+                                neverCoordi.setText("Error");
+                            }
+                        }
+                    });
                 } else {
                     //Log.d("TAG", "Error getting documents: ", task.getException());
-                    allCoordi.setText("Error : 옷장에 등록된 옷 data를 불러올 수 없습니다");
+                    allCoordi.setText("Error");
                 }
             }
         });
-        db.collection("coordi").whereEqualTo("count", 0).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    //Log.d("TAG", task.getResult().size() + "");
-                    neverCoordi.setText("한 번도 입지 않은 옷 : "+task.getResult().size());
-                } else {
-                    //Log.d("TAG", "Error getting documents: ", task.getException());
-                    neverCoordi.setText("Error : 한 번도 입지 않은 옷 data를 불러올 수 없습니다.");
-                }
-            }
-        });
+
+
     }
 
 }

@@ -49,7 +49,7 @@ public class FavoriteTagActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_tag);
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("나의 성향 분석");
+        ab.setTitle("입은 코디 스타일 분석");
 
         myListView = (ListView) findViewById(R.id.TagListView);
 
