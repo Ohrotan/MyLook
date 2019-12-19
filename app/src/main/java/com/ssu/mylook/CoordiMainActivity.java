@@ -14,10 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
@@ -32,14 +28,17 @@ import com.ssu.mylook.adapter.CoordiMainAdapter;
 import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class CoordiMainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //이 화면에서 특정 코디 클릭 시 그 코디의 상세보기 화면으로 넘어가는 함수, 변수 구현필요
-    public static final int REQUEST_CODE_COUNT=1;
+    public static final int REQUEST_CODE_COUNT = 1;
     private CoordiMainAdapter adapter;
     private GridView myGridView;
 
@@ -97,8 +96,8 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 //        if (requestCode == 1 && resultCode == RESULT_OK) {
 //            setData(0);
 //        }
-        if(requestCode==REQUEST_CODE_COUNT){
-            if(resultCode==RESULT_OK){
+        if (requestCode == REQUEST_CODE_COUNT) {
+            if (resultCode == RESULT_OK) {
                 setData(0);
             }
         }
@@ -155,8 +154,9 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
                 intent.putExtra("coordiID", adapter.getItem(position).getId());
 
-                startActivityForResult(intent,REQUEST_CODE_COUNT);
-                Log.v("IntentTAG : ","coordi main StartActivitiyForResult");
+
+                startActivityForResult(intent, REQUEST_CODE_COUNT);
+
             }
 
         });
@@ -202,7 +202,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 //                                Log.d(TAG, "Current data: null");
 //                            }
 //                        }})
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
@@ -382,6 +382,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             }
 
         }
+        setData(s.getSelectedItemPosition());
 
     }
 

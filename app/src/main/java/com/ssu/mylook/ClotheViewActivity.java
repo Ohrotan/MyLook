@@ -1,8 +1,5 @@
 package com.ssu.mylook;
 
-import androidx.annotation.NonNull;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.util.DBUtil;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
 
 public class ClotheViewActivity extends ClotheRegisterActivity implements View.OnClickListener {
     RelativeLayout edit_clothe_info;
@@ -31,9 +28,9 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     TextView view_seasons;
     TextView view_memo;
     TextView view_sort;
-    String seasons="";
+    String seasons = "";
     String clotheID;
-    private static final String TAG="MyTag";
+    private static final String TAG = "MyTag";
 
     public static final int REQUEST_FROM_VIEW=1;
 
@@ -43,20 +40,20 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
         setContentView(R.layout.activity_clothe_view);
         getSupportActionBar().setTitle("옷 조회");
 
-        view_clothe_img=findViewById(R.id.clothe_view_photo);
-        edit_clothe_info=findViewById(R.id.edit_btn);
-        delete_clothe=findViewById(R.id.remove_btn);
-        view_name=findViewById(R.id.clothe_view_title);
-        view_seasons=findViewById(R.id.clothe_view_season);
-        view_memo=findViewById(R.id.memo_content);
-        view_sort=findViewById(R.id.clothe_view_sort);
+        view_clothe_img = findViewById(R.id.clothe_view_photo);
+        edit_clothe_info = findViewById(R.id.edit_btn);
+        delete_clothe = findViewById(R.id.remove_btn);
+        view_name = findViewById(R.id.clothe_view_title);
+        view_seasons = findViewById(R.id.clothe_view_season);
+        view_memo = findViewById(R.id.memo_content);
+        view_sort = findViewById(R.id.clothe_view_sort);
 
 
         edit_clothe_info.setOnClickListener(this);
         delete_clothe.setOnClickListener(this);
 
 
-        clotheID=getIntent().getStringExtra("clotheID");
+        clotheID = getIntent().getStringExtra("clotheID");
 
         if (clotheID == null) {
             clotheID = "IRv7OYfjuGzp8xSijrTZ";
@@ -70,6 +67,7 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     @Override
     public void onClick(View v) {
         Intent intent;
+
         if(v==edit_clothe_info)
         {
             //edit한테 보냄. 제대로 작동 함.
@@ -96,9 +94,9 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
                             Log.w(TAG, "Error deleting document", e);
                         }
                     });
-            intent=new Intent(this,ClosetActivity.class);
+            intent = new Intent(this, ClosetActivity.class);
 
-            setResult(RESULT_OK,intent);
+            setResult(RESULT_OK, intent);
             startActivity(intent);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             overridePendingTransition(0, 0);
@@ -124,10 +122,9 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
     }
 
 
-
     public void setField(ClotheDTO result) {
-        int check=0;
-        new DBUtil().setImageViewFromDB(this,view_clothe_img,result.getImage());
+        int check = 0;
+        new DBUtil().setImageViewFromDB(this, view_clothe_img, result.getImage());
         view_name.setText(result.getTitle());
         view_memo.setText(result.getMemo());
         view_sort.setText(result.getSort());
@@ -135,27 +132,27 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
             switch (s) {
                 case "봄":
                     check++;
-                   seasons="봄 ";
+                    seasons = "봄 ";
                     break;
                 case "여름":
-                    if(check==0){
-                    seasons+="여름 ";}
-                    else
-                        seasons+=", 여름";
+                    if (check == 0) {
+                        seasons += "여름 ";
+                    } else
+                        seasons += ", 여름";
                     check++;
                     break;
                 case "가을":
-                    if(check==0){
-                        seasons+="가을 ";}
-                    else
-                        seasons+=", 가을";
+                    if (check == 0) {
+                        seasons += "가을 ";
+                    } else
+                        seasons += ", 가을";
                     check++;
                     break;
                 case "겨울":
-                    if(check==0){
-                        seasons+="겨울 ";}
-                    else
-                        seasons+=", 겨울";
+                    if (check == 0) {
+                        seasons += "겨울 ";
+                    } else
+                        seasons += ", 겨울";
                     check++;
                 default:
                     break;
@@ -165,10 +162,11 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
 
 
     }
+
     public void getData(String id) {
         final String TAG = "clothe database";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Toast.makeText(getApplicationContext(),""+clotheID.toString(),Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "" + clotheID.toString(), Toast.LENGTH_LONG);
         db.collection("clothes").document(id)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

@@ -14,9 +14,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/wardrobe"
         android:label="MyLook"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/wardrobe"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".JungEunDBTest">
@@ -78,7 +78,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".TestRanActivity" />
         <activity android:name=".MainActivity">
