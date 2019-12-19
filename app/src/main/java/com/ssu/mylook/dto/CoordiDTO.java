@@ -2,10 +2,13 @@ package com.ssu.mylook.dto;
 
 /*계층간 데이터 교환을 위한 클래스 dto(data transfer object)*/
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import java.util.Map;
 
-public class CoordiDTO implements Comparable<CoordiDTO> {
+public class CoordiDTO implements Parcelable {
     private String name;
     private String img;
     private String regDate;
@@ -42,6 +45,32 @@ public class CoordiDTO implements Comparable<CoordiDTO> {
         this.used = used;
     }
 
+    protected CoordiDTO(Parcel in) {
+        name = in.readString();
+        img = in.readString();
+        regDate = in.readString();
+        seasons = in.createStringArrayList();
+        used = in.createStringArrayList();
+        tag = in.readString();
+        rating = in.readFloat();
+        count = in.readInt();
+        id = in.readString();
+        userId = in.readString();
+        rank = in.readInt();
+    }
+
+    public static final Creator<CoordiDTO> CREATOR = new Creator<CoordiDTO>() {
+        @Override
+        public CoordiDTO createFromParcel(Parcel in) {
+            return new CoordiDTO(in);
+        }
+
+        @Override
+        public CoordiDTO[] newArray(int size) {
+            return new CoordiDTO[size];
+        }
+    };
+
     public static CoordiDTO mapToDTO(Map<String, Object> data) {
         CoordiDTO coordiDTO = new CoordiDTO();
         coordiDTO.setImg((String) data.get("img"));
@@ -52,18 +81,6 @@ public class CoordiDTO implements Comparable<CoordiDTO> {
         coordiDTO.setCount((int) data.get("count"));
         return coordiDTO;
     }
-
-//
-////    //배열 써서 사용했던 Rank
-//    public void setRank(int rank) {
-//        this.rank = rank;
-//    }
-//    public int getRank(){
-//        return rank;
-//    }
-
-    //여기서부터는 실제 사용할 것들
-
 
     public String getName() {
         return name;
@@ -154,7 +171,22 @@ public class CoordiDTO implements Comparable<CoordiDTO> {
     }
 
     @Override
-    public int compareTo(CoordiDTO o) {
-        return o.getRegDate().compareTo(regDate);
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(img);
+        dest.writeString(regDate);
+        dest.writeStringList(seasons);
+        dest.writeStringList(used);
+        dest.writeString(tag);
+        dest.writeFloat(rating);
+        dest.writeInt(count);
+        dest.writeString(id);
+        dest.writeString(userId);
+        dest.writeInt(rank);
     }
 }
