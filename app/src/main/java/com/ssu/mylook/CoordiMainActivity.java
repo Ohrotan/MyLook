@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ssu.mylook.adapter.CoordiMainAdapter;
+import com.ssu.mylook.adapter.CoordiViewAdapter;
 import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
@@ -75,10 +76,25 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 //           Toast.makeText(this, "코디추가버튼 클릭",Toast.LENGTH_SHORT).show();
 //           return true;
            startActivity(new Intent(this,CoordiRegisterActivity.class));
+           return true;
        }
-       return super.onOptionsItemSelected(item);
+//       else if(id==R.id.action_search) {
+//           startActivity(new Intent(this, ClotheSearchActivity.class));
+//           return true;
+//       }
+       else{
+           return super.onOptionsItemSelected(item);
+       }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1 && resultCode==RESULT_OK)
+        {
+            setData(0);
+        }
+    }
 
 
 
@@ -117,7 +133,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                 //ClotheDTO clothe = list.get(position).getID();
                 Intent intent = new Intent(CoordiMainActivity.this,CoordiViewActivity.class);
 
-                //intent.putExtra("coordiID", CoordiViewAdapter.getItem(position).getID());
+                intent.putExtra("coordiID", CoordiMainAdapter.getItem(position).getID());
 
                 startActivity(intent);
             }
@@ -287,7 +303,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             if (springtv.getCurrentTextColor() != Color.WHITE) {
                 spring=true;
                 springtv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                springtv.setTextColor(Color.WHITE);
+                springtv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
                 showToast("spring category");
             } else {
                 spring=false;
@@ -298,7 +314,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             if (summertv.getCurrentTextColor() != Color.WHITE) {
                 summer=true;
                 summertv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                summertv.setTextColor(Color.WHITE);showToast("summer category");
+                summertv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
             } else {
                 summer=false;
                 summertv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
@@ -308,7 +324,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             if (falltv.getCurrentTextColor() != Color.WHITE) {
                 fall=true;
                 falltv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                falltv.setTextColor(Color.WHITE);
+                falltv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
                 showToast("fall category");
             } else {
                 fall=false;
@@ -319,7 +335,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             if (wintertv.getCurrentTextColor() != Color.WHITE) {
                 winter=true;
                 wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                wintertv.setTextColor(Color.WHITE);showToast("winter category");
+                wintertv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));showToast("winter category");
             } else {
                 winter=false;
                 wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));

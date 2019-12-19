@@ -48,7 +48,7 @@ public class CoordiMainAdapter extends BaseAdapter {
 
     // 하나의 Item(ImageView 1, TextView 3)
     @Override
-    public Object getItem(int position) {
+    public CoordiDTO getItem(int position) {
         return listCustom.get(position);
     }
 
