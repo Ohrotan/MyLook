@@ -3,6 +3,7 @@ package com.ssu.mylook;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +32,7 @@ import com.ssu.mylook.adapter.CoordiMainAdapter;
 import com.ssu.mylook.dto.CoordiDTO;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class CoordiMainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -53,6 +54,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     private DatabaseReference mReference;
     private ChildEventListener mChild;
 
+    List<String> selectedSeasons = new ArrayList<>();
     TextView springtv;
     TextView summertv;
     TextView falltv;
@@ -61,7 +63,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     static boolean summer=false;
     static boolean fall=false;
     static boolean winter=false;
-
+    Spinner s;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -117,7 +119,8 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         wintertv.setOnClickListener(this);
 
 
-        Spinner s = (Spinner)findViewById(R.id.arrange_spin);
+
+        s = (Spinner)findViewById(R.id.arrange_spin);
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -126,6 +129,15 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+        selectedSeasons.add("봄");
+
+//        selectedSeasons.add("여름");
+//        selectedSeasons.add("가을");
+//        selectedSeasons.add("겨울");
+        springtv.performClick();
+        summertv.performClick();
+        falltv.performClick();
+        wintertv.performClick();
         setData(0);
         myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -140,65 +152,33 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
         });
     }
+    private void test(){
+
+    }
 
 
     private void setData(final int position) {
         final ArrayList<CoordiDTO> list = new ArrayList<>();
-        if(spring){
-            db.collection("coordi").whereArrayContains("seasons","봄")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CoordiDTO item = doc.toObject(CoordiDTO.class);
-                                item.setId(doc.getId());
-                                list.add(item);
-                            }
-                        }});
-        }
-        if(summer){
-            db.collection("coordi").whereArrayContains("seasons","여름")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CoordiDTO item = doc.toObject(CoordiDTO.class);
-                                item.setId(doc.getId());
-                                list.add(item);
-                            }
-                        }});
-        }
-        if(fall){
-            db.collection("coordi").whereArrayContains("seasons","가을")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CoordiDTO item = doc.toObject(CoordiDTO.class);
-                                item.setId(doc.getId());
-                                list.add(item);
-                            }
-                        }});
-        }
-        if(winter){
-            db.collection("coordi").whereArrayContains("seasons","겨울")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                CoordiDTO item = doc.toObject(CoordiDTO.class);
-                                item.setId(doc.getId());
-                                list.add(item);
-                            }
-                        }});
-        }
+        Query queryList = db.collection("coordi");
+//        if(spring){
+//            //db.collection("coordi").endAt("").we
+//            queryList =queryList.whereIn("seasons",selectedSeasons);
+//        }
+//        if(summer) {
+//            queryList = queryList.whereArrayContains("seasons", "여름");
+//        }
+//        if(fall){
+//            queryList=queryList.whereArrayContains("seasons","가을");
+//        }
+//        if(winter){
+//            queryList=queryList.whereArrayContains("seasons","겨울");
+//        }
+        queryList = queryList.whereIn("seasons",selectedSeasons);
+        Log.v("seasons:","wheereIn까지호출");
         if(position==0){
             //ArrayList<CoordiDTO> CoordiList;
-                    db.collection("coordi").orderBy("regDate", Query.Direction.DESCENDING)
+            Log.v("seasons:","position(0이면최신순):"+position);
+            queryList.orderBy("regDate", Query.Direction.DESCENDING)
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -207,6 +187,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                                         CoordiDTO item = doc.toObject(CoordiDTO.class);
                                         item.setId(doc.getId());
                                         list.add(item);
+                                        Log.v("seasons:","item name:"+item.getName());
                                     }
                                     adapter = new CoordiMainAdapter(CoordiMainActivity.this, list);
                                     myGridView.setAdapter(adapter);
@@ -216,7 +197,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         } else if(position==1){
             //ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", false);
             ArrayList<CoordiDTO> CoodiList;
-            db.collection("coordi").orderBy("rating", Query.Direction.ASCENDING)
+            queryList.orderBy("rating", Query.Direction.ASCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -235,7 +216,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         } else if(position==2){
             //ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", true);
             //adapter.setListCustom(CoordiList);
-            db.collection("coordi").orderBy("rating", Query.Direction.DESCENDING)
+            queryList.orderBy("rating", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -254,7 +235,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         } else if(position==3) {
 //            ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "count", false);
 //            adapter.setListCustom(CoordiList);
-            db.collection("coordi").orderBy("count", Query.Direction.ASCENDING)
+            queryList.orderBy("count", Query.Direction.ASCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -273,7 +254,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
         } else if(position==4){
 //            ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "count", true);
 //            adapter.setListCustom(CoordiList);
-            db.collection("coordi").orderBy("count", Query.Direction.DESCENDING)
+            queryList.orderBy("count", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -301,43 +282,61 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if (v== springtv){
             if (springtv.getCurrentTextColor() != Color.WHITE) {
-                spring=true;
+                //spring=true;
+                selectedSeasons.add("봄");
+                setData(s.getSelectedItemPosition());
                 springtv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                springtv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
+                springtv.setTextColor(Color.WHITE);
+                //springtv.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                 showToast("spring category");
             } else {
-                spring=false;
+                //spring=false;
+                selectedSeasons.remove("봄");
                 springtv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
+                //springtv.setTextColor(Color.DKGRAY);
+                //springtv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
                 springtv.setTextColor(Color.DKGRAY);
             }
         } else if(v== summertv){
             if (summertv.getCurrentTextColor() != Color.WHITE) {
-                summer=true;
+                //summer=true;
+                selectedSeasons.add("여름");
+                setData(s.getSelectedItemPosition());
                 summertv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                summertv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
+                //summertv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
+                summertv.setTextColor(Color.WHITE);
             } else {
-                summer=false;
+                //summer=false;
+                selectedSeasons.remove("여름");
                 summertv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
                 summertv.setTextColor(Color.DKGRAY);
             }
         }else if(v== falltv){
             if (falltv.getCurrentTextColor() != Color.WHITE) {
-                fall=true;
+               // fall=true;
+                selectedSeasons.add("가을");
+                setData(s.getSelectedItemPosition());
                 falltv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                falltv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
+                //falltv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
+                falltv.setTextColor(Color.WHITE);
                 showToast("fall category");
             } else {
-                fall=false;
+                //fall=false;
+                selectedSeasons.remove("가을");
                 falltv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
                 falltv.setTextColor(Color.DKGRAY);
             }
         } else if(v== wintertv){
             if (wintertv.getCurrentTextColor() != Color.WHITE) {
-                winter=true;
+                //winter=true;
+                selectedSeasons.add("겨울");
+                setData(s.getSelectedItemPosition());
                 wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
-                wintertv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));showToast("winter category");
+                //wintertv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));showToast("winter category");
+                wintertv.setTextColor(Color.WHITE);
             } else {
-                winter=false;
+                //winter=false;
+                selectedSeasons.add("겨울");
                 wintertv.setBackground(getResources().getDrawable(R.drawable.colorButtonNotClick, null));
                 wintertv.setTextColor(Color.DKGRAY);
             }

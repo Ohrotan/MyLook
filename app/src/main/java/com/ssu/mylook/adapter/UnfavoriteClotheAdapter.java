@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.CoordiDTO;
+import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
 
@@ -76,6 +77,7 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
 
        // holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getName());
+        new DBUtil().setImageViewFromDB(context,holder.imageView,dto.getImg());
 
         return convertView;
     }
