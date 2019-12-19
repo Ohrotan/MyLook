@@ -27,6 +27,7 @@ import com.ssu.mylook.adapter.ClotheListAdapter;
 import com.ssu.mylook.dto.ClotheListItem;
 import com.ssu.mylook.util.DBUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -51,7 +52,7 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
 
     ArrayList<String> selectedCates = new ArrayList<>();
     ArrayList<String> selectedSeasons = new ArrayList<>();
-
+    byte[] byteBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +140,8 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             Intent intent = new Intent(this, CoordiInfoRegisterActivity.class);
             intent.putExtra("imgId", uniqueID);
             intent.putExtra("clothesIds", clotheListAdapter.getClickedIds());
-            intent.putExtra("img", getBitmapFromView(coordi_v));
+            //  Log.v("img size",getBitmapFromView(coordi_v).getByteCount()+"");
+            intent.putExtra("img", byteBitmap);
 
             startActivity(intent);
             finish();
@@ -236,7 +238,7 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         //Define a bitmap with the same size as the view
         delete_btn.setVisibility(View.GONE);
 
-        int maxSize = 100;
+        int maxSize = 500;
         int width = view.getWidth();
         int height = view.getHeight();
 
@@ -249,8 +251,11 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
             width = (int) (height * bitmapRatio);
         }
 
-        Bitmap returnedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         //Bind a canvas to it
+
+
+
         Canvas canvas = new Canvas(returnedBitmap);
         //Get the view's background
         Drawable bgDrawable = view.getBackground();
@@ -265,7 +270,10 @@ public class CoordiRegisterActivity extends AppCompatActivity implements View.On
         delete_btn.setVisibility(View.VISIBLE);
         //return the bitmap
 
-
+        ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
+        returnedBitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytearrayoutputstream);
+        byteBitmap = bytearrayoutputstream.toByteArray();
+        Log.v("img bitmap", byteBitmap.length + "");
         return returnedBitmap;
     }
 
