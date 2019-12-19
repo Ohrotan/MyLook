@@ -37,6 +37,8 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
     GridView gridView;
     ClosetViewAdapter closetViewAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public static final int REQUEST_FROM_MAIN=1;
+
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
 
                 //Bundle bundle = new Bundle();
 
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_FROM_MAIN);
             }
 
         });
@@ -110,13 +112,14 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_FROM_MAIN){
         if(resultCode==RESULT_OK)
         {
             //String resultMsg=data.getStringExtra("clotheID");
             setData(0);
         }
     }
-
+}
     private void setData(final int position) {
         final String TAG = "clothe database";
         if(position==0){
