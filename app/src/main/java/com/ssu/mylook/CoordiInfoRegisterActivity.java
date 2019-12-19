@@ -1,7 +1,6 @@
 package com.ssu.mylook;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,8 +71,15 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    coordi_img.setImageBitmap((Bitmap)getIntent().getParcelableExtra("img"));
-                   // new DBUtil().setImageViewFromDB(CoordiInfoRegisterActivity.this, coordi_img, imgId);
+                    // coordi_img.setImageBitmap((Bitmap)getIntent().getParcelableExtra("img"));
+                    Log.v("dbimg coordi info", DBUtil.coordiImg + "");
+                    while (true) {
+                        Log.v("dbimg coordi while", DBUtil.coordiImg + "");
+                        if (DBUtil.coordiImg) {
+                            new DBUtil().setImageViewFromDB(CoordiInfoRegisterActivity.this, coordi_img, imgId);
+                            break;
+                        }
+                    }
                 }
             });
         }

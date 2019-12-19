@@ -8,12 +8,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,12 +25,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.dto.CoordiDTO;
-import com.ssu.mylook.dto.CoordiDTO;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 public class DBUtil {
     final static String TAG = "Database";
@@ -45,9 +42,12 @@ public class DBUtil {
 
     CoordiDTO coordiDTO;
 
+    public static boolean coordiImg = false;
+
     public CoordiDTO getCoordiDTO() {
         return coordiDTO;
     }
+
     public void getCoordi(String id) {
         db.collection("coordi").document(id)
                 .get()
@@ -121,7 +121,6 @@ public class DBUtil {
                     }
                 });
     }
-
 
 
     public void updateClothe(String id, ClotheDTO dto) {
@@ -201,7 +200,6 @@ public class DBUtil {
     }
 
 
-
     public void getData(String collection, String id) {
         db.collection(collection).document(id)
                 .get()
@@ -278,26 +276,32 @@ public class DBUtil {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = imgRef.putBytes(data);
-        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if (!task.isSuccessful()) {
-                    throw task.getException();
-                }
+//        Task<Uri> urlTask = uploadTask.addOnSuccessListener(new OnSuccessListener<Uri>() {
+//
+//
+//            @Override
+//            public void onSuccess(Uri uri) {
+//                coordiImg = true;
+//                Log.v(TAG, "img upload success/" + uri.toString());
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.v(TAG, "Image upload Fail", e);
+//            }
+//        });
 
-                // Continue with the task to get the download URL
-                //  Log.v("img", "suc/" + imgRef2.getDownloadUrl().toString());
-                return imgRef2.getDownloadUrl();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<Uri>() {
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onSuccess(Uri uri) {
-                Log.v(TAG, "img upload success/" + uri.toString());
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                coordiImg = true;
+                Log.v("dbimg upload", DBUtil.coordiImg + "");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.v(TAG, "Image upload Fail", e);
+                coordiImg = true;
+                Log.v("dbimg upload fail", DBUtil.coordiImg + "");
             }
         });
     }
@@ -327,6 +331,8 @@ public class DBUtil {
                 Glide.with(con)
                         .load(uri)
                         .into(imageView);
+                coordiImg = false;
+                Log.v("dbimg db set img", DBUtil.coordiImg + "");
             }
         });
 
