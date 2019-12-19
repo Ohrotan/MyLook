@@ -1,19 +1,16 @@
 package com.ssu.mylook.dto;
 
-import java.util.List;
-
 public class FavorDTO {
     String id;
     String img;
     String name;
-    List<String> used;
     int count;
 
     public FavorDTO() {
         super();
     }
-    public FavorDTO(String id, String img, String name, int count,List<String> used){
-        this.id=id;this.img=img;this.name=name;this.count=count; this.used=used;
+    public FavorDTO(String id, String img, String name, int count){
+        this.id=id;this.img=img;this.name=name;this.count=count;
     }
 
     public String getImg(){

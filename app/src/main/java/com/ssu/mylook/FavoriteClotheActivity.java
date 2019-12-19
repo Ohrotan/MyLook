@@ -46,23 +46,42 @@ public class FavoriteClotheActivity extends AppCompatActivity {
         setData(0);
     }
 
+    static int a;
 
     private void setData(int position) {
         if(position==0){
-            db.collection("clothes").orderBy("used")
+            final ArrayList<FavorDTO> favors = new ArrayList<>();
+            db.collection("coordi").orderBy("used")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<FavorDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
                                 FavorDTO item = doc.toObject(FavorDTO.class);
                                 item.setId(doc.getId());
-                                list.add(item);
+                                favors.add(item);
                             }
-                            adapter = new FavoriteClotheAdapter(FavoriteClotheActivity.this, list);
-                            myListView.setAdapter(adapter);
                         }});
+
+                for(int i=0; i<favors.size(); i++) {
+
+                db.collection("coordi").whereArrayContains("used", favors.get(i).getId()) //옷 아이디
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                ArrayList<FavorDTO> list = new ArrayList<>();
+                                a =queryDocumentSnapshots.size();
+                                    ;//옷이 사용된 횟수
+//                                    FavorDTO item = doc.toObject(FavorDTO.class);
+//                                    item.setId(doc.getId());
+//                                    list.add(item);
+
+                        //        adapter = new FavoriteClotheAdapter(FavoriteClotheActivity.this, list);
+                          //      myListView.setAdapter(adapter);
+                            }
+                        });
+            }
         } else if(position==1){
             db.collection("clothes").orderBy("used")
                     .get()
