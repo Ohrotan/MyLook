@@ -95,8 +95,79 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
         if (getIntent().getStringExtra("mode") != null) {
             result = getIntent().getParcelableExtra("coordiDTO");
+
+            //name
             coordi_name_etv.setText(result.getName());
-            String tag = result.getTag();
+
+            //rating
+            rating.setRating(result.getRating());
+
+            //season
+            for (String s : result.getSeasons()) {
+                switch (s) {
+                    case "봄":
+                        season_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[0].setTextColor(Color.WHITE);
+                        break;
+                    case "여름":
+                        season_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[1].setTextColor(Color.WHITE);
+                        break;
+                    case "가을":
+                        season_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[2].setTextColor(Color.WHITE);
+                        break;
+                    case "겨울":
+                        season_btn[3].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                        season_btn[3].setTextColor(Color.WHITE);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            //tag
+            switch (result.getTag()) {
+                case "심플베이직":
+                    tag_btn[0].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[0].setTextColor(Color.WHITE);
+                    break;
+                case "캠퍼스룩":
+                    tag_btn[1].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[1].setTextColor(Color.WHITE);
+                    break;
+                case "캐주얼":
+                    tag_btn[2].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[2].setTextColor(Color.WHITE);
+                    break;
+                case "유니크":
+                    tag_btn[3].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[3].setTextColor(Color.WHITE);
+                    break;
+                case "스포티":
+                    tag_btn[4].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[4].setTextColor(Color.WHITE);
+                    break;
+                case "러블리":
+                    tag_btn[5].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[5].setTextColor(Color.WHITE);
+                    break;
+                case "오피스룩":
+                    tag_btn[6].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[6].setTextColor(Color.WHITE);
+                    break;
+                case "섹시글램":
+                    tag_btn[7].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[7].setTextColor(Color.WHITE);
+                    break;
+                case "화려한":
+                    tag_btn[8].setBackground(getResources().getDrawable(R.drawable.purple_button, null));
+                    tag_btn[8].setTextColor(Color.WHITE);
+                    break;
+                default:
+                    break;
+            }
 
         }
     }
