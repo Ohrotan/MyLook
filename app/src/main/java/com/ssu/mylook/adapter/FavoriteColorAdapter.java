@@ -20,14 +20,14 @@ public class FavoriteColorAdapter extends BaseAdapter {
     ArrayList<String> clicked = new ArrayList<>();
 
 
-    public FavoriteColorAdapter(Context context){
+    public FavoriteColorAdapter(Context context) {
         this.context = context;
         listCustom = new ArrayList<>();
     }
 
     public FavoriteColorAdapter(Context context, ArrayList<TagColorDTO> list) {
-        this.context=context;
-        this.listCustom=list;
+        this.context = context;
+        this.listCustom = list;
     }
 
 
@@ -60,7 +60,7 @@ public class FavoriteColorAdapter extends BaseAdapter {
 
             holder = new CustomViewHolder();
             //holder.textRank= (TextView)convertView.findViewById(R.id.color_rank);
-            holder.textRank= (TextView)convertView.findViewById(R.id.color_rank);
+            holder.textRank = (TextView) convertView.findViewById(R.id.color_rank);
             holder.textTitle = (TextView) convertView.findViewById(R.id.color_title);
             // holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
             holder.textContent = (TextView) convertView.findViewById(R.id.color_number);
@@ -73,9 +73,9 @@ public class FavoriteColorAdapter extends BaseAdapter {
         }
 
         TagColorDTO dto = listCustom.get(position);
-        holder.textContent.setText(Integer.toString(dto.getCount())+"회"); //색깔횟수
+        holder.textContent.setText(Integer.toString(dto.getCount()) + "회"); //색깔횟수
         holder.textTitle.setText(dto.getField()); //색깔이름
-        holder.textRank.setText(Integer.toString(position+1));
+        holder.textRank.setText(Integer.toString(position + 1));
 
         return convertView;
     }

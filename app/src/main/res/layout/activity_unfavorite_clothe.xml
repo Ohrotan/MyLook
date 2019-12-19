@@ -8,27 +8,48 @@
     tools:context="com.ssu.mylook.UnfavoriteClotheActivity">
 
     <TextView
-        android:id="@+id/all_coori_num"
-        android:layout_width="match_parent"
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재 옷장에 등록한 옷 : 32벌"
-        android:textColor="#000000"/>
-    <TextView
-        android:id="@+id/never_coordi_num"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:text="한번도 안 입은 옷: 30 %"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="한 번도 입지 않은 옷 : 3벌"
-        android:textColor="#000000"/>
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/never_coordi_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3벌"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/all_coori_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" / 32벌"
+            android:textColor="#000000"
+            android:textSize="28sp" />
+
+    </LinearLayout>
 
     <!--    tools:context="관련된액티비티"-->
     <GridView
         android:id="@+id/ZeroClotheGridView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#e0e0e0"
-        android:numColumns="2"/>
+        android:numColumns="2" />
 </LinearLayout>
