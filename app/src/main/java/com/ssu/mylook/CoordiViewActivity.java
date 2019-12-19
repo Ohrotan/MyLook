@@ -126,6 +126,8 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                  * 코디 클릭시 나오는 코디ID 값을 이용해 삭제함
                  *  */
                 deleteDoc();
+                intent=getIntent();
+                setResult(RESULT_OK,intent);
                 break;
 
             case R.id.minusCount:
@@ -213,7 +215,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                 });
         Intent intent = new Intent(this, CoordiMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        setResult(RESULT_OK,intent);
         overridePendingTransition(0, 0);
         finish();//저장
     }
