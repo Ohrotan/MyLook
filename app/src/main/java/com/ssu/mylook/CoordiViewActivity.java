@@ -12,10 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,6 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.ssu.mylook.adapter.CoordiViewAdapter;
 import com.ssu.mylook.dto.CoordiDTO;
 import com.ssu.mylook.util.DBUtil;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CoordiViewActivity extends AppCompatActivity implements View.OnClickListener {
     private CoordiViewAdapter adapter;
@@ -40,7 +40,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
     RatingBar coordi_view_rating;
     TextView coordi_view_seasons;
     TextView coordi_view_count;
-    String seasons="";
+    String seasons = "";
 
     CoordiDTO results = new CoordiDTO();
 
@@ -84,13 +84,13 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         removeBtn = (RelativeLayout) findViewById(R.id.remove_btn);
 
         //id얻기
-        coordiID=getIntent().getStringExtra("coordiID");
-        coordi_view_img=findViewById(R.id.coordi_view_img);
-        coordi_view_name=findViewById(R.id.coordi_view_title);
-        coordi_view_rating=findViewById(R.id.coordi_view_rating);
-        coordi_view_tag=findViewById(R.id.coordi_view_tag);
-        coordi_view_seasons=findViewById(R.id.coordi_view_weather);
-        coordi_view_count=findViewById(R.id.coordi_item_count);
+        coordiID = getIntent().getStringExtra("coordiID");
+        coordi_view_img = findViewById(R.id.coordi_view_img);
+        coordi_view_name = findViewById(R.id.coordi_view_title);
+        coordi_view_rating = findViewById(R.id.coordi_view_rating);
+        coordi_view_tag = findViewById(R.id.coordi_view_tag);
+        coordi_view_seasons = findViewById(R.id.coordi_view_weather);
+        coordi_view_count = findViewById(R.id.coordi_item_count);
 
         editBtn.setOnClickListener(this);
         removeBtn.setOnClickListener(this);
@@ -100,22 +100,25 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
         //coordiID="RZoI85VFpuiLs6kO6EZn";
 
 
-        coordiID=getIntent().getStringExtra("coordiID");
+        coordiID = getIntent().getStringExtra("coordiID");
         getData(coordiID);
     }
+
     @Override
     public void onClick(View v) {
         Intent intent;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.edit_btn:
                 /* <구현해야 함>
                  * 수정하기 : 해당 코디의 수정하기로 넘어감
                  * 코디 클릭시 나오는 코디ID 값으로 수정하기로 넘어가야 됨
                  *  */
-                intent = new Intent(this,CoordiInfoEditActivity.class);
+                intent = new Intent(this, CoordiInfoRegisterActivity.class);
+                intent.putExtra("mode","edit");
+                intent.putExtra("coordiDTO",results);
                 startActivity(intent);
                 break;
-            case R.id.remove_btn :
+            case R.id.remove_btn:
                 /* <구현해야 함>
                  * 삭제하기 : 삭제하시겠습니까? 출력 후 , '네' 누르면
                  * 코디 클릭시 나오는 코디ID 값을 이용해 삭제함
@@ -123,13 +126,13 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                 deleteDoc();
                 break;
 
-            case R.id.minusCount :
+            case R.id.minusCount:
                 //DB에서 이 count 값 가져오기, 변경시킨 값 다시 DB에 저장하기 구현해야함
                 //int printCount = Integer.parseInt(count.getText().toString());
 //                int printCount=dbcount;
 //                printCount--;
 //                count.setText(""+printCount);
-                if(dbcount==0||dbcount<0){
+                if (dbcount == 0 || dbcount < 0) {
                     showToast("0 이하로 낮출 수 없습니다.");
                     break;
                 }
@@ -141,7 +144,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                coordi_view_count.setText(dbcount+"");
+                                coordi_view_count.setText(dbcount + "");
                                 Log.d("TAG", "DocumentSnapshot successfully updated!");
                             }
                         })
@@ -164,7 +167,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                coordi_view_count.setText(dbcount+"");
+                                coordi_view_count.setText(dbcount + "");
                                 Log.d("TAG", "DocumentSnapshot successfully updated!");
                             }
                         })
@@ -180,16 +183,15 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-
-    private void showToast(String message){
-        Toast toast=Toast.makeText(this, message, Toast.LENGTH_SHORT);
+    private void showToast(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
     }
 
     private void deleteDoc() {
         db.collection("coordi").document(coordiID)
                 .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("jungeun", "DocumentSnapshot successfully deleted!");
@@ -201,19 +203,20 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                         Log.w("jungeun", "Error deleting document", e);
                     }
                 });
-        Intent intent=new Intent(this,CoordiMainActivity.class);
+        Intent intent = new Intent(this, CoordiMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         overridePendingTransition(0, 0);
         finish();//저장
     }
+
     public void setField(CoordiDTO result) {
         new DBUtil().setImageViewFromDB(this, coordi_view_img, result.getImg());
         coordi_view_name.setText(result.getName());//name
         coordi_view_rating.setRating(result.getRating()); //rating
-        coordi_view_tag.setText("#"+result.getTag());//tag
-        coordi_view_count.setText(result.getCount()+"");//count
-        dbcount=result.getCount();
+        coordi_view_tag.setText("#" + result.getTag());//tag
+        coordi_view_count.setText(result.getCount() + "");//count
+        dbcount = result.getCount();
         for (String s : result.getSeasons()) {
             switch (s) {
                 case "봄":

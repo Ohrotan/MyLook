@@ -68,21 +68,6 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
 
         if (imgId != null) {
             result.setImg(imgId);
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    coordi_img.setImageBitmap((Bitmap) getIntent().getParcelableExtra("img"));
-//                    // coordi_img.setImageBitmap((Bitmap)getIntent().getParcelableExtra("img"));
-//                    Log.v("dbimg coordi info", DBUtil.coordiImg + "");
-//                    while (true) {
-//                        //Log.v("dbimg coordi while", DBUtil.coordiImg + "");
-//                        if (DBUtil.coordiImg) {
-//                            break;
-//                        }
-//                        break;
-//                    }
-//                }
-//            });
         }
         result.setUsed(getIntent().getStringArrayListExtra("clothesIds"));
 
@@ -93,16 +78,27 @@ public class CoordiInfoRegisterActivity extends AppCompatActivity implements Vie
     protected void onResume() {
         super.onResume();
         try {
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
         } catch (Exception e) {
 
         }
-        final String imgId = getIntent().getStringExtra("imgId");
-        byte[] BYTE = (byte[]) getIntent().getByteArrayExtra("img");
-        // BitmapFactory.decodeByteArray(BYTE,0,BYTE.length)
-        coordi_img.setImageBitmap(BitmapFactory.decodeByteArray(BYTE, 0, BYTE.length));
-        // new DBUtil().setImageViewFromDB(CoordiInfoRegisterActivity.this, coordi_img, imgId);
 
+        String imgId = getIntent().getStringExtra("imgId");
+        byte[] BYTE = (byte[]) getIntent().getByteArrayExtra("img");
+        if (BYTE != null) {
+            // BitmapFactory.decodeByteArray(BYTE,0,BYTE.length)
+            coordi_img.setImageBitmap(BitmapFactory.decodeByteArray(BYTE, 0, BYTE.length));
+            // new DBUtil().setImageViewFromDB(CoordiInfoRegisterActivity.this, coordi_img, imgId);
+        } else {
+            new DBUtil().setImageViewFromDB(this, coordi_img, imgId);
+        }
+
+        if (getIntent().getStringExtra("mode") != null) {
+            result = getIntent().getParcelableExtra("coordiDTO");
+            coordi_name_etv.setText(result.getName());
+            String tag = result.getTag();
+
+        }
     }
 
     public void clicked(Button btn) {
