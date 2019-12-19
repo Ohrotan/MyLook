@@ -113,24 +113,6 @@ public class ClotheListAdapter extends BaseAdapter {
         viewholder.clothe_name.setText(list.get(position).getName());
         new DBUtil().setImageViewFromDB(context, viewholder.clothe_img, list.get(position).getImage());
 
-//        convertView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context,"click"+position,Toast.LENGTH_SHORT).show();
-//
-//                if (viewholder.coordi_clothe_checkBox.isChecked()) {
-//                    viewholder.coordi_clothe_checkBox.setChecked(false);
-//                    clicked.remove(list.get(position).getImage());
-//                } else {
-//                    Toast.makeText(context,"unclick"+list.get(position).getImage(),Toast.LENGTH_SHORT).show();
-//                    viewholder.coordi_clothe_checkBox.setChecked(true);
-//
-//
-//
-//                }
-//
-//            }
-//        });
         return convertView;
     }
 

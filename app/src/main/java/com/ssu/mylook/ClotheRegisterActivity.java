@@ -396,12 +396,15 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
              stringBitmap=getBase64String(getBitmap);
 
              //데이터베이스에 저장
-             result.setIMAGE(uniqueID);
-             result.setTTL(clothe_title.getText().toString());
-             result.setMEMO(memo.getText().toString());
-             result.setSORT(selectedSort);
-             result.setCOLOR(selectedColor);
-             result.setImageBitmap(stringBitmap);
+             result.setImage(uniqueID);
+             result.setTitle(clothe_title.getText().toString());
+             result.setMemo(memo.getText().toString());
+             result.setSort(selectedSort);
+             result.setColor(selectedColor);
+
+             //수정해야하는 부분, + 460라인도 해결해야함
+             //저장할 필요는 없다
+             //result.setImageBitmap(stringBitmap);
 
              ArrayList<String> seletedSeasons = new ArrayList<>();
              for (int i = 0; i < 4; i++) {
@@ -409,7 +412,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
                      seletedSeasons.add(season_btn[i].getText().toString());
                  }
              }
-             result.setSEASON(seletedSeasons);
+             result.setSeasons(seletedSeasons);
 
              Calendar c = new GregorianCalendar();
              c.add(Calendar.HOUR_OF_DAY, 9);
@@ -418,14 +421,16 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
              int d = c.get(Calendar.DAY_OF_MONTH);
              int h = c.get(Calendar.HOUR_OF_DAY);
              int min = c.get(Calendar.MINUTE);
-             result.setREGDATE(y + "-" + m + "-" + d + " " + h + ":" + min);
+             result.setRegDate(y + "-" + m + "-" + d + " " + h + ":" + min);
 
              new DBUtil().addClothe(result);
 
             //저장하고
-            intent = new Intent(this,ClosetActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
+            //intent = new Intent(this,ClosetActivity.class);
+            intent = new Intent();
+            intent.putExtra("clotheID",result.getId());
+            //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+             setResult(RESULT_OK,intent);
             overridePendingTransition(0, 0);
             finish();
         }

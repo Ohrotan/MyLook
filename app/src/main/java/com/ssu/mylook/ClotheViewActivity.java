@@ -101,24 +101,37 @@ public class ClotheViewActivity extends ClotheRegisterActivity implements View.O
 
 
     public void setField(ClotheDTO result) {
-        new DBUtil().setImageViewFromDB(this,view_clothe_img,result.getIMAGE());
-        view_name.setText(result.getTTL());
-        view_memo.setText(result.getMEMO());
-        view_sort.setText(result.getSORT());
-        for (String s : result.getSEASON()) {
+        int check=0;
+        new DBUtil().setImageViewFromDB(this,view_clothe_img,result.getImage());
+        view_name.setText(result.getTitle());
+        view_memo.setText(result.getMemo());
+        view_sort.setText(result.getSort());
+        for (String s : result.getSeasons()) {
             switch (s) {
                 case "봄":
-                   seasons="봄";
+                    check++;
+                   seasons="봄 ";
                     break;
                 case "여름":
-                    seasons+=" ,여름";
+                    if(check==0){
+                    seasons+="여름 ";}
+                    else
+                        seasons+=", 여름";
+                    check++;
                     break;
                 case "가을":
-                    seasons+=" ,가을";
+                    if(check==0){
+                        seasons+="가을 ";}
+                    else
+                        seasons+=", 가을";
+                    check++;
                     break;
                 case "겨울":
-                    seasons+=" ,겨울";
-                    break;
+                    if(check==0){
+                        seasons+="겨울 ";}
+                    else
+                        seasons+=", 겨울";
+                    check++;
                 default:
                     break;
             }

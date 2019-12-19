@@ -9,16 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.ClotheDTO;
-import com.ssu.mylook.dto.ClotheTitleDTO;
 import com.ssu.mylook.util.DBUtil;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class ClosetViewAdapter extends BaseAdapter {
 
-    private List<ClotheTitleDTO> clotheNames;
-    private ArrayList<ClotheTitleDTO> arrayList;
+
     private ArrayList<ClotheDTO> items;
     private Context context;
     ClotheDTO itemDTO;
@@ -36,7 +33,7 @@ public class ClosetViewAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView clothe_img;
         TextView clothe_title;
-        String id;
+
     }
 
     @Override
@@ -80,8 +77,8 @@ public class ClosetViewAdapter extends BaseAdapter {
         itemDTO = items.get(position);
 
 
-        new DBUtil().setImageViewFromDB(context, holder.clothe_img, itemDTO.getIMAGE());
-        holder.clothe_title.setText(itemDTO.getTTL());
+        new DBUtil().setImageViewFromDB(context, holder.clothe_img, itemDTO.getImage());
+        holder.clothe_title.setText(itemDTO.getTitle());
 
         //Toast.makeText(context, holder.clothe_title.getText().toString() + "", Toast.LENGTH_LONG).show(); //옷 이름이 안뜸
 
@@ -96,7 +93,7 @@ public class ClosetViewAdapter extends BaseAdapter {
         } else {
             for (ClotheDTO wp : items) {
                 //getTitle()에 문제가 있어서 안뜨는거같음
-                if (wp.getTTL().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (wp.getTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
                     items.add(wp);
                 }
             }
