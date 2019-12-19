@@ -107,7 +107,7 @@
                             android:id="@+id/zero_clothes_img"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/clothe1"></ImageView>
+                            android:src="@drawable/button_selector"></ImageView>
 
                         <TextView
                             android:id="@+id/zero_clothes_name"
@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/zero_clothes_img"
                             android:gravity="center"
-                            android:text="옷이름"
+                            android:text=""
                             android:textSize="10sp" />
 
                         <!--                    <ListView-->
@@ -339,14 +339,14 @@
                             android:layout_height="100dp"
                             android:layout_below="@id/line3_1_text"
                             android:layout_gravity="center"
-                            android:src="@drawable/clothe2" />
+                            android:src="@drawable/button_selector" />
 
                         <TextView
                             android:id="@+id/favor_clothes_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="옷이름"
+                            android:text=""
                             android:textSize="10sp" />
 
                         <Button

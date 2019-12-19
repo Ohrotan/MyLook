@@ -128,23 +128,24 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                 if (task.isSuccessful()) {
                     Log.d("nevercoordi :", task.getResult().size() + "");
                     nevercoordi = task.getResult().size();
-                } else {
-                    //Log.d("TAG", "Error getting documents: ", task.getException());
+                    db.collection("coordi").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("allcoordi", task.getResult().size() + "");
+                                allcoordi = task.getResult().size();
+                                coordiratio = (int) (((double) nevercoordi / allcoordi) * 100);
+                                zeroRatio.setText(coordiratio + "%");
 
+                            } else {
+                                //Log.d("TAG", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
                 }
             }
         });
-        db.collection("coordi").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    Log.d("allcoordi", task.getResult().size() + "");
-                    allcoordi = task.getResult().size();
-                } else {
-                    //Log.d("TAG", "Error getting documents: ", task.getException());
-                }
-            }
-        });
+
 //
 //        zeroRatio.setText(20+"%");
 
@@ -163,10 +164,16 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                             list.add(item);
                         }
                         double randomValue = Math.random();
-                        int random = (int) (randomValue * nevercoordi) + 1;
-                        zeroClothesName.setText(list.get(random).getName());
-                        new DBUtil().setImageViewFromDB(StyleAnalysisActivity.this, zeroClotheImg, list.get(random).getImg());
+                        if (nevercoordi > 1) {
+                            Log.v("never", nevercoordi + "");
+                            int random = (int) (randomValue * nevercoordi) + 1;
+                            zeroClothesName.setText(list.get(random).getName());
+                            new DBUtil().setImageViewFromDB(StyleAnalysisActivity.this, zeroClotheImg, list.get(random).getImg());
+                        } else {
+                            zeroClothesName.setText(list.get(0).getName());
+                            new DBUtil().setImageViewFromDB(StyleAnalysisActivity.this, zeroClotheImg, list.get(0).getImg());
 
+                        }
 //
 //                        adapterZero = new AnalysisZeroAdapter(StyleAnalysisActivity.this, list);
 //                        myZeroListView.setAdapter(adapterZero);
@@ -480,6 +487,8 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                         color = list.get(0).getField();
                         favorColor2.setText("#" + list.get(1).getField());
                         favorColor3.setText("#" + list.get(2).getField());
+                        analysis.setText("당신은 " + color + "컬러를\n가장 선호하고,\n" + analtag + " 스타일을\n좋아하시는군요!");
+
                     }
                 });
 
@@ -498,20 +507,12 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                     }
                 });
 
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+        }
 
-        //최종 분석 메시지
-        db.collection("clothes")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        //입지 않는 옷의 비율 계산
-                        coordiratio = (int) (((double) nevercoordi / allcoordi) * 100);
-                        zeroRatio.setText(coordiratio + "%");
-                        //최종 분석 메시지
-                        analysis.setText("당신은 " + color + "컬러를\n가장 선호하고,\n" + analtag + " 스타일을\n좋아하시는군요!");
-                    }
-                });
+
     }
 
     @Override
