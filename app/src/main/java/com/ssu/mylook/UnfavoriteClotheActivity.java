@@ -34,7 +34,7 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unfavorite_clothe);
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("한번도 안 입은 옷 분석");
+        ab.setTitle("한번도 안 입은 코디 분석");
 
 //        adapter = new UnfavoriteClotheAdapter();
         myListView = (GridView) findViewById(R.id.ZeroClotheGridView);
@@ -82,7 +82,7 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
                                 ratio[1] = task.getResult().size();
                                 neverCoordi.setText(+task.getResult().size() + "벌");
 
-                                tv.setText("한번도 안 입은 옷: " + Math.round((float) ratio[1] / ratio[0] * 100.0) +"%");
+                                tv.setText("한번도 안 입은 코디: " + Math.round((float) ratio[1] / ratio[0] * 100.0) +"%");
                             } else {
                                 //Log.d("TAG", "Error getting documents: ", task.getException());
                                 neverCoordi.setText("Error");
