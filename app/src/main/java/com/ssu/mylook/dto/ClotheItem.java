@@ -8,19 +8,19 @@ public class ClotheItem {
     private String title;
     private String image;
     private String id;
-    private String getBitmap;
+
 
     public ClotheItem()
     {
         super();
     }
 
-    public ClotheItem(String title, String image, String id, String getBitmap){
+    public ClotheItem(String title, String image, String id){
         super();
         this.title=title;
         this.image=image;
         this.id=id;
-        this.getBitmap=getBitmap;
+
     }
 
 
@@ -48,13 +48,6 @@ public class ClotheItem {
         this.id = id;
     }
 
-    public String getBitmap() {
-        return getBitmap;
-    }
-
-    public void setBitmap(String bitmap) {
-        this.getBitmap = bitmap;
-    }
 
     @Override
     public String toString(){

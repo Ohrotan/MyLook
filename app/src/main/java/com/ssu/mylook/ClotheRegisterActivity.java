@@ -50,7 +50,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
     String stringBitmap;
     EditText clothe_title;
     EditText memo;
-    Bitmap getBitmap;
+    Bitmap myBitmap;
 
     Button btn_back;
     Button btn_save;
@@ -363,7 +363,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
         }
         else if(v==btn_save){
              String uniqueID = UUID.randomUUID().toString();
-             new DBUtil().uploadImage(getBitmap, uniqueID);
+             new DBUtil().uploadImage(myBitmap, uniqueID);
 
              String str = "옷 이름: " + clothe_title.getText()
                      + "/계절:";
@@ -393,7 +393,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
 
              Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
 
-             stringBitmap=getBase64String(getBitmap);
+             stringBitmap=getBase64String(myBitmap);
 
              //데이터베이스에 저장
              result.setImage(uniqueID);
@@ -458,7 +458,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
                 Toast.makeText(this,"저장경로:"+imageFilePath,Toast.LENGTH_SHORT).show();
                 if(bitmap !=null)
                 {
-                    getBitmap=bitmap;
+                    myBitmap=bitmap;
                     add_photo.setImageBitmap(bitmap);
                 }
             }
