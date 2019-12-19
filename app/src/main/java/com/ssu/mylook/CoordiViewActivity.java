@@ -114,7 +114,6 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                  *  */
                 intent = new Intent(this,CoordiInfoEditActivity.class);
                 startActivity(intent);
-                showToast("수정하기 버튼 클릭");
                 break;
             case R.id.remove_btn :
                 /* <구현해야 함>
@@ -122,7 +121,6 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                  * 코디 클릭시 나오는 코디ID 값을 이용해 삭제함
                  *  */
                 deleteDoc();
-                showToast("삭제하기 버튼 클릭");
                 break;
 
             case R.id.minusCount :
@@ -131,7 +129,6 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
 //                int printCount=dbcount;
 //                printCount--;
 //                count.setText(""+printCount);
-                showToast("- 버튼 클릭 : "+dbcount);
                 if(dbcount==0||dbcount<0){
                     showToast("0 이하로 낮출 수 없습니다.");
                     break;

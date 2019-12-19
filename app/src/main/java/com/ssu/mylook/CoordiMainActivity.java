@@ -173,7 +173,7 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 //        if(winter){
 //            queryList=queryList.whereArrayContains("seasons","겨울");
 //        }
-        queryList = queryList.whereIn("seasons",selectedSeasons);
+        //queryList = queryList.whereIn("seasons",selectedSeasons);
         Log.v("seasons:","wheereIn까지호출");
         if(position==0){
             //ArrayList<CoordiDTO> CoordiList;
@@ -193,7 +193,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                                     myGridView.setAdapter(adapter);
                                 }});
             //adapter.setListCustom(CoordiList);
-            showToast("CoordiList 등록날짜순 출력중");
         } else if(position==1){
             //ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", false);
             ArrayList<CoordiDTO> CoodiList;
@@ -212,7 +211,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                             myGridView.setAdapter(adapter);
                         }});
             //adapter.setListCustom(CoordiList);
-            showToast("CoordiList 별점 오름차순 출력중");
         } else if(position==2){
             //ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "rating", true);
             //adapter.setListCustom(CoordiList);
@@ -231,7 +229,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                             myGridView.setAdapter(adapter);
                         }});
             //adapter.setListCustom(CoordiList);
-            showToast("CoordiList 별점 내림차순 출력중");
         } else if(position==3) {
 //            ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "count", false);
 //            adapter.setListCustom(CoordiList);
@@ -250,7 +247,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                             myGridView.setAdapter(adapter);
                         }});
             //adapter.setListCustom(CoordiList);
-            showToast("CoordiList 횟수 내림차순 출력중");
         } else if(position==4){
 //            ArrayList<CoordiDTO> CoordiList = new DBUtil().getDatas("coordi", "count", true);
 //            adapter.setListCustom(CoordiList);
@@ -269,7 +265,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                             myGridView.setAdapter(adapter);
                         }});
             //adapter.setListCustom(CoordiList);
-            showToast("CoordiList 횟수 오름차순 출력중");
         }
 
     }
@@ -288,7 +283,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                 springtv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
                 springtv.setTextColor(Color.WHITE);
                 //springtv.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-                showToast("spring category");
             } else {
                 //spring=false;
                 selectedSeasons.remove("봄");
@@ -319,7 +313,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
                 falltv.setBackground(getResources().getDrawable(R.drawable.colorButtonClicked, null));
                 //falltv.setLinkTextColor(getResources().getColor(R.color.colorPrimaryDark,null));
                 falltv.setTextColor(Color.WHITE);
-                showToast("fall category");
             } else {
                 //fall=false;
                 selectedSeasons.remove("가을");
