@@ -49,8 +49,7 @@ public class ClotheSearchActivity extends AppCompatActivity implements SearchVie
 
         searchView=(SearchView) findViewById(R.id.search_view);
 
-        clotheNameList = new String[10];
-        CharSequence query = searchView.getQuery();
+        final CharSequence query = searchView.getQuery();
         boolean isIconfied=searchView.isIconfiedByDefault();
 
         CharSequence queryHint = searchView.getQueryHint();
@@ -60,12 +59,31 @@ public class ClotheSearchActivity extends AppCompatActivity implements SearchVie
         setData(0); //setAdapter
 
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+     /*   searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 // do something when the focus of the query text field changes
+
+                db.collection("clothes").whereEqualTo("title",query)
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                ArrayList<ClotheDTO> list = new ArrayList<>();
+                                for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                    ClotheDTO item = doc.toObject(ClotheDTO.class);
+                                    item.setId(doc.getId());
+                                    list.add(item);
+                                    Toast.makeText(getApplicationContext(), ""+item.getTitle(), Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
+                                }
+
+                                closetViewAdapter = new ClosetViewAdapter(ClotheSearchActivity.this,list);
+                                gridView.setAdapter(closetViewAdapter);
+                            }});
+
             }
-        });
+        });*/
 
         searchView.setOnQueryTextListener(this);
 
@@ -170,10 +188,27 @@ public class ClotheSearchActivity extends AppCompatActivity implements SearchVie
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        String text= newText;
-        closetViewAdapter.filter(text);
+        db.collection("clothes").whereEqualTo("title",newText)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ArrayList<ClotheDTO> list = new ArrayList<>();
+                        for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                            ClotheDTO item = doc.toObject(ClotheDTO.class);
+                            item.setId(doc.getId());
+                            list.add(item);
+                            Toast.makeText(getApplicationContext(), ""+item.getTitle(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
+                        }
+
+                        closetViewAdapter = new ClosetViewAdapter(ClotheSearchActivity.this,list);
+                        gridView.setAdapter(closetViewAdapter);
+                    }});
         return false;
     }
+
+
 
     private void setData(int position) {
 
