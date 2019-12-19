@@ -123,25 +123,4 @@ public class CustomDTO {
         this.userId = userId;
     }
 
-
-
-//    //얜 아직 모르겠는것
-//    public String getContent() {
-//        return content;
-//    }
-//    public void setContent(String content) {
-//        this.content = content;
-//    }
-//    public String getTitle() {
-//        return title;
-//    }
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-
-
-
 }
-//CustomDTO seasonDTo = new CustomDTO("계절", new String[]{
-//        "봄","여름","가을"
-//});

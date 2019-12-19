@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,9 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.ssu.mylook.adapter.AnalysisZeroAdapter;
+import com.ssu.mylook.dto.AnalysisDTO;
 import com.ssu.mylook.dto.Custom2DTO;
+import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +40,13 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
     Button tagBtn;
     Button colorBtn;
     Button mostBtn;
+
+    ListView myZeroListView;
+    AnalysisZeroAdapter adapterZero;
+    TextView zeroClothesName;
+    ImageView zeroClotheImg;
+    TextView mostClothesName;
+    ImageView mostClothesImg;
 
     TextView zeroRatio;
     static String analtag;
@@ -86,6 +99,12 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
         colorBtn = findViewById(R.id.btn_color_more);
         mostBtn = findViewById(R.id.btn_favor_clothes_more);
 
+        //myZeroListView=findViewById(R.id.style_analysis_zero_list_view);
+        zeroClotheImg=findViewById(R.id.zero_clothes_img);
+        zeroClothesName=findViewById(R.id.zero_clothes_name);
+        mostClothesImg=findViewById(R.id.favor_clothes_img);
+        mostClothesName=findViewById(R.id.favor_clothes_name);
+
         zeroRatio=findViewById(R.id.line1_1_ratio);
         favorTag1=findViewById(R.id.favor_tag1);
         favorTag2=findViewById(R.id.favor_tag2);
@@ -97,36 +116,61 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
 
         setData();
     }
+
     private void setData() {
+
+        //입지않은 옷 비율 계산
+        db.collection("coordi").whereEqualTo("count", 0).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    Log.d("nevercoordi :", task.getResult().size() + "");
+                    nevercoordi=task.getResult().size();
+                } else {
+                    //Log.d("TAG", "Error getting documents: ", task.getException());
+
+                }
+            }
+        });
         db.collection("coordi").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    Log.d("TAG", task.getResult().size() + "allcoordi");
+                    Log.d("allcoordi", task.getResult().size() + "");
                     allcoordi=task.getResult().size();
                 } else {
                     //Log.d("TAG", "Error getting documents: ", task.getException());
                 }
             }
         });
-        db.collection("coordi").whereEqualTo("count", 0).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    //Log.d("TAG", task.getResult().size() + "");
-                        nevercoordi=task.getResult().size();
-
-                        coordiratio=(int)(nevercoordi/allcoordi)*100;
-                        zeroRatio.setText(coordiratio+"%");
-
-                } else {
-                    //Log.d("TAG", "Error getting documents: ", task.getException());
-
-                }
-            }
-        });
 //
 //        zeroRatio.setText(20+"%");
+
+        //0번 입은 옷 중 랜덤 옷 추천
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("coordi")
+                .whereEqualTo("count", 0)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ArrayList<AnalysisDTO> list = new ArrayList<>();
+                        for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                            AnalysisDTO item = doc.toObject(AnalysisDTO.class);
+                            //item.setId(doc.getId());
+                            list.add(item);
+                        }
+                        double randomValue = Math.random();
+                        int random=(int)(randomValue*nevercoordi)+1;
+                        zeroClothesName.setText(list.get(random).getName());
+                        new DBUtil().setImageViewFromDB(StyleAnalysisActivity.this,zeroClotheImg,list.get(random).getImg());
+
+//
+//                        adapterZero = new AnalysisZeroAdapter(StyleAnalysisActivity.this, list);
+//                        myZeroListView.setAdapter(adapterZero);
+                    }
+                });
+
 
         //태그계산
         db.collection("coordi").whereEqualTo("tag", "심플베이직").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -419,13 +463,17 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                             list.add(new Custom2DTO(entry.getKey(),entry.getValue()));
                             sortedMap.put(entry.getKey(), entry.getValue());
 
-                            favorColor1.setText("#"+list.get(0).getField());
-                            color=list.get(0).getField();
-                            //favorColor2.setText("#"+list.get(1).getField());
-//                            favorColor3.setText("#"+list.get(2).getField());
                         }
+                        favorColor1.setText("#"+list.get(0).getField());
+                        color=list.get(0).getField();
+                        favorColor2.setText("#"+list.get(1).getField());
+                        favorColor3.setText("#"+list.get(2).getField());
                     }
                 });
+
+
+        //가장 많이 활용된 옷
+
 
 
         //최종 분석 메시지
@@ -434,11 +482,13 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        analysis.setText("당신은 " + color + "컬러를\n가장 선호하고,\n" + analtag + "한 스타일을\n좋아하시는군요!");
+                        //입지 않는 옷의 비율 계산
+                        coordiratio= (int) (((double)nevercoordi/allcoordi)*100);
+                        zeroRatio.setText(coordiratio+"%");
+                        //최종 분석 메시지
+                        analysis.setText("당신은 " + color + "컬러를\n가장 선호하고,\n" + analtag + " 스타일을\n좋아하시는군요!");
                     }
                 });
-
-
     }
 
     @Override

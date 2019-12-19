@@ -6,6 +6,9 @@ public class ClotheListItem {
     private String image;
     private String id;
 
+
+    private String ttl;
+
     public ClotheListItem() {
         super();
     }
@@ -38,5 +41,13 @@ public class ClotheListItem {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTtl() {
+        return ttl;
+    }
+
+    public void setTtl(String ttl) {
+        this.ttl = ttl;
     }
 }

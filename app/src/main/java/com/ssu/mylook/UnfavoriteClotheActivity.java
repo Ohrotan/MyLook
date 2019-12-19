@@ -1,6 +1,7 @@
 package com.ssu.mylook;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -75,7 +76,7 @@ public class UnfavoriteClotheActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    //Log.d("TAG", task.getResult().size() + "");
+                    Log.d("allCoordi size :", task.getResult().size() + "");
                     allCoordi.setText("현재 옷장에 등록한 옷 : "+task.getResult().size());
                 } else {
                     //Log.d("TAG", "Error getting documents: ", task.getException());

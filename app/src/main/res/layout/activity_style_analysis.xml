@@ -41,7 +41,7 @@
                         android:paddingTop="10dp"
                         android:paddingRight="20dp"
                         android:paddingBottom="10dp"
-                        android:text="등록된 옷 중\n입지 않는\n옷의 비율"
+                        android:text="등록된 코디 중\n입지 않는\n옷의 비율"
                         android:textSize="17sp" />
 
                     <TextView
@@ -82,7 +82,7 @@
                         android:id="@+id/line1_2_text1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="오늘은 이 옷에\n도전해보면 어떨까요?"
+                        android:text="오늘은 이 코디에\n도전해보면 어떨까요?"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:gravity="center" />
@@ -93,7 +93,7 @@
                         android:layout_marginBottom="10dp"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="(한 번도 입지않은 옷 중 랜덤 선택)"
+                        android:text="(한 번도 입지않은 코디 중 랜덤 선택)"
                         android:textSize="10sp" />
                     <!--  여기는 보여줄 한번도 안입은 옷 이미지뷰  -->
                     <ImageView
@@ -110,6 +110,12 @@
                         android:gravity="center"
                         android:text="옷이름"
                         android:textSize="10sp"/>
+
+                    <!--                    <ListView-->
+<!--                        android:id="@+id/style_analysis_zero_list_view"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"  />-->
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -119,7 +125,6 @@
             android:layout_height="0dp"
             android:layout_weight ="1"
             android:orientation="horizontal">
-
             <!--    두번째 가로 - 1: 자주쓰는 태그 텍스트 뷰 & 더보기 버튼   -->
             <LinearLayout
                 android:layout_width="0dp"
@@ -314,7 +319,7 @@
                         android:textStyle="bold"/>
 
                     <ImageView
-                        android:id="@+id/favor_clothes"
+                        android:id="@+id/favor_clothes_img"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_below="@id/line3_1_text"
@@ -322,6 +327,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
+                        android:id="@+id/favor_clothes_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -383,19 +389,19 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Scroll View 작동되는지 확인"
-                android:textSize="50sp"
-                android:minLines="3"
-                android:maxLines="3"
-                />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Scroll View 작동되는지 확인"-->
+<!--                android:textSize="50sp"-->
+<!--                android:minLines="3"-->
+<!--                android:maxLines="3"-->
+<!--                />-->
+<!--        </LinearLayout>-->
 
 
     </LinearLayout>
