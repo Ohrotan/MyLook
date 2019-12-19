@@ -62,7 +62,7 @@ public class FavoriteColorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_color);
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("나의 성향 분석");
+        ab.setTitle("입은 옷의 색깔 분석");
         myListView = (ListView) findViewById(R.id.ColorListView);
         ranking = findViewById(R.id.color_rank);
         color = findViewById(R.id.color_title);

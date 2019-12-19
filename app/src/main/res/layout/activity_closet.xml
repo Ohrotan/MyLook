@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -119,37 +120,24 @@
                     android:text="기타"
                     android:textSize="19dp" />
             </LinearLayout>
-            //구분 버튼
         </LinearLayout>
-        //버튼 레이아웃 끝
-
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="100">
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="30dp"
-                android:layout_weight="100">
-
-                <GridView
-                    android:id="@+id/gridView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:columnWidth="100dp"
-                    android:horizontalSpacing="10dp"
-                    android:numColumns="3"
-                    android:verticalSpacing="10dp"></GridView>
-
-            </LinearLayout>
-
+            <GridView
+                android:id="@+id/gridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnWidth="100dp"
+                android:horizontalSpacing="10dp"
+                android:numColumns="3"
+                android:verticalSpacing="10dp"></GridView>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

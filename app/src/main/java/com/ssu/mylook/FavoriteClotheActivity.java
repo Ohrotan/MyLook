@@ -31,7 +31,7 @@ public class FavoriteClotheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_clothe);
 
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("나의 성향 분석");
+        ab.setTitle("옷이 코디에 활용된 횟수");
 
         myListView = (ListView) findViewById(R.id.ListView);
 

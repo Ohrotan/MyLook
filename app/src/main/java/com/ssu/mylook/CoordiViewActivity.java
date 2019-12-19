@@ -156,6 +156,9 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                                 Log.w("TAG", "Error updating document", e);
                             }
                         });
+                intent=getIntent();
+                setResult(RESULT_OK,intent);
+                Log.v("IntentTAG : ","minus btn result");
                 break;
             case R.id.plusCount:
                 //DB에서 이 count 값 가져오기, 변경시킨 값 다시 DB에 저장하기 구현해야함
@@ -179,11 +182,14 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                                 Log.w("TAG", "Error updating document", e);
                             }
                         });
+                intent=getIntent();
+                setResult(RESULT_OK,intent);
+                Log.v("IntentTAG : ","plus btn result");
+                Log.v("IntentTAG : ","plus btn intent:"+intent);
                 break;
         }
 
     }
-
 
     private void showToast(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
