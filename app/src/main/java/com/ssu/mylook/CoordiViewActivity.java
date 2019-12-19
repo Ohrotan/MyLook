@@ -54,6 +54,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
     RelativeLayout removeBtn;   //삭제 : DB 에서 바로 삭제
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+//coordiview에서 코디 수정으로 갈때 아이디를 같이 줘야함
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,7 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                  *  */
                 intent = new Intent(this, CoordiInfoRegisterActivity.class);
                 intent.putExtra("mode","edit");
+                results.setId(getIntent().getStringExtra("coordiID"));
                 intent.putExtra("coordiDTO",results);
                 startActivity(intent);
                 break;
