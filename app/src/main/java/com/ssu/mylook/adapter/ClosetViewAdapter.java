@@ -7,6 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.ssu.mylook.ClotheSearchActivity;
 import com.ssu.mylook.R;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.util.DBUtil;
@@ -85,20 +91,24 @@ public class ClosetViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
-        items.clear();
-        if (charText.length() == 0) {
-            items.addAll(items);
-        } else {
-            for (ClotheDTO wp : items) {
-                //getTitle()에 문제가 있어서 안뜨는거같음
-                if (wp.getTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    items.add(wp);
-                }
-            }
-            //}
-            notifyDataSetChanged();
+    /*public void filter(String charText) {
+        db.collection("clothes").whereEqualTo("title",)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ArrayList<ClotheDTO> list = new ArrayList<>();
+                        for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                            ClotheDTO item = doc.toObject(ClotheDTO.class);
+                            item.setId(doc.getId());
+                            list.add(item);
+                            Toast.makeText(getApplicationContext(), ""+item.getTitle(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), ""+item.getTTL(), Toast.LENGTH_LONG).show();
+                        }
+
+                        closetViewAdapter = new ClosetViewAdapter(ClotheSearchActivity.this,list);
+                        gridView.setAdapter(closetViewAdapter);
+                    }});
         }
-    }
+    }*/
 }

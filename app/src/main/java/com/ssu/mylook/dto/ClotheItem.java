@@ -1,8 +1,5 @@
 package com.ssu.mylook.dto;
 
-import android.graphics.Bitmap;
-
-import java.util.Map;
 
 public class ClotheItem {
     private String title;
@@ -20,7 +17,6 @@ public class ClotheItem {
         this.title=title;
         this.image=image;
         this.id=id;
-
     }
 
 
