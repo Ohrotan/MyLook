@@ -81,7 +81,7 @@ public class ClosetActivity extends AppCompatActivity implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //ClotheDTO clothe = list.get(position).getID();
                 Intent intent = new Intent(ClosetActivity.this, ClotheViewActivity.class);
-
+                Log.v("cedit1", closetViewAdapter.getItem(position).getId());
                 intent.putExtra("clotheID", closetViewAdapter.getItem(position).getId());
 
                 //Bundle bundle = new Bundle();
