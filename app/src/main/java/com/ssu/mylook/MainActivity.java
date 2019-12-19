@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn1 = findViewById(R.id.park_btn);
         btn2 = findViewById(R.id.jo_btn);
         btn3 = findViewById(R.id.heo_btn);
-
-
     }
 
     @Override
