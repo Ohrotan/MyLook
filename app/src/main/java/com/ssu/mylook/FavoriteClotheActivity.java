@@ -14,7 +14,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssu.mylook.adapter.FavoriteClotheAdapter;
-import com.ssu.mylook.dto.Custom3DTO;
+import com.ssu.mylook.dto.FavorDTO;
 
 import java.util.ArrayList;
 
@@ -54,9 +54,9 @@ public class FavoriteClotheActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom3DTO> list = new ArrayList<>();
+                            ArrayList<FavorDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom3DTO item = doc.toObject(Custom3DTO.class);
+                                FavorDTO item = doc.toObject(FavorDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
@@ -69,9 +69,9 @@ public class FavoriteClotheActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            ArrayList<Custom3DTO> list = new ArrayList<>();
+                            ArrayList<FavorDTO> list = new ArrayList<>();
                             for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                                Custom3DTO item = doc.toObject(Custom3DTO.class);
+                                FavorDTO item = doc.toObject(FavorDTO.class);
                                 item.setId(doc.getId());
                                 list.add(item);
                             }
