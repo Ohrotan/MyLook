@@ -1,10 +1,5 @@
 package com.ssu.mylook;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,22 +7,17 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.ssu.mylook.dto.ClotheDTO;
 import com.ssu.mylook.util.DBUtil;
 
@@ -39,8 +29,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import java.util.UUID;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 
 public class ClotheRegisterActivity extends AppCompatActivity implements View.OnClickListener{
@@ -393,7 +388,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
                  }
              }
 
-             Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
+            // Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
 
              stringBitmap=getBase64String(myBitmap);
 
@@ -481,7 +476,7 @@ public class ClotheRegisterActivity extends AppCompatActivity implements View.On
                  shot=1;
                 //Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
                 Bitmap bitmap= BitmapFactory.decodeFile(imageFilePath);
-                Toast.makeText(this,"저장경로:"+imageFilePath,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"저장경로:"+imageFilePath,Toast.LENGTH_SHORT).show();
                 if(bitmap !=null)
                 {
                     myBitmap=bitmap;
