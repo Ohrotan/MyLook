@@ -119,8 +119,6 @@ public class CoordiMainActivity extends AppCompatActivity implements View.OnClic
 
                 //intent.putExtra("coordiID", CoordiViewAdapter.getItem(position).getID());
 
-                ////Bundle bundle = new Bundle();
-
                 startActivity(intent);
             }
 

@@ -29,7 +29,6 @@ public class UnfavoriteClotheAdapter extends BaseAdapter {
 
     public UnfavoriteClotheAdapter(Context context, ArrayList<CoordiDTO> list) {
         this.context=context;
-        list.addAll(list);
         this.listCustom=list;
     }
 

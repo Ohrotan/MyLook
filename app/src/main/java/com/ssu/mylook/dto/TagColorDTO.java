@@ -1,11 +1,11 @@
 package com.ssu.mylook.dto;
 
-public class Custom2DTO {
+public class TagColorDTO {
     private String field;
     private int count;
 
-    public Custom2DTO() { super(); }
-    public Custom2DTO(String field, int count){
+    public TagColorDTO() { super(); }
+    public TagColorDTO(String field, int count){
         this.field=field;
         this.count=count;
     }

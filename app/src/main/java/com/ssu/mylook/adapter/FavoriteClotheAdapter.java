@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ssu.mylook.R;
-import com.ssu.mylook.dto.Custom3DTO;
+import com.ssu.mylook.dto.FavorDTO;
 import com.ssu.mylook.util.DBUtil;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
 public class FavoriteClotheAdapter extends BaseAdapter {
-    private ArrayList<Custom3DTO> listCustom = new ArrayList<>();
+    private ArrayList<FavorDTO> listCustom = new ArrayList<>();
     Context context;
     ArrayList<String> clicked = new ArrayList<>();
 
@@ -29,9 +29,8 @@ public class FavoriteClotheAdapter extends BaseAdapter {
         listCustom = new ArrayList<>();
     }
 
-    public FavoriteClotheAdapter(Context context, ArrayList<Custom3DTO> list) {
+    public FavoriteClotheAdapter(Context context, ArrayList<FavorDTO> list) {
         this.context=context;
-        list.addAll(list);
         this.listCustom=list;
     }
 
@@ -75,7 +74,7 @@ public class FavoriteClotheAdapter extends BaseAdapter {
             holder = (CustomViewHolder) convertView.getTag();
         }
 
-        Custom3DTO dto = listCustom.get(position);
+        FavorDTO dto = listCustom.get(position);
 
         //holder.textRank.setText(dto.getRank());
         //holder.imageView.setImageResource(dto.getResId());
@@ -101,7 +100,7 @@ public class FavoriteClotheAdapter extends BaseAdapter {
     }
 
     // FavoriteClotheActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(Custom3DTO dto) {
+    public void addItem(FavorDTO dto) {
         listCustom.add(dto);
     }
 }

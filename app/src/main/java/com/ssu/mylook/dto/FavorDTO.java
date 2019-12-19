@@ -2,17 +2,17 @@ package com.ssu.mylook.dto;
 
 import java.util.List;
 
-public class Custom3DTO {
+public class FavorDTO {
     String id;
     String img;
     String name;
     List<String> used;
     int count;
 
-    public Custom3DTO() {
+    public FavorDTO() {
         super();
     }
-    public Custom3DTO(String id, String img, String name, int count,List<String> used){
+    public FavorDTO(String id, String img, String name, int count,List<String> used){
         this.id=id;this.img=img;this.name=name;this.count=count; this.used=used;
     }
 
