@@ -13,8 +13,7 @@
     <list default="true" id="ccc12f53-7d86-48e2-b777-a2cd832a2b48" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheSearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheSearchActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssu/mylook/adapter/ClosetViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssu/mylook/adapter/ClosetViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssu/mylook/dto/ClotheItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssu/mylook/dto/ClotheItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_clothe_search_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_clothe_search_layout.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,28 +47,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClosetActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="151" selection-start-line="134" selection-start-column="11" selection-end-line="151" />
+            <state relative-caret-position="133">
+              <caret line="125" column="9" lean-forward="true" selection-start-line="125" selection-start-column="9" selection-end-line="125" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_closet.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-112">
-              <caret line="130" column="44" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="45" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/background_grey.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -113,17 +97,38 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheSearchActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1197">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+            <state relative-caret-position="-855">
+              <caret line="115" column="72" selection-start-line="115" selection-start-column="72" selection-end-line="115" selection-end-column="72" />
               <folding>
-                <element signature="e#3475#4073#0" expanded="true" />
-                <element signature="e#4072#4073#0" expanded="true" />
-                <element signature="e#7311#7312#0" expanded="true" />
-                <element signature="e#7339#7340#0" expanded="true" />
-                <element signature="e#7535#8467#0" expanded="true" />
-                <element signature="e#8466#8467#0" expanded="true" />
-                <element signature="e#8722#9677#0" expanded="true" />
-                <element signature="e#9676#9677#0" expanded="true" />
+                <element signature="e#3380#3976#0" expanded="true" />
+                <element signature="e#3975#3976#0" expanded="true" />
+                <element signature="e#4208#5216#0" expanded="true" />
+                <element signature="e#5215#5216#0" expanded="true" />
+                <element signature="e#9842#10820#0" expanded="true" />
+                <element signature="e#10819#10820#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_clothe_search_layout.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="84" column="42" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheRegisterActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2185">
+              <caret line="151" column="17" lean-forward="true" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#onRequestPermissionsResult#0;class#ClotheRegisterActivity#0" />
               </folding>
             </state>
           </provider>
@@ -144,8 +149,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheViewActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1691">
-              <caret line="107" selection-start-line="107" selection-end-line="107" />
+            <state relative-caret-position="456">
+              <caret line="93" column="12" lean-forward="true" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -165,8 +170,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setitem</find>
-      <find>Bitmap</find>
       <find>view</find>
       <find>setItem</find>
       <find>list</find>
@@ -188,13 +191,15 @@
       <find>get</find>
       <find>bitmap</find>
       <find>set</find>
-      <find>forresult</find>
-      <find>intent</find>
       <find>result_</find>
       <find>getbitmap</find>
       <find>setimagebitmap</find>
       <find>add_photo</find>
       <find>itemviewer</find>
+      <find>forresult</find>
+      <find>setdata</find>
+      <find>intent</find>
+      <find>save</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,7 +212,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/CoordiInfoEditActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/adapter/CoordiMainAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_clothe_search_layout.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheSearchLayout.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/util/DBUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/dto/ClotheTitleDTO.java" />
@@ -222,11 +226,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/ItemViewerActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/dto/ClotheItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/adapter/ClosetViewAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_clothe_search_layout.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheSearchActivity.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="826" />
     <option name="y" value="12" />
     <option name="width" value="1003" />
@@ -262,6 +267,17 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="mylook" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="adapter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyLook" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="MyLook" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
@@ -401,7 +417,7 @@
       <window_info anchor="bottom" id="Run" order="4" weight="0.32907802" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.32907802" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.564539" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15319149" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="9" weight="0.30780143" />
       <window_info anchor="right" id="Preview" order="0" />
@@ -466,7 +482,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheSearchActivity.java</url>
-          <line>106</line>
+          <line>107</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
@@ -544,14 +560,6 @@
           <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_clothe_search_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/dto/ClotheTitleDTO.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -730,41 +738,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/res/drawable/shape_search_background.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheRegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="99" column="54" selection-start-line="99" selection-start-column="54" selection-end-line="99" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onRequestPermissionsResult#0;class#ClotheRegisterActivity#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/dto/ClotheItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClosetActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="151" selection-start-line="134" selection-start-column="11" selection-end-line="151" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheViewActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1691">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -778,19 +755,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClosetActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="125" column="9" lean-forward="true" selection-start-line="125" selection-start-column="9" selection-end-line="125" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheViewActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="93" column="12" lean-forward="true" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_clothe_search_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="84" column="42" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheRegisterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2185">
+          <caret line="151" column="17" lean-forward="true" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#onRequestPermissionsResult#0;class#ClotheRegisterActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssu/mylook/ClotheSearchActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1197">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        <state relative-caret-position="-855">
+          <caret line="115" column="72" selection-start-line="115" selection-start-column="72" selection-end-line="115" selection-end-column="72" />
           <folding>
-            <element signature="e#3475#4073#0" expanded="true" />
-            <element signature="e#4072#4073#0" expanded="true" />
-            <element signature="e#7311#7312#0" expanded="true" />
-            <element signature="e#7339#7340#0" expanded="true" />
-            <element signature="e#7535#8467#0" expanded="true" />
-            <element signature="e#8466#8467#0" expanded="true" />
-            <element signature="e#8722#9677#0" expanded="true" />
-            <element signature="e#9676#9677#0" expanded="true" />
+            <element signature="e#3380#3976#0" expanded="true" />
+            <element signature="e#3975#3976#0" expanded="true" />
+            <element signature="e#4208#5216#0" expanded="true" />
+            <element signature="e#5215#5216#0" expanded="true" />
+            <element signature="e#9842#10820#0" expanded="true" />
+            <element signature="e#10819#10820#0" expanded="true" />
           </folding>
         </state>
       </provider>
