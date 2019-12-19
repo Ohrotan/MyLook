@@ -30,11 +30,6 @@
         <activity android:name=".TestSeungminActivity" />
         <activity android:name=".CoordiViewActivity" />
         <activity android:name=".CoordiMainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".TestJeongeun" />
         <activity

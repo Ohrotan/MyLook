@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -270,7 +269,7 @@ public class ClotheEditActivity extends ClotheRegisterActivity implements View.O
                 }
             }
 
-            Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
+           // Toast.makeText(this, str + "색 ", Toast.LENGTH_LONG).show();
 
             //데이터베이스에 저장
             if (shot == 1) {

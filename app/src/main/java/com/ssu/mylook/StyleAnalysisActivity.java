@@ -164,16 +164,12 @@ public class StyleAnalysisActivity extends AppCompatActivity implements View.OnC
                             list.add(item);
                         }
                         double randomValue = Math.random();
-                        if (nevercoordi > 1) {
-                            Log.v("never", nevercoordi + "");
-                            int random = (int) (randomValue * nevercoordi) + 1;
-                            zeroClothesName.setText(list.get(random).getName());
-                            new DBUtil().setImageViewFromDB(StyleAnalysisActivity.this, zeroClotheImg, list.get(random).getImg());
-                        } else {
-                            zeroClothesName.setText(list.get(0).getName());
-                            new DBUtil().setImageViewFromDB(StyleAnalysisActivity.this, zeroClotheImg, list.get(0).getImg());
 
-                        }
+                        Log.v("never", nevercoordi + "");
+                        int random = (int) (randomValue * nevercoordi);
+                        zeroClothesName.setText(list.get(random).getName());
+                        new DBUtil().setImageViewFromDB(StyleAnalysisActivity.this, zeroClotheImg, list.get(random).getImg());
+
 //
 //                        adapterZero = new AnalysisZeroAdapter(StyleAnalysisActivity.this, list);
 //                        myZeroListView.setAdapter(adapterZero);
