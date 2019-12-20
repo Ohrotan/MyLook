@@ -115,10 +115,12 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                  * 코디 클릭시 나오는 코디ID 값으로 수정하기로 넘어가야 됨
                  *  */
                 intent = new Intent(this, CoordiInfoRegisterActivity.class);
-                intent.putExtra("mode","edit");
+                intent.putExtra("mode", "edit");
                 results.setId(getIntent().getStringExtra("coordiID"));
-                intent.putExtra("coordiDTO",results);
+                intent.putExtra("coordiDTO", results);
+                intent.putExtra("imgId", results.getImg());
                 startActivity(intent);
+                finish();
                 break;
             case R.id.remove_btn:
                 /* <구현해야 함>
@@ -126,8 +128,8 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                  * 코디 클릭시 나오는 코디ID 값을 이용해 삭제함
                  *  */
                 deleteDoc();
-                intent=getIntent();
-                setResult(RESULT_OK,intent);
+                intent = getIntent();
+                setResult(RESULT_OK, intent);
                 break;
 
             case R.id.minusCount:
@@ -158,9 +160,9 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                                 Log.w("TAG", "Error updating document", e);
                             }
                         });
-                intent=getIntent();
-                setResult(RESULT_OK,intent);
-                Log.v("IntentTAG : ","minus btn result");
+                intent = getIntent();
+                setResult(RESULT_OK, intent);
+                Log.v("IntentTAG : ", "minus btn result");
                 break;
             case R.id.plusCount:
                 //DB에서 이 count 값 가져오기, 변경시킨 값 다시 DB에 저장하기 구현해야함
@@ -184,10 +186,10 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                                 Log.w("TAG", "Error updating document", e);
                             }
                         });
-                intent=getIntent();
-                setResult(RESULT_OK,intent);
-                Log.v("IntentTAG : ","plus btn result");
-                Log.v("IntentTAG : ","plus btn intent:"+intent);
+                intent = getIntent();
+                setResult(RESULT_OK, intent);
+                Log.v("IntentTAG : ", "plus btn result");
+                Log.v("IntentTAG : ", "plus btn intent:" + intent);
                 break;
         }
 
@@ -215,13 +217,13 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
                 });
         Intent intent = new Intent(this, CoordiMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        setResult(RESULT_OK,intent);
+        setResult(RESULT_OK, intent);
         overridePendingTransition(0, 0);
         finish();//저장
     }
 
     public void setField(CoordiDTO result) {
-        int check=0;
+        int check = 0;
         new DBUtil().setImageViewFromDB(this, coordi_view_img, result.getImg());
         coordi_view_name.setText(result.getName());//name
         coordi_view_rating.setRating(result.getRating()); //rating
@@ -232,27 +234,27 @@ public class CoordiViewActivity extends AppCompatActivity implements View.OnClic
             switch (s) {
                 case "봄":
                     check++;
-                    seasons="봄 ";
+                    seasons = "봄 ";
                     break;
                 case "여름":
-                    if(check==0){
-                        seasons+="여름 ";}
-                    else
-                        seasons+=", 여름";
+                    if (check == 0) {
+                        seasons += "여름 ";
+                    } else
+                        seasons += ", 여름";
                     check++;
                     break;
                 case "가을":
-                    if(check==0){
-                        seasons+="가을 ";}
-                    else
-                        seasons+=", 가을";
+                    if (check == 0) {
+                        seasons += "가을 ";
+                    } else
+                        seasons += ", 가을";
                     check++;
                     break;
                 case "겨울":
-                    if(check==0){
-                        seasons+="겨울 ";}
-                    else
-                        seasons+=", 겨울";
+                    if (check == 0) {
+                        seasons += "겨울 ";
+                    } else
+                        seasons += ", 겨울";
                     check++;
                 default:
                     break;
