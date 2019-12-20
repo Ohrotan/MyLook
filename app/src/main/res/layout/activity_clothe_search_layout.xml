@@ -6,65 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="45dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            >
-
-            <TextView
-                android:id="@+id/upper_spring"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="봄"
-                android:textSize="19dp"
-                android:layout_weight="25"
-                android:gravity="center"/>
-
-
-            <TextView
-                android:id="@+id/upper_summer"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="여름"
-                android:textSize="19dp"
-                android:layout_weight="25"
-                android:gravity="center"/>
-
-
-            <TextView
-                android:id="@+id/upper_fall"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="가을"
-                android:textSize="19dp"
-                android:layout_weight="25"
-                android:gravity="center"/>
-
-
-            <TextView
-                android:id="@+id/upper_winter"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="겨울"
-                android:textSize="19dp"
-                android:layout_weight="25"
-                android:gravity="center"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 
 
     <LinearLayout
+        android:paddingTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="100"
